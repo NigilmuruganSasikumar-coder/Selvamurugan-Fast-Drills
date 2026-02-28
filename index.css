@@ -764,3 +764,74 @@ nav button:hover{
     font-size: 18px;
   }
 }
+/* ===== MOBILE FIX (same as PC small screen) ===== */
+@media (max-width: 600px){
+
+  body{
+    overflow-x: hidden;
+  }
+
+  /* Sections */
+  #bac, #bac1, #bac2, #bac3{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  /* ABOUT + SERVICES + CONTACT layout */
+  #about, .ourservices, .contcolor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  /* Boxes */
+  .aboutbox,
+  .services,
+  .contus{
+    width: 45%;
+    min-height: auto;
+  }
+
+  /* Gallery */
+  .gaimg{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .gaimg img{
+    width: 45%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  /* Headings */
+  h1{ font-size: 22px; }
+  h2{ font-size: 20px; }
+  h3{ font-size: 16px; }
+
+  /* Paragraphs */
+  p{
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Buttons */
+  button, .btn{
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* Navbar */
+  nav ul{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav ul li a{
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
