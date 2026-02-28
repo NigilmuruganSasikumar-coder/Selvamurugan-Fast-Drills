@@ -15,6 +15,42 @@
 html, body{
   width: 100%;
 }
+.instagram-float {
+    position: fixed;
+    bottom: 30px; 
+    right: 25px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    font-size: 28px;
+    padding: 15px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.instagram-float:hover {
+    transform: scale(1.1);
+}
+.whatsapp-float {
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    font-size: 28px;
+    padding: 15px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: 0.3s;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #1ebe5d;
+}
 .first{
     text-align: center;
     background-color: darkblue;
@@ -35,30 +71,39 @@ html, body{
     top: 0;
     z-index: 1000;
 
-    background: linear-gradient(135deg,#969ca0,#4b5a67);
+     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);;
     padding: 10px 20px;
 }
+.logo h1{
+    margin:0;
+    font-size: 20px;
 
-.logo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo img{
-    width: 45px;
-}
-
-.logo h2{
-    margin: 0;
-    font-size: 18px;
-    color: rgb(144, 144, 244);
-    line-height: 1.1;
     
 }
+.brand-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
 
+    background: linear-gradient(90deg, #E67E22, #fae4bd, #65acdc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 
+        2px 2px 5px rgba(0,0,0,0.3),
+        0px 0px 15px rgba(230,126,34,0.4);
+
+}
+.brand-title:hover{
+  transform: scale(1.1);
+}
 .logo span{
-    color: #fae293;
+    color: rgb(203, 203, 203);
+    margin-left: 45px;
+    font-size: 15px;
 }
 nav{
   display: flex;
@@ -76,7 +121,7 @@ nav a{
 
 nav a:hover{
     background: rgba(255,255,255,0.2);
-    color: #0b3c8a;
+    color: #F5E6CA;
 }
 nav button{
   background: linear-gradient(135deg, #0b3c8a, #f9e27d);
@@ -624,6 +669,26 @@ nav button:hover{
   margin-bottom: 25px;
   font-size: 15px;
 }
+.social-section {
+    padding:20px;
+    color: white;
+}
+
+.social-section h2 {
+    font-size: 20px;
+}
+
+.social-icons a {
+    color: rgb(203, 203, 203);
+    font-size: 25px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00ffcc;
+    transform: scale(1.2);
+}
 .baccor3{
   background-color: #134e4a;
   color: whitesmoke;
@@ -699,7 +764,7 @@ nav button:hover{
   padding: 15px;
   color: wheat;
 }
-@media (max-width: 600px){
+@media (max-width: 480px){
 
   /* Section spacing */
   #bac, #bac1, #bac2, #bac3{
@@ -762,76 +827,5 @@ nav button:hover{
   /* Reduce big text */
   #bac p, #bac1 p, #bac2 p, #bac3 p{
     font-size: 18px;
-  }
-}
-/* ===== MOBILE FIX (same as PC small screen) ===== */
-@media (max-width: 600px){
-
-  body{
-    overflow-x: hidden;
-  }
-
-  /* Sections */
-  #bac, #bac1, #bac2, #bac3{
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  /* ABOUT + SERVICES + CONTACT layout */
-  #about, .ourservices, .contcolor{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  /* Boxes */
-  .aboutbox,
-  .services,
-  .contus{
-    width: 45%;
-    min-height: auto;
-  }
-
-  /* Gallery */
-  .gaimg{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .gaimg img{
-    width: 45%;
-    height: 160px;
-    object-fit: cover;
-  }
-
-  /* Headings */
-  h1{ font-size: 22px; }
-  h2{ font-size: 20px; }
-  h3{ font-size: 16px; }
-
-  /* Paragraphs */
-  p{
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  /* Buttons */
-  button, .btn{
-    font-size: 14px;
-    padding: 8px 14px;
-  }
-
-  /* Navbar */
-  nav ul{
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav ul li a{
-    font-size: 13px;
-    padding: 6px 10px;
   }
 }
