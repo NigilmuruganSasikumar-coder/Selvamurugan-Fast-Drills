@@ -4,7 +4,7 @@
 #bac2,
 #bac3{
   padding-top: 80px;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 *{
@@ -225,9 +225,15 @@ nav button:hover{
   background: linear-gradient(135deg, #f2d9a6, #f7c873);
 }
 .box h1{
-  font-size: 20px;
+  font-size: 40px;
   padding: 10px;
 }
+.box p{
+  font-size: 20px;
+  font-style: oblique;
+  padding: 10px;
+}
+
 .cont a:hover{
   transform: translateY(-5px);
   background-color: rgb(8, 77, 8);
@@ -542,7 +548,7 @@ nav button:hover{
 .contus{
   width:230px;
   height: 260px;
-  padding: 30px;
+  padding: 25px;
   border-radius: 22px;
   box-shadow: 0 10px 25px rgba(13, 148, 136, 0.25);
   transition: 0.3s;
@@ -564,7 +570,7 @@ nav button:hover{
 
 }
 .contus a{
-  margin-top: auto;
+  margin-top: 25px;
     text-decoration: none;
     color: rgb(7, 0, 0);
     font-weight: 600;
@@ -692,4 +698,69 @@ nav button:hover{
   font-size: 40px;
   padding: 15px;
   color: wheat;
+}
+@media (max-width: 600px){
+
+  /* Section spacing */
+  #bac, #bac1, #bac2, #bac3{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  /* About boxes */
+  #about{
+    gap: 20px;
+    padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .aboutbox{
+    width: 90%;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  /* Services grid */
+  .ourservices{
+    gap: 25px;
+    padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .services{
+    width: 90%;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  /* Portfolio images */
+  .gaimg{
+    gap: 15px;
+  }
+
+  .gaimg img{
+    width: 90%;
+    height: 200px;
+  }
+
+  /* Contact boxes */
+  .contcolor{
+    gap: 25px;
+  }
+
+  .contus{
+    width: 50%;
+    height: auto;
+    padding: 20px;
+  }
+  .coat{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  /* Reduce big text */
+  #bac p, #bac1 p, #bac2 p, #bac3 p{
+    font-size: 18px;
+  }
 }
