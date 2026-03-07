@@ -99,6 +99,7 @@ html, body{
 }
 .brand-title:hover{
   transform: scale(1.1);
+  cursor:none;
 }
 .logo span{
     color: rgb(203, 203, 203);
@@ -211,7 +212,7 @@ nav button:hover{
     text-align: center;
     padding: 50px;
     background: #f5f5f5;
-    padding-top: 55px;
+    padding-top: 75px;
 }
 .txtcolor{
   font-size: clamp(28px, 5vw, 55px);
@@ -321,12 +322,12 @@ nav button:hover{
   cursor: pointer;
 }
 .cont1 a{
-  font-size: 20px;
+  font-size: 23px;
   display: inline-block;
   margin-top: 15px;
   padding: 10px 25px;
-  background: linear-gradient(135deg, #867ef5, #a4a4f0);
-  color: white;
+  background: linear-gradient(90deg, #E67E22, #fae4bd, #65acdc);
+  color: #2c5563;
   text-decoration: none;
   border-radius: 5px;
   transition: 0.3s ease;
@@ -354,14 +355,13 @@ nav button:hover{
   justify-content: center;
   background-color: rgba(218, 225, 245, 0.35);
   padding-bottom: 80px;
-  padding-top: 40px;
   flex-wrap: wrap;
 
 }
 #bac{ justify-content: center;
    background-color: rgba(218, 225, 245, 0.35);
    text-align: center;
-   padding-top: 60px;
+   padding-top: 75px;
 }
 #bac p{
   font-size: 25px;
@@ -408,7 +408,7 @@ nav button:hover{
 }
 #bac1{ justify-content: center;
    text-align: center;
-   padding-top: 60px;
+   padding-top: 75px;
 }
 #bac1 p{
   font-size: 25px;
@@ -423,7 +423,6 @@ nav button:hover{
   flex-wrap: wrap;
   background: linear-gradient(135deg, #F1FAF8, #E8F6FF, #F7FFF9);
   padding-bottom: 80px;
-  padding-top: 30px;
 }
 .services{
   width: 320px;
@@ -507,15 +506,15 @@ nav button:hover{
   display: inline-block;
   margin-top: 30px;
   padding: 10px 25px;
-  background: linear-gradient(135deg, #867ef5, #a4a4f0);
-  color: white;
+  background: linear-gradient(90deg, #E67E22, #fae4bd, #65acdc);
+  color: #2c5563;
   text-decoration: none;
   border-radius: 5px;
   transition: 0.3s ease;
 }
 #bac2{ justify-content: center;
    text-align: center;
-   padding-top: 60px;
+   padding-top: 75px;
 
 }
 #bac2 p{
@@ -526,7 +525,6 @@ nav button:hover{
 #bac2 h3{
   font-size: 30px;
   color: #333;
-  padding: 25px;
   font-style: italic;
 }
 .gaimg{
@@ -535,7 +533,7 @@ nav button:hover{
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    padding-top: 55px;
+    padding-top: 30px;
 }
 
 /* Desktop → 3 images per row */
@@ -764,7 +762,8 @@ nav button:hover{
   padding: 15px;
   color: wheat;
 }
-@media (max-width: 480px){
+
+@media (max-width: 600px){
 
   /* Section spacing */
   #bac, #bac1, #bac2, #bac3{
