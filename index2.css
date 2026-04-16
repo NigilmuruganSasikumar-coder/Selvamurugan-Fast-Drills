@@ -1,0 +1,133 @@
+/* =======================
+   BASE SETUP
+======================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #0f172a, #0b3c5d);
+    color: white;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* =======================
+   MAIN TITLE
+======================= */
+
+h1{
+    font-size: 32px;
+    text-align: center;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #ffcc00, #00e5ff, #ffcc00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine{
+    to{
+        background-position: 200% center;
+    }
+}
+
+p{
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 16px;
+    color: #dbeafe;
+}
+
+/* =======================
+   TRUST STRIP
+======================= */
+
+.trust-strip{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px auto;
+}
+
+.trust-strip div{
+    background: rgba(255,255,255,0.08);
+    padding: 12px 18px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.trust-strip div:hover{
+    transform: translateY(-5px);
+    background: rgba(0,255,204,0.15);
+}
+
+/* =======================
+   SUB HEADING
+======================= */
+
+h2{
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    color: #00e5ff;
+}
+
+/* =======================
+   LIST STYLE
+======================= */
+
+ul{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    list-style: none;
+}
+
+ul li{
+    background: rgba(255,255,255,0.08);
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-left: 4px solid #ffcc00;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+ul li:hover{
+    transform: translateX(5px);
+    background: rgba(255,255,255,0.12);
+}
+
+/* =======================
+   BUTTON
+======================= */
+
+.btn{
+    width: fit-content;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.btn:hover{
+    transform: scale(1.08);
+    background: linear-gradient(135deg, #128C7E, #25D366);
+}.button{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

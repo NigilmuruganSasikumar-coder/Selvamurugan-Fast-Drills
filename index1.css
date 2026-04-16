@@ -67,6 +67,7 @@ body {
         transform: translateX(200px);
     }
 }
+
 *{
     margin: 0px;
     padding: 0px;
@@ -74,7 +75,7 @@ body {
 }
 .divider {
   height: 2.5px;
-  background: linear-gradient(to right, transparent, #7fbf9a, transparent);
+  background: linear-gradient(to right, transparent, #362a6255, transparent);
   opacity: 2;
 }
 .title1{
@@ -207,6 +208,7 @@ nav button:hover{
     width:200%;
     display: flex;
     animation: slide 25s infinite;
+    will-change: transform;
 }
 .slide-truck img{
     width: 100%;
@@ -265,7 +267,7 @@ nav button:hover{
   font-weight: 800;
   text-align: center;
 
-  background: linear-gradient(90deg, #5a8bedaf, #d5db66a4, #5a8bedaf);
+  background: linear-gradient(90deg, #ffcc00, #00e5ff, #ffcc00);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -282,11 +284,48 @@ nav button:hover{
 }
 
 #home p{
-  padding-top: 20px;
-    color: rgb(198, 197, 197);
+  padding-top: 25px;
+    color: rgb(255, 255, 255);
     font-size: 20px;
+    font-style:initial;
+}
+#home h2{
+  font-size: 25px;
+  padding: 10px;
 }
 
+.home2{
+  font-size: 23px;
+  display: inline-block;
+  margin-top: 15px;
+  padding:15px;
+  background: rgba(230, 156, 30, 0.395);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+
+}
+.cont11 a:hover{
+  transform: translateY(-5px);
+  color: white;
+}
+.cont11{
+  justify-content: center;
+  display: flex;
+  padding-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+.cont11 a{
+  font-size: 23px;
+  display: inline-block;
+  margin-top: 15px;
+  color: rgb(152, 151, 151);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
 .home1{
   display: flex;
   gap: 40px;
@@ -343,7 +382,7 @@ nav button:hover{
   display: inline-block;
   margin-top: 15px;
   padding: 10px 25px;
-  background: rgba(0, 128, 0, 0.677);
+  background: rgba(0, 128, 0, 0.395);
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -351,7 +390,7 @@ nav button:hover{
 }
 .cont1 a:hover{
   transform: translateY(-5px);
-  background-color: rgba(8, 77, 8, 0.858);
+  background-color: rgba(96, 60, 205, 0.858);
 }
 .cont1{
   justify-content: center;
@@ -368,7 +407,7 @@ nav button:hover{
   display: inline-block;
   margin-top: 15px;
   padding: 10px 25px;
-  background: linear-gradient(90deg, #283be7e2,#7165dca2,#283be7e2);
+  background: linear-gradient(90deg, #283be781,#7165dc3b,#283be745);
   color: #c7e7f1;
   text-decoration: none;
   border-radius: 5px;
@@ -408,12 +447,17 @@ nav button:hover{
   color: rgb(255, 255, 255);
   padding: 25px;
 }
+#about h2{
+  font-size: 20px;
+  padding: 15px;
+  color: #e1e1c0;
+}
 .aboutbox{
   width: 320px;
   min-height: 260px;
   padding: 35px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #f7efe577, #e3f2ed73);
+  background: linear-gradient(135deg, #ffb04f77, #79ffd273);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
   transition: 0.3s;
   text-align: center;
@@ -429,15 +473,20 @@ nav button:hover{
 }
 
 .aboutbox:hover{
-  transform: translateY(-10px);
+  transform: translateX(10px);
 }
 .aboutbox p{
-  margin-top: 20px;
   font-size: 20px;
-  color: rgba(245, 244, 162, 0.845);
+  color: rgba(152, 192, 247, 0.76);
 }
-.aboutbox h1{
-  color: rgba(0, 0, 0, 0.611);
+.aboutbox h2{
+  color: #ffb04f;
+
+}
+.aboutbox h5{
+  color:whitesmoke;
+  padding: 10px;
+  font-size: 14px;
 
 }
 #services1{ justify-content: center;
@@ -540,7 +589,7 @@ nav button:hover{
   margin-top: 30px;
   padding: 10px 25px;
   background: linear-gradient(90deg, #e67d227a, #fae4bdbc, #e7a2599f);
-  color: #43545a;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 5px;
   transition: 0.3s ease;
@@ -672,7 +721,7 @@ nav button:hover{
 }
 .map{
   width: 100%;
-  max-width: 1000px;
+  max-width: 10000px;
   margin: auto;
   margin-top: 20px;
   border-radius: 15px;
