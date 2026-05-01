@@ -74,6 +74,7 @@ body {
   font-family:'Poppins',sans-serif;
   scroll-behavior: smooth;
 }
+
 .divider {
   height: 2.5px;
   background: linear-gradient(to right, transparent, #362a6255, transparent);
@@ -496,10 +497,15 @@ nav button:hover{
 .service-area{
   text-align: center;
 }
+.service-area h3{
+  font-size: 20px;
+  color: rgba(224, 255, 255, 0.737);
+  padding-top: 20px;
+}
 .service-area a{
   text-align: center;
   font-size: 20px;
-  color:#c7e7f1;
+  color:#000000;
   text-decoration: none;
 }
 .service-area1{
@@ -509,14 +515,17 @@ nav button:hover{
   padding: 30px;
 }
 .service-area2:hover{
-  transform: translateY(10px);
+  transform: translateY(-10px) translateZ(5px);
+  background:linear-gradient(90deg, #0eda5c, #0ec9da);
 }
 .service-area2{
-  background: #f2e3b676;
+  background: #f2e3b643;
   border-radius: 15px;
   width: 200px;
   text-align: center;
   padding: 10px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
   box-shadow: 0 5px 12px rgba(0,0,0,0.15);
   color: #333;
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
