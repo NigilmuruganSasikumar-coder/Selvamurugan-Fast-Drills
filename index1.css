@@ -74,7 +74,58 @@ body {
   font-family:'Poppins',sans-serif;
   scroll-behavior: smooth;
 }
+/* NAVBAR */
 
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+    color: #F5E6CA;
+}
+
+/* HAMBURGER */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        height: 350px;
+        width: 300px;
+        background: #53586f;
+        flex-direction: column;
+        align-items:normal;
+        justify-content: center;
+        gap: 30px;
+        transition: 0.4s;
+        border-radius: 20px;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+}
 .divider {
   height: 2.5px;
   background: linear-gradient(to right, transparent, #362a6255, transparent);
@@ -126,18 +177,18 @@ body {
     transform: scale(1.1);
     background: #1ebe5d;
 }
-.top{
+.navbar {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;   /* centers nav */
-    gap: 60px;
-
+    gap: 30px;
+    
+    padding: 10px 20px;
+     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);;
+    color: white;
     position: sticky;
     top: 0;
     z-index: 1000;
-
-     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);;
-    padding: 10px 20px;
 }
 .title h1{
     margin:0;
@@ -172,7 +223,7 @@ body {
 nav{
   align-items: center;
 }
-nav a{
+.navbar a{
     text-decoration: none;
     color: white;
     font-weight: 600;
@@ -181,23 +232,13 @@ nav a{
     transition: 0.3s;
 }
 
-nav a:hover{
+.navbar a:hover{
     background: rgba(255,255,255,0.2);
     color: #F5E6CA;
+    line-height: 20px;
+      transform: translateY(-4px);
 }
-nav button{
-  background: linear-gradient(135deg, #0b3c8a, #f9e27d);
-  border: none;
-  padding: 8px 18px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-nav button:hover{
-  background: linear-gradient(135deg, #f9e27d, #0b3c8a);
-  color: white;
-}
+
 .slider{
     width: 100%;
     padding-top: 5px;
@@ -223,7 +264,7 @@ nav button:hover{
  {
     0%{transform:translateX(0) ;}
       50%{transform:translateX(-50%) ;}
-       100%{transform:translateX(0) ;}
+       100%{transform:translateX(0%) ;}
 }
 .slider-text{
   position: absolute;
@@ -512,7 +553,7 @@ nav button:hover{
   display: flex;
   justify-content: center;
   gap: 30px;
-  padding: 30px;
+   flex-wrap: wrap;
 }
 .service-area2:hover{
   transform: translateY(-10px) translateZ(5px);
@@ -536,8 +577,13 @@ nav button:hover{
 
 .service-area p{
   font-size: 25px;
-  padding: 15px;
+  padding-top: 15px;
   color: rgba(245, 245, 245, 0.589);
+}
+.service-area h4{
+  font-size: 25px;
+  padding: 55px;
+  color: rgba(245, 245, 245, 0.877);
 }
 .service-area h2{
   color: wheat;
@@ -652,9 +698,10 @@ nav button:hover{
 }
 .reviews {
   display: flex;
-  gap: 10px;
+  gap: 28px;
     padding: 40px;
     text-align: center;
+    justify-content: center;
 }
 
 .reviews h2 {
@@ -663,10 +710,8 @@ nav button:hover{
 
 .review-box {
     background: rgba(255, 255, 255, 0.223);
-    margin: 15px auto;
-    padding: 20px;
-    width: 60%;
-    max-width: 300px;
+    padding: 25px;
+    width: 250px;
     border-radius: 10px;
   }
 .review-box p {
@@ -1068,8 +1113,7 @@ nav button:hover{
 
  /* for mobile view */
 
-  @media (max-width: 768px) {
-
+  @media (max-width: 780px) {
   .top {
     flex-direction: column;
     gap: 10px;
@@ -1080,7 +1124,12 @@ nav button:hover{
     flex-wrap: wrap;
     justify-content: center;
   }
-
+  .home2{
+    font-size: 12px;
+  }
+  .home2 a{
+    font-size: 13px;
+  }
   .coat2 {
     flex-direction: column;
     padding: 10px;
@@ -1092,6 +1141,7 @@ nav button:hover{
   }
 
   .slider-text h1 {
+    margin-top: 50px;
     font-size: 24px;
   }
 
@@ -1099,6 +1149,11 @@ nav button:hover{
     font-size: 14px;
   }
 
+}
+@media (max-width: 768px){
+  .bg::before, .bg::after{
+    display:none;
+  }
 }
 section, #home, #about, #services1, #galary, #contact {
   padding: 60px 20px;
