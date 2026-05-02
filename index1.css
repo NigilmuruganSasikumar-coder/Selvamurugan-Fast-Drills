@@ -702,6 +702,7 @@ nav{
     padding: 40px;
     text-align: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .reviews h2 {
@@ -1114,21 +1115,21 @@ nav{
  /* for mobile view */
 
   @media (max-width: 780px) {
-  .top {
-    flex-direction: column;
+  .navbar {
+    flex-direction:row;
     gap: 10px;
+    font-size: 11px;
   }
-
   nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
   .home2{
-    font-size: 12px;
+    font-size: 15px;
   }
   .home2 a{
-    font-size: 13px;
+    font-size: 17px;
   }
   .coat2 {
     flex-direction: column;
