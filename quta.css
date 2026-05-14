@@ -193,29 +193,6 @@ body{
     overflow:hidden;
 }
 
-.calculator::before{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    background:rgba(255,180,0,0.08);
-    border-radius:50%;
-    top:-120px;
-    right:-120px;
-    filter:blur(10px);
-}
-
-.calculator::after{
-    content:"";
-    position:absolute;
-    width:280px;
-    height:280px;
-    background:rgba(0,174,255,0.05);
-    border-radius:50%;
-    bottom:-100px;
-    left:-100px;
-}
-
 .title{
     margin-bottom:35px;
     position:relative;
