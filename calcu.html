@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Borewell Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#081120;
+    padding:40px;
+    color:white;
+}
+
+.calculator{
+    max-width:1200px;
+    margin:auto;
+    background:#111c2d;
+    border-radius:28px;
+    padding:35px;
+    border:1px solid #22344f;
+}
+
+.title{
+    margin-bottom:35px;
+}
+
+.title p{
+    color:#ffb400;
+    letter-spacing:2px;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.title h1{
+    font-size:48px;
+}
+
+.type-flex{
+    display:flex;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.type-btn{
+    flex:1;
+    padding:18px;
+    border:none;
+    border-radius:16px;
+    background:#24344f;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.type-btn.active{
+    background:linear-gradient(135deg,#ffb400,#ff7b00);
+    color:#111;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.input-group label{
+    color:#b8c4d8;
+    font-size:15px;
+}
+
+.input-group input{
+    background:#1a2740;
+    border:1px solid #2a3d5c;
+    border-radius:16px;
+    padding:18px;
+    color:white;
+    font-size:17px;
+    outline:none;
+}
+
+.input-group input:focus{
+    border-color:#ffb400;
+}
+
+.gst-box{
+    margin-top:30px;
+    background:#1a2740;
+    border-radius:18px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.gst-box input{
+    width:24px;
+    height:24px;
+}
+
+.button-flex{
+    display:flex;
+    gap:15px;
+    margin-top:30px;
+}
+
+.calculate-btn{
+    flex:1;
+    border:none;
+    border-radius:18px;
+    padding:22px;
+    background:linear-gradient(135deg,#ffb400,#ff7b00);
+    font-size:20px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.clear-btn{
+    width:180px;
+    border:none;
+    border-radius:18px;
+    padding:22px;
+    background:#24344f;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.clear-btn:hover{
+    background:#314766;
+}
+
+.details-box{
+    margin-top:35px;
+    background:#edf7ed;
+    padding:22px;
+    border-radius:18px;
+    color:#333;
+    font-size:19px;
+    line-height:1.8;
+}
+
+.green{
+    color:#00b933;
+    font-weight:700;
+}
+
+.breakdown-box{
+    margin-top:30px;
+    background:#162236;
+    border-radius:24px;
+    padding:25px;
+}
+
+.breakdown-box h2{
+    margin-bottom:25px;
+}
+
+.breakdown-head{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    padding-bottom:15px;
+    border-bottom:1px solid #2a3a54;
+    color:#ffb400;
+    font-weight:700;
+}
+
+.breakdown-row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    padding:18px 0;
+    border-bottom:1px solid #223149;
+}
+
+.amount{
+    color:#00d13b;
+    font-weight:700;
+}
+
+.result-box{
+    margin-top:35px;
+    background:#162236;
+    border-radius:24px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.result-item{
+    display:flex;
+    justify-content:space-between;
+    font-size:20px;
+}
+
+.grand{
+    border-top:2px solid #2b3d57;
+    padding-top:20px;
+    margin-top:10px;
+    color:#ffb400;
+    font-size:34px;
+    font-weight:700;
+}
+
+@media(max-width:900px){
+
+    body{
+        padding:20px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .button-flex{
+        flex-direction:column;
+    }
+
+    .clear-btn{
+        width:100%;
+    }
+
+    .title h1{
+        font-size:36px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div class="title">
+
+        <p>ADVANCED ESTIMATION</p>
+
+        <h1>Borewell Calculator</h1>
+
+    </div>
+
+
+
+    <!-- DRILLING TYPE -->
+
+    <div class="type-flex">
+
+        <button class="type-btn active"
+        id="newBtn"
+        onclick="setMode('new')">
+
+            New Drilling
+
+        </button>
+
+        <button class="type-btn"
+        id="reboreBtn"
+        onclick="setMode('rebore')">
+
+            Rebore Drilling
+
+        </button>
+
+    </div>
+
+
+
+    <!-- INPUTS -->
+
+    <div class="grid">
+
+        <div class="input-group">
+
+            <label>Total Depth</label>
+
+            <input type="number"
+            id="depth"
+            value="1200">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Base Rate / ft</label>
+
+            <input type="number"
+            id="baseRate"
+            value="90">
+
+        </div>
+
+
+
+        <!-- REBORE -->
+
+        <div class="input-group rebore-fields"
+        style="display:none;">
+
+            <label>Rebore Feet</label>
+
+            <input type="number"
+            id="reboreFeet"
+            value="0">
+
+        </div>
+
+
+        <div class="input-group rebore-fields"
+        style="display:none;">
+
+            <label>Rebore Rate / ft</label>
+
+            <input type="number"
+            id="reboreRate"
+            value="40">
+
+        </div>
+
+
+
+        <div class="input-group">
+
+            <label>7" PVC Feet</label>
+
+            <input type="number"
+            id="casing7"
+            value="30">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>7" PVC Rate</label>
+
+            <input type="number"
+            id="casing7Rate"
+            value="450">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>10" PVC Feet</label>
+
+            <input type="number"
+            id="casing10"
+            value="15">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>10" PVC Rate</label>
+
+            <input type="number"
+            id="casing10Rate"
+            value="750">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- GST -->
+
+    <div class="gst-box">
+
+        <span>GST ON / OFF</span>
+
+        <input type="checkbox"
+        id="gstToggle"
+        checked>
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="button-flex">
+
+        <button class="calculate-btn"
+        onclick="calculateTotal()">
+
+            Calculate Estimate
+
+        </button>
+
+        <button class="clear-btn"
+        onclick="clearCalculator()">
+
+            Clear
+
+        </button>
+
+    </div>
+
+
+
+    <!-- DETAILS -->
+
+    <div class="details-box">
+
+        <span class="green">
+            Drilling Details:
+        </span>
+
+        <span id="detailsText"></span>
+
+    </div>
+
+
+
+    <!-- BREAKDOWN -->
+
+    <div class="breakdown-box">
+
+        <h2>
+            Drilling Cost Breakdown
+        </h2>
+
+        <div class="breakdown-head">
+
+            <div>Depth</div>
+            <div>Rate</div>
+            <div>Amount</div>
+
+        </div>
+
+        <div id="breakdown"></div>
+
+    </div>
+
+
+
+    <!-- RESULTS -->
+
+    <div class="result-box">
+
+        <div class="result-item">
+
+            <p>Drilling Cost</p>
+
+            <span id="drillingTotal">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>7" PVC Cost</p>
+
+            <span id="casing7Total">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>10" PVC Cost</p>
+
+            <span id="casing10Total">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>GST</p>
+
+            <span id="gstAmount">₹0</span>
+
+        </div>
+
+        <div class="result-item grand">
+
+            <p>Total Estimate</p>
+
+            <span id="grandTotal">₹0</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+let drillingMode = "new";
+
+function setMode(mode){
+
+    drillingMode = mode;
+
+    document.getElementById("newBtn")
+    .classList.remove("active");
+
+    document.getElementById("reboreBtn")
+    .classList.remove("active");
+
+    if(mode === "new"){
+
+        document.getElementById("newBtn")
+        .classList.add("active");
+
+    }
+
+    else{
+
+        document.getElementById("reboreBtn")
+        .classList.add("active");
+
+    }
+
+    document
+    .querySelectorAll(".rebore-fields")
+    .forEach(el=>{
+
+        el.style.display =
+        mode === "rebore"
+        ? "flex"
+        : "none";
+
+    });
+
+    calculateTotal();
+
+}
+
+
+
+function calculateTotal(){
+
+    let depth =
+    parseInt(document.getElementById("depth").value) || 0;
+
+    let baseRate =
+    parseInt(document.getElementById("baseRate").value) || 0;
+
+    let casing7Feet =
+    parseInt(document.getElementById("casing7").value) || 0;
+
+    let casing7Rate =
+    parseInt(document.getElementById("casing7Rate").value) || 0;
+
+    let casing10Feet =
+    parseInt(document.getElementById("casing10").value) || 0;
+
+    let casing10Rate =
+    parseInt(document.getElementById("casing10Rate").value) || 0;
+
+
+
+    let start = 1;
+
+    let drillingTotal = 0;
+
+    let breakdownHTML = "";
+
+
+
+    // ORIGINAL LOGIC SETTINGS
+
+    let currentRate = baseRate;
+
+    let addValue = 5;
+
+
+// =========================
+// REBORE SECTION
+// =========================
+
+if(drillingMode === "rebore"){
+
+    let reboreFeet =
+    parseInt(document.getElementById("reboreFeet").value) || 0;
+
+    let reboreRate =
+    parseInt(document.getElementById("reboreRate").value) || 0;
+
+
+
+    // REBORE COST
+
+    let reboreCost =
+    reboreFeet * reboreRate;
+
+    drillingTotal += reboreCost;
+
+
+
+    // SHOW REBORE ROW
+
+    breakdownHTML += `
+
+    <div class="breakdown-row">
+
+        <div>
+            1-${reboreFeet} ft
+        </div>
+
+        <div>
+            ₹${reboreRate}/ft
+        </div>
+
+        <div class="amount">
+            Rs.${reboreCost.toLocaleString()}
+        </div>
+
+    </div>
+
+    `;
+
+
+
+    // NEXT STARTING POINT
+
+    start = reboreFeet + 1;
+
+
+
+    // =========================
+    // CORRECT RATE ADVANCEMENT
+    // =========================
+
+    currentRate = baseRate;
+
+    addValue = 5;
+
+
+
+    // FIRST 300 FT = BASE RATE
+
+    if(reboreFeet >= 301){
+
+        let tempDepth = 301;
+
+
+
+        while(tempDepth <= reboreFeet + 100){
+
+            currentRate += addValue;
+
+
+
+            if(addValue === 5){
+
+                addValue = 10;
+
+            }
+
+            else{
+
+                addValue += 10;
+
+            }
+
+
+
+            tempDepth += 100;
+
+        }
+
+    }
+
+}
+
+    // =========================
+    // NORMAL SLAB CALCULATION
+    // =========================
+
+    while(start <= depth){
+
+        let end;
+
+
+
+        if(start <= 300){
+
+            end = Math.min(300, depth);
+
+        }
+
+        else{
+
+            end = Math.min(start + 99, depth);
+
+        }
+
+
+
+        let feet =
+        end - start + 1;
+
+
+
+        let slabCost =
+        feet * currentRate;
+
+
+
+        drillingTotal += slabCost;
+
+
+
+        breakdownHTML += `
+
+        <div class="breakdown-row">
+
+            <div>
+                ${String(start).padStart(3,'0')}-${end} ft
+            </div>
+
+            <div>
+                ₹${currentRate}/ft
+            </div>
+
+            <div class="amount">
+                Rs.${slabCost.toLocaleString()}
+            </div>
+
+        </div>
+
+        `;
+
+
+
+        start = end + 1;
+
+
+
+        // ORIGINAL NEW DRILLING LOGIC
+
+        if(end < 1000){
+
+            currentRate += addValue;
+
+            if(addValue === 5){
+
+                addValue = 10;
+
+            }
+
+            else{
+
+                addValue += 10;
+
+            }
+
+        }
+
+        else{
+
+            currentRate += 100;
+
+        }
+
+    }
+
+
+
+    // PVC COSTS
+
+    let casing7Cost =
+    casing7Feet * casing7Rate;
+
+    let casing10Cost =
+    casing10Feet * casing10Rate;
+
+
+
+    // SUBTOTAL
+
+    let subtotal =
+
+    drillingTotal
+    +
+    casing7Cost
+    +
+    casing10Cost;
+
+
+
+    // GST
+
+    let gst = 0;
+
+    if(document.getElementById("gstToggle").checked){
+
+        gst = subtotal * 0.18;
+
+    }
+
+
+
+    // FINAL TOTAL
+
+    let total =
+    subtotal + gst;
+
+
+
+    // DETAILS
+
+    document.getElementById("detailsText")
+    .innerHTML =
+
+    `
+    Total Depth:
+    <b>${depth} ft</b>
+
+    |
+
+    Base Rate:
+    <b>₹${baseRate}/ft</b>
+
+    |
+
+    Mode:
+    <b>${drillingMode.toUpperCase()}</b>
+
+    |
+
+    7" PVC:
+    <b>${casing7Feet} ft</b>
+
+    |
+
+    10" PVC:
+    <b>${casing10Feet} ft</b>
+    `;
+
+
+
+    // BREAKDOWN
+
+    document.getElementById("breakdown")
+    .innerHTML =
+    breakdownHTML;
+
+
+
+    // RESULTS
+
+    document.getElementById("drillingTotal")
+    .innerHTML =
+    "₹" + drillingTotal.toLocaleString();
+
+    document.getElementById("casing7Total")
+    .innerHTML =
+    "₹" + casing7Cost.toLocaleString();
+
+    document.getElementById("casing10Total")
+    .innerHTML =
+    "₹" + casing10Cost.toLocaleString();
+
+    document.getElementById("gstAmount")
+    .innerHTML =
+    "₹" + gst.toLocaleString();
+
+    document.getElementById("grandTotal")
+    .innerHTML =
+    "₹" + total.toLocaleString();
+
+}
+
+
+
+function clearCalculator(){
+
+    document.getElementById("depth").value = "";
+
+    document.getElementById("baseRate").value = "90";
+
+    document.getElementById("reboreFeet").value = "0";
+
+    document.getElementById("reboreRate").value = "40";
+
+    document.getElementById("casing7").value = "0";
+
+    document.getElementById("casing7Rate").value = "450";
+
+    document.getElementById("casing10").value = "0";
+
+    document.getElementById("casing10Rate").value = "750";
+
+    document.getElementById("gstToggle").checked = true;
+
+    document.getElementById("detailsText").innerHTML = "";
+
+    document.getElementById("breakdown").innerHTML = "";
+
+    document.getElementById("drillingTotal").innerHTML = "₹0";
+
+    document.getElementById("casing7Total").innerHTML = "₹0";
+
+    document.getElementById("casing10Total").innerHTML = "₹0";
+
+    document.getElementById("gstAmount").innerHTML = "₹0";
+
+    document.getElementById("grandTotal").innerHTML = "₹0";
+
+}
+
+
+
+calculateTotal();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Borewell Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quta.css">
+
+</head>
+
+<body>
+
+<div id="quoteArea">
+
+    <div id="quoteHeader">
+
+        <div class="quote-top">
+
+            <div>
+
+                <h1>
+                    Selvamurugan Fast Drills
+                </h1>
+
+                <p>
+                    📍 3/46 Kumaramangalam Pudhur
+                    (Erode–Namakkal Bypass Road)
+                    Tiruchengode, Namakkal
+                </p>
+
+                <p>
+                    📞 +91 98765 43210
+                    &nbsp;&nbsp; |
+                    &nbsp;&nbsp;
+                    📞 +91 98765 43211
+                </p>
+
+            </div>
+
+            <div class="quote-date">
+
+                <span>Date</span>
+
+                <h2 id="todayDate"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="calculator">
+
+    <div class="title">
+
+        <p>ADVANCED ESTIMATION</p>
+
+        <h1>Borewell Calculator</h1>
+
+    </div>
+
+
+    <!-- DRILLING TYPE -->
+
+    <div class="type-flex">
+
+        <button class="type-btn active"
+        id="newBtn"
+        onclick="setMode('new')">
+
+            New Drilling
+
+        </button>
+
+        <button class="type-btn"
+        id="reboreBtn"
+        onclick="setMode('rebore')">
+
+            Rebore Drilling
+
+        </button>
+
+    </div>
+
+
+
+    <!-- INPUTS -->
+
+    <div class="grid">
+        <div class="grid1">
+
+            <div class="input-group">
+
+                <label>Total Depth</label>
+
+                <input type="number"
+                id="depth"
+                value="800">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Base Rate / ft</label>
+                <input type="number"
+                id="baseRate"
+                value="90">
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- REBORE -->
+        <div class="grid1">
+            <div class="input-group rebore-fields"
+                style="display:none;">
+
+                <label>Rebore Feet</label>
+
+                <input type="number"
+                id="reboreFeet"
+                value="0">
+
+            </div>
+
+
+            <div class="input-group rebore-fields"
+            style="display:none;">
+
+                <label>Rebore Rate / ft</label>
+
+                <input type="number"
+                id="reboreRate"
+                value="40">
+
+            </div>
+        </div>
+
+
+
+        <div class="grid1">
+            <div class="input-group">
+
+                <label>7" PVC Feet</label>
+
+                <input type="number"
+                id="casing7"
+                value="30">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>7" PVC Rate</label>
+
+                <input type="number"
+                id="casing7Rate"
+                value="450">
+
+            </div>
+        </div>
+
+        <div class="grid1">
+            <div class="input-group">
+
+                <label>10" PVC Feet</label>
+
+                <input type="number"
+                id="casing10"
+                value="15">
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>10" PVC Rate</label>
+
+                <input type="number"
+                id="casing10Rate"
+                value="750">
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- GST -->
+
+    <div class="gst-box">
+
+        <span>GST 18%   ON / OFF</span>
+
+        <input type="checkbox"
+        id="gstToggle"
+        checked>
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="button-flex">
+
+        <button class="calculate-btn"
+        onclick="calculateTotal()">
+
+            Calculate Estimate
+
+        </button>
+
+        <button class="clear-btn"
+        onclick="clearCalculator()">
+
+            Clear
+
+        </button>
+
+    </div>
+
+
+
+    <!-- DETAILS -->
+
+    <div class="details-box">
+
+        <span class="green">
+            Drilling Details:
+        </span>
+
+        <span id="detailsText"></span>
+
+    </div>
+
+
+
+    <!-- BREAKDOWN -->
+
+    <div class="breakdown-box">
+
+        <h2>
+            Drilling Cost Breakdown
+        </h2>
+
+        <div class="breakdown-head">
+
+            <div>Depth</div>
+            <div>Rate</div>
+            <div>Amount</div>
+
+        </div>
+
+        <div id="breakdown"></div>
+
+    </div>
+
+
+
+    <!-- RESULTS -->
+
+    <div class="result-box">
+
+        <div class="result-item">
+
+            <p>Drilling Cost</p>
+
+            <span id="drillingTotal">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>7" PVC Cost</p>
+
+            <span id="casing7Total">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>10" PVC Cost</p>
+
+            <span id="casing10Total">₹0</span>
+
+        </div>
+
+        <div class="result-item">
+
+            <p>GST</p>
+
+            <span id="gstAmount">₹0</span>
+
+        </div>
+
+        <div class="result-item grand">
+
+            <p>Total Estimate</p>
+
+            <span id="grandTotal">₹0</span>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <script src="script.js"></script>
+
+
+    <div class="quote-actions">
+
+        <button class="quote-btn"
+        onclick="saveImage()">
+
+            🖼️ Save Image
+
+        </button>
+
+        <button class="quote-btn whatsapp-btn"
+        onclick="shareWhatsApp()">
+
+            💬 WhatsApp Quote
+
+        </button>
+
+    </div>
+
+
+    </div>
+
+    <div class="terms-box">
+
+    <h3>
+        Terms & Conditions
+    </h3>
+
+    <p>
+        • Quote valid for limited period only
+    </p>
+
+    <p>
+        • Advance payment required before work
+    </p>
+
+    <p>
+        • GST applicable as per norms
+    </p>
+
+    <p>
+        • Final amount may vary based on site condition
+    </p>
+
+    <div class="thank-box">
+
+        <h2>
+            THANK YOU!
+        </h2>
+
+        <span>
+            Selvamurugan Fast Drills
+        </span>
+
+        <small>
+            Authorized Borewell Contractor
+        </small>
+
+    </div>
+
+    </div>
+
+    
+</div>
+</body>
+</html>
