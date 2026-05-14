@@ -1142,10 +1142,11 @@ nav{
     font-size: 11px;
   }
     .navbar h1{
-    font-size: 13px;
+    font-size: 12px;
   }
   .navbar span{
-    font-size: 9px;
+    font-size: 8px;
+    margin-left: 35px;
   }
   nav {
     display: flex;
