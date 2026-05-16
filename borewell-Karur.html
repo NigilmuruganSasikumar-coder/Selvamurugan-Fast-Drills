@@ -11,60 +11,1070 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/logo.webp">
 <title>Borewell Drilling Services in Karur | Fast & Reliable | Selvamurugan Fast Drills</title>
-
-<link rel="stylesheet" href="index2.css">
-
 </head>
+<style>
+/* HERO / BREADCRUMB */
+
+.breadcrumb{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
+
+padding:20px;
+
+margin:30px auto;
+
+width:fit-content;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(10px);
+
+border-radius:50px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+.breadcrumb a{
+
+text-decoration:none;
+
+color:#ffd700;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.breadcrumb a:hover{
+
+color:#ffffff;
+
+}
+
+.breadcrumb span{
+
+color:#cbd5e1;
+
+font-size:18px;
+
+}
+
+.breadcrumb p{
+
+margin:0;
+
+color:white;
+
+font-weight:500;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.breadcrumb{
+
+padding:14px 18px;
+
+gap:8px;
+
+font-size:14px;
+
+max-width:90%;
+
+flex-wrap:wrap;
+
+}
+
+}/* ========================= */
+/* CONTACT SECTION */
+/* ========================= */
+
+.contact{
+
+padding:90px 5%;
+
+text-align:center;
+
+position:relative;
+
+margin-top:80px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.05),
+rgba(255,255,255,.02)
+);
+
+backdrop-filter:blur(12px);
+
+border-top:1px solid rgba(255,255,255,.08);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+overflow:hidden;
+
+}
+
+
+/* background glow */
+
+.contact::before{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+top:-200px;
+left:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(0,229,255,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+.contact::after{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+bottom:-200px;
+right:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,204,0,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+
+/* keep content above glow */
+
+.contact h2,
+.contact p{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+.contact h2{
+
+font-size:42px;
+
+margin-bottom:40px;
+
+font-weight:700;
+
+background:
+linear-gradient(
+90deg,
+#ffcc00,
+#00e5ff,
+#ffcc00
+);
+
+background-size:200% auto;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:contactGlow 4s linear infinite;
+
+}
+
+
+@keyframes contactGlow{
+
+to{
+
+background-position:200% center;
+
+}
+
+}
+
+
+.contact p{
+
+font-size:20px;
+
+margin:18px auto;
+
+padding:18px;
+
+max-width:700px;
+
+color:#d1d5db;
+
+border-radius:15px;
+
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(10px);
+
+transition:.4s;
+
+}
+
+
+.contact p:hover{
+
+transform:
+translateY(-6px);
+
+background:
+rgba(255,255,255,.12);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.3);
+
+}
+
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+
+padding:30px;
+
+text-align:center;
+
+background:
+rgba(0,0,0,.25);
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+}
+
+
+footer p{
+
+font-size:16px;
+
+letter-spacing:1px;
+
+color:#cbd5e1;
+
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+.contact{
+
+padding:70px 20px;
+
+}
+
+.contact h2{
+
+font-size:30px;
+
+}
+
+.contact p{
+
+font-size:16px;
+
+padding:15px;
+
+}
+
+footer p{
+
+font-size:14px;
+
+}
+
+}/* KARUR THEME */
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#081420,
+#0d2d25,
+#1d3b2a
+);
+
+color:white;
+font-family:Poppins,sans-serif;
+}
+
+
+
+/* intro */
+
+.karur-hero-content{
+
+padding:100px 8%;
+text-align:center;
+}
+
+.karur-hero-content h1{
+
+font-size:45px;
+
+margin-bottom:30px;
+
+background:
+linear-gradient(
+90deg,
+#00e676,
+#d4ff00
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.karur-hero-content p{
+
+max-width:1000px;
+
+margin:auto;
+
+line-height:2;
+
+font-size:18px;
+
+color:#d1d5db;
+}
+
+
+
+/* stats */
+
+.karur-stats{
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+padding:50px;
+
+flex-wrap:wrap;
+}
+
+.stat-box{
+
+width:250px;
+
+padding:30px;
+
+background:rgba(255,255,255,.06);
+
+border-radius:20px;
+
+text-align:center;
+
+transition:.5s;
+}
+
+.stat-box:hover{
+
+transform:
+translateY(-12px);
+
+}
+
+
+
+/* timeline */
+
+.karur-timeline{
+
+padding:100px 5%;
+}
+
+.timeline{
+
+position:relative;
+
+max-width:1200px;
+
+margin:auto;
+}
+
+.timeline::after{
+
+content:"";
+
+position:absolute;
+
+width:4px;
+
+background:#00e676;
+
+top:0;
+bottom:0;
+
+left:50%;
+}
+
+.timeline-item{
+
+position:relative;
+
+width:50%;
+padding:30px;
+}
+
+.left{
+
+left:0;
+}
+
+.right{
+
+left:50%;
+}
+
+.timeline-content{
+
+padding:25px;
+
+background:
+rgba(255,255,255,.08);
+
+border-radius:20px;
+}
+
+
+
+/* split layout */
+
+.karur-row{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:50px;
+
+padding:50px;
+
+flex-wrap:wrap;
+}
+
+.reverse{
+
+flex-direction:row-reverse;
+}
+
+.karur-image img{
+
+width:450px;
+
+border-radius:20px;
+}
+
+.karur-text{
+
+width:500px;
+}
+
+.karur-text h2{
+
+margin-bottom:20px;
+
+color:#00ff95;
+}
+
+.karur-text p{
+
+line-height:2;
+
+color:#d1d5db;
+}
+
+
+
+/* tags */
+
+.service-tags{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+}
+
+.service-tags span{
+
+padding:15px 25px;
+
+background:
+rgba(255,255,255,.08);
+
+border-radius:50px;
+}
+
+
+
+@media(max-width:768px){
+
+.timeline::after{
+
+left:20px;
+}
+
+.timeline-item{
+
+width:100%;
+left:0;
+padding-left:60px;
+}
+
+.karur-image img{
+
+width:100%;
+}
+
+}.other-locations{
+
+padding:90px 5%;
+text-align:center;
+
+}
+
+.location-text{
+
+max-width:900px;
+
+margin:auto;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+.location-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.location-card{
+
+width:280px;
+
+padding:30px;
+
+text-decoration:none;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #00e5ff;
+
+transition:.5s;
+
+color:white;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.location-card:hover{
+
+transform:
+translateY(-12px);
+
+background:
+rgba(0,229,255,.15);
+
+}
+
+.location-card h2{
+
+margin-bottom:15px;
+
+color:#ffcc00;
+
+}
+
+.location-card p{
+
+line-height:1.7;
+
+color:#d1d5db;
+
+}
+
+.active-city{
+
+border-top:4px solid #00e676;
+
+background:
+rgba(0,230,118,.15);
+
+}
+
+@media(max-width:768px){
+
+.location-card{
+
+width:100%;
+
+}
+
+}
+.other-locations{
+
+padding:90px 5%;
+text-align:center;
+
+}
+
+.location-text{
+
+max-width:900px;
+
+margin:auto;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+.location-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.location-card{
+
+width:280px;
+
+padding:30px;
+
+text-decoration:none;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #00e5ff;
+
+transition:.5s;
+
+color:white;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.location-card:hover{
+
+transform:
+translateY(-12px);
+
+background:
+rgba(0,229,255,.15);
+
+}
+
+.location-card h2{
+
+margin-bottom:15px;
+
+color:#ffcc00;
+
+}
+
+.location-card p{
+
+line-height:1.7;
+
+color:#d1d5db;
+
+}
+
+.active-city{
+
+border-top:4px solid #00e676;
+
+background:
+rgba(0,230,118,.15);
+
+}
+
+@media(max-width:768px){
+
+.location-card{
+
+width:100%;
+
+}
+
+}
+</style>
+
+
 
 <body>
+<!-- HERO -->
+<section class="breadcrumb">
 
-<h1>⚡ Fast Borewell Drilling in Karur</h1>
+<a href="index.html">🏠 Home</a>
+
+<span>➜</span>
+
+<p>Karur Borewell Service</p>
+
+</section>
+
+<section class="karur-hero-content">
+
+<h1>Professional Borewell Drilling Services in Karur</h1>
 
 <p>
-We provide professional borewell drilling services in Karur using advanced sensor technology.
-Fast, safe, and accurate water detection for homes and agriculture.
+
+Selvamurugan Fast Drills provides borewell drilling services across Karur and nearby regions for residential properties, agricultural lands, commercial buildings and industrial projects.
+
+Karur is an important district in Tamil Nadu with agricultural activities, textile industries, transport routes and expanding residential areas. Different locations can contain varying ground conditions and land formations.
+
 </p>
 
-<div class="trust-strip">
-  <div>✔ Fast Service</div>
-  <div>✔ Accurate Water Detection</div>
-  <div>✔ 30+ Years Experience</div>
-  <div>✔ 24/7 Support</div>
+</section>
+
+
+
+<section class="karur-stats">
+
+<div class="stat-box">
+<h2>🏠 Residential</h2>
+<p>Homes • Villas • Layouts</p>
 </div>
 
-<h2>Our Services in Karur</h2>
+<div class="stat-box">
+<h2>🌾 Agriculture</h2>
+<p>Irrigation Support</p>
+</div>
+
+<div class="stat-box">
+<h2>🏭 Commercial</h2>
+<p>Business Projects</p>
+</div>
+
+<div class="stat-box">
+<h2>⚙ Modern Equipment</h2>
+<p>Hydraulic Machines</p>
+</div>
+
+</section>
+
+
+
+
+<section class="karur-timeline">
+
+<h1>Borewell Service Process in Karur</h1>
+
+<div class="timeline">
+
+<div class="timeline-item left">
+
+<div class="timeline-content">
+
+<h2>Land Inspection</h2>
+
 <p>
-Karur region includes mixed soil and rock layers, requiring advanced borewell techniques for better water yield.
+
+The drilling location and machine access area are reviewed before operations begin.
+
 </p>
-<ul>
-<li>Residential Borewell Drilling</li>
-<li>Agricultural Borewell Drilling</li>
-<li>Deep Rock Borewell Drilling</li>
-</ul>
-<div class="button">
-    <a href="tel:+919095388843" class="btn">📞 call me</a>
-    <a href="https://wa.me/919488161788" class="btn">📄 Get Free Quote</a>
+
 </div>
 
-<h2>Why Karur Chooses Us</h2>
+</div>
+
+
+<div class="timeline-item right">
+
+<div class="timeline-content">
+
+<h2>Planning & Preparation</h2>
+
 <p>
-30+ years experience in groundwater detection and fast drilling operations in Karurregion.
+
+Machine setup and operational planning are prepared before drilling starts.
+
 </p>
 
-<ul>
-<li>Same-day drilling available</li>
-<li>Advanced hydraulic machines</li>
-<li>High success water rate</li>
-<li>Affordable pricing</li>
-</ul>
-
-
-<div class="button">
-    <a href="borewell-Erode.html" class="btn"> ⬅ service in Erode </a>
-    <a href="index.html" class="btn">Go  Home 🔙</a>
+</div>
 
 </div>
-</section><section class="contact" id="contact">
+
+
+<div class="timeline-item left">
+
+<div class="timeline-content">
+
+<h2>Professional Drilling</h2>
+
+<p>
+
+Heavy hydraulic drilling equipment is used for drilling operations.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="timeline-item right">
+
+<div class="timeline-content">
+
+<h2>Completion Support</h2>
+
+<p>
+
+Customers receive support after drilling completion.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="karur-detail-section">
+
+<h1>Karur Regional Information</h1>
+
+<div class="karur-row">
+
+<div class="karur-image">
+
+<img src="img/web 4.jpeg">
+
+</div>
+
+<div class="karur-text">
+
+<h2>Agricultural Areas</h2>
+
+<p>
+
+Karur includes agricultural regions where water sources can be important for farming activities and irrigation systems.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="karur-row reverse">
+
+<div class="karur-image">
+
+<img src="img/smfd4.jpeg">
+
+</div>
+
+<div class="karur-text">
+
+<h2>Industrial & Textile Areas</h2>
+
+<p>
+
+Karur is known for commercial and textile activities with developing infrastructure and business areas.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="karur-row">
+
+<div class="karur-image">
+
+<img src="img/web 1.jpeg">
+
+</div>
+
+<div class="karur-text">
+
+<h2>Residential Development</h2>
+
+<p>
+
+Growing residential developments and nearby villages continue increasing water requirements.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="karur-service">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="service-tags">
+
+<span>📍 Kulithalai</span>
+
+<span>📍 Aravakurichi</span>
+
+<span>📍 Krishnarayapuram</span>
+
+<span>📍 Thanthonimalai</span>
+
+<span>📍 Pugalur</span>
+
+<span>📍 Nearby Villages</span>
+
+</div>
+
+</section>
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<p class="location-text">
+
+Selvamurugan Fast Drills provides borewell drilling services across multiple locations in Tamil Nadu with fast response and professional support.
+
+</p>
+
+<div class="location-grid">
+
+<a href="index.html" class="location-card">
+<h2>🏠 Home</h2>
+<p>Main Website</p>
+</a>
+
+<a href="borewell-namakkal.html" class="location-card ">
+<h2>🚛 Namakkal</h2>
+<p>Fast drilling support in Karur and nearby areas.</p>
+</a>
+
+<a href="borewell-salem.html" class="location-card">
+<h2>🥭 Salem</h2>
+<p>Professional drilling support across Salem region.</p>
+</a>
+
+<a href="borewell-erode.html" class="location-card">
+<h2>🌾 Erode</h2>
+<p>Borewell services for residential and agricultural projects.</p>
+</a>
+
+<a href="borewell-karur.html" class="location-card active-city">
+<h2>🧵 Karur</h2>
+<p>Current page</p>
+</a>
+
+<a href="borewell-tiruchengode.html" class="location-card ">
+<h2>⛰ Tiruchengode</h2>
+<p>Borewell drilling services in Tiruchengode and nearby villages.</p>
+</a>
+
+</div>
+
+</section>
+<section class="contact" id="contact">
 <h2>Contact Us</h2>
 <p>📞 +91 9488161788</p>
 <p>📍 Karur, Tamil Nadu</p>

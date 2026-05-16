@@ -1,70 +1,789 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="robots" content="index, follow">
-<meta name="author" content="Selvamurugan Fast Drills">
-<meta name="language" content="English">
-<meta name="revisit-after" content="7 days">
-<meta name="description" content="Fast borewell drilling in Tiruchengode with 30+ years experience. Quick response and advanced water detection technology.">
-<meta property="og:title" content="Fast Borewell Drilling in Tamil Nadu | Selvamurugan Fast Drills">
-<meta property="og:description" content="Fast, reliable borewell drilling with 30+ years experience in Namakkal, Tiruchengode & Salem">
-<meta property="og:type" content="website">
-<meta property="og:image" content="img/logo.webp">
-<title>Deep Borewell Drilling in Tiruchengode | Expert Contractors | Selvamurugan Fast Drills</title>
+<html lang="en">
 
-<link rel="stylesheet" href="index2.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tiruchengode Borewell Service | Selvamurugan Fast Drills</title>
+
+<style>/* HERO / BREADCRUMB */
+
+.breadcrumb{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
+
+padding:20px;
+
+margin:30px auto;
+
+width:fit-content;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(10px);
+
+border-radius:50px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+.breadcrumb a{
+
+text-decoration:none;
+
+color:#ffd700;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.breadcrumb a:hover{
+
+color:#ffffff;
+
+}
+
+.breadcrumb span{
+
+color:#cbd5e1;
+
+font-size:18px;
+
+}
+
+.breadcrumb p{
+
+margin:0;
+
+color:white;
+
+font-weight:500;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.breadcrumb{
+
+padding:14px 18px;
+
+gap:8px;
+
+font-size:14px;
+
+max-width:90%;
+
+flex-wrap:wrap;
+
+}
+
+}/* ========================= */
+/* CONTACT SECTION */
+/* ========================= */
+
+.contact{
+
+padding:90px 5%;
+
+text-align:center;
+
+position:relative;
+
+margin-top:80px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.05),
+rgba(255,255,255,.02)
+);
+
+backdrop-filter:blur(12px);
+
+border-top:1px solid rgba(255,255,255,.08);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+overflow:hidden;
+
+}
+
+
+/* background glow */
+
+.contact::before{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+top:-200px;
+left:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(0,229,255,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+.contact::after{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+bottom:-200px;
+right:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,204,0,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+
+/* keep content above glow */
+
+.contact h2,
+.contact p{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+.contact h2{
+
+font-size:42px;
+
+margin-bottom:40px;
+
+font-weight:700;
+
+background:
+linear-gradient(
+90deg,
+#ffcc00,
+#00e5ff,
+#ffcc00
+);
+
+background-size:200% auto;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:contactGlow 4s linear infinite;
+
+}
+
+
+@keyframes contactGlow{
+
+to{
+
+background-position:200% center;
+
+}
+
+}
+
+
+.contact p{
+
+font-size:20px;
+
+margin:18px auto;
+
+padding:18px;
+
+max-width:700px;
+
+color:#d1d5db;
+
+border-radius:15px;
+
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(10px);
+
+transition:.4s;
+
+}
+
+
+.contact p:hover{
+
+transform:
+translateY(-6px);
+
+background:
+rgba(255,255,255,.12);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.3);
+
+}
+
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+
+padding:30px;
+
+text-align:center;
+
+background:
+rgba(0,0,0,.25);
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+}
+
+
+footer p{
+
+font-size:16px;
+
+letter-spacing:1px;
+
+color:#cbd5e1;
+
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+.contact{
+
+padding:70px 20px;
+
+}
+
+.contact h2{
+
+font-size:30px;
+
+}
+
+.contact p{
+
+font-size:16px;
+
+padding:15px;
+
+}
+
+footer p{
+
+font-size:14px;
+
+}
+
+}
+body{
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#16213e,
+#1e293b
+);
+}.city-details,
+.process{
+
+padding:90px 5%;
+text-align:center;
+}
+
+.intro{
+
+max-width:1000px;
+
+margin:auto;
+
+line-height:2;
+
+font-size:18px;
+
+color:#cbd5e1;
+
+margin-bottom:60px;
+}
+
+.detail-grid,
+.process-container{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+}
+
+.detail-card,
+.step{
+
+width:330px;
+
+padding:35px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #ffcc00;
+
+transition:.5s;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.2);
+}
+
+.detail-card:hover,
+.step:hover{
+
+transform:
+translateY(-12px);
+
+background:
+rgba(0,229,255,.1);
+
+}
+
+.detail-card h2,
+.step h2{
+
+margin-bottom:15px;
+
+color:#00e5ff;
+
+font-size:22px;
+}
+
+.detail-card p,
+.step p{
+
+line-height:1.8;
+
+color:#d1d5db;
+}
+
+@media(max-width:768px){
+
+.detail-card,
+.step{
+
+width:100%;
+}
+
+}
+.other-locations{
+
+padding:90px 5%;
+text-align:center;
+
+}
+
+.location-text{
+
+max-width:900px;
+
+margin:auto;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+.location-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.location-card{
+
+width:280px;
+
+padding:30px;
+
+text-decoration:none;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #00e5ff;
+
+transition:.5s;
+
+color:white;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.location-card:hover{
+
+transform:
+translateY(-12px);
+
+background:
+rgba(0,229,255,.15);
+
+}
+
+.location-card h2{
+
+margin-bottom:15px;
+
+color:#ffcc00;
+
+}
+
+.location-card p{
+
+line-height:1.7;
+
+color:#d1d5db;
+
+}
+
+.active-city{
+
+border-top:4px solid #00e676;
+
+background:
+rgba(0,230,118,.15);
+
+}
+
+@media(max-width:768px){
+
+.location-card{
+
+width:100%;
+
+}
+
+}</style>
 
 </head>
 
 <body>
+    <!-- HERO -->
+<section class="breadcrumb">
 
-<h1>⚡ Fast Borewell Drilling in Tiruchengode</h1>
+<a href="index.html">🏠 Home</a>
 
-<p>
-We provide professional borewell drilling services in Tiruchengode using advanced sensor technology.
-Fast, safe, and accurate water detection for homes and agriculture.
+<span>➜</span>
+
+<p>Tiruchengode Borewell Service</p>
+
+</section>
+
+<section class="city-details">
+
+<h1>Complete Borewell Drilling Information in Tiruchengode</h1>
+
+<p class="intro">
+
+Selvamurugan Fast Drills provides professional borewell drilling services across Tiruchengode and nearby regions for residential properties, agricultural land, commercial buildings and industrial projects.
+
+Tiruchengode includes a mixture of agricultural areas, residential developments, transport routes and rocky land formations. Underground conditions may differ from one location to another, so drilling requirements can vary across different parts of the region.
+
 </p>
 
-<div class="trust-strip">
-  <div>✔ Fast Service</div>
-  <div>✔ Accurate Water Detection</div>
-  <div>✔ 30+ Years Experience</div>
-  <div>✔ 24/7 Support</div>
-</div>
 
-<h2>Our Services in Tiruchengode</h2>
-<p>
-Tiruchengode areas require deep rock drilling expertise due to hard granite formations. Our machines handle high-pressure drilling efficiently.
-</p>
-<ul>
-<li>Residential Borewell Drilling</li>
-<li>Agricultural Borewell Drilling</li>
-<li>Deep Rock Borewell Drilling</li>
-</ul>
-<div class="button">
-    <a href="tel:+919095388843" class="btn">📞 call me</a>
-    <a href="https://wa.me/919488161788" class="btn">📄 Get Free Quote</a>
-</div>
+<div class="detail-grid">
 
-<h2>Why Tiruchengode Chooses Us</h2>
+<div class="detail-card">
+
+<h2>Ground Conditions in Tiruchengode</h2>
+
 <p>
-30+ years experience in groundwater detection and fast drilling operations in Tiruchengode region.
+
+Different locations may contain combinations of hard rock layers, mixed soil regions and agricultural land. Ground conditions can affect drilling requirements and borewell planning.
+
 </p>
 
-<ul>
-<li>Same-day drilling available</li>
-<li>Advanced hydraulic machines</li>
-<li>High success water rate</li>
-<li>Affordable pricing</li>
-</ul>
+</div>
 
 
-<div class="button">
-    <a href="borewell-namakkal.html" class="btn">⬅ service in Namakkal</a>
-    <a href="borewell-salem.html" class="btn">service in salem ➙</a>
+<div class="detail-card">
+
+<h2>Residential Borewell Services</h2>
+
+<p>
+
+Borewell systems are commonly used for homes, villas, apartments and residential layouts requiring a long-term water source.
+
+</p>
 
 </div>
-</section><section class="contact" id="contact">
+
+
+
+<div class="detail-card">
+
+<h2>Agricultural Borewell Services</h2>
+
+<p>
+
+Agricultural land often requires borewells for irrigation support and farming-related water requirements.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Commercial & Industrial Projects</h2>
+
+<p>
+
+Commercial buildings, factories and industrial facilities may require borewell systems depending on operational needs.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Modern Drilling Equipment</h2>
+
+<p>
+
+Heavy hydraulic drilling machines and support equipment are used for drilling operations.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Site Inspection</h2>
+
+<p>
+
+Before beginning work, factors such as access, machine movement space and land conditions are reviewed.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Nearby Areas Covered</h2>
+
+<p>
+
+Service areas include Elachipalayam, Pallipalayam, Kumarapalayam, Sankari, Rasipuram and nearby villages.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Fast Service Support</h2>
+
+<p>
+
+Quick customer response and support for drilling requirements across Tiruchengode and surrounding locations.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="process">
+
+<h1>Borewell Drilling Process</h1>
+
+<div class="process-container">
+
+<div class="step">
+
+<h2>1. Site Visit</h2>
+
+<p>
+
+The location and surrounding land conditions are inspected.
+
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h2>2. Borewell Planning</h2>
+
+<p>
+
+Machine setup requirements and drilling preparation are reviewed.
+
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h2>3. Drilling Operation</h2>
+
+<p>
+
+Professional drilling equipment is used to perform the operation.
+
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h2>4. Completion Support</h2>
+
+<p>
+
+After drilling, customers can proceed with the next setup stages.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<p class="location-text">
+
+Selvamurugan Fast Drills provides borewell drilling services across multiple locations in Tamil Nadu with fast response and professional support.
+
+</p>
+
+<div class="location-grid">
+
+<a href="index.html" class="location-card">
+<h2>🏠 Home</h2>
+<p>Main Website</p>
+</a>
+
+<a href="borewell-namakkal.html" class="location-card">
+<h2>🚛 Namakkal</h2>
+<p>Borewell drilling services in Namakkal and nearby villages.</p>
+</a>
+
+<a href="borewell-salem.html" class="location-card">
+<h2>🥭 Salem</h2>
+<p>Professional drilling support across Salem region.</p>
+</a>
+
+<a href="borewell-erode.html" class="location-card">
+<h2>🌾 Erode</h2>
+<p>Borewell services for residential and agricultural projects.</p>
+</a>
+
+<a href="borewell-karur.html" class="location-card">
+<h2>🧵 Karur</h2>
+<p>Fast drilling support in Karur and nearby areas.</p>
+</a>
+
+<a href="borewell-tiruchengode.html" class="location-card active-city">
+<h2>⛰ Tiruchengode</h2>
+<p>Current page</p>
+</a>
+
+</div>
+
+</section>
+</section>
+<section class="contact" id="contact">
 <h2>Contact Us</h2>
 <p>📞 +91 9488161788</p>
 <p>📍 Tiruchengode, Tamil Nadu</p>

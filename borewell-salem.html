@@ -12,59 +12,1085 @@
 <meta property="og:image" content="img/logo.webp">
 <title>Borewell Drilling Services in Salem | Fast & Reliable | Selvamurugan Fast Drills</title>
 
-<link rel="stylesheet" href="index2.css">
 
 </head>
 
+<style>/* HERO / BREADCRUMB */
+
+.breadcrumb{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
+
+padding:20px;
+
+margin:30px auto;
+
+width:fit-content;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(10px);
+
+border-radius:50px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+.breadcrumb a{
+
+text-decoration:none;
+
+color:#ffd700;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.breadcrumb a:hover{
+
+color:#ffffff;
+
+}
+
+.breadcrumb span{
+
+color:#cbd5e1;
+
+font-size:18px;
+
+}
+
+.breadcrumb p{
+
+margin:0;
+
+color:white;
+
+font-weight:500;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.breadcrumb{
+
+padding:14px 18px;
+
+gap:8px;
+
+font-size:14px;
+
+max-width:90%;
+
+flex-wrap:wrap;
+
+}
+
+}/* ========================= */
+/* CONTACT SECTION */
+/* ========================= */
+
+.contact{
+
+padding:90px 5%;
+
+text-align:center;
+
+position:relative;
+
+margin-top:80px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.05),
+rgba(255,255,255,.02)
+);
+
+backdrop-filter:blur(12px);
+
+border-top:1px solid rgba(255,255,255,.08);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+overflow:hidden;
+
+}
+
+
+/* background glow */
+
+.contact::before{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+top:-200px;
+left:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(0,229,255,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+.contact::after{
+
+content:"";
+
+position:absolute;
+
+width:400px;
+height:400px;
+
+bottom:-200px;
+right:-150px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,204,0,.15),
+transparent 70%
+);
+
+filter:blur(80px);
+
+z-index:0;
+
+}
+
+
+/* keep content above glow */
+
+.contact h2,
+.contact p{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+.contact h2{
+
+font-size:42px;
+
+margin-bottom:40px;
+
+font-weight:700;
+
+background:
+linear-gradient(
+90deg,
+#ffcc00,
+#00e5ff,
+#ffcc00
+);
+
+background-size:200% auto;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:contactGlow 4s linear infinite;
+
+}
+
+
+@keyframes contactGlow{
+
+to{
+
+background-position:200% center;
+
+}
+
+}
+
+
+.contact p{
+
+font-size:20px;
+
+margin:18px auto;
+
+padding:18px;
+
+max-width:700px;
+
+color:#d1d5db;
+
+border-radius:15px;
+
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(10px);
+
+transition:.4s;
+
+}
+
+
+.contact p:hover{
+
+transform:
+translateY(-6px);
+
+background:
+rgba(255,255,255,.12);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.3);
+
+}
+
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+
+padding:30px;
+
+text-align:center;
+
+background:
+rgba(0,0,0,.25);
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+}
+
+
+footer p{
+
+font-size:16px;
+
+letter-spacing:1px;
+
+color:#cbd5e1;
+
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+.contact{
+
+padding:70px 20px;
+
+}
+
+.contact h2{
+
+font-size:30px;
+
+}
+
+.contact p{
+
+font-size:16px;
+
+padding:15px;
+
+}
+
+footer p{
+
+font-size:14px;
+
+}
+
+}
+.other-locations{
+
+padding:90px 5%;
+text-align:center;
+
+}
+
+.location-text{
+
+max-width:900px;
+
+margin:auto;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+.location-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.location-card{
+
+width:280px;
+
+padding:30px;
+
+text-decoration:none;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #ffcc00;
+
+transition:.5s;
+
+color:white;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.location-card:hover{
+
+transform:
+translateY(-12px);
+
+background:
+rgba(255, 166, 0, 0.15);
+
+}
+
+.location-card h2{
+
+margin-bottom:15px;
+
+color:#ffcc00;
+
+}
+
+.location-card p{
+
+line-height:1.7;
+
+color:#d1d5db;
+
+}
+
+.active-city{
+
+border-top:4px solid #00e676;
+
+background:
+rgba(0,230,118,.15);
+
+}
+
+@media(max-width:768px){
+
+.location-card{
+
+width:100%;
+
+}
+
+}/* ========================= */
+/* SALEM PREMIUM THEME */
+/* ========================= */
+
+body{
+
+margin:0;
+padding:0;
+
+font-family:Poppins,sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#2d1b0e,
+#40210f
+);
+
+color:white;
+
+overflow-x:hidden;
+
+position:relative;
+
+}
+
+
+/* animated background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:-250px;
+left:-250px;
+
+width:550px;
+height:550px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,166,0,.18),
+transparent 70%
+);
+
+filter:blur(90px);
+
+animation:moveLeft 18s infinite alternate;
+
+z-index:-1;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+bottom:-250px;
+right:-250px;
+
+width:550px;
+height:550px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,230,0,.12),
+transparent 70%
+);
+
+filter:blur(90px);
+
+animation:moveRight 18s infinite alternate;
+
+z-index:-1;
+
+}
+
+@keyframes moveLeft{
+
+100%{
+
+transform:
+translate(150px,100px);
+
+}
+
+}
+
+@keyframes moveRight{
+
+100%{
+
+transform:
+translate(-150px,-100px);
+
+}
+
+}
+
+
+
+/* section */
+
+.city-details,
+.process,
+.salem-highlights{
+
+padding:100px 5%;
+text-align:center;
+
+}
+
+
+
+/* title */
+
+.city-details h1,
+.process h1,
+.salem-highlights h1{
+
+font-size:42px;
+
+margin-bottom:35px;
+
+background:
+linear-gradient(
+90deg,
+#ffb300,
+#ffd54f,
+#ff7043
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+
+
+/* intro */
+
+.intro{
+
+max-width:1000px;
+
+margin:auto;
+
+margin-bottom:60px;
+
+font-size:19px;
+
+line-height:2;
+
+color:#d6d3d1;
+
+}
+
+
+
+/* grid */
+
+.detail-grid,
+.process-container,
+.highlight-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+/* cards */
+
+.detail-card,
+.step,
+.highlight-card{
+
+width:330px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+rgba(255,255,255,.06);
+
+backdrop-filter:blur(10px);
+
+border-top:4px solid #ffb300;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,.35);
+
+transition:.5s;
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+
+/* moving shine */
+
+.detail-card::before,
+.step::before,
+.highlight-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-100%;
+
+width:50%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.12),
+transparent
+);
+
+transition:.8s;
+
+}
+
+.detail-card:hover::before,
+.step:hover::before,
+.highlight-card:hover::before{
+
+left:100%;
+
+}
+
+
+/* hover */
+
+.detail-card:hover,
+.step:hover,
+.highlight-card:hover{
+
+transform:
+translateY(-12px);
+
+background:
+linear-gradient(
+135deg,
+rgba(255,179,0,.15),
+rgba(255,112,67,.15)
+);
+
+}
+
+
+
+/* card title */
+
+.detail-card h2,
+.step h2,
+.highlight-card h2{
+
+margin-bottom:18px;
+
+color:#ffd54f;
+
+font-size:22px;
+
+}
+
+
+
+/* card content */
+
+.detail-card p,
+.step p,
+.highlight-card p{
+
+line-height:1.9;
+
+color:#e7e5e4;
+
+font-size:15px;
+
+}
+
+
+
+/* mobile */
+
+@media(max-width:768px){
+
+.city-details h1,
+.process h1,
+.salem-highlights h1{
+
+font-size:30px;
+
+}
+
+.detail-card,
+.step,
+.highlight-card{
+
+width:100%;
+
+}
+
+.intro{
+
+font-size:16px;
+
+}
+
+}
+</style>
+
 <body>
+    <!-- HERO -->
+<section class="breadcrumb">
 
-<h1>⚡ Fast Borewell Drilling in Salem</h1>
+<a href="index.html">🏠 Home</a>
 
-<p>
-We provide professional borewell drilling services in Salem using advanced sensor technology.
-Fast, safe, and accurate water detection for homes and agriculture.
+<span>➜</span>
+
+<p>Salem Borewell Service</p>
+
+</section>
+
+<section class="city-details">
+
+<h1>Complete Borewell Drilling Information in Salem</h1>
+
+<p class="intro">
+
+Selvamurugan Fast Drills provides professional borewell drilling services across Salem and nearby regions for residential properties, agricultural lands, commercial buildings and industrial projects.
+
+Salem is one of the major districts in Tamil Nadu with a combination of urban development, agricultural regions, hill surroundings and industrial activity. Land conditions can vary between locations, and underground formations may differ across the district.
+
+Our team provides borewell drilling support with modern equipment and professional service for different project requirements.
+
 </p>
 
-<div class="trust-strip">
-  <div>✔ Fast Service</div>
-  <div>✔ Accurate Water Detection</div>
-  <div>✔ 30+ Years Experience</div>
-  <div>✔ 24/7 Support</div>
-</div>
 
-<h2>Our Services in Salem</h2>
-<p>
-Salem region includes mixed soil and rock layers, requiring advanced borewell techniques for better water yield.
-</p>
-<ul>
-<li>Residential Borewell Drilling</li>
-<li>Agricultural Borewell Drilling</li>
-<li>Deep Rock Borewell Drilling</li>
-</ul>
-<div class="button">
-    <a href="tel:+919095388843" class="btn">📞 call me</a>
-    <a href="https://wa.me/919488161788" class="btn">📄 Get Free Quote</a>
-</div>
+<div class="detail-grid">
 
-<h2>Why Salem Chooses Us</h2>
+<div class="detail-card">
+
+<h2>Ground Conditions in Salem</h2>
+
 <p>
-30+ years experience in groundwater detection and fast drilling operations in Salem region.
+
+Salem contains mixed land conditions including rocky formations, agricultural fields and developed residential areas. Drilling conditions can vary based on location and terrain.
+
 </p>
 
-<ul>
-<li>Same-day drilling available</li>
-<li>Advanced hydraulic machines</li>
-<li>High success water rate</li>
-<li>Affordable pricing</li>
-</ul>
+</div>
 
 
-<div class="button">
-    <a href="borewell-tiruchengode.html" class="btn"> ⬅ service in Tiruchengode </a>
-    <a href="borewell-Erode.html" class="btn"> service in Erode ➙</a>
+
+<div class="detail-card">
+
+<h2>Residential Borewell Services</h2>
+
+<p>
+
+Residential borewells are commonly used for homes, apartments, layouts and private properties requiring dependable water access.
+
+</p>
 
 </div>
-</section><section class="contact" id="contact">
+
+
+
+<div class="detail-card">
+
+<h2>Agricultural Borewell Services</h2>
+
+<p>
+
+Agricultural areas often require water sources for irrigation systems and farming activities.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Commercial & Industrial Support</h2>
+
+<p>
+
+Commercial buildings and industrial facilities may require borewell systems depending on operational requirements.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Modern Drilling Equipment</h2>
+
+<p>
+
+Hydraulic drilling machines and supporting equipment are used to carry out drilling operations.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Site Inspection Process</h2>
+
+<p>
+
+The land area, machine access and operating conditions are checked before work begins.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Nearby Areas Covered</h2>
+
+<p>
+
+Services are available in Omalur, Attur, Mettur, Edappadi, Yercaud surroundings and nearby villages.
+
+</p>
+
+</div>
+
+
+
+<div class="detail-card">
+
+<h2>Fast Customer Support</h2>
+
+<p>
+
+Quick response and support for drilling requirements across Salem and surrounding areas.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="process">
+
+<h1>Borewell Drilling Process in Salem</h1>
+
+<div class="process-container">
+
+<div class="step">
+
+<h2>Site Inspection</h2>
+
+<p>
+
+Land conditions and machine access requirements are reviewed before work starts.
+
+</p>
+
+</div>
+
+
+
+<div class="step">
+
+<h2>Planning & Preparation</h2>
+
+<p>
+
+The drilling area and machine setup process are prepared.
+
+</p>
+
+</div>
+
+
+
+<div class="step">
+
+<h2>Professional Drilling</h2>
+
+<p>
+
+Modern drilling machines are used for the operation.
+
+</p>
+
+</div>
+
+
+
+<div class="step">
+
+<h2>Completion Support</h2>
+
+<p>
+
+Support is provided after drilling completion for the next stages.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="salem-highlights">
+
+<h1>Salem Region Highlights</h1>
+
+<div class="highlight-grid">
+
+<div class="highlight-card">
+
+<h2>🌾 Agricultural Regions</h2>
+
+<p>
+
+Many surrounding areas include agricultural activities requiring dependable water access.
+
+</p>
+
+</div>
+
+
+<div class="highlight-card">
+
+<h2>⛰ Hill Surroundings</h2>
+
+<p>
+
+The Salem region includes hill surroundings and varied terrain conditions.
+
+</p>
+
+</div>
+
+
+<div class="highlight-card">
+
+<h2>🏭 Industrial Areas</h2>
+
+<p>
+
+Industrial and commercial developments continue to grow in different areas.
+
+</p>
+
+</div>
+
+
+<div class="highlight-card">
+
+<h2>🏠 Growing Residential Areas</h2>
+
+<p>
+
+New residential layouts and housing developments continue expanding.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<p class="location-text">
+
+Selvamurugan Fast Drills provides borewell drilling services across multiple locations in Tamil Nadu with fast response and professional support.
+
+</p>
+
+<div class="location-grid">
+
+<a href="index.html" class="location-card">
+<h2>🏠 Home</h2>
+<p>Main Website</p>
+</a>
+
+<a href="borewell-namakkal.html" class="location-card ">
+<h2>🚛 Namakkal</h2>
+<p>Professional drilling support across Namakkal region.</p>
+</a>
+
+<a href="borewell-salem.html" class="location-card active-city">
+<h2>🥭 Salem</h2>
+<p>Current page</p>
+</a>
+
+<a href="borewell-erode.html" class="location-card">
+<h2>🌾 Erode</h2>
+<p>Borewell services for residential and agricultural projects.</p>
+</a>
+
+<a href="borewell-karur.html" class="location-card">
+<h2>🧵 Karur</h2>
+<p>Fast drilling support in Karur and nearby areas.</p>
+</a>
+
+<a href="borewell-tiruchengode.html" class="location-card ">
+<h2>⛰ Tiruchengode</h2>
+<p>Borewell drilling services in Tiruchengode and nearby villages.</p>
+</a>
+
+</div>
+
+</section>
+</section>
+<section class="contact" id="contact">
 <h2>Contact Us</h2>
 <p>📞 +91 9488161788</p>
 <p>📍 Salem, Tamil Nadu</p>
