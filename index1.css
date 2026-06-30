@@ -1527,13 +1527,14 @@ section, #home, #about, #services1, #galary, #contact {
 }
 
 .title h1{
-    font-size:16px;
-    line-height:1.3;
+    font-size:14px;
+    line-height:2;
 }
 
 .title span{
     display:block;
     margin-left:0;
+    text-align: center;
     font-size:11px;
 }
 
@@ -1721,7 +1722,7 @@ section,
 /* Contact */
 
 .contcolor button{
-    width:100%;
+    width:90%;
 }
 
 .coat{
@@ -1761,7 +1762,7 @@ section,
 /* Footer */
 
 .baccor3{
-    flex-direction:column;
+    flex-direction:row;
     text-align:center;
     gap:35px;
     padding:40px 25px;
@@ -1769,6 +1770,9 @@ section,
 
 .cont3{
     width:100%;
+}
+.cont3 li{
+    list-style: none;
 }
 
 /* Floating Icons */
