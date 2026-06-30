@@ -84,37 +84,46 @@
         </a>
 
     </div>
-<header class="navbar">
-            <div class="title">
-        <h1 class="brand-title">SELVAMURUGAN FAST DRILLS</h1> 
-        <span>Groundwater Drilling Experts</span>
+    <header class="navbar">
+        <div class="title">
+            <h1 class="brand-title">SELVAMURUGAN FAST DRILLS</h1> 
+            <span>Groundwater Drilling Experts</span>
         </div>
 
-    <nav class="nav-links" id="navLinks">
-        <a href="#home">🏠Home</a>
-        <a href="#about">ℹ️About</a>
-        <a href="#services1">🛠️Services</a>
-        <a href="#galary">🖼️Gallery</a>
-        <a href="#contact">📞Contact</a>
-        <a href="#testimonials">🤝 Customer Hub</a>
-    </nav>
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">🏠Home</a>
+            <a href="#about">ℹ️About</a>
+            <a href="#services1">🛠️Services</a>
+            <a href="#galary">🖼️Gallery</a>
+            <a href="#contact">📞Contact</a>
+            <a href="#testimonials">🤝 Customer Hub</a>
+        </nav>
     
-<button class="calc-btn-nav" onclick="location.href='#calculator-section'">
-    <i class="fas fa-calculator"></i> DrillCalc
-</button>
-    <!-- Hamburger -->
+        <button class="calc-btn-nav" onclick="location.href='#calculator-section'">
+            <i class="fas fa-calculator"></i> DrillCalc
+        </button>
+
+        <!-- Hamburger -->
     <div class="menu-toggle" id="menuToggle">
         ☰
     </div>
-</header>
-<script>
-    const menu = document.getElementById("menuToggle");
-    const nav = document.getElementById("navLinks");
 
-    menu.onclick = () => {
-        nav.classList.toggle("active");
-    };
-</script>
+    <script>
+        const menu = document.getElementById("menuToggle");
+        const nav = document.getElementById("navLinks");
+
+        menu.onclick = () => {
+            nav.classList.toggle("active");
+
+            // Change icon
+            if (nav.classList.contains("active")) {
+                menu.innerHTML = "✕";
+            } else {
+                menu.innerHTML = "☰";
+            }
+        };
+    </script>
+
    <div class="slider">
         <div class="slide-truck">
             <img src="img/selvamurugan 1.jpeg" loading="lazy" alt="Borewell drilling machine in Tamil Nadu">    
@@ -125,7 +134,7 @@
         <div class="slider-text">
             <h1>Engineering Water. Empowering Life.</h1>
             <p>🚀 “Water in Less Time – Fast, Safe & Reliable Borewell Solutions”</p>
-            <a href="tel:+919095388843" class="call-btn">📞 Call Now</a>  
+            <a href="tel:+919788799883" class="call-btn">📞 Call Now</a>  
             <a href="#services1" >Explore Services</a>
         </div>
    </div>
@@ -168,8 +177,8 @@
     </div>
 
     <div class="cont">
-        <a href="tel:+919095388843">🖁+91 9095388843</a>
-        <a href="tel:+919095388843">🖁+91 9095388843</a>
+        <a href="tel:+919788799883">📞+91 9788799883</a>
+        <a href="tel:+919443288845">📞+91 9443288845</a>
     </div>
     <div class="cont1">
         <a href="calculator.html">📄 𝙂𝙚𝙩 𝙁𝙧𝙚𝙚 𝙌𝙪𝙤𝙩𝙚 𝙛𝙤𝙧 𝙔𝙤𝙪𝙧 𝙋𝙧𝙤𝙟𝙚𝙘𝙩</a>
@@ -226,57 +235,57 @@
 
     <div class="service-area">
 
-    <div class="section-heading">
-        <h2>Service Areas</h2>
-        <span></span>
-        <h3>Deep Borewell Drilling Services Across Tamil Nadu</h3>
-        <p>
-            Advanced drilling machines, accurate water detection,
-            and fast execution across Tamil Nadu.
-        </p>
+        <div class="section-heading">
+            <h2>Service Areas</h2>
+            <span></span>
+            <h3>Deep Borewell Drilling Services Across Tamil Nadu</h3>
+            <p>
+                Advanced drilling machines, accurate water detection,
+                and fast execution across Tamil Nadu.
+            </p>
 
-        <h4>
-            We provide borewell drilling services in Namakkal,
-            Tiruchengode, Salem, Erode, Karur and nearby villages.
-            Contact us for quick service near your location.
-        </h4>
+            <h4>
+               We provide borewell drilling services in Namakkal,
+                Tiruchengode, Salem, Erode, Karur and nearby villages.
+                Contact us for quick service near your location.
+            </h4>
+        </div>
+ 
+        <div class="service-area1">
+
+            <div class="service-area2">
+                <a href="borewell-namakkal.html">
+                    📍 Namakkal Borewell Service
+                </a>
+            </div>
+
+            <div class="service-area2">
+                <a href="borewell-tiruchengode.html">
+                    📍 Tiruchengode Borewell Service
+                </a>
+            </div>
+
+            <div class="service-area2">
+                <a href="borewell-salem.html">
+                    📍 Salem Borewell Service
+                </a>
+            </div>
+
+            <div class="service-area2">
+                <a href="borewell-Erode.html">
+                    📍 Erode Borewell Service
+                </a>
+            </div>
+
+            <div class="service-area2">
+                <a href="borewell-Karur.html">
+                    📍 Karur Borewell Service
+                </a>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="service-area1">
-
-        <div class="service-area2">
-            <a href="borewell-namakkal.html">
-                📍 Namakkal Borewell Service
-            </a>
-        </div>
-
-        <div class="service-area2">
-            <a href="borewell-tiruchengode.html">
-                📍 Tiruchengode Borewell Service
-            </a>
-        </div>
-
-        <div class="service-area2">
-            <a href="borewell-salem.html">
-                📍 Salem Borewell Service
-            </a>
-        </div>
-
-        <div class="service-area2">
-            <a href="borewell-Erode.html">
-                📍 Erode Borewell Service
-            </a>
-        </div>
-
-        <div class="service-area2">
-            <a href="borewell-Karur.html">
-                📍 Karur Borewell Service
-            </a>
-        </div>
-
-    </div>
-
-</div>
 
 
 
@@ -388,7 +397,7 @@
         <div id="galary">
             <h1 class="txtcolor">Project Portfolio</h1> 
             <p>A visual record of our borewell drilling projects and equipment in action</p>
-            <h3>🗁 Borewell Drilling Operations</h3>
+            <h3>Borewell Drilling Operations</h3>
         </div>
         <div class="gaimg">
             <img src="img/web 1.jpeg" loading="lazy" alt="Borewell drilling machine in Namakkal">
@@ -440,67 +449,67 @@
 
     </div>
 
- <!-- BOREWELL CALCULATOR SECTION END -->
+     <!-- BOREWELL CALCULATOR SECTION END -->
 
 
-<section class="testimonials" id="testimonials">
+    <section class="testimonials" id="testimonials">
 
-<div class="section-title">
-    <h1 class="txtcolor">Customer Reviews</h1>
-    <p>What our customers say about our services</p>
-</div>
+    <div class="section-title">
+        <h1 class="txtcolor">Customer Reviews</h1>
+        <p>What our customers say about our services</p>
+    </div>
 
-<div class="testimonial-container">
+    <div class="testimonial-container">
 
-    <div class="testimonial-card">
+        <div class="testimonial-card">
 
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
 
-        <p>
-        "Excellent drilling service with professional equipment and skilled operators. 
-        The work was completed smoothly and the team maintained good communication throughout the process."
-        </p>
+            <p>
+            "Excellent drilling service with professional equipment and skilled operators. 
+            The work was completed smoothly and the team maintained good communication throughout the process."
+            </p>
 
-        <h4>R. Manikandan</h4>
-        <span>Agricultural Land Owner • Salem</span>
+            <h4>R. Manikandan</h4>
+            <span>Agricultural Land Owner • Salem</span>
+
+        </div>
+
+
+        <div class="testimonial-card">
+
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+
+            <p>
+            "Very good experience with Selvamurugan Fast Drills. 
+            The drilling process was organized and completed on time. 
+            Highly satisfied with the service."
+            </p>
+
+            <h4>K. Suresh</h4>
+            <span>Farm Owner • Erode</span>
+
+        </div>
+
+
+        <div class="testimonial-card">
+
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+
+            <p>
+            "Professional team and quality service. 
+            The operators were experienced and the entire process was efficient and well managed."
+            </p>
+
+            <h4>M. Ravi</h4>
+            <span>Property Owner • Namakkal</span>
+
+        </div>
+
 
     </div>
 
-
-    <div class="testimonial-card">
-
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-
-        <p>
-        "Very good experience with Selvamurugan Fast Drills. 
-        The drilling process was organized and completed on time. 
-        Highly satisfied with the service."
-        </p>
-
-        <h4>K. Suresh</h4>
-        <span>Farm Owner • Erode</span>
-
-    </div>
-
-
-    <div class="testimonial-card">
-
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-
-        <p>
-        "Professional team and quality service. 
-        The operators were experienced and the entire process was efficient and well managed."
-        </p>
-
-        <h4>M. Ravi</h4>
-        <span>Property Owner • Namakkal</span>
-
-    </div>
-
-
-</div>
-
-</section>
+    </section>
 
     <section class="review-section">
     <div class="review-bar">
@@ -763,8 +772,8 @@
         </div>
         <div class="cont3">
             <h2>𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗜𝗻𝗳𝗼</h2>
-            <li>🕻 +91 9095388843 <br>
-                🕻 +91 9095388843
+            <li>📞 +91 9095388843 <br>
+                📞 +91 9095388843
             </li>
             <li>✉ selvamuruganfastdrill@gmail.com</li>
             <li>📍Selvamurugan Fast Drills, 3/46, Kumaramangalam, Pudur <br> Tiruchengode,  Namakkal Tamil Nadu 637205</li>
@@ -781,4 +790,5 @@
     </div>
 
 </body>
+
 </html>
