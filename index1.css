@@ -101,31 +101,6 @@ body {
     cursor: pointer;
 }
 
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        height: 350px;
-        width: 300px;
-        background: #53586f;
-        flex-direction: column;
-        align-items:normal;
-        justify-content: center;
-        gap: 30px;
-        transition: 0.4s;
-        border-radius: 20px;
-    }
-    .nav-links.active {
-        right: 0;
-    }
-}
 .divider {
   height: 2.5px;
   background: linear-gradient(to right, transparent, #362a6255, transparent);
@@ -692,27 +667,7 @@ nav{
     letter-spacing:1px;
 }
 
-/* Mobile Responsive */
 
-@media(max-width:768px){
-
-.section-heading h2{
-    font-size:32px;
-}
-
-.section-heading h3{
-    font-size:20px;
-}
-
-.section-heading p,
-.section-heading h4{
-    font-size:17px;
-}
-
-.service-area2{
-    width:100%;
-}
-}
 .short-serv ul{
     max-width: 600px;
     margin: 20px auto;
@@ -762,15 +717,11 @@ nav{
   min-height: 340px;
   padding: 35px;
   border-radius: 22px;
-    background:rgba(255,255,255,0.08);
-
-    backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,0.15);
-    border-top: 4px  solid rgba(255, 221, 0, 0.855);
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,0.2);
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-top: 4px  solid rgba(255, 221, 0, 0.855);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   transition: 0.3s;
   text-align: center;
   margin-top: 20px;
@@ -959,26 +910,6 @@ nav{
 }
 
 
-/* Mobile */
-
-@media(max-width:768px){
-
-.section-title h2{
-
-font-size:30px;
-
-}
-
-.testimonial-card{
-
-padding:25px;
-
-}
-
-}
-
-
-
 /* SECTION */
 .review-section {
     text-align: center;
@@ -1091,7 +1022,7 @@ padding:25px;
   color: #ffffff;
   font-style: italic;
 }
-/* Desktop → 3 images per row */
+
 .gaimg img{
     width: 25%;
     height: 220px;
@@ -1104,19 +1035,6 @@ padding:25px;
 .gaimg img:hover{
     transform: scale(1.08);
     box-shadow: 0 10px 25px rgba(231, 221, 221, 0.25);
-}
-/* Tablet → 2 images per row */
-@media (max-width: 900px){
-    .gaimg img{
-        width: 45%;
-    }
-}
-
-/* Mobile → 1 image per row */
-@media (max-width: 500px){
-    .gaimg img{
-        width: 90%;
-    }
 }
 
 /* ===== FAQ SECTION ===== */
@@ -1288,27 +1206,6 @@ to{
 
 opacity:1;
 transform:translateY(0);
-
-}
-
-}
-
-
-/* Mobile */
-
-@media(max-width:768px){
-
-.section-title h2{
-
-font-size:30px;
-
-}
-
-.faq-container summary{
-
-font-size:16px;
-
-padding:18px;
 
 }
 
@@ -1558,57 +1455,7 @@ padding:18px;
 }
 
 
- /* for mobile view */
-
-  @media (max-width: 780px) {
-  .navbar {
-    flex-direction:row;
-    gap: 8px;
-    font-size: 14px;
-  }
-    .navbar h1{
-    font-size: 12px;
-  }
-  .navbar span{
-    font-size: 8px;
-    margin-left: 35px;
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .home2{
-    font-size: 15px;
-  }
-  .home2 a{
-    font-size: 17px;
-  }
-  .coat2 {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .map,
-  .contform {
-    width: 100%;
-  }
-
-  .slider-text h1 {
-    margin-top: 50px;
-    font-size: 24px;
-  }
-
-  .slider-text p {
-    font-size: 14px;
-  }
-
-}
-@media (max-width: 768px){
-  .bg::before, .bg::after{
-    display:none;
-  }
-}
+ 
 section, #home, #about, #services1, #galary, #contact {
   padding: 60px 20px;
 }
@@ -1660,27 +1507,291 @@ section, #home, #about, #services1, #galary, #contact {
     box-shadow:0 15px 50px rgba(0,0,0,0.15);
     overflow:hidden;
 }
+/* ===================================================
+   MOBILE VIEW (768px and below)
+=================================================== */
+@media screen and (max-width:768px){
 
-/* MOBILE RESPONSIVE */
+/* Background */
+.bg::before,
+.bg::after{
+    display:none;
+}
 
-@media(max-width:768px){
+/* Navbar */
+.navbar{
+    padding:12px 15px;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
 
-    .calculator-section{
-        padding:60px 10px;
-    }
+.title h1{
+    font-size:16px;
+    line-height:1.3;
+}
 
-    .calculator-title h2{
-        font-size:26px;
-    }
+.title span{
+    display:block;
+    margin-left:0;
+    font-size:11px;
+}
 
-    .calculator-title p{
-        font-size:16px;
-    }
 
-    .calculator-frame{
-        width:100%;
-        height:1100px;
-        border-radius:18px;
-    }
+
+.menu-toggle{
+    display:flex;
+    font-size:30px;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    padding:5px;
+}
+
+/* Mobile Menu */
+
+.nav-links{
+    position:fixed;
+    top:70px;
+    right:-100%;
+    width:270px;
+    height:auto;
+    padding:30px 0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+
+    background:#1f2937;
+
+    border-radius:20px 0 0 20px;
+
+    transition:.4s;
+}
+
+.nav-links.active{
+    right:0;
+}
+
+/* Hero */
+
+.slider{
+    height:72vh;
+}
+
+.slide-truck{
+    width:400%;
+}
+
+.slide-truck img{
+    width:100%;
+    height:72vh;
+}
+
+.slider-text{
+    width:90%;
+    top:52%;
+}
+
+.slider-text h1{
+    font-size:28px;
+    line-height:1.3;
+    margin-bottom:15px;
+}
+
+.slider-text p{
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+.slider-text a{
+    margin:8px;
+    padding:12px 18px;
+    font-size:15px;
+}
+
+.spacer{
+    display:none;
+}
+
+#home{
+    margin-top:0;
+}
+
+/* Global Section Spacing */
+
+section,
+#home,
+#about,
+#services1,
+#galary,
+#contact,
+#calculator-section{
+    padding:55px 18px;
+}
+
+/* Headings */
+
+.txtcolor{
+    font-size:30px;
+    line-height:1.3;
+}
+
+#home h2,
+#about h2,
+#contact h3,
+#galary h3{
+    font-size:22px;
+}
+
+#home p,
+#about p,
+#services1 p,
+#galary p,
+#contact p{
+    font-size:17px;
+    line-height:1.8;
+    padding:15px 0;
+}
+
+/* Cards */
+
+.home1,
+#about1,
+#ourservices,
+.service-area1,
+.testimonial-container,
+.contcolor{
+    gap:22px;
+}
+
+.box,
+.aboutbox,
+.services,
+.service-area2,
+.testimonial-card{
+    width:100%;
+    max-width:360px;
+    margin:auto;
+}
+
+/* Buttons */
+
+.cont,
+.cont1,
+.cont2{
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+.cont a,
+.cont1 a,
+.cont2 a{
+    width:90%;
+    text-align:center;
+    font-size:18px;
+}
+
+/* Gallery */
+
+.gaimg{
+    gap:18px;
+}
+
+.gaimg img{
+    width:95%;
+    height:230px;
+}
+
+/* Review Bar */
+
+.review-bar{
+    width:100%;
+    flex-direction:column;
+    border-radius:20px;
+    gap:15px;
+}
+
+.left{
+    flex-direction:column;
+}
+
+/* Contact */
+
+.contcolor button{
+    width:100%;
+}
+
+.coat{
+    width:95%;
+    padding:20px;
+}
+
+.coat2{
+    flex-direction:column;
+    padding:15px;
+}
+
+.map{
+    width:100%;
+}
+
+.contform{
+    width:100%;
+}
+
+/* Calculator */
+
+.calculator-title h2{
+    font-size:26px;
+}
+
+.calculator-title p{
+    font-size:16px;
+}
+
+.calculator-frame{
+    width:100%;
+    height:1100px;
+    border-radius:20px;
+}
+
+/* Footer */
+
+.baccor3{
+    flex-direction:column;
+    text-align:center;
+    gap:35px;
+    padding:40px 25px;
+}
+
+.cont3{
+    width:100%;
+}
+
+/* Floating Icons */
+
+.whatsapp-float{
+    bottom:95px;
+    right:15px;
+}
+
+.instagram-float{
+    bottom:20px;
+    right:15px;
+}
+
+/* Contact Form */
+
+.contform input,
+.contform textarea{
+    font-size:16px;
+}
+
+.contform button{
+    font-size:16px;
+}
 
 }
