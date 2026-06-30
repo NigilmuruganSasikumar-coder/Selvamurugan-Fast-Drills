@@ -104,24 +104,25 @@
         </button>
 
         <!-- Hamburger -->
-    <div class="menu-toggle" id="menuToggle">
-        ☰
-    </div>
+        <div class="menu-toggle" id="menuToggle">
+            ☰
+        </div>
+    </header>
 
     <script>
         const menu = document.getElementById("menuToggle");
         const nav = document.getElementById("navLinks");
 
-        menu.onclick = () => {
-            nav.classList.toggle("active");
+menu.onclick = () => {
+        nav.classList.toggle("active");
 
-            // Change icon
-            if (nav.classList.contains("active")) {
-                menu.innerHTML = "✕";
-            } else {
-                menu.innerHTML = "☰";
-            }
-        };
+        // Change icon
+        if (nav.classList.contains("active")) {
+            menu.innerHTML = "✕";
+        } else {
+            menu.innerHTML = "☰";
+        }
+    };
     </script>
 
    <div class="slider">
