@@ -33,10 +33,10 @@
                 </p>
 
                 <p>
-                    📞 +91 98765 43210
+                    📞 +91 9788799883
                     &nbsp;&nbsp; |
                     &nbsp;&nbsp;
-                    📞 +91 98765 43211
+                    📞 +91 9443288845
                 </p>
 
             </div>
@@ -52,6 +52,36 @@
         </div>
 
     </div>
+
+    <div class="customer-box">
+
+    <h2>Customer Information</h2>
+
+    <div class="customer-row">
+
+        <div class="input-group">
+
+            <label>Customer Name</label>
+
+            <input type="text"
+            id="customerName"
+            placeholder="Enter customer name">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Mobile Number</label>
+
+            <input type="tel"
+            id="customerPhone"
+            placeholder="Enter mobile number">
+
+        </div>
+
+    </div>
+
+</div>
 
     <div class="calculator">
 
@@ -99,7 +129,7 @@
 
                 <input type="number"
                 id="depth"
-                value="800">
+                value="600">
 
             </div>
 
@@ -203,8 +233,7 @@
         <span>GST 18%   ON / OFF</span>
 
         <input type="checkbox"
-        id="gstToggle"
-        checked>
+        id="gstToggle">
 
     </div>
 
@@ -316,18 +345,17 @@
 
 
 
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
 
-    <script src="script.js"></script>
 
 
     <div class="quote-actions">
 
-        <button class="quote-btn"
-        onclick="saveImage()">
-
-            🖼️ Save Image
-
+        <button class="quote-btn" 
+        onclick="openQuotation()">
+            Download PDF
         </button>
 
         <button class="quote-btn whatsapp-btn"
@@ -337,6 +365,12 @@
 
         </button>
 
+        <button class="quote-btn"
+        onclick="saveImage()">
+
+            🖼️ Save Image
+
+        </button>
     </div>
 
 
@@ -379,7 +413,26 @@
         </small>
 
     </div>
+     
+    <div class="signature-box">
 
+<div>
+
+<h3>Customer Signature</h3>
+
+<div class="signature-line"></div>
+
+</div>
+
+<div>
+
+<h3>Authorized Signature</h3>
+
+<div class="signature-line"></div>
+
+</div>
+
+</div>
     </div>
 
     

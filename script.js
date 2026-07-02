@@ -138,51 +138,35 @@ if(drillingMode === "rebore"){
     start = reboreFeet + 1;
 
 
+// =========================
+// REBORE RATE ADVANCEMENT (RULE B)
+// =========================
 
-    // =========================
-    // CORRECT RATE ADVANCEMENT
-    // =========================
+currentRate = baseRate;
+addValue = 5;
 
-    currentRate = baseRate;
+if (reboreFeet > 300) {
 
-    addValue = 5;
+    // Determine the slab where the rebore ENDS
+    let slab = Math.floor((reboreFeet - 1) / 100);
 
+    // Example:
+    // 301-400 -> slab = 3
+    // 401-500 -> slab = 4
+    // 501-600 -> slab = 5
 
+    for (let s = 3; s <= slab; s++) {
 
-    // FIRST 300 FT = BASE RATE
+        currentRate += addValue;
 
-    if(reboreFeet >= 301){
-
-        let tempDepth = 301;
-
-
-
-        while(tempDepth <= reboreFeet + 100){
-
-            currentRate += addValue;
-
-
-
-            if(addValue === 5){
-
-                addValue = 10;
-
-            }
-
-            else{
-
-                addValue += 10;
-
-            }
-
-
-
-            tempDepth += 100;
-
+        if (addValue === 5) {
+            addValue = 10;
+        } else {
+            addValue += 10;
         }
-
     }
 
+}
 }
 
     // =========================
@@ -194,18 +178,17 @@ if(drillingMode === "rebore"){
         let end;
 
 
+    if(start <= 300){
 
-        if(start <= 300){
+        end = Math.min(300, depth);
 
-            end = Math.min(300, depth);
+    }
+    else{
 
-        }
+        // Keep slab boundaries fixed at 400,500,600,700...
+        end = Math.min(Math.ceil(start / 100) * 100, depth);
 
-        else{
-
-            end = Math.min(start + 99, depth);
-
-        }
+    }
 
 
 
@@ -388,7 +371,7 @@ if(drillingMode === "rebore"){
 
 function clearCalculator(){
 
-    document.getElementById("depth").value = "";
+    document.getElementById("depth").value = "600";
 
     document.getElementById("baseRate").value = "90";
 
@@ -432,238 +415,43 @@ today.getFullYear();
 document.getElementById("todayDate")
 .innerHTML = formattedDate;
 
+function openQuotation() {
 
+    // Calculate latest values
+    calculateTotal();
 
-function saveImage(){
+    const quotationData = {
 
-    const header =
-    document.getElementById("quoteHeader");
+        customerName: document.getElementById("customerName").value,
+        customerPhone: document.getElementById("customerPhone").value,
 
-    header.style.display = "block";
+        mode: drillingMode,
 
+        depth: document.getElementById("depth").value,
+        baseRate: document.getElementById("baseRate").value,
 
+        reboreFeet: document.getElementById("reboreFeet").value,
+        reboreRate: document.getElementById("reboreRate").value,
 
-    // SHOW TERMS
+        casing7: document.getElementById("casing7").value,
+        casing7Rate: document.getElementById("casing7Rate").value,
 
-    document.querySelector(".terms-box")
-    .style.display = "block";
+        casing10: document.getElementById("casing10").value,
+        casing10Rate: document.getElementById("casing10Rate").value,
 
+        gst: document.getElementById("gstToggle").checked
 
+    };
 
-    // HIDE WEBSITE ELEMENTS
+    localStorage.setItem(
+        "quotationData",
+        JSON.stringify(quotationData)
+    );
 
-    document.querySelector(".title")
-    .style.display = "none";
-
-    document.querySelector(".type-flex")
-    .style.display = "none";
-
-    document.querySelector(".grid")
-    .style.display = "none";
-
-    document.querySelector(".gst-box")
-    .style.display = "none";
-
-    document.querySelector(".button-flex")
-    .style.display = "none";
-
-    document.querySelector(".quote-actions")
-    .style.display = "none";
-
-
-
-    const quote =
-    document.getElementById("quoteArea");
-
-
-
-    html2canvas(quote,{
-
-        scale:2,
-
-        useCORS:true,
-
-        scrollY:-window.scrollY
-
-    }).then(canvas => {
-
-        const link =
-        document.createElement("a");
-
-        link.download =
-        "Selvamurugan-FastDrills-Quotation.png";
-
-        link.href =
-        canvas.toDataURL("image/png");
-
-        link.click();
-
-
-
-        // RESTORE WEBSITE
-
-        header.style.display = "none";
-
-        document.querySelector(".terms-box")
-        .style.display = "none";
-
-        document.querySelector(".title")
-        .style.display = "block";
-
-        document.querySelector(".type-flex")
-        .style.display = "flex";
-
-        document.querySelector(".grid")
-        .style.display = "grid";
-
-        document.querySelector(".gst-box")
-        .style.display = "flex";
-
-        document.querySelector(".button-flex")
-        .style.display = "flex";
-
-        document.querySelector(".quote-actions")
-        .style.display = "flex";
-
-        document.querySelector(".result-box")
-        .style.display = "flex";
-
-    });
-
-}
-
-
-
-
-
-
-function shareWhatsApp(){
-
-    const header =
-    document.getElementById("quoteHeader");
-
-    header.style.display = "block";
-
-
-
-    // SHOW TERMS
-
-    document.querySelector(".terms-box")
-    .style.display = "block";
-
-
-
-    // HIDE WEBSITE ELEMENTS
-
-    document.querySelector(".title")
-    .style.display = "none";
-
-    document.querySelector(".type-flex")
-    .style.display = "none";
-
-    document.querySelector(".grid")
-    .style.display = "none";
-
-    document.querySelector(".gst-box")
-    .style.display = "none";
-
-    document.querySelector(".button-flex")
-    .style.display = "none";
-
-    document.querySelector(".quote-actions")
-    .style.display = "none";
-
-
-
-    const quote =
-    document.getElementById("quoteArea");
-
-
-
-    html2canvas(quote,{
-
-        scale:2,
-
-        useCORS:true,
-
-        scrollY:-window.scrollY
-
-    }).then(canvas => {
-
-        canvas.toBlob(function(blob){
-
-            const file =
-            new File(
-                [blob],
-                "Quotation.png",
-                {
-                    type:"image/png"
-                }
-            );
-
-
-
-            if(
-                navigator.canShare &&
-                navigator.canShare({
-                    files:[file]
-                })
-            ){
-
-                navigator.share({
-
-                    files:[file],
-
-                    title:
-                    "Borewell Quotation",
-
-                    text:
-                    "Selvamurugan Fast Drills"
-
-                });
-
-            }
-
-            else{
-
-                alert(
-                "WhatsApp sharing works mainly on mobile devices."
-                );
-
-            }
-
-
-
-            // RESTORE WEBSITE
-
-            header.style.display = "none";
-
-            document.querySelector(".terms-box")
-            .style.display = "none";
-
-            document.querySelector(".title")
-            .style.display = "block";
-
-            document.querySelector(".type-flex")
-            .style.display = "flex";
-
-            document.querySelector(".grid")
-            .style.display = "grid";
-
-            document.querySelector(".gst-box")
-            .style.display = "flex";
-
-            document.querySelector(".button-flex")
-            .style.display = "flex";
-
-            document.querySelector(".quote-actions")
-            .style.display = "flex";
-
-            document.querySelector(".result-box")
-            .style.display = "flex";
-
-        });
-
-    });
+    // Open quotation page
+    window.open(
+        "quotation.html",
+        "_blank"
+    );
 
 }

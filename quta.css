@@ -15,52 +15,33 @@ body{
     overflow-x:hidden;
 }
 #quoteHeader{
-
     display:none;
-
     padding:40px;
-
     background:#081120;
     width:100%;
     border-radius:0;
     color:white;
-
 }
 #quoteArea{
-
     background:#081120;
-
     width:100%;
-
 }
 .quote-top{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:flex-start;
-
     gap:30px;
-
 }
 
 .quote-top h1{
-
     color:#ffb400;
-
-    font-size:48px;
-
+    font-size:36px;
     margin-bottom:15px;
-
 }
 
 .quote-top p{
-
-    font-size:18px;
-
-    line-height:1.9;
-
+    font-size:16px;
+    line-height:1.8;
     color:#dce7ff;
 
 }
@@ -138,7 +119,62 @@ body{
     background:#24344f;
 
 }
+/* Customer Information */
 
+.customer-box{
+    max-width:1350px;
+    margin:auto;
+    margin-bottom: 20px;
+    background:rgba(17,28,45,0.92);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:35px;
+    padding:50px;
+    box-shadow:
+    0 15px 50px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+    position:relative;
+    overflow:hidden;
+
+}
+
+.customer-box h2{
+    color:#ffb400;
+    margin-bottom:20px;
+    font-size:26px;
+}
+
+.customer-row{
+    display:flex;
+    gap:20px;
+}
+
+.customer-row .input-group{
+    flex:1;
+}
+
+.customer-row label{
+    display:block;
+    margin-bottom:8px;
+    color:#dce7ff;
+    font-weight:600;
+}
+
+.customer-row input{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:15px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    font-size:16px;
+}
+
+.customer-row input:focus{
+    border-color:#ffb400;
+}
 .whatsapp-btn{
 
     background:
@@ -155,26 +191,6 @@ body{
     transform:
     translateY(-4px)
     scale(1.02);
-
-}
-
-
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-    .company-box{
-
-        flex-direction:column;
-
-    }
-
-    .company-right{
-
-        text-align:left;
-
-    }
 
 }
 
@@ -371,7 +387,7 @@ body{
 }
 
 .green{
-    color:#00b933;
+    color:#00d2e1;
     font-weight:800;
 }
 
@@ -403,7 +419,8 @@ body{
 .breakdown-row{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
-    padding:20px 0;
+    padding:16px 0;
+    font-size:15px;
     border-bottom:1px solid rgba(255,255,255,0.05);
     transition:.3s;
 }
@@ -414,7 +431,7 @@ body{
 }
 
 .amount{
-    color:#00e04a;
+    color:#00e016;
     font-weight:700;
 }
 
@@ -426,7 +443,7 @@ body{
     padding:32px;
     display:flex;
     flex-direction:column;
-    gap:24px;
+    gap: 18px;
     box-shadow:0 20px 45px rgba(0,0,0,0.28);
 }
 
@@ -434,7 +451,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    font-size:21px;
+    font-size:18px;
     color:#d9e6ff;
 }
 
@@ -455,45 +472,7 @@ body{
     color:#ffffff;
 }
 
-@media(max-width:900px){
 
-    body{
-        padding:20px 12px;
-    }
-
-    .calculator{
-        padding:25px 18px;
-        border-radius:28px;
-    }
-    .grid1{
-        gap: 10px;
-    }
-    .input-group{
-        width: 50%;
-        justify-content: center;
-    }
-
-    .title h1{
-        font-size:38px;
-    }
-
-    .button-flex{
-        flex-direction:column;
-    }
-
-    .clear-btn{
-        width:100%;
-    }
-
-    .result-item{
-        font-size:17px;
-    }
-
-    .grand{
-        font-size:28px;
-    }
-
-}
 .terms-box{
 
     display:none;
@@ -527,7 +506,7 @@ body{
 
     color:#dce7ff;
 
-    line-height:2;
+    line-height:1.7;
 
     font-size:17px;
 
@@ -575,9 +554,226 @@ body{
     font-size:15px;
 
 }
-.details-box,
+.details-box{
+    font-size:16px;
+    line-height:1.8;
+}
+
+.input-group label{
+    font-size:15px;
+}
+
 .breakdown-box,
 .result-box
 {
     display:none;
+}
+/* Signature Section */
+
+.signature-box{
+    margin-top:40px;
+    padding-top:30px;
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+}
+
+.signature-box div{
+    flex:1;
+    text-align:center;
+}
+
+.signature-box h3{
+    color:#dce7ff;
+    font-size:18px;
+    margin-bottom:50px;
+    font-weight:600;
+}
+
+.signature-line{
+    border-top:2px solid #ffffff;
+    width:80%;
+    margin:auto;
+}
+/* Mobile View */
+@media screen and (max-width:768px){
+
+    body{
+        padding:10px;
+    }
+
+    .customer-row{
+        flex-direction:column;
+    }
+
+    .customer-row .input-group{
+        width:100%;
+    }
+    .calculator{
+        padding:20px 15px;
+        border-radius:20px;
+    }
+
+    .title p{
+        font-size:12px;
+        letter-spacing:2px;
+    }
+
+    .title h1{
+        font-size:30px;
+        text-align:center;
+    }
+
+    .quote-top{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .quote-top h1{
+        font-size:28px;
+    }
+
+    .quote-top p{
+        font-size:14px;
+    }
+
+    .quote-date{
+        text-align:left;
+    }
+
+    .quote-date h2{
+        font-size:26px;
+    }
+
+    .type-flex{
+        flex-direction:column;
+    }
+
+    .grid1{
+        flex-direction:column;
+        gap:15px;
+        margin-bottom:15px;
+    }
+
+    .input-group{
+        width:100%;
+    }
+
+    .input-group input{
+        padding:15px;
+        font-size:16px;
+    }
+
+    .gst-box{
+        padding:15px;
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .button-flex{
+        flex-direction:column;
+    }
+
+    .calculate-btn,
+    .clear-btn,
+    .quote-btn{
+        width:100%;
+        padding:18px;
+        font-size:16px;
+    }
+    .customer-box,
+    .calculator,
+    .terms-box{
+        padding:20px;
+    }
+
+    .result-box,
+    .breakdown-box,
+    .details-box{
+        margin-top:20px;
+    }
+    .breakdown-head,
+    .breakdown-row{
+        font-size:13px;
+        gap:10px;
+    }
+
+    .result-item{
+        font-size:16px;
+    }
+
+    .grand{
+        font-size:24px;
+    }
+
+    .quote-actions{
+        flex-direction:column;
+    }
+
+    .signature-box{
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .signature-box h3{
+        margin-bottom:20px;
+    }
+
+    .terms-box{
+        padding:30px 20px;
+    }
+
+    .thank-box h2{
+        font-size:30px;
+    }
+
+    .thank-box span{
+        font-size:20px;
+    }
+}
+input,
+button{
+    -webkit-tap-highlight-color: transparent;
+}
+
+input{
+    font-size:16px;
+}
+@media print {
+
+    body{
+
+        background:#ffffff !important;
+
+    }
+
+    #quoteArea{
+
+        background:#ffffff !important;
+
+        color:#000 !important;
+
+        width:210mm;
+
+        min-height:297mm;
+
+        margin:auto;
+
+    }
+
+    .calculator,
+    .customer-box,
+    .terms-box{
+
+        background:#ffffff !important;
+
+        box-shadow:none !important;
+
+        border:1px solid #dcdcdc;
+
+        color:#000;
+
+    }
+
 }
