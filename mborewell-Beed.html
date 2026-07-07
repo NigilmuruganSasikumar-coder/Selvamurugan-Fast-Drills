@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(to bottom,#fff8e1,#f9fbe7,#e8f5e9,#dcedc8);
+color:#3e2723;
+overflow-x:hidden;
+}
+
+/* Decorative Background */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,193,7,.12),transparent 35%),
+radial-gradient(circle at 80% 80%,rgba(76,175,80,.12),transparent 35%);
+pointer-events:none;
+z-index:-1;
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+}
+
+h1{
+text-align:center;
+font-size:42px;
+color:#8d6e63;
+margin-bottom:20px;
+}
+
+h1::after{
+content:"";
+display:block;
+width:80px;
+height:4px;
+background:#8bc34a;
+margin:15px auto;
+border-radius:20px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#5d4037;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin:30px auto;
+padding:15px 30px;
+width:fit-content;
+background:#ffffff;
+border-radius:50px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.breadcrumb a{
+text-decoration:none;
+color:#689f38;
+font-weight:600;
+}
+
+.breadcrumb span{
+color:#777;
+}
+
+.breadcrumb p{
+color:#ff9800;
+font-weight:600;
+}
+
+/* Hero */
+
+.hero{
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+.hero p{
+max-width:850px;
+margin:25px auto;
+font-size:19px;
+line-height:2;
+color:#5d4037;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Buttons */
+
+.btn,
+.btn2,
+.call-btn{
+display:inline-block;
+padding:16px 38px;
+border-radius:50px;
+font-weight:600;
+text-decoration:none;
+transition:.4s;
+}
+
+.btn{
+background:#8bc34a;
+color:#fff;
+}
+
+.btn:hover{
+background:#689f38;
+transform:translateY(-6px);
+}
+
+.btn2{
+border:2px solid #8bc34a;
+color:#689f38;
+}
+
+.btn2:hover{
+background:#8bc34a;
+color:#fff;
+}
+
+/* Cards */
+
+.feature-grid,
+.area-grid,
+.nearby-grid,
+.highlight-grid,
+.location-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card,
+.area-card,
+.near-card,
+.highlight-card,
+.location-card{
+background:#fff;
+padding:30px;
+border-radius:30px 10px 30px 10px;
+box-shadow:0 15px 30px rgba(0,0,0,.08);
+transition:.4s;
+border-bottom:6px solid #8bc34a;
+text-align:center;
+text-decoration:none;
+color:#3e2723;
+}
+
+.card:hover,
+.area-card:hover,
+.near-card:hover,
+.highlight-card:hover,
+.location-card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 35px rgba(0,0,0,.15);
+}
+
+.card h2,
+.area-card h2,
+.near-card h2,
+.highlight-card h2,
+.location-card h2{
+color:#689f38;
+margin-bottom:15px;
+}
+
+.card p,
+.area-card p,
+.near-card p,
+.highlight-card p{
+line-height:1.8;
+color:#666;
+}
+
+/* FAQ */
+
+.faq-box{
+max-width:900px;
+margin:auto;
+background:#fff;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.faq-box h2{
+margin-top:20px;
+color:#689f38;
+}
+
+.faq-box p{
+margin-top:10px;
+color:#555;
+line-height:1.8;
+}
+
+/* Active Location */
+
+.active-city{
+background:#8bc34a;
+color:#fff;
+border-bottom:6px solid #ff9800;
+}
+
+.active-city h2{
+color:#fff;
+}
+
+/* Contact */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+max-width:850px;
+margin:auto;
+line-height:2;
+color:#555;
+}
+
+.call-btn{
+margin-top:30px;
+background:#ff9800;
+color:#fff;
+}
+
+.call-btn:hover{
+background:#f57c00;
+transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+background:#5d4037;
+padding:30px;
+text-align:center;
+margin-top:60px;
+}
+
+footer p{
+color:#fff;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+section{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+h1{
+font-size:30px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+width:100%;
+text-align:center;
+}
+
+.breadcrumb{
+width:95%;
+flex-wrap:wrap;
+}
+
+}</style>
+<body>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+<a href="maharashtra-borewell.html">🏠 Home</a>
+<span>➜</span>
+<p>Beed Borewell Service</p>
+</section>
+
+<!-- Hero -->
+<section class="hero">
+<div class="hero-content">
+<h1>Borewell Drilling Services in Beed</h1>
+<p>Professional Borewell Drilling, Re Bore, Borewell Flushing, PVC Casing, Air Compressor Cleaning and Advanced Auto Sensor Technology across Beed District.</p>
+
+<div class="hero-buttons">
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+<a href="#areas" class="btn2">Service Areas</a>
+</div>
+</div>
+</section>
+
+<!-- About -->
+
+<section class="about">
+
+<h1>Professional Borewell Services in Beed</h1>
+
+<p class="intro">
+
+Beed is one of Maharashtra's important agricultural districts where dependable groundwater is essential for farming, residential communities and commercial establishments. Selvamurugan Fast Drills delivers advanced borewell drilling solutions using modern equipment and experienced operators.
+
+</p>
+
+</section>
+
+<!-- Features -->
+
+<section class="features">
+
+<h1>Our Borewell Services</h1>
+
+<div class="feature-grid">
+
+<div class="card"><h2>New Borewell</h2><p>Professional drilling for homes, farms and industries.</p></div>
+
+<div class="card"><h2>Re Bore</h2><p>Restore old borewells with expert drilling.</p></div>
+
+<div class="card"><h2>Flushing Service</h2><p>Improve borewell water flow.</p></div>
+
+<div class="card"><h2>Auto Sensor Technology</h2><p>Modern drilling with advanced sensor support.</p></div>
+
+<div class="card"><h2>Residential Projects</h2><p>Reliable water solutions for homes.</p></div>
+
+<div class="card"><h2>Agricultural Projects</h2><p>Borewells for irrigation and farming.</p></div>
+
+<div class="card"><h2>Industrial Borewells</h2><p>Commercial water supply solutions.</p></div>
+
+<div class="card"><h2>30+ Years Experience</h2><p>Trusted drilling professionals.</p></div>
+
+</div>
+
+</section>
+
+<!-- Service Areas -->
+
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Beed</h1>
+
+<div class="area-grid">
+
+<div class="area-card"><h2>Beed City</h2><p>Residential & Commercial Services.</p></div>
+
+<div class="area-card"><h2>Ambajogai</h2><p>Agricultural Borewell Drilling.</p></div>
+
+<div class="area-card"><h2>Georai</h2><p>Professional Water Solutions.</p></div>
+
+<div class="area-card"><h2>Ashti</h2><p>Modern Borewell Services.</p></div>
+
+<div class="area-card"><h2>Patoda</h2><p>Reliable Drilling Support.</p></div>
+
+<div class="area-card"><h2>Majalgaon</h2><p>Farm Borewell Specialists.</p></div>
+
+<div class="area-card"><h2>Parli</h2><p>Industrial & Residential Projects.</p></div>
+
+<div class="area-card"><h2>Kaij</h2><p>Professional Water Source Development.</p></div>
+
+</div>
+
+</section>
+
+<!-- Nearby -->
+
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="nearby-grid">
+
+<div class="near-card"><h2>Latur</h2><p>Complete Borewell Solutions.</p></div>
+
+<div class="near-card"><h2>Dharashiv</h2><p>Modern Drilling Services.</p></div>
+
+<div class="near-card"><h2>Barshi</h2><p>Residential Borewells.</p></div>
+
+<div class="near-card"><h2>Solapur</h2><p>Industrial Projects.</p></div>
+
+<div class="near-card"><h2>Jalna</h2><p>Professional Water Drilling.</p></div>
+
+<div class="near-card"><h2>Ahilyanagar</h2><p>Agricultural Borewell Services.</p></div>
+
+</div>
+
+</section>
+
+<!-- Highlights -->
+
+<section class="highlights">
+
+<h1>Why Choose Borewell Services in Beed?</h1>
+
+<div class="highlight-grid">
+
+<div class="highlight-card"><h2>🌾 Farming District</h2><p>Reliable groundwater supports agriculture.</p></div>
+
+<div class="highlight-card"><h2>💧 Water Management</h2><p>Efficient borewells improve water availability.</p></div>
+
+<div class="highlight-card"><h2>🚜 Irrigation Support</h2><p>Professional drilling for farms.</p></div>
+
+<div class="highlight-card"><h2>🏡 Residential Growth</h2><p>Water solutions for expanding communities.</p></div>
+
+<div class="highlight-card"><h2>🏭 Commercial Projects</h2><p>Reliable groundwater for businesses.</p></div>
+
+<div class="highlight-card"><h2>⚙ Modern Equipment</h2><p>Advanced drilling technology for better results.</p></div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="faq">
+
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-box">
+
+<h2>Do you provide Re Bore?</h2>
+<p>Yes, we provide professional rebore services.</p>
+
+<h2>Can you drill agricultural borewells?</h2>
+<p>Yes, we serve farms across Beed district.</p>
+
+<h2>Do you use Auto Sensor Technology?</h2>
+<p>Yes, for accurate drilling support.</p>
+
+<h2>Do you provide compressor cleaning?</h2>
+<p>Yes, we offer complete borewell maintenance services.</p>
+
+</div>
+
+</section>
+
+<!-- Other Locations -->
+
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<div class="location-grid">
+
+<a href="maharashtra-borewell.html" class="location-card"><h2>🏠 Maharashtra</h2></a>
+
+<a href="borewell-latur.html" class="location-card"><h2>Latur</h2></a>
+
+<a href="borewell-beed.html" class="location-card active-city"><h2>Beed</h2></a>
+
+<a href="borewell-barshi.html" class="location-card"><h2>Barshi</h2></a>
+
+<a href="borewell-dharashiv.html" class="location-card"><h2>Dharashiv</h2></a>
+
+<a href="borewell-omerga.html" class="location-card"><h2>Omerga</h2></a>
+
+<a href="borewell-solapur.html" class="location-card"><h2>Solapur</h2></a>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+
+<section class="contact">
+
+<h1>Need Borewell Service in Beed?</h1>
+
+<p>Contact Selvamurugan Fast Drills for professional borewell drilling services across Beed and nearby Maharashtra districts.</p>
+
+<a href="tel:+919488161788" class="call-btn">📞 +91 94881 61788</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Selvamurugan Fast Drills | Beed Borewell Services</p>
+
+</footer>
+
+</body>
+</html>

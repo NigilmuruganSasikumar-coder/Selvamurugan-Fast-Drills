@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borewell Drilling Services in Solapur | Maharashtra</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#0b1f33,#163b5d,#214d78,#0b1f33);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* Steel Grid Background */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+background-size:40px 40px;
+pointer-events:none;
+z-index:-1;
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+position:relative;
+}
+
+h1{
+font-size:42px;
+text-align:center;
+margin-bottom:25px;
+color:#ff9800;
+text-transform:uppercase;
+letter-spacing:2px;
+}
+
+h1::after{
+content:"";
+display:block;
+width:90px;
+height:5px;
+background:#00bcd4;
+margin:15px auto;
+border-radius:20px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#ddd;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+padding:18px 35px;
+width:fit-content;
+margin:30px auto;
+background:#10263d;
+border-left:5px solid #ff9800;
+border-radius:12px;
+}
+
+.breadcrumb a{
+text-decoration:none;
+color:#00e5ff;
+font-weight:600;
+}
+
+.breadcrumb p{
+color:#ff9800;
+font-weight:600;
+}
+
+/* Hero */
+
+.hero{
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+.hero p{
+max-width:900px;
+margin:25px auto;
+font-size:20px;
+line-height:2;
+color:#ddd;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Buttons */
+
+.btn,
+.btn2,
+.call-btn{
+display:inline-block;
+padding:16px 38px;
+font-weight:600;
+text-decoration:none;
+transition:.4s;
+}
+
+.btn{
+background:#ff9800;
+color:#fff;
+border-radius:5px;
+}
+
+.btn:hover{
+background:#e67e00;
+transform:translateY(-6px);
+}
+
+.btn2{
+border:2px solid #00bcd4;
+color:#00e5ff;
+border-radius:5px;
+}
+
+.btn2:hover{
+background:#00bcd4;
+color:#fff;
+}
+
+/* Industrial Service Cards */
+
+.service-grid,
+.area-grid,
+.near-grid,
+.adv-grid,
+.location-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.service-card,
+.area-card,
+.near-card,
+.adv-card,
+.location-card{
+background:#173754;
+padding:35px;
+text-align:center;
+border-radius:8px;
+border-top:5px solid #ff9800;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+transition:.4s;
+position:relative;
+overflow:hidden;
+color:#fff;
+text-decoration:none;
+}
+
+.service-card::before,
+.area-card::before,
+.near-card::before,
+.adv-card::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:50%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+transition:.8s;
+}
+
+.service-card:hover::before,
+.area-card:hover::before,
+.near-card:hover::before,
+.adv-card:hover::before{
+left:120%;
+}
+
+.service-card:hover,
+.area-card:hover,
+.near-card:hover,
+.adv-card:hover,
+.location-card:hover{
+transform:translateY(-10px);
+background:#214d78;
+}
+
+.service-card h2{
+color:#ff9800;
+margin-bottom:15px;
+}
+
+.service-card p{
+color:#ddd;
+line-height:1.8;
+}
+
+.active-city{
+background:#ff9800;
+color:#fff;
+}
+
+/* Contact */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+max-width:850px;
+margin:auto;
+line-height:2;
+color:#ddd;
+}
+
+.call-btn{
+margin-top:30px;
+background:#00bcd4;
+color:#fff;
+border-radius:6px;
+}
+
+.call-btn:hover{
+background:#0097a7;
+transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+background:#081522;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+footer p{
+color:#bbb;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+section{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+h1{
+font-size:30px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+width:100%;
+text-align:center;
+}
+
+.breadcrumb{
+width:95%;
+flex-wrap:wrap;
+}
+
+}
+</style>
+<body>
+
+<!-- Breadcrumb -->
+
+<section class="breadcrumb">
+<a href="maharashtra-borewell.html">🏠 Maharashtra</a>
+<span>›</span>
+<p>Solapur Borewell Service</p>
+</section>
+
+<!-- Hero -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Borewell Drilling Services in Solapur</h1>
+
+<p>
+Professional Borewell Drilling, Re Bore, Borewell Flushing, PVC Casing, Air Compressor Cleaning and Auto Sensor Drilling across Solapur District.
+</p>
+
+<div class="hero-buttons">
+
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+
+<a href="#areas" class="btn2">Coverage Areas</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Services -->
+
+<section class="services">
+
+<h1>Industrial Borewell Solutions</h1>
+
+<div class="service-grid">
+
+<div class="service-card">
+<h2>🏗 New Borewell</h2>
+<p>Residential & Industrial Projects</p>
+</div>
+
+<div class="service-card">
+<h2>⚙ Re Bore</h2>
+<p>Increase Borewell Performance</p>
+</div>
+
+<div class="service-card">
+<h2>💨 Air Compressor</h2>
+<p>Professional Cleaning</p>
+</div>
+
+<div class="service-card">
+<h2>💧 Flushing</h2>
+<p>Improve Water Yield</p>
+</div>
+
+<div class="service-card">
+<h2>🧱 PVC Casing</h2>
+<p>Durable Installation</p>
+</div>
+
+<div class="service-card">
+<h2>📡 Auto Sensor</h2>
+<p>Modern Drilling Technology</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Why Solapur -->
+
+<section class="about">
+
+<h1>Why Borewell Services in Solapur?</h1>
+
+<p class="intro">
+
+Solapur is one of Maharashtra's major industrial and agricultural districts. Reliable groundwater is essential for textile industries, farming, residential developments and commercial establishments. Selvamurugan Fast Drills provides modern borewell drilling with advanced machinery and experienced operators.
+
+</p>
+
+</section>
+
+<!-- Areas -->
+
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Solapur</h1>
+
+<div class="area-grid">
+
+<div class="area-card">Solapur City</div>
+
+<div class="area-card">Akkalkot</div>
+
+<div class="area-card">Pandharpur</div>
+
+<div class="area-card">Mohol</div>
+
+<div class="area-card">Sangola</div>
+
+<div class="area-card">Mangalwedha</div>
+
+<div class="area-card">Barshi</div>
+
+<div class="area-card">Malshiras</div>
+
+</div>
+
+</section>
+
+<!-- Nearby -->
+
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="near-grid">
+
+<div class="near-card">Barshi</div>
+
+<div class="near-card">Dharashiv</div>
+
+<div class="near-card">Omerga</div>
+
+<div class="near-card">Latur</div>
+
+<div class="near-card">Vijayapura</div>
+
+<div class="near-card">Kalaburagi</div>
+
+</div>
+
+</section>
+
+<!-- Why Choose -->
+
+<section class="advantages">
+
+<h1>Why Choose Selvamurugan Fast Drills?</h1>
+
+<div class="adv-grid">
+
+<div class="adv-card">⚙ Modern Machines</div>
+
+<div class="adv-card">🚛 Fast Mobilization</div>
+
+<div class="adv-card">📡 Auto Sensor Technology</div>
+
+<div class="adv-card">💧 Deep Borewell Drilling</div>
+
+<div class="adv-card">👷 Skilled Operators</div>
+
+<div class="adv-card">🕒 24×7 Service</div>
+
+</div>
+
+</section>
+
+<!-- Explore -->
+
+<section class="other">
+
+<h1>Explore Other Maharashtra Service Areas</h1>
+
+<div class="location-grid">
+
+<a href="maharashtra-borewell.html" class="location-card">Maharashtra</a>
+
+<a href="borewell-latur.html" class="location-card">Latur</a>
+
+<a href="borewell-beed.html" class="location-card">Beed</a>
+
+<a href="borewell-barshi.html" class="location-card">Barshi</a>
+
+<a href="borewell-dharashiv.html" class="location-card">Dharashiv</a>
+
+<a href="borewell-omerga.html" class="location-card">Omerga</a>
+
+<a href="borewell-solapur.html" class="location-card active-city">Solapur</a>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+
+<section class="contact">
+
+<h1>Need Borewell Service in Solapur?</h1>
+
+<p>
+
+Contact Selvamurugan Fast Drills for reliable borewell drilling services across Solapur district and nearby Maharashtra locations.
+
+</p>
+
+<a href="tel:+919488161788" class="call-btn">
+
+📞 +91 94881 61788
+
+</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Selvamurugan Fast Drills | Solapur Borewell Services</p>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#e0f7fa,#b2ebf2,#80deea,#4dd0e1);
+color:#063970;
+overflow-x:hidden;
+}
+
+/* Water Background */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 35%),
+radial-gradient(circle at 80% 70%,rgba(0,188,212,.18),transparent 35%);
+pointer-events:none;
+z-index:-1;
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+}
+
+h1{
+text-align:center;
+font-size:42px;
+margin-bottom:20px;
+color:#01579b;
+}
+
+h1::after{
+content:"";
+display:block;
+width:90px;
+height:4px;
+background:#00acc1;
+margin:15px auto;
+border-radius:20px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#37474f;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin:30px auto;
+padding:16px 30px;
+width:fit-content;
+background:#ffffff;
+border-radius:50px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.breadcrumb a{
+text-decoration:none;
+color:#0288d1;
+font-weight:600;
+}
+
+.breadcrumb span{
+color:#555;
+}
+
+.breadcrumb p{
+color:#01579b;
+font-weight:600;
+}
+
+/* Hero */
+
+.hero{
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+.hero p{
+max-width:850px;
+margin:25px auto;
+font-size:19px;
+line-height:2;
+color:#455a64;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Buttons */
+
+.btn,
+.btn2,
+.call-btn{
+display:inline-block;
+padding:16px 38px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+}
+
+.btn{
+background:#00acc1;
+color:#fff;
+}
+
+.btn:hover{
+background:#00838f;
+transform:translateY(-6px);
+}
+
+.btn2{
+border:2px solid #00acc1;
+color:#00838f;
+}
+
+.btn2:hover{
+background:#00acc1;
+color:#fff;
+}
+
+/* Cards */
+
+.feature-grid,
+.area-grid,
+.nearby-grid,
+.highlight-grid,
+.location-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card,
+.area-card,
+.near-card,
+.highlight-card,
+.location-card{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 15px 30px rgba(0,172,193,.15);
+transition:.4s;
+text-decoration:none;
+color:#01579b;
+border-top:5px solid #00acc1;
+}
+
+.card:hover,
+.area-card:hover,
+.near-card:hover,
+.highlight-card:hover,
+.location-card:hover{
+transform:translateY(-10px);
+background:#ffffff;
+}
+
+.card h2,
+.area-card h2,
+.near-card h2,
+.highlight-card h2,
+.location-card h2{
+color:#0288d1;
+margin-bottom:15px;
+}
+
+.card p,
+.area-card p,
+.near-card p,
+.highlight-card p{
+line-height:1.8;
+color:#546e7a;
+}
+
+/* FAQ */
+
+.faq-box{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,.8);
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,172,193,.15);
+}
+
+.faq-box h2{
+margin-top:20px;
+color:#0288d1;
+}
+
+.faq-box p{
+margin-top:10px;
+line-height:1.8;
+color:#555;
+}
+
+/* Active Page */
+
+.active-city{
+background:#00acc1;
+color:#fff;
+}
+
+.active-city h2{
+color:#fff;
+}
+
+/* Contact */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+max-width:850px;
+margin:auto;
+line-height:2;
+color:#455a64;
+}
+
+.call-btn{
+margin-top:30px;
+background:#0288d1;
+color:#fff;
+}
+
+.call-btn:hover{
+background:#01579b;
+transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+background:#01579b;
+padding:30px;
+text-align:center;
+margin-top:60px;
+}
+
+footer p{
+color:#fff;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+section{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+h1{
+font-size:30px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+width:100%;
+text-align:center;
+}
+
+.breadcrumb{
+width:95%;
+flex-wrap:wrap;
+}
+
+}
+/* Borewell Drilling Process */
+
+.process-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.step{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(12px);
+padding:35px 25px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 15px 30px rgba(0,172,193,.15);
+border-top:5px solid #00acc1;
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.step::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+transition:.8s;
+}
+
+.step:hover::before{
+left:120%;
+}
+
+.step:hover{
+transform:translateY(-10px);
+background:#ffffff;
+}
+
+.step h2{
+font-size:22px;
+color:#0288d1;
+margin-bottom:15px;
+}
+
+.step p{
+color:#546e7a;
+line-height:1.8;
+font-size:15px;
+}
+
+/* Process Number Badge */
+
+.step span{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:60px;
+height:60px;
+margin-bottom:20px;
+border-radius:50%;
+background:linear-gradient(135deg,#00acc1,#0288d1);
+color:#fff;
+font-size:24px;
+font-weight:700;
+box-shadow:0 10px 20px rgba(0,172,193,.3);
+}
+</style>
+<body>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+<a href="maharashtra-borewell.html">🏠 Home</a>
+<span>➜</span>
+<p>Latur Borewell Service</p>
+</section>
+
+<!-- Hero -->
+<section class="hero">
+<div class="hero-content">
+<h1>Borewell Drilling Services in Latur</h1>
+<p>Professional Borewell Drilling, Re Bore, Flushing, Air Compressor Cleaning and Auto Sensor Technology for Residential, Agricultural & Industrial Projects.</p>
+<div class="hero-buttons">
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+<a href="#areas" class="btn2">Explore Areas</a>
+</div>
+</div>
+</section>
+
+<!-- About -->
+<section class="about">
+<h1>Professional Borewell Services in Latur</h1>
+<p class="intro">
+Latur is one of Maharashtra's important agricultural districts known for soybean, sugarcane, pulses and farming activities. Reliable groundwater is essential for homes, industries and agriculture. Selvamurugan Fast Drills provides modern borewell drilling solutions with experienced operators and advanced drilling equipment.
+</p>
+</section>
+
+<!-- Features -->
+<section class="features">
+<h1>Why Choose Selvamurugan Fast Drills?</h1>
+
+<div class="feature-grid">
+
+<div class="card"><h2>30+ Years Experience</h2><p>Trusted drilling experts.</p></div>
+
+<div class="card"><h2>Auto Sensor Technology</h2><p>Accurate drilling support.</p></div>
+
+<div class="card"><h2>1800 Feet Drilling</h2><p>Deep borewell capability.</p></div>
+
+<div class="card"><h2>Fast Response</h2><p>Quick service across Latur.</p></div>
+
+<div class="card"><h2>Agricultural Borewells</h2><p>Reliable irrigation solutions.</p></div>
+
+<div class="card"><h2>Residential Projects</h2><p>Homes, layouts & apartments.</p></div>
+
+<div class="card"><h2>Industrial Services</h2><p>Commercial water solutions.</p></div>
+
+<div class="card"><h2>Re Bore & Flushing</h2><p>Improve existing borewell performance.</p></div>
+
+</div>
+</section>
+
+<!-- Service Areas -->
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Latur</h1>
+
+<div class="area-grid">
+
+<div class="area-card"><h2>Latur City</h2><p>Residential & Commercial Projects.</p></div>
+
+<div class="area-card"><h2>Ahmedpur</h2><p>Agricultural Borewell Services.</p></div>
+
+<div class="area-card"><h2>Ausa</h2><p>Modern Borewell Drilling.</p></div>
+
+<div class="area-card"><h2>Nilanga</h2><p>Farm & Residential Solutions.</p></div>
+
+<div class="area-card"><h2>Renapur</h2><p>Professional Drilling Support.</p></div>
+
+<div class="area-card"><h2>Chakur</h2><p>Reliable Water Source Solutions.</p></div>
+
+<div class="area-card"><h2>Jalkot</h2><p>Fast Borewell Services.</p></div>
+
+<div class="area-card"><h2>Deoni</h2><p>Complete Borewell Solutions.</p></div>
+
+</div>
+
+</section>
+
+<!-- Nearby -->
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="nearby-grid">
+
+<div class="near-card"><h2>Beed</h2><p>Agricultural Borewells.</p></div>
+
+<div class="near-card"><h2>Barshi</h2><p>Residential Projects.</p></div>
+
+<div class="near-card"><h2>Dharashiv</h2><p>Commercial Drilling.</p></div>
+
+<div class="near-card"><h2>Omerga</h2><p>Village Borewell Services.</p></div>
+
+<div class="near-card"><h2>Solapur</h2><p>Industrial Water Solutions.</p></div>
+
+<div class="near-card"><h2>Nanded</h2><p>Professional Borewell Drilling.</p></div>
+
+</div>
+
+</section>
+
+<!-- Highlights -->
+<section class="highlights">
+
+<h1>Why Borewells Are Important in Latur</h1>
+
+<div class="highlight-grid">
+
+<div class="highlight-card">
+<h2>🌾 Agriculture</h2>
+<p>Supports irrigation for soybean, sugarcane and pulses.</p>
+</div>
+
+<div class="highlight-card">
+<h2>💧 Water Conservation</h2>
+<p>Reliable groundwater improves water availability.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🪨 Hard Rock Areas</h2>
+<p>Modern drilling equipment delivers better results.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🏡 Growing Residential Areas</h2>
+<p>Increasing demand for domestic borewells.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🏭 Industrial Growth</h2>
+<p>Water supply for commercial and industrial projects.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🚜 Farming Communities</h2>
+<p>Professional irrigation borewell solutions.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Process -->
+<section class="process">
+
+<h1>Our Borewell Drilling Process</h1>
+
+<div class="process-grid">
+
+<div class="step"><h2>1</h2><p>Site Inspection</p></div>
+
+<div class="step"><h2>2</h2><p>Water Point Verification</p></div>
+
+<div class="step"><h2>3</h2><p>Machine Setup</p></div>
+
+<div class="step"><h2>4</h2><p>Professional Drilling</p></div>
+
+<div class="step"><h2>5</h2><p>PVC Casing</p></div>
+
+<div class="step"><h2>6</h2><p>Compressor Cleaning</p></div>
+
+<div class="step"><h2>7</h2><p>Completion</p></div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-box">
+
+<h2>How deep can you drill?</h2>
+<p>Up to 1800 feet depending on site conditions.</p>
+
+<h2>Do you provide Re Bore?</h2>
+<p>Yes, including flushing services.</p>
+
+<h2>Do you use Auto Sensor Technology?</h2>
+<p>Yes, for improved drilling accuracy.</p>
+
+<h2>Do you provide agricultural borewells?</h2>
+<p>Yes, throughout Latur and nearby districts.</p>
+
+</div>
+
+</section>
+
+<!-- Other Locations -->
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<div class="location-grid">
+
+<a href="maharashtra-borewell.html" class="location-card"><h2>🏠 Maharashtra</h2></a>
+
+<a href="borewell-latur.html" class="location-card active-city"><h2>📍 Latur</h2></a>
+
+<a href="borewell-beed.html" class="location-card"><h2>🌾 Beed</h2></a>
+
+<a href="borewell-barshi.html" class="location-card"><h2>🏡 Barshi</h2></a>
+
+<a href="borewell-dharashiv.html" class="location-card"><h2>🏛 Dharashiv</h2></a>
+
+<a href="borewell-omerga.html" class="location-card"><h2>🚜 Omerga</h2></a>
+
+<a href="borewell-solapur.html" class="location-card"><h2>🏭 Solapur</h2></a>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+<section class="contact">
+
+<h1>Need Borewell Service in Latur?</h1>
+
+<p>Contact Selvamurugan Fast Drills for fast, reliable and professional borewell drilling services across Latur and nearby districts.</p>
+
+<a href="tel:+919488161788" class="call-btn">📞 +91 94881 61788</a>
+
+</section>
+
+<footer>
+<p>© 2026 Selvamurugan Fast Drills | Maharashtra Borewell Services</p>
+</footer>
+
+</body>
+</html>

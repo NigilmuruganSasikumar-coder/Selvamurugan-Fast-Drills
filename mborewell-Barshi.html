@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#081726;
+background-image:
+radial-gradient(circle at top left,#00c8ff22 0%,transparent 35%),
+radial-gradient(circle at bottom right,#00ffd522 0%,transparent 35%),
+linear-gradient(135deg,#081726,#0b2744,#103d63);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+}
+
+h1{
+font-size:42px;
+text-align:center;
+margin-bottom:25px;
+color:#fff;
+position:relative;
+}
+
+h1::after{
+content:"";
+width:80px;
+height:4px;
+background:#00d9ff;
+display:block;
+margin:15px auto;
+border-radius:20px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#d8d8d8;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+width:fit-content;
+margin:30px auto;
+padding:15px 28px;
+display:flex;
+gap:12px;
+align-items:center;
+background:#0f314f;
+border-radius:50px;
+}
+
+.breadcrumb a{
+color:#00d9ff;
+text-decoration:none;
+font-weight:600;
+}
+
+.breadcrumb span{
+color:#fff;
+}
+
+.breadcrumb p{
+color:#ffd54f;
+}
+
+/* Hero */
+
+.hero{
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+}
+
+.hero p{
+max-width:850px;
+margin:25px auto;
+font-size:20px;
+line-height:2;
+color:#ddd;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Buttons */
+
+.btn,
+.btn2,
+.call-btn{
+padding:16px 35px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+display:inline-block;
+}
+
+.btn{
+background:#00d9ff;
+color:#081726;
+}
+
+.btn:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 30px rgba(0,217,255,.4);
+}
+
+.btn2{
+border:2px solid #00d9ff;
+color:#00d9ff;
+}
+
+.btn2:hover{
+background:#00d9ff;
+color:#081726;
+}
+
+/* Statistics */
+
+.stat-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:25px;
+}
+
+.stat-card{
+background:#103250;
+padding:35px;
+text-align:center;
+border-radius:20px;
+transition:.4s;
+}
+
+.stat-card h2{
+font-size:42px;
+color:#00e5ff;
+margin-bottom:10px;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+background:#15476f;
+}
+
+/* Hexagon Services */
+
+.service-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+
+.service-box{
+height:170px;
+clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+background:linear-gradient(135deg,#00c8ff,#005e8a);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+transition:.5s;
+}
+
+.service-box:hover{
+transform:scale(1.08) rotate(3deg);
+}
+
+.service-box h2{
+font-size:20px;
+}
+
+/* Area Cards */
+
+.area-grid,
+.nearby-grid,
+.location-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.area-card,
+.near-card,
+.location-card{
+background:#103250;
+padding:30px;
+border-radius:18px;
+text-align:center;
+transition:.4s;
+text-decoration:none;
+color:#fff;
+border-left:5px solid #00d9ff;
+}
+
+.area-card:hover,
+.near-card:hover,
+.location-card:hover{
+transform:translateY(-8px);
+background:#16486f;
+}
+
+.area-card h2,
+.near-card h2,
+.location-card h2{
+color:#00e5ff;
+}
+
+.active-city{
+border-left:5px solid #ffd54f;
+background:#225781;
+}
+
+/* Contact */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+max-width:800px;
+margin:auto;
+line-height:2;
+color:#ddd;
+}
+
+.call-btn{
+margin-top:30px;
+background:#00d084;
+color:#fff;
+}
+
+.call-btn:hover{
+transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+background:#04101b;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+footer p{
+color:#aaa;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+section{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+h1{
+font-size:30px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+width:100%;
+}
+
+.breadcrumb{
+width:95%;
+flex-wrap:wrap;
+}
+
+.service-box{
+height:140px;
+}
+
+}
+</style>
+<body>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+<a href="maharashtra-borewell.html">🏠 Maharashtra</a>
+<span>➜</span>
+<p>Barshi Borewell Service</p>
+</section>
+
+<!-- Hero -->
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Borewell Drilling Services in Barshi</h1>
+
+<p>
+Professional Borewell Drilling, Re Bore, Borewell Flushing, PVC Casing and Air Compressor Cleaning for Residential, Agricultural and Industrial Projects.
+</p>
+
+<div class="hero-buttons">
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+<a href="#areas" class="btn2">Our Areas</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- Statistics -->
+
+<section class="stats">
+
+<div class="stat-grid">
+
+<div class="stat-card">
+<h2>30+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-card">
+<h2>5000+</h2>
+<p>Completed Borewells</p>
+</div>
+
+<div class="stat-card">
+<h2>1800 Ft</h2>
+<p>Maximum Drilling</p>
+</div>
+
+<div class="stat-card">
+<h2>24/7</h2>
+<p>Customer Support</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Services -->
+
+<section class="services">
+
+<h1>Our Services</h1>
+
+<div class="service-grid">
+
+<div class="service-box">
+<h2>🛠 New Borewell</h2>
+</div>
+
+<div class="service-box">
+<h2>♻ Re Bore</h2>
+</div>
+
+<div class="service-box">
+<h2>💧 Borewell Flushing</h2>
+</div>
+
+<div class="service-box">
+<h2>🧰 PVC Casing</h2>
+</div>
+
+<div class="service-box">
+<h2>⚙ Air Compressor</h2>
+</div>
+
+<div class="service-box">
+<h2>📡 Auto Sensor</h2>
+</div>
+
+</div>
+
+</section>
+
+<!-- About -->
+
+<section class="about">
+
+<h1>Why Choose Borewell Service in Barshi?</h1>
+
+<p class="intro">
+
+Barshi is surrounded by agricultural lands and growing residential developments. Reliable groundwater plays an important role in farming, industries and domestic water supply. Selvamurugan Fast Drills provides modern borewell drilling solutions using advanced equipment and experienced operators.
+
+</p>
+
+</section>
+
+<!-- Areas -->
+
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Barshi</h1>
+
+<div class="area-grid">
+
+<div class="area-card"><h2>Barshi City</h2></div>
+
+<div class="area-card"><h2>Pangri</h2></div>
+
+<div class="area-card"><h2>Vairag</h2></div>
+
+<div class="area-card"><h2>Suler Javalge</h2></div>
+
+<div class="area-card"><h2>Kari</h2></div>
+
+<div class="area-card"><h2>Uplai</h2></div>
+
+</div>
+
+</section>
+
+<!-- Nearby -->
+
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="nearby-grid">
+
+<div class="near-card"><h2>Solapur</h2></div>
+
+<div class="near-card"><h2>Latur</h2></div>
+
+<div class="near-card"><h2>Beed</h2></div>
+
+<div class="near-card"><h2>Dharashiv</h2></div>
+
+<div class="near-card"><h2>Omerga</h2></div>
+
+<div class="near-card"><h2>Pandharpur</h2></div>
+
+</div>
+
+</section>
+
+<!-- Other Locations -->
+
+<section class="other-locations">
+
+<h1>Explore Maharashtra Services</h1>
+
+<div class="location-grid">
+
+<a href="maharashtra-borewell.html" class="location-card">
+<h2>🏠 Maharashtra</h2>
+</a>
+
+<a href="borewell-latur.html" class="location-card">
+<h2>Latur</h2>
+</a>
+
+<a href="borewell-beed.html" class="location-card">
+<h2>Beed</h2>
+</a>
+
+<a href="borewell-barshi.html" class="location-card active-city">
+<h2>Barshi</h2>
+</a>
+
+<a href="borewell-dharashiv.html" class="location-card">
+<h2>Dharashiv</h2>
+</a>
+
+<a href="borewell-omerga.html" class="location-card">
+<h2>Omerga</h2>
+</a>
+
+<a href="borewell-solapur.html" class="location-card">
+<h2>Solapur</h2>
+</a>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+
+<section class="contact">
+
+<h1>Need Borewell Service in Barshi?</h1>
+
+<p>
+
+Call Selvamurugan Fast Drills for fast and professional borewell drilling services across Barshi and nearby Maharashtra districts.
+
+</p>
+
+<a href="tel:+919488161788" class="call-btn">
+📞 +91 94881 61788
+</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Selvamurugan Fast Drills | Barshi Borewell Services</p>
+
+</footer>
+
+</body>
+</html>

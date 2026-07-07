@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borewell Drilling Services in Omerga | Maharashtra</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#eefbf1,#d9f7d9,#c7efd0,#eefbf1);
+color:#1f3d1f;
+overflow-x:hidden;
+}
+
+/* Decorative Leaves */
+body::before,
+body::after{
+content:"🍃";
+position:fixed;
+font-size:90px;
+opacity:.06;
+pointer-events:none;
+animation:floatLeaf 15s linear infinite;
+}
+
+body::before{
+top:10%;
+left:3%;
+}
+
+body::after{
+bottom:10%;
+right:4%;
+animation-delay:7s;
+}
+
+@keyframes floatLeaf{
+0%{transform:translateY(0) rotate(0deg);}
+50%{transform:translateY(-30px) rotate(15deg);}
+100%{transform:translateY(0) rotate(0deg);}
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+}
+
+h1{
+font-size:42px;
+text-align:center;
+margin-bottom:20px;
+color:#1b5e20;
+}
+
+h1::after{
+content:"";
+display:block;
+width:70px;
+height:4px;
+background:#4caf50;
+margin:15px auto;
+border-radius:20px;
+}
+
+.intro{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#555;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+padding:16px 30px;
+width:fit-content;
+margin:30px auto;
+background:#fff;
+border-radius:40px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.breadcrumb a{
+text-decoration:none;
+color:#2e7d32;
+font-weight:600;
+}
+
+.breadcrumb span{
+color:#777;
+}
+
+.breadcrumb p{
+color:#1b5e20;
+font-weight:600;
+}
+
+/* Hero */
+
+.hero{
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+.hero p{
+max-width:850px;
+margin:25px auto;
+font-size:19px;
+line-height:2;
+color:#555;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+/* Buttons */
+
+.btn,
+.btn2,
+.call-btn{
+display:inline-block;
+padding:16px 38px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+}
+
+.btn{
+background:#43a047;
+color:#fff;
+}
+
+.btn:hover{
+background:#2e7d32;
+transform:translateY(-6px);
+}
+
+.btn2{
+border:2px solid #43a047;
+color:#2e7d32;
+}
+
+.btn2:hover{
+background:#43a047;
+color:#fff;
+}
+
+/* Circle Cards */
+
+.circle-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.circle-card{
+width:180px;
+height:180px;
+margin:auto;
+border-radius:50%;
+background:#fff;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+box-shadow:0 15px 30px rgba(76,175,80,.18);
+transition:.4s;
+border:6px solid #c8e6c9;
+}
+
+.circle-card:hover{
+transform:translateY(-10px) scale(1.05);
+border-color:#4caf50;
+}
+
+.circle-card h2{
+font-size:32px;
+color:#2e7d32;
+}
+
+.circle-card p{
+margin-top:8px;
+font-size:15px;
+text-align:center;
+color:#555;
+}
+
+/* Services */
+
+.service-grid,
+.area-grid,
+.near-grid,
+.location-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.service-card{
+background:#4caf50;
+color:#fff;
+padding:28px;
+border-radius:20px;
+text-align:center;
+font-weight:600;
+transition:.4s;
+}
+
+.service-card:hover{
+transform:rotate(-2deg) scale(1.05);
+background:#2e7d32;
+}
+
+/* Area Cards */
+
+.area-card,
+.near-card,
+.location-card{
+background:#fff;
+padding:28px;
+text-align:center;
+border-radius:18px;
+border-bottom:5px solid #66bb6a;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+transition:.4s;
+text-decoration:none;
+color:#2e7d32;
+font-weight:600;
+}
+
+.area-card:hover,
+.near-card:hover,
+.location-card:hover{
+transform:translateY(-8px);
+border-bottom-color:#1b5e20;
+}
+
+.active-city{
+background:#2e7d32;
+color:#fff;
+}
+
+/* Contact */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+max-width:850px;
+margin:auto;
+line-height:2;
+color:#555;
+}
+
+.call-btn{
+background:#43a047;
+color:#fff;
+margin-top:30px;
+}
+
+.call-btn:hover{
+background:#1b5e20;
+}
+
+/* Footer */
+
+footer{
+background:#1b5e20;
+padding:30px;
+text-align:center;
+margin-top:60px;
+}
+
+footer p{
+color:#fff;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+section{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+h1{
+font-size:30px;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+width:100%;
+text-align:center;
+}
+
+.circle-card{
+width:150px;
+height:150px;
+}
+
+.breadcrumb{
+width:95%;
+flex-wrap:wrap;
+}
+
+}
+</style>
+<body>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+<a href="maharashtra-borewell.html">🏠 Maharashtra</a>
+<span>›</span>
+<p>Omerga Borewell Service</p>
+</section>
+
+<!-- Hero -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Borewell Drilling Services in Omerga</h1>
+
+<p>
+Professional Borewell Drilling, Re Bore, Flushing, PVC Casing and Air Compressor Services for Farms, Villages, Homes and Industries across Omerga.
+</p>
+
+<div class="hero-buttons">
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+<a href="#areas" class="btn2">View Areas</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- Circle Features -->
+
+<section class="features">
+
+<h1>Why Choose Us?</h1>
+
+<div class="circle-grid">
+
+<div class="circle-card">
+<h2>30+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="circle-card">
+<h2>5000+</h2>
+<p>Projects</p>
+</div>
+
+<div class="circle-card">
+<h2>1800 Ft</h2>
+<p>Deep Drilling</p>
+</div>
+
+<div class="circle-card">
+<h2>24/7</h2>
+<p>Support</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- About -->
+
+<section class="about">
+
+<h1>Borewell Services in Omerga</h1>
+
+<p class="intro">
+
+Omerga is surrounded by villages and agricultural lands where groundwater plays a vital role for farming and daily life. Selvamurugan Fast Drills provides dependable borewell drilling solutions using advanced equipment and experienced operators.
+
+</p>
+
+</section>
+
+<!-- Services -->
+
+<section class="services">
+
+<h1>Our Services</h1>
+
+<div class="service-grid">
+
+<div class="service-card">🌿 New Borewell</div>
+
+<div class="service-card">💧 Re Bore</div>
+
+<div class="service-card">🚜 Agricultural Borewell</div>
+
+<div class="service-card">⚙ Borewell Flushing</div>
+
+<div class="service-card">🛠 Air Compressor</div>
+
+<div class="service-card">📡 Auto Sensor</div>
+
+</div>
+
+</section>
+
+<!-- Areas -->
+
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Omerga</h1>
+
+<div class="area-grid">
+
+<div class="area-card">Omerga City</div>
+
+<div class="area-card">Murum</div>
+
+<div class="area-card">Turori</div>
+
+<div class="area-card">Naichakur</div>
+
+<div class="area-card">Aland Border</div>
+
+<div class="area-card">Villages Around Omerga</div>
+
+</div>
+
+</section>
+
+<!-- Nearby -->
+
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="near-grid">
+
+<div class="near-card">Dharashiv</div>
+
+<div class="near-card">Latur</div>
+
+<div class="near-card">Barshi</div>
+
+<div class="near-card">Solapur</div>
+
+<div class="near-card">Kalaburagi</div>
+
+<div class="near-card">Tuljapur</div>
+
+</div>
+
+</section>
+
+<!-- Other Locations -->
+
+<section class="other">
+
+<h1>Explore Other Maharashtra Service Areas</h1>
+
+<div class="location-grid">
+
+<a href="maharashtra-borewell.html" class="location-card">Maharashtra</a>
+
+<a href="borewell-latur.html" class="location-card">Latur</a>
+
+<a href="borewell-beed.html" class="location-card">Beed</a>
+
+<a href="borewell-barshi.html" class="location-card">Barshi</a>
+
+<a href="borewell-dharashiv.html" class="location-card">Dharashiv</a>
+
+<a href="borewell-omerga.html" class="location-card active-city">Omerga</a>
+
+<a href="borewell-solapur.html" class="location-card">Solapur</a>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+
+<section class="contact">
+
+<h1>Need Borewell Service in Omerga?</h1>
+
+<p>
+
+Selvamurugan Fast Drills offers professional borewell drilling services across Omerga and nearby Maharashtra districts for agricultural, residential and commercial needs.
+
+</p>
+
+<a href="tel:+919488161788" class="call-btn">
+
+📞 +91 94881 61788
+
+</a>
+
+</section>
+
+<footer>
+
+<p>© 2026 Selvamurugan Fast Drills | Omerga Borewell Services</p>
+
+</footer>
+
+</body>
+</html>
