@@ -1,783 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+window.onload = function () {
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    // ==========================
+    // Load Saved Data
+    // ==========================
 
-<title>Borewell Calculator</title>
+    const data = JSON.parse(localStorage.getItem("quotationData"));
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    if (!data) {
 
-<style>
+        alert("No quotation data found.");
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#081120;
-    padding:40px;
-    color:white;
-}
-
-.calculator{
-    max-width:1200px;
-    margin:auto;
-    background:#111c2d;
-    border-radius:28px;
-    padding:35px;
-    border:1px solid #22344f;
-}
-
-.title{
-    margin-bottom:35px;
-}
-
-.title p{
-    color:#ffb400;
-    letter-spacing:2px;
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.title h1{
-    font-size:48px;
-}
-
-.type-flex{
-    display:flex;
-    gap:15px;
-    margin-bottom:30px;
-}
-
-.type-btn{
-    flex:1;
-    padding:18px;
-    border:none;
-    border-radius:16px;
-    background:#24344f;
-    color:white;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.type-btn.active{
-    background:linear-gradient(135deg,#ffb400,#ff7b00);
-    color:#111;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:20px;
-}
-
-.input-group{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.input-group label{
-    color:#b8c4d8;
-    font-size:15px;
-}
-
-.input-group input{
-    background:#1a2740;
-    border:1px solid #2a3d5c;
-    border-radius:16px;
-    padding:18px;
-    color:white;
-    font-size:17px;
-    outline:none;
-}
-
-.input-group input:focus{
-    border-color:#ffb400;
-}
-
-.gst-box{
-    margin-top:30px;
-    background:#1a2740;
-    border-radius:18px;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.gst-box input{
-    width:24px;
-    height:24px;
-}
-
-.button-flex{
-    display:flex;
-    gap:15px;
-    margin-top:30px;
-}
-
-.calculate-btn{
-    flex:1;
-    border:none;
-    border-radius:18px;
-    padding:22px;
-    background:linear-gradient(135deg,#ffb400,#ff7b00);
-    font-size:20px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.clear-btn{
-    width:180px;
-    border:none;
-    border-radius:18px;
-    padding:22px;
-    background:#24344f;
-    color:white;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.clear-btn:hover{
-    background:#314766;
-}
-
-.details-box{
-    margin-top:35px;
-    background:#edf7ed;
-    padding:22px;
-    border-radius:18px;
-    color:#333;
-    font-size:19px;
-    line-height:1.8;
-}
-
-.green{
-    color:#00b933;
-    font-weight:700;
-}
-
-.breakdown-box{
-    margin-top:30px;
-    background:#162236;
-    border-radius:24px;
-    padding:25px;
-}
-
-.breakdown-box h2{
-    margin-bottom:25px;
-}
-
-.breakdown-head{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    padding-bottom:15px;
-    border-bottom:1px solid #2a3a54;
-    color:#ffb400;
-    font-weight:700;
-}
-
-.breakdown-row{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    padding:18px 0;
-    border-bottom:1px solid #223149;
-}
-
-.amount{
-    color:#00d13b;
-    font-weight:700;
-}
-
-.result-box{
-    margin-top:35px;
-    background:#162236;
-    border-radius:24px;
-    padding:25px;
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-}
-
-.result-item{
-    display:flex;
-    justify-content:space-between;
-    font-size:20px;
-}
-
-.grand{
-    border-top:2px solid #2b3d57;
-    padding-top:20px;
-    margin-top:10px;
-    color:#ffb400;
-    font-size:34px;
-    font-weight:700;
-}
-
-@media(max-width:900px){
-
-    body{
-        padding:20px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .button-flex{
-        flex-direction:column;
-    }
-
-    .clear-btn{
-        width:100%;
-    }
-
-    .title h1{
-        font-size:36px;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="calculator">
-
-    <div class="title">
-
-        <p>ADVANCED ESTIMATION</p>
-
-        <h1>Borewell Calculator</h1>
-
-    </div>
-
-
-
-    <!-- DRILLING TYPE -->
-
-    <div class="type-flex">
-
-        <button class="type-btn active"
-        id="newBtn"
-        onclick="setMode('new')">
-
-            New Drilling
-
-        </button>
-
-        <button class="type-btn"
-        id="reboreBtn"
-        onclick="setMode('rebore')">
-
-            Rebore Drilling
-
-        </button>
-
-    </div>
-
-
-
-    <!-- INPUTS -->
-
-    <div class="grid">
-
-        <div class="input-group">
-
-            <label>Total Depth</label>
-
-            <input type="number"
-            id="depth"
-            value="1200">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>Base Rate / ft</label>
-
-            <input type="number"
-            id="baseRate"
-            value="90">
-
-        </div>
-
-
-
-        <!-- REBORE -->
-
-        <div class="input-group rebore-fields"
-        style="display:none;">
-
-            <label>Rebore Feet</label>
-
-            <input type="number"
-            id="reboreFeet"
-            value="0">
-
-        </div>
-
-
-        <div class="input-group rebore-fields"
-        style="display:none;">
-
-            <label>Rebore Rate / ft</label>
-
-            <input type="number"
-            id="reboreRate"
-            value="40">
-
-        </div>
-
-
-
-        <div class="input-group">
-
-            <label>7" PVC Feet</label>
-
-            <input type="number"
-            id="casing7"
-            value="30">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>7" PVC Rate</label>
-
-            <input type="number"
-            id="casing7Rate"
-            value="450">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>10" PVC Feet</label>
-
-            <input type="number"
-            id="casing10"
-            value="15">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>10" PVC Rate</label>
-
-            <input type="number"
-            id="casing10Rate"
-            value="750">
-
-        </div>
-
-    </div>
-
-
-
-    <!-- GST -->
-
-    <div class="gst-box">
-
-        <span>GST ON / OFF</span>
-
-        <input type="checkbox"
-        id="gstToggle"
-        checked>
-
-    </div>
-
-
-
-    <!-- BUTTONS -->
-
-    <div class="button-flex">
-
-        <button class="calculate-btn"
-        onclick="calculateTotal()">
-
-            Calculate Estimate
-
-        </button>
-
-        <button class="clear-btn"
-        onclick="clearCalculator()">
-
-            Clear
-
-        </button>
-
-    </div>
-
-
-
-    <!-- DETAILS -->
-
-    <div class="details-box">
-
-        <span class="green">
-            Drilling Details:
-        </span>
-
-        <span id="detailsText"></span>
-
-    </div>
-
-
-
-    <!-- BREAKDOWN -->
-
-    <div class="breakdown-box">
-
-        <h2>
-            Drilling Cost Breakdown
-        </h2>
-
-        <div class="breakdown-head">
-
-            <div>Depth</div>
-            <div>Rate</div>
-            <div>Amount</div>
-
-        </div>
-
-        <div id="breakdown"></div>
-
-    </div>
-
-
-
-    <!-- RESULTS -->
-
-    <div class="result-box">
-
-        <div class="result-item">
-
-            <p>Drilling Cost</p>
-
-            <span id="drillingTotal">₹0</span>
-
-        </div>
-
-        <div class="result-item">
-
-            <p>7" PVC Cost</p>
-
-            <span id="casing7Total">₹0</span>
-
-        </div>
-
-        <div class="result-item">
-
-            <p>10" PVC Cost</p>
-
-            <span id="casing10Total">₹0</span>
-
-        </div>
-
-        <div class="result-item">
-
-            <p>GST</p>
-
-            <span id="gstAmount">₹0</span>
-
-        </div>
-
-        <div class="result-item grand">
-
-            <p>Total Estimate</p>
-
-            <span id="grandTotal">₹0</span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<script>
-
-let drillingMode = "new";
-
-function setMode(mode){
-
-    drillingMode = mode;
-
-    document.getElementById("newBtn")
-    .classList.remove("active");
-
-    document.getElementById("reboreBtn")
-    .classList.remove("active");
-
-    if(mode === "new"){
-
-        document.getElementById("newBtn")
-        .classList.add("active");
+        return;
 
     }
 
-    else{
+    // ==========================
+    // Customer Details
+    // ==========================
 
-        document.getElementById("reboreBtn")
-        .classList.add("active");
+    document.getElementById("pdfCustomerName").textContent =
+        data.customerName || "-";
 
-    }
+    document.getElementById("pdfCustomerPhone").textContent =
+        data.customerPhone || "-";
 
-    document
-    .querySelectorAll(".rebore-fields")
-    .forEach(el=>{
+    // ==========================
+    // Drilling Details
+    // ==========================
 
-        el.style.display =
-        mode === "rebore"
-        ? "flex"
-        : "none";
+    document.getElementById("pdfMode").textContent =
+        data.mode.toUpperCase();
 
-    });
+    document.getElementById("pdfDepth").textContent =
+        data.depth + " ft";
 
-    calculateTotal();
+    document.getElementById("pdfRate").textContent =
+        "₹" + data.baseRate + " / ft";
 
-}
+    document.getElementById("pdfGST").textContent =
+        data.gst ? "ON" : "OFF";
 
+    // ==========================
+    // Date
+    // ==========================
 
+    const today = new Date();
 
-function calculateTotal(){
+    const formattedDate =
+        String(today.getDate()).padStart(2, "0") + "/" +
+        String(today.getMonth() + 1).padStart(2, "0") + "/" +
+        today.getFullYear();
 
-    let depth =
-    parseInt(document.getElementById("depth").value) || 0;
+    document.getElementById("pdfDate").textContent =
+        formattedDate;
 
-    let baseRate =
-    parseInt(document.getElementById("baseRate").value) || 0;
+    // ==========================
+    // Values
+    // ==========================
 
-    let casing7Feet =
-    parseInt(document.getElementById("casing7").value) || 0;
+    const depth = Number(data.depth);
 
-    let casing7Rate =
-    parseInt(document.getElementById("casing7Rate").value) || 0;
+    const baseRate = Number(data.baseRate);
 
-    let casing10Feet =
-    parseInt(document.getElementById("casing10").value) || 0;
+    const casing7Feet = Number(data.casing7);
 
-    let casing10Rate =
-    parseInt(document.getElementById("casing10Rate").value) || 0;
+    const casing7Rate = Number(data.casing7Rate);
 
+    const casing10Feet = Number(data.casing10);
 
+    const casing10Rate = Number(data.casing10Rate);
 
-    let start = 1;
+    const reboreFeet = Number(data.reboreFeet);
+
+    const reboreRate = Number(data.reboreRate);
 
     let drillingTotal = 0;
 
-    let breakdownHTML = "";
-
-
-
-    // ORIGINAL LOGIC SETTINGS
+    let start = 1;
 
     let currentRate = baseRate;
 
     let addValue = 5;
 
+    const tbody = document.getElementById("pdfBreakdown");
 
-// =========================
-// REBORE SECTION
-// =========================
+    tbody.innerHTML = "";
 
-if(drillingMode === "rebore"){
+    // ==========================
+    // Rebore Section
+    // ==========================
 
-    let reboreFeet =
-    parseInt(document.getElementById("reboreFeet").value) || 0;
+    if (data.mode === "rebore") {
 
-    let reboreRate =
-    parseInt(document.getElementById("reboreRate").value) || 0;
+        const reboreCost = reboreFeet * reboreRate;
 
+        drillingTotal += reboreCost;
 
+        tbody.innerHTML += `
 
-    // REBORE COST
+        <tr>
 
-    let reboreCost =
-    reboreFeet * reboreRate;
+            <td>001 - ${reboreFeet} ft</td>
 
-    drillingTotal += reboreCost;
+            <td>₹${reboreRate}/ft</td>
 
+            <td>₹${reboreCost.toLocaleString()}</td>
 
+        </tr>
 
-    // SHOW REBORE ROW
+        `;
 
-    breakdownHTML += `
+        start = reboreFeet + 1;
 
-    <div class="breakdown-row">
+        if (reboreFeet > 300) {
 
-        <div>
-            1-${reboreFeet} ft
-        </div>
+            let slab = Math.floor((reboreFeet - 1) / 100);
 
-        <div>
-            ₹${reboreRate}/ft
-        </div>
+            currentRate = baseRate;
 
-        <div class="amount">
-            Rs.${reboreCost.toLocaleString()}
-        </div>
+            addValue = 5;
 
-    </div>
+            for (let s = 3; s <= slab; s++) {
 
-    `;
+                currentRate += addValue;
 
+                if (addValue === 5) {
 
+                    addValue = 10;
 
-    // NEXT STARTING POINT
+                } else {
 
-    start = reboreFeet + 1;
+                    addValue += 10;
 
-
-
-    // =========================
-    // CORRECT RATE ADVANCEMENT
-    // =========================
-
-    currentRate = baseRate;
-
-    addValue = 5;
-
-
-
-    // FIRST 300 FT = BASE RATE
-
-    if(reboreFeet >= 301){
-
-        let tempDepth = 301;
-
-
-
-        while(tempDepth <= reboreFeet + 100){
-
-            currentRate += addValue;
-
-
-
-            if(addValue === 5){
-
-                addValue = 10;
+                }
 
             }
-
-            else{
-
-                addValue += 10;
-
-            }
-
-
-
-            tempDepth += 100;
 
         }
 
     }
 
-}
+    // Save all variables for Part 2
 
-    // =========================
-    // NORMAL SLAB CALCULATION
-    // =========================
+    window.quote = {
 
-    while(start <= depth){
+        data,
+
+        depth,
+
+        casing7Feet,
+
+        casing7Rate,
+
+        casing10Feet,
+
+        casing10Rate,
+
+        drillingTotal,
+
+        currentRate,
+
+        addValue,
+
+        start,
+
+        tbody
+
+    };
+        // ==========================
+    // Drilling Breakdown
+    // ==========================
+
+    while (start <= depth) {
 
         let end;
 
-
-
-        if(start <= 300){
+        if (start <= 300) {
 
             end = Math.min(300, depth);
 
+        } else {
+
+            end = Math.min(
+                Math.ceil(start / 100) * 100,
+                depth
+            );
+
         }
 
-        else{
+        const feet = end - start + 1;
 
-            end = Math.min(start + 99, depth);
-
-        }
-
-
-
-        let feet =
-        end - start + 1;
-
-
-
-        let slabCost =
-        feet * currentRate;
-
-
+        const slabCost = feet * currentRate;
 
         drillingTotal += slabCost;
 
+        tbody.innerHTML += `
 
+        <tr>
 
-        breakdownHTML += `
+            <td>${String(start).padStart(3, "0")} - ${end} ft</td>
 
-        <div class="breakdown-row">
+            <td>₹${currentRate}/ft</td>
 
-            <div>
-                ${String(start).padStart(3,'0')}-${end} ft
-            </div>
+            <td>₹${slabCost.toLocaleString()}</td>
 
-            <div>
-                ₹${currentRate}/ft
-            </div>
-
-            <div class="amount">
-                Rs.${slabCost.toLocaleString()}
-            </div>
-
-        </div>
+        </tr>
 
         `;
 
-
-
         start = end + 1;
 
-
-
-        // ORIGINAL NEW DRILLING LOGIC
-
-        if(end < 1000){
+        if (end < 1000) {
 
             currentRate += addValue;
 
-            if(addValue === 5){
+            if (addValue === 5) {
 
                 addValue = 10;
 
-            }
-
-            else{
+            } else {
 
                 addValue += 10;
 
             }
 
-        }
-
-        else{
+        } else {
 
             currentRate += 100;
 
@@ -785,156 +232,114 @@ if(drillingMode === "rebore"){
 
     }
 
+    // ==========================
+    // PVC Cost
+    // ==========================
 
+    const pvc7Cost = casing7Feet * casing7Rate;
 
-    // PVC COSTS
+    const pvc10Cost = casing10Feet * casing10Rate;
 
-    let casing7Cost =
-    casing7Feet * casing7Rate;
+    // ==========================
+    // Sub Total
+    // ==========================
 
-    let casing10Cost =
-    casing10Feet * casing10Rate;
+    const subTotal =
+        drillingTotal +
+        pvc7Cost +
+        pvc10Cost;
 
-
-
-    // SUBTOTAL
-
-    let subtotal =
-
-    drillingTotal
-    +
-    casing7Cost
-    +
-    casing10Cost;
-
-
-
+    // ==========================
     // GST
+    // ==========================
 
-    let gst = 0;
+    let gstAmount = 0;
 
-    if(document.getElementById("gstToggle").checked){
+    if (data.gst) {
 
-        gst = subtotal * 0.18;
+        gstAmount = Math.round(subTotal * 0.18);
 
     }
 
+    // ==========================
+    // Grand Total
+    // ==========================
 
+    const grandTotal =
+        subTotal + gstAmount;
 
-    // FINAL TOTAL
+    // ==========================
+    // Fill Summary
+    // ==========================
 
-    let total =
-    subtotal + gst;
+    document.getElementById("pdfDrillingTotal").textContent =
+        "₹" + drillingTotal.toLocaleString();
 
+    document.getElementById("sumDrilling").textContent =
+        "₹" + drillingTotal.toLocaleString();
 
+    document.getElementById("sumPVC7").textContent =
+        "₹" + pvc7Cost.toLocaleString();
 
-    // DETAILS
+    document.getElementById("sumPVC10").textContent =
+        "₹" + pvc10Cost.toLocaleString();
 
-    document.getElementById("detailsText")
-    .innerHTML =
+    document.getElementById("sumGST").textContent =
+        "₹" + gstAmount.toLocaleString();
 
-    `
-    Total Depth:
-    <b>${depth} ft</b>
+    document.getElementById("sumGrand").textContent =
+        "₹" + grandTotal.toLocaleString();
+        const params = new URLSearchParams(window.location.search);
 
-    |
+if (params.get("download") === "true") {
 
-    Base Rate:
-    <b>₹${baseRate}/ft</b>
+    setTimeout(async () => {
 
-    |
+        await autoDownloadPDF();
 
-    Mode:
-    <b>${drillingMode.toUpperCase()}</b>
+        window.close();
 
-    |
-
-    7" PVC:
-    <b>${casing7Feet} ft</b>
-
-    |
-
-    10" PVC:
-    <b>${casing10Feet} ft</b>
-    `;
-
-
-
-    // BREAKDOWN
-
-    document.getElementById("breakdown")
-    .innerHTML =
-    breakdownHTML;
-
-
-
-    // RESULTS
-
-    document.getElementById("drillingTotal")
-    .innerHTML =
-    "₹" + drillingTotal.toLocaleString();
-
-    document.getElementById("casing7Total")
-    .innerHTML =
-    "₹" + casing7Cost.toLocaleString();
-
-    document.getElementById("casing10Total")
-    .innerHTML =
-    "₹" + casing10Cost.toLocaleString();
-
-    document.getElementById("gstAmount")
-    .innerHTML =
-    "₹" + gst.toLocaleString();
-
-    document.getElementById("grandTotal")
-    .innerHTML =
-    "₹" + total.toLocaleString();
+    }, 800);
 
 }
+};
+// ==========================================
+// Download PDF
+// ==========================================
 
+async function autoDownloadPDF() {
 
+    const { jsPDF } = window.jspdf;
 
-function clearCalculator(){
+    const element = document.getElementById("quotation");
 
-    document.getElementById("depth").value = "";
+    const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true
+    });
 
-    document.getElementById("baseRate").value = "90";
+    const imgData = canvas.toDataURL("image/png");
 
-    document.getElementById("reboreFeet").value = "0";
+    const pdf = new jsPDF("p", "mm", "a4");
 
-    document.getElementById("reboreRate").value = "40";
+    const pageWidth = 210;
 
-    document.getElementById("casing7").value = "0";
+    const pageHeight = 297;
 
-    document.getElementById("casing7Rate").value = "450";
+    const imgWidth = pageWidth;
 
-    document.getElementById("casing10").value = "0";
+    const imgHeight =
+        canvas.height * imgWidth / canvas.width;
 
-    document.getElementById("casing10Rate").value = "750";
+    pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        0,
+        imgWidth,
+        imgHeight
+    );
 
-    document.getElementById("gstToggle").checked = true;
-
-    document.getElementById("detailsText").innerHTML = "";
-
-    document.getElementById("breakdown").innerHTML = "";
-
-    document.getElementById("drillingTotal").innerHTML = "₹0";
-
-    document.getElementById("casing7Total").innerHTML = "₹0";
-
-    document.getElementById("casing10Total").innerHTML = "₹0";
-
-    document.getElementById("gstAmount").innerHTML = "₹0";
-
-    document.getElementById("grandTotal").innerHTML = "₹0";
+    pdf.save("Selvamurugan_Fast_Drills_Quotation.pdf");
 
 }
-
-
-
-calculateTotal();
-
-</script>
-
-</body>
-</html>
