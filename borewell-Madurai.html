@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borewell Drilling Services in Madurai</title>
+</head>
+<style>/* ===========================
+   GOOGLE FONT
+=========================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#08111f,#102a43,#0b1f33);
+    background-size:300% 300%;
+    animation:bgMove 12s ease infinite;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+/*==================================
+          BREADCRUMB
+==================================*/
+
+.breadcrumb{
+    width:fit-content;
+    margin:40px auto;
+    padding:16px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:50px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    position:relative;
+    overflow:hidden;
+}
+
+.breadcrumb::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+    transition:.8s;
+}
+
+.breadcrumb:hover::before{
+    left:120%;
+}
+
+.breadcrumb a{
+    color:#00d9ff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.breadcrumb a:hover{
+    color:#ffd700;
+}
+
+.breadcrumb span{
+    color:#ffffff;
+    font-size:18px;
+}
+
+.breadcrumb p{
+    color:#ffd700;
+    font-weight:600;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.breadcrumb{
+    width:95%;
+    padding:14px 20px;
+    gap:10px;
+    flex-wrap:wrap;
+    border-radius:20px;
+}
+
+.breadcrumb a,
+.breadcrumb p{
+    font-size:14px;
+}
+
+.breadcrumb span{
+    font-size:15px;
+}
+
+}
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00d9ff;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#08111f;
+}
+
+/* ===========================
+   SECTION
+=========================== */
+
+section{
+    padding:90px 8%;
+}
+
+/* ===========================
+   TITLES
+=========================== */
+
+h1{
+    font-size:42px;
+    text-align:center;
+    margin-bottom:25px;
+    background:linear-gradient(90deg,#ffd700,#00d9ff,#ffffff);
+    background-size:250%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:titleMove 6s linear infinite;
+}
+
+@keyframes titleMove{
+    to{
+        background-position:250%;
+    }
+}
+
+.intro,
+.section-text{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+    color:#d4d4d4;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:60px;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:2;
+    color:#ddd;
+    margin:30px 0;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn,
+.btn2,
+.call-btn{
+
+    display:inline-block;
+    padding:16px 40px;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:.4s;
+}
+
+.btn{
+
+    background:linear-gradient(45deg,#00d9ff,#0099ff);
+    color:white;
+}
+
+.btn:hover{
+
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(0,217,255,.4);
+}
+
+.btn2{
+
+    border:2px solid #ffd700;
+    color:#ffd700;
+}
+
+.btn2:hover{
+
+    background:#ffd700;
+    color:#111;
+}
+
+.call-btn{
+
+    background:#00c853;
+    color:white;
+    margin-top:30px;
+}
+
+.call-btn:hover{
+
+    transform:scale(1.05);
+}
+
+/* ===========================
+   GLASS CARDS
+=========================== */
+
+.feature-grid,
+.area-grid,
+.nearby-grid,
+.highlight-grid,
+.process-grid,
+.location-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+.card,
+.area-card,
+.near-card,
+.highlight-card,
+.step,
+.location-card{
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:25px;
+    padding:30px;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before,
+.area-card::before,
+.near-card::before,
+.highlight-card::before,
+.step::before{
+
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+    transition:.8s;
+}
+
+.card:hover::before,
+.area-card:hover::before,
+.near-card:hover::before,
+.highlight-card:hover::before,
+.step:hover::before{
+
+    left:120%;
+}
+
+.card:hover,
+.area-card:hover,
+.near-card:hover,
+.highlight-card:hover,
+.step:hover,
+.location-card:hover{
+
+    transform:translateY(-12px);
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+    border-color:#00d9ff;
+}
+
+.card h2,
+.area-card h2,
+.near-card h2,
+.highlight-card h2,
+.step h2,
+.location-card h2{
+
+    color:#ffd700;
+    margin-bottom:15px;
+}
+
+.card p,
+.area-card p,
+.near-card p,
+.highlight-card p,
+.step p{
+
+    color:#dcdcdc;
+    line-height:1.8;
+}
+
+/* ===========================
+   FAQ
+=========================== */
+
+.faq-box{
+
+    max-width:900px;
+    margin:auto;
+}
+
+.faq-box h2{
+
+    margin-top:25px;
+    color:#00d9ff;
+}
+
+.faq-box p{
+
+    margin-top:10px;
+    color:#ddd;
+    line-height:1.8;
+}
+
+/* ===========================
+   CONTACT
+=========================== */
+
+.contact{
+
+    text-align:center;
+}
+
+.contact p{
+
+    max-width:800px;
+    margin:auto;
+    color:#ddd;
+    line-height:2;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    padding:30px;
+    background:#050b15;
+    text-align:center;
+}
+
+footer p{
+
+    color:#bbb;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:38px;
+}
+
+.hero p{
+    font-size:17px;
+}
+
+h1{
+    font-size:30px;
+}
+
+section{
+    padding:70px 20px;
+}
+
+.hero-buttons{
+    flex-direction:column;
+}
+
+.btn,
+.btn2,
+.call-btn{
+    width:100%;
+}
+
+}</style>
+<body>
+    <body>
+
+<!-- ===================== -->
+<!-- BREADCRUMB -->
+<!-- ===================== -->
+
+<section class="breadcrumb">
+
+<a href="index.html">🏠 Home</a>
+
+<span>➜</span>
+
+<p>Madurai Borewell Service</p>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- HERO -->
+<!-- ===================== -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Borewell Drilling Services in Madurai</h1>
+
+<p>
+
+Professional Borewell Drilling, Re Bore, Flushing, Air Compressor Cleaning,
+PVC Casing and Advanced Auto Sensor Technology for Residential,
+Agricultural and Industrial Projects.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="tel:+919488161788" class="btn">📞 Call Now</a>
+
+<a href="#areas" class="btn2">Explore Areas</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- ABOUT -->
+<!-- ===================== -->
+
+<section class="about">
+
+<h1>Professional Borewell Services in Madurai</h1>
+
+<p class="intro">
+
+Madurai is one of Tamil Nadu's oldest and fastest-growing districts,
+with a combination of urban development, agricultural villages,
+granite formations and industrial zones.
+
+Ground conditions vary across the district, requiring experienced
+drilling professionals and modern machinery.
+
+Selvamurugan Fast Drills provides reliable borewell drilling
+solutions using advanced equipment and more than 30 years of experience.
+
+</p>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- WHY CHOOSE -->
+<!-- ===================== -->
+
+<section class="features">
+
+<h1>Why Choose Selvamurugan Fast Drills?</h1>
+
+<div class="feature-grid">
+
+<div class="card">
+<h2>30+ Years Experience</h2>
+<p>Trusted borewell drilling experts serving Tamil Nadu.</p>
+</div>
+
+<div class="card">
+<h2>Advanced Sensor Technology</h2>
+<p>Modern Auto Sensor model improves drilling accuracy.</p>
+</div>
+
+<div class="card">
+<h2>1800 Feet Drilling</h2>
+<p>Professional deep borewell drilling solutions.</p>
+</div>
+
+<div class="card">
+<h2>Fast Response</h2>
+<p>Quick service across Madurai district.</p>
+</div>
+
+<div class="card">
+<h2>Agricultural Projects</h2>
+<p>Reliable water solutions for farms and plantations.</p>
+</div>
+
+<div class="card">
+<h2>Residential Borewells</h2>
+<p>Professional drilling for houses, apartments and layouts.</p>
+</div>
+
+<div class="card">
+<h2>Industrial Support</h2>
+<p>Commercial and industrial borewell drilling.</p>
+</div>
+
+<div class="card">
+<h2>Re Bore & Flushing</h2>
+<p>Increase water flow with professional re-bore service.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- SERVICE AREAS -->
+<!-- ===================== -->
+
+<section class="service-areas" id="areas">
+
+<h1>Service Areas Around Madurai</h1>
+
+<p class="section-text">
+
+We provide borewell drilling services across Madurai city and surrounding
+towns with fast response and professional support.
+
+</p>
+
+<div class="area-grid">
+
+<div class="area-card">
+<h2>Madurai City</h2>
+<p>Residential, Commercial & Industrial Borewell Services.</p>
+</div>
+
+<div class="area-card">
+<h2>Melur</h2>
+<p>Agricultural Borewell Drilling and Farm Water Solutions.</p>
+</div>
+
+<div class="area-card">
+<h2>Thirumangalam</h2>
+<p>Professional Borewell Drilling with Modern Equipment.</p>
+</div>
+
+<div class="area-card">
+<h2>Usilampatti</h2>
+<p>Hard Rock Borewell Drilling Specialists.</p>
+</div>
+
+<div class="area-card">
+<h2>Vadipatti</h2>
+<p>Residential and Agricultural Projects.</p>
+</div>
+
+<div class="area-card">
+<h2>Alanganallur</h2>
+<p>Fast Borewell Service for Villages and Farms.</p>
+</div>
+
+<div class="area-card">
+<h2>Sholavandan</h2>
+<p>Reliable Water Source Solutions.</p>
+</div>
+
+<div class="area-card">
+<h2>Tirupparankundram</h2>
+<p>Commercial and Residential Borewell Services.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- NEARBY AREAS -->
+<!-- ===================== -->
+
+<section class="nearby">
+
+<h1>Nearby Areas Covered</h1>
+
+<div class="nearby-grid">
+
+<div class="near-card">
+<h2>Dindigul</h2>
+<p>Complete Borewell Drilling Support.</p>
+</div>
+
+<div class="near-card">
+<h2>Theni</h2>
+<p>Agricultural Borewell Projects.</p>
+</div>
+
+<div class="near-card">
+<h2>Sivagangai</h2>
+<p>Residential Borewell Services.</p>
+</div>
+
+<div class="near-card">
+<h2>Virudhunagar</h2>
+<p>Industrial & Commercial Drilling.</p>
+</div>
+
+<div class="near-card">
+<h2>Nilakottai</h2>
+<p>Farm Water Supply Solutions.</p>
+</div>
+
+<div class="near-card">
+<h2>Batlagundu</h2>
+<p>Professional Borewell Contractors.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- MADURAI HIGHLIGHTS -->
+<!-- ===================== -->
+
+<section class="highlights">
+
+<h1>Unique Features of Madurai</h1>
+
+<div class="highlight-grid">
+
+<div class="highlight-card">
+<h2>🏛 Temple City</h2>
+<p>Madurai is world famous for its rich cultural heritage.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🌾 Agriculture</h2>
+<p>Large farming regions depend on reliable groundwater.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🪨 Hard Rock Formation</h2>
+<p>Professional drilling equipment is essential.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🏭 Industrial Growth</h2>
+<p>Growing industries require dependable water sources.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🏠 Smart City Expansion</h2>
+<p>New residential layouts are increasing rapidly.</p>
+</div>
+
+<div class="highlight-card">
+<h2>🌴 Coconut & Banana Farms</h2>
+<p>Agricultural borewells play an important role.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- PROCESS -->
+<!-- ===================== -->
+
+<section class="process">
+
+<h1>Our Borewell Drilling Process</h1>
+
+<div class="process-grid">
+
+<div class="step">
+<h2>1</h2>
+<p>Site Inspection</p>
+</div>
+
+<div class="step">
+<h2>2</h2>
+<p>Water Point Verification</p>
+</div>
+
+<div class="step">
+<h2>3</h2>
+<p>Machine Setup</p>
+</div>
+
+<div class="step">
+<h2>4</h2>
+<p>Professional Drilling</p>
+</div>
+
+<div class="step">
+<h2>5</h2>
+<p>PVC Casing Installation</p>
+</div>
+
+<div class="step">
+<h2>6</h2>
+<p>Air Compressor Cleaning</p>
+</div>
+
+<div class="step">
+<h2>7</h2>
+<p>Completion & Support</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- FAQ -->
+<!-- ===================== -->
+
+<section class="faq">
+
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-box">
+
+<h2>How deep can you drill?</h2>
+<p>We provide drilling up to 1800 feet depending on site conditions.</p>
+
+<h2>Do you provide Re Bore?</h2>
+<p>Yes. We provide professional re-bore and flushing services.</p>
+
+<h2>Do you use sensor technology?</h2>
+<p>Yes. Our Auto Sensor system improves drilling efficiency.</p>
+
+<h2>Do you work in villages?</h2>
+<p>Yes. We serve Madurai city and surrounding villages.</p>
+
+<h2>Do you provide agricultural borewells?</h2>
+<p>Yes. We undertake agricultural, residential and industrial projects.</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- OTHER LOCATIONS -->
+<!-- ===================== -->
+
+<section class="other-locations">
+
+<h1>Explore Our Other Service Areas</h1>
+
+<div class="location-grid">
+
+<a href="index.html" class="location-card">
+<h2>🏠 Home</h2>
+</a>
+
+<a href="borewell-namakkal.html" class="location-card">
+<h2>Namakkal</h2>
+</a>
+
+<a href="borewell-salem.html" class="location-card">
+<h2>Salem</h2>
+</a>
+
+<a href="borewell-erode.html" class="location-card">
+<h2>Erode</h2>
+</a>
+
+<a href="borewell-karur.html" class="location-card">
+<h2>Karur</h2>
+</a>
+
+<a href="borewell-dindigul.html" class="location-card">
+<h2>Dindigul</h2>
+</a>
+
+<a href="borewell-theni.html" class="location-card">
+<h2>Theni</h2>
+</a>
+
+<a href="borewell-madurai.html" class="location-card active-city">
+<h2>Madurai</h2>
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- ===================== -->
+<!-- CONTACT -->
+<!-- ===================== -->
+
+<section class="contact">
+
+<h1>Need Borewell Service in Madurai?</h1>
+
+<p>
+
+Selvamurugan Fast Drills offers fast, reliable and professional
+borewell drilling services across Madurai and nearby districts.
+
+</p>
+
+<a href="tel:+919488161788" class="call-btn">
+📞 Call +91 94881 61788
+</a>
+
+</section>
+
+
+
+<footer>
+
+<p>© 2026 Selvamurugan Fast Drills. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</body>
+</html>
