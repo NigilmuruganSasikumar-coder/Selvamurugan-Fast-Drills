@@ -570,10 +570,10 @@ transform:translateY(0);
     margin-top:0 !important;
 
     padding:40px 15px 60px;
-
+    margin-bottom: 20px;
     display:block;
     transform:none;
-    min-height:auto;
+
 
 }
 
