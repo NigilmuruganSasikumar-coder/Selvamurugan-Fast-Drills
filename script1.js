@@ -244,3 +244,330 @@
     }
   });
 })();
+
+/* LOADER SEQUENCE — the cinematic intro that plays on first visit, or on repeat visits if CONFIG.skipOnRepeatVisit is false. */
+  (function(){
+    "use strict";
+
+    /* ========================================================================
+       CONFIG — every knob for retiming or restyling the sequence lives here.
+       ======================================================================== */
+    var CONFIG = {
+
+      // Where the drilling actually happens, as a fraction of the rig
+      // image's own box (0–1). Calibrated to the base of the rear
+      // stabilizer leg, right under the mast.
+      drillPoint: { x: 0.965, y: 0.955 },
+
+      // Duration of each stage, in milliseconds. Edit freely — the code
+      // that reads these doesn't care what the numbers are.
+      stageDurations: {
+        prepare:   1000,
+        drilling:  1400,
+        dust:      1700,
+        found:     1100,
+        spreading: 1550,
+        flood:     950
+      },
+      revealDurationMs: 1100, // matches the CSS transition on #loader[data-stage="reveal"]
+
+      // Hard safety net: no matter what happens (slow device, a JS error,
+      // fonts stalling), the site is guaranteed to appear by this time.
+      maxTotalFallbackMs: 11000,
+
+      // Status copy per stage. Keep it short — this is a status line, not
+      // a headline.
+      statusText: {
+        prepare:   "Preparing to drill…",
+        drilling:  "Drilling deeper…",
+        dust:      "Drilling deeper…",
+        found:     "Water Found 💧",
+        spreading: "Water rising to the surface…",
+        flood:     "Almost there…"
+      },
+
+      dust:     { spawnEveryMs: 150, minSize: 22, maxSize: 46, minDur: 1500, maxDur: 2200 },
+      droplets: { count: 6, staggerMs: 90 },
+      bubbles:  { spawnEveryMs: 220, minSize: 6, maxSize: 16, minDur: 2600, maxDur: 4200 },
+
+      // If true, visitors who already sat through the full intro this
+      // browser session get a short 700ms crossfade instead of the full
+      // cinematic sequence on subsequent page loads. Set to false to
+      // always play the full sequence.
+      skipOnRepeatVisit: true,
+      sessionStorageKey: "smfd_intro_seen"
+    };
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var loader        = document.getElementById("loader");
+    var rigScene      = document.getElementById("rigScene");
+    var effectsAnchor = document.getElementById("effectsAnchor");
+    var dustField     = document.getElementById("dustField");
+    var dropletField  = document.getElementById("dropletField");
+    var bubbleField    = document.getElementById("bubbleField");
+    var statusText     = document.getElementById("statusText");
+    var progressFill    = document.getElementById("progressFill");
+    var waterFlood      = document.querySelector(".water-flood");
+
+    var startTime = performance.now();
+    var siteLoaded = document.readyState === "complete";
+    window.addEventListener("load", function(){ siteLoaded = true; });
+
+    var dustTimer = null;
+    var bubbleTimer = null;
+    var revealed = false;
+
+    /* ------------------------------------------------------------------
+       Position the effects anchor + water flood origin on the actual
+       drilling point, in real viewport pixels, so the flood always
+       expands from exactly the right spot regardless of screen size.
+       ------------------------------------------------------------------ */
+    function positionDrillPoint(){
+      var rect = rigScene.getBoundingClientRect();
+      var px = rect.left + rect.width  * CONFIG.drillPoint.x;
+      var py = rect.top  + rect.height * CONFIG.drillPoint.y;
+
+      effectsAnchor.style.left = (CONFIG.drillPoint.x * 100) + "%";
+      effectsAnchor.style.top  = (CONFIG.drillPoint.y * 100) + "%";
+
+      loader.style.setProperty("--drill-x", px + "px");
+      loader.style.setProperty("--drill-y", py + "px");
+    }
+
+    var resizeRaf = null;
+    window.addEventListener("resize", function(){
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(positionDrillPoint);
+    });
+
+    /* ------------------------------------------------------------------
+       Stage 3 — dust particles rising from the drilling point
+       ------------------------------------------------------------------ */
+    function spawnDustParticle(){
+      var el = document.createElement("span");
+      el.className = "dust-particle";
+      var size = rand(CONFIG.dust.minSize, CONFIG.dust.maxSize);
+      var dur  = rand(CONFIG.dust.minDur, CONFIG.dust.maxDur);
+      var dx   = rand(-46, 46);
+      el.style.setProperty("--size", size + "px");
+      el.style.setProperty("--dur", dur + "ms");
+      el.style.setProperty("--dx", dx + "px");
+      el.style.left = rand(-14, 14) + "px";
+      el.addEventListener("animationend", function(){ el.remove(); });
+      dustField.appendChild(el);
+    }
+
+    function startDust(){
+      if (reduceMotion) return;
+      spawnDustParticle();
+      dustTimer = setInterval(spawnDustParticle, CONFIG.dust.spawnEveryMs);
+    }
+    function stopDust(){
+      if (dustTimer) clearInterval(dustTimer);
+      dustTimer = null;
+    }
+
+    /* ------------------------------------------------------------------
+       Stage 4 — water droplets popping at the drilling point
+       ------------------------------------------------------------------ */
+    function spawnDroplets(){
+      if (reduceMotion) return;
+      for (var i = 0; i < CONFIG.droplets.count; i++){
+        (function(i){
+          setTimeout(function(){
+            var el = document.createElement("span");
+            el.className = "droplet";
+            el.style.setProperty("--dx", rand(-20, 20) + "px");
+            el.style.setProperty("--delay", "0s");
+            el.addEventListener("animationend", function(){ el.remove(); });
+            dropletField.appendChild(el);
+          }, i * CONFIG.droplets.staggerMs);
+        })(i);
+      }
+    }
+
+    /* ------------------------------------------------------------------
+       Stages 5 & 6 — bubbles rising through the flood water
+       ------------------------------------------------------------------ */
+    function spawnBubble(){
+      var el = document.createElement("span");
+      el.className = "bubble";
+      var size = rand(CONFIG.bubbles.minSize, CONFIG.bubbles.maxSize);
+      el.style.setProperty("--size", size + "px");
+      el.style.setProperty("--dur", rand(CONFIG.bubbles.minDur, CONFIG.bubbles.maxDur) + "ms");
+      el.style.setProperty("--sway", rand(-26, 26) + "px");
+      el.style.setProperty("--x", rand(2, 98) + "%");
+      el.addEventListener("animationend", function(){ el.remove(); });
+      bubbleField.appendChild(el);
+    }
+    function startBubbles(){
+      if (reduceMotion) return;
+      spawnBubble();
+      bubbleTimer = setInterval(spawnBubble, CONFIG.bubbles.spawnEveryMs);
+    }
+    function stopBubbles(){
+      if (bubbleTimer) clearInterval(bubbleTimer);
+      bubbleTimer = null;
+    }
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    /* ------------------------------------------------------------------
+       Progress line — width tracks elapsed time against the total
+       choreographed duration, independent of exact stage boundaries so
+       editing CONFIG.stageDurations never needs a second edit here.
+       ------------------------------------------------------------------ */
+    var totalChoreographedMs = 0;
+    Object.keys(CONFIG.stageDurations).forEach(function(k){
+      totalChoreographedMs += CONFIG.stageDurations[k];
+    });
+
+    var progressRaf = null;
+    function tickProgress(){
+      var elapsed = performance.now() - startTime;
+      var pct = Math.min(100, (elapsed / totalChoreographedMs) * 100);
+      progressFill.style.width = pct + "%";
+      if (pct < 100 && !revealed){
+        progressRaf = requestAnimationFrame(tickProgress);
+      }
+    }
+
+    /* ------------------------------------------------------------------
+       Stage machine — each stage sets data-stage, updates the status
+       line, and (de)activates the effects that belong to it. Ordered
+       exactly as the brief's seven scenes.
+       ------------------------------------------------------------------ */
+    function setStage(name){
+      loader.setAttribute("data-stage", name);
+      if (CONFIG.statusText[name]) statusText.textContent = CONFIG.statusText[name];
+    }
+
+    function runFullSequence(){
+      positionDrillPoint();
+      tickProgress();
+
+      var t = 0;
+      var d = CONFIG.stageDurations;
+
+      // Scene 1 — initial loading (already showing: brand + rig fade in)
+      setStage("prepare");
+
+      // Scene 2 — rig starts drilling
+      t += d.prepare;
+      setTimeout(function(){
+        setStage("drilling");
+        loader.classList.add("is-vibrating");
+      }, t);
+
+      // Scene 3 — white drilling dust
+      t += d.drilling;
+      setTimeout(function(){
+        setStage("dust");
+        startDust();
+      }, t);
+
+      // Scene 4 — water is found
+      t += d.dust;
+      setTimeout(function(){
+        stopDust();
+        loader.classList.remove("is-vibrating");
+        setStage("found");
+        spawnDroplets();
+      }, t);
+
+      // Scene 5 — water spreads outward from the drilling point
+      t += d.found;
+      setTimeout(function(){
+        setStage("spreading");
+        var diag = Math.sqrt(window.innerWidth * window.innerWidth + window.innerHeight * window.innerHeight);
+        waterFlood.style.clipPath = "circle(" + (diag * 0.55) + "px at var(--drill-x) var(--drill-y))";
+        startBubbles();
+      }, t);
+
+      // Scene 6 — full-screen water transition
+      t += d.spreading;
+      setTimeout(function(){
+        setStage("flood");
+        var diag = Math.sqrt(window.innerWidth * window.innerWidth + window.innerHeight * window.innerHeight);
+        waterFlood.style.clipPath = "circle(" + (diag * 1.05) + "px at var(--drill-x) var(--drill-y))";
+      }, t);
+
+      // Scene 7 — website reveal
+      t += d.flood;
+      setTimeout(attemptReveal, t);
+    }
+
+    function runReducedMotionSequence(){
+      // Same story beats, told in one quiet breath: brand, a drilling
+      // beat, water found, reveal. No particles, no vibration, no long
+      // clip-path chase — just the text and a small local water cue.
+      setStage("prepare");
+      setTimeout(function(){ setStage("drilling"); }, 300);
+      setTimeout(function(){ setStage("found"); }, 600);
+      setTimeout(attemptReveal, 950);
+    }
+
+    /* ------------------------------------------------------------------
+       Reveal — waits (briefly, and only up to the hard cap) for the real
+       page to finish loading before it lets the water flow away.
+       ------------------------------------------------------------------ */
+    function attemptReveal(){
+      if (revealed) return;
+      var elapsed = performance.now() - startTime;
+      if (siteLoaded || elapsed >= CONFIG.maxTotalFallbackMs){
+        reveal();
+      } else {
+        var remaining = CONFIG.maxTotalFallbackMs - elapsed;
+        setTimeout(reveal, Math.min(remaining, 1200));
+      }
+    }
+
+    function reveal(){
+      if (revealed) return;
+      revealed = true;
+      stopDust();
+      stopBubbles();
+      if (progressRaf) cancelAnimationFrame(progressRaf);
+      progressFill.style.width = "100%";
+      loader.classList.remove("is-vibrating");
+      setStage("reveal");
+      document.body.classList.remove("is-loading");
+
+      try {
+        if (CONFIG.skipOnRepeatVisit){
+          sessionStorage.setItem(CONFIG.sessionStorageKey, "1");
+        }
+      } catch (e) { /* storage unavailable — fine, just always play the intro */ }
+
+      setTimeout(function(){
+        loader.classList.add("is-done");
+      }, CONFIG.revealDurationMs + 50);
+    }
+
+    // Absolute fallback: whatever else happens, never leave someone stuck.
+    setTimeout(function(){ attemptReveal(); }, CONFIG.maxTotalFallbackMs);
+
+    /* ------------------------------------------------------------------
+       Kick off
+       ------------------------------------------------------------------ */
+    var seenBefore = false;
+    try {
+      seenBefore = CONFIG.skipOnRepeatVisit &&
+        sessionStorage.getItem(CONFIG.sessionStorageKey) === "1";
+    } catch (e) { seenBefore = false; }
+
+    if (reduceMotion){
+      runReducedMotionSequence();
+    } else if (seenBefore){
+      // Quick, quiet welcome-back crossfade — full story only plays once
+      // per browser session. Flip CONFIG.skipOnRepeatVisit to false to
+      // always show the complete sequence.
+      setStage("prepare");
+      setTimeout(attemptReveal, 500);
+    } else {
+      runFullSequence();
+    }
+
+  })();

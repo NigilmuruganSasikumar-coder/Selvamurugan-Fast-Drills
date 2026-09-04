@@ -1,4 +1,12 @@
 /* ==========================================================================
+   SELVAMURUGAN FAST DRILLS — SINGLE STYLESHEET
+   Site design system + loader, merged into one file.
+   Dark is the default theme; add data-theme="light" on <html> (your
+   existing theme-toggle script already does this) to switch both the
+   site AND the loader into their light-theme colors together.
+   ========================================================================== */
+
+/* ==========================================================================
    SELVAMURUGAN FAST DRILLS — "STRATA" DESIGN SYSTEM
    Concept: the page reads like a core sample — layered, deep, precise.
    Palette:  well-black #0A1218 · slate #16232C · rust #C1571E (drill-iron)
@@ -24,6 +32,7 @@
   --line:        rgba(234,241,242,.10);
   --card:        #101B22;
   --card-2:      #142029;
+  --on-accent:   #062622;  /* dark text/icons sitting on bright accent fills — stays legible in both themes */
   --radius:      18px;
   --radius-sm:   10px;
   --shadow:      0 20px 60px -20px rgba(0,0,0,.55);
@@ -33,16 +42,27 @@
   --font-mono:   'IBM Plex Mono', monospace;
 }
 
+/* -------------------------------- LIGHT THEME ----------------------------
+   Warm sandstone base instead of a flat clinical white, with a deepened
+   teal/rust/gold accent trio so the palette still reads "drilling site",
+   not "generic SaaS light mode". Every accent color is darkened just
+   enough from its dark-theme value to clear AA contrast on the pale bg. */
 html[data-theme="light"] {
-  --well:       #F2FBFF;   /* pale aqua background */
+  --well:       #F3F0E7;   /* warm sandstone-cream backdrop */
   --slate:      #FFFFFF;
-  --slate-2:    #E8F4F8;   /* light aqua-gray sections */
-  --ink:        #1A2B33;   /* navy text */
-  --ink-dim:    #5C6F7A;   /* gray-blue secondary text */
-  --line:       rgba(26,43,51,.12);
-  --card:       #FFFFFF;
-  --card-2:     #EDF6FA;   /* aqua-tinted cards */
-  --shadow:     0 12px 30px -10px rgba(26,43,51,.15);
+  --slate-2:    #ECE6D8;   /* deeper sand for section banding */
+  --ink:        #17211F;   /* near-black forest-ink, richer than plain navy */
+  --ink-dim:    #5B6B64;   /* muted olive-grey secondary text */
+  --line:       rgba(23,33,31,.13);
+  --card:       #FFFDF8;
+  --card-2:     #F3ECDB;   /* warm tinted cards */
+  --rust:       #B44E14;   /* deepened for contrast on cream */
+  --rust-light: #D9711F;
+  --aqua:       #0B9C8F;   /* deepened teal — stays vivid, reads on white */
+  --aqua-glow:  rgba(11,156,143,.22);
+  --ochre:      #A9791F;   /* deepened gold, legible as text */
+  --on-accent:  #FCFFFE;   /* on light theme, accent fills are deep enough for light text */
+  --shadow:     0 16px 40px -14px rgba(23,33,31,.16);
 }
 
 
@@ -64,7 +84,7 @@ p{ margin:0; color:var(--ink-dim); }
 a{ text-decoration:none; color:inherit; }
 img{ max-width:100%; display:block; }
 ul{ list-style:none; margin:0; padding:0; }
-::selection{ background:var(--aqua); color:var(--well); }
+::selection{ background:var(--aqua); color:var(--on-accent); }
 ::-webkit-scrollbar{ width:10px; }
 ::-webkit-scrollbar-track{ background:var(--well); }
 ::-webkit-scrollbar-thumb{ background:var(--slate-2); border-radius:10px; border:2px solid var(--well); }
@@ -162,7 +182,7 @@ html[data-theme="light"] .navbar{ background:rgba(255,255,255,.7); }
 .toggle-thumb{
   position:absolute; top:2px; left:2px; width:22px; height:22px; border-radius:50%;
   background:linear-gradient(145deg,var(--aqua),#1BA79D);
-  display:flex; align-items:center; justify-content:center; color:var(--well); font-size:.62rem;
+  display:flex; align-items:center; justify-content:center; color:var(--on-accent); font-size:.62rem;
   transition:transform .4s var(--ease); box-shadow:0 4px 10px rgba(0,0,0,.35);
 }
 html[data-theme="light"] .toggle-thumb{ transform:translateX(24px); background:linear-gradient(145deg,var(--ochre),#B97F26); }
@@ -217,7 +237,7 @@ html[data-theme="light"] .icon-moon{ opacity:0; }
 .slider-text p{ color:rgba(234,241,242,.85); font-size:1.05rem; margin-bottom:22px; animation:riseIn 1s var(--ease) .15s both; }
 .slider-text a{ display:inline-flex; align-items:center; gap:8px; margin-right:14px; animation:riseIn 1s var(--ease) .3s both; }
 .call-btn{
-  background:linear-gradient(135deg,var(--aqua),#1BA79D); color:var(--well); font-weight:700;
+  background:linear-gradient(135deg,var(--aqua),#1BA79D); color:var(--on-accent); font-weight:700;
   padding:14px 26px; border-radius:999px; box-shadow:0 16px 34px -10px var(--aqua-glow);
   transition:transform .3s var(--ease);
 }
@@ -556,7 +576,7 @@ html[data-theme="light"] .icon-moon{ opacity:0; }
 .rating-text strong{ font-size:1.1rem; }
 .rating-text span{ font-size:.75rem; color:var(--ink-dim); }
 .review-bar button{
-  background:linear-gradient(135deg,var(--aqua),#1BA79D); color:var(--well); border:none;
+  background:linear-gradient(135deg,var(--aqua),#1BA79D); color:var(--on-accent); border:none;
   padding:12px 24px; border-radius:999px; font-weight:600; cursor:pointer; font-family:var(--font-body);
   transition:transform .3s var(--ease);
 }
@@ -660,13 +680,13 @@ html[data-theme="light"] .icon-moon{ opacity:0; }
   display:flex; align-items:center; justify-content:center; color:var(--ink-dim);
   transition:all .3s var(--ease);
 }
-.social-icons a:hover{ background:var(--aqua); color:var(--well); border-color:var(--aqua); transform:translateY(-3px); }
+.social-icons a:hover{ background:var(--aqua); color:var(--on-accent); border-color:var(--aqua); transform:translateY(-3px); }
 
 .last{ background:var(--well); text-align:center; padding:24px 6% 30px; }
 .las hr{ border:none; border-top:1px solid var(--line); margin-bottom:20px; }
 .last p{ font-size:.78rem; color:var(--ink-dim); }
 .nisite{ display:flex; justify-content:center; align-items:center; gap:6px; margin-top:6px; }
-.nisite a{ font-size:.78rem; color:whitesmoke; transition:color .3s var(--ease); }
+.nisite a{ font-size:.78rem; color:var(--ink-dim); transition:color .3s var(--ease); }
 .nisite a:hover{ color:var(--aqua); }
 /* -------------------------------- RESPONSIVE ----------------------------------- */
 /* =========================================================
@@ -1235,4 +1255,891 @@ summary:focus-visible {
 .underground-card:hover .water-layer {
     box-shadow:
         inset 0 0 20px rgba(0, 200, 255, 0.25);
+}
+
+/* ==========================================================================
+   BOREWELL LOADER — scoped tokens
+   Namespaced --ldr-* so these never collide with the site's own tokens.
+   Dark is the default (matches the site's default dark theme); the
+   original loader palette becomes the light-theme variant.
+   ========================================================================== */
+:root{
+  /* -- surface -- */
+  --ldr-bg0: #0A1218;         /* well */
+  --ldr-bg1: #16232C;         /* slate */
+
+  /* -- ink -- */
+  --ldr-ink: #EAF1F2;
+  --ldr-ink-soft: #9FB2BA;
+  --ldr-ink-faint: rgba(234,241,242,0.16);
+
+  /* -- rig / earth -- */
+  --ldr-rust: #C1571E;
+  --ldr-dust: #9FB2BA;
+
+  /* -- water, keyed off the site's aqua -- */
+  --ldr-water-deep:  #0B4A44;
+  --ldr-water-mid:   #2FD3C9;
+  --ldr-water-light: #7FEAE0;
+  --ldr-water-foam:  #EAF1F2;
+
+  /* -- type, matches the site's fonts -- */
+  --ldr-font-display: 'Space Grotesk', 'Arial Narrow', sans-serif;
+  --ldr-font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+}
+
+html[data-theme="light"]{
+  /* -- surface -- */
+  --ldr-bg0: #EEF3F1;         /* page background, cool pale stone */
+  --ldr-bg1: #E2E9E6;         /* gradient depth */
+
+  /* -- ink -- */
+  --ldr-ink: #16262C;
+  --ldr-ink-soft: #52666B;
+  --ldr-ink-faint: rgba(22,38,44,0.14);
+
+  /* -- rig / earth -- */
+  --ldr-rust: #C2622C;
+  --ldr-dust: #ECE7DD;
+
+  /* -- water -- */
+  --ldr-water-deep:  #063A52;
+  --ldr-water-mid:   #12799E;
+  --ldr-water-light: #5FC3DE;
+  --ldr-water-foam:  #EAFBFF;
+}
+
+/* Body is locked from scrolling while the loader owns the screen. JS
+   removes this class the moment the reveal finishes. */
+body.is-loading{ overflow: hidden; height: 100vh; }
+
+
+/* ==========================================================================
+   LOADER COMPONENT
+   ========================================================================== */
+  /* ==========================================================================
+     LOADER SHELL
+     ========================================================================== */
+  #loader{
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--ldr-bg0) 0%, var(--ldr-bg1) 100%);
+    overflow: hidden;
+    transition: opacity 1.05s cubic-bezier(.4,0,.2,1),
+                transform 1.05s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* Stage 7 — the whole loader lifts and dissolves away */
+  #loader[data-stage="reveal"]{
+    opacity: 0;
+    transform: translateY(-2.5%) scale(1.02);
+    pointer-events: none;
+  }
+
+  #loader.is-done{ display:none; }
+
+  .loader__inner{
+    position: relative;
+    z-index: 3;
+    width: min(640px, 92vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4vh 0;
+  }
+
+  /* ---- brand ---- */
+  .loader__brand{
+    opacity: 0;
+    transform: translateY(8px);
+    animation: brandIn .9s cubic-bezier(.2,.7,.3,1) forwards;
+    animation-delay: .1s;
+  }
+  @keyframes brandIn{ to{ opacity:1; transform:translateY(0); } }
+
+  .loader__wordmark{
+    margin: 0;
+    font-family: var(--ldr-font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(1.6rem, 6.4vw, 3rem);
+    line-height: 0.96;
+    color: var(--ldr-ink);
+  }
+
+  .loader__tagline{
+    margin: .5rem 0 0;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(0.82rem, 2.3vw, 1rem);
+    color: var(--ldr-ink-soft);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---- rig stage ---- */
+  .rig-scene{
+    position: relative;
+    width: min(460px, 74vw);
+    margin: clamp(1.4rem, 4vw, 2.4rem) auto clamp(1rem, 3vw, 1.6rem);
+    opacity: 0;
+    transform: scale(.92);
+    animation: rigIn 1s cubic-bezier(.2,.7,.25,1) forwards;
+    animation-delay: .3s;
+  }
+  @keyframes rigIn{ to{ opacity:1; transform: scale(1); } }
+
+  .rig-image{
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 18px 22px rgba(22,38,44,0.16));
+    transform-origin: 50% 100%;
+    will-change: transform;
+  }
+
+  /* Stage 2/3/4 — restrained mechanical vibration + a slower working "breath".
+     Two animations layered on the shorthand so the motion doesn't feel like
+     a single repetitive tic. */
+  #loader.is-vibrating .rig-image{
+    animation:
+      rigVibrate 0.16s steps(2, end) infinite,
+      rigBob 1.7s ease-in-out infinite;
+  }
+  @keyframes rigVibrate{
+    0%   { transform: translate(0,0) rotate(0deg); }
+    50%  { transform: translate(0.6px,-0.4px) rotate(0.05deg); }
+    100% { transform: translate(-0.5px,0.3px) rotate(-0.05deg); }
+  }
+  @keyframes rigBob{
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(1.2px); }
+  }
+
+  /* ground / survey line under the rig — a baseline, not decoration:
+     it reads as grade level, the reference the drilling depth is measured
+     against */
+  .ground-line{
+    position: absolute;
+    left: -6%; right: -6%;
+    bottom: 4%;
+    height: 2px;
+    background: var(--ldr-ink-faint);
+  }
+  .ground-line::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(
+      90deg, var(--ldr-ink-faint) 0 1px, transparent 1px 5.5%
+    );
+    opacity:.9;
+  }
+
+  /* anchor for every particle effect — JS positions this exactly on the
+     drilling point defined in CONFIG.drillPoint */
+  .effects-anchor{
+    position: absolute;
+    left: var(--drill-x-pct, 96.5%);
+    top: var(--drill-y-pct, 95.5%);
+    width: 0; height: 0;
+  }
+
+  /* ---- dust (stage 3) ---- */
+  .dust-field{ position:absolute; left:0; top:0; width:0; height:0; }
+  .dust-particle{
+    position:absolute;
+    left:0; top:0;
+    width: var(--size, 34px);
+    height: var(--size, 34px);
+    margin-left: calc(var(--size, 34px) / -2);
+    margin-top: calc(var(--size, 34px) / -2);
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255,255,255,0.95) 0%,
+      var(--ldr-dust) 55%,
+      rgba(236,231,221,0) 75%);
+    filter: blur(1.5px);
+    opacity: 0;
+    animation: dustRise var(--dur, 1.8s) ease-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes dustRise{
+    0%   { opacity:0; transform: translate(0,0) scale(.35); }
+    18%  { opacity:.85; }
+    100% { opacity:0; transform: translate(var(--dx, 10px), -108px) scale(1.25); }
+  }
+
+  /* ---- water found: droplets + first stream (stage 4) ---- */
+  .droplet{
+    position:absolute; left:0; top:0;
+    width:7px; height:9px;
+    margin-left:-3.5px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    background: linear-gradient(180deg, var(--ldr-water-light), var(--ldr-water-mid));
+    opacity:0;
+    animation: dropPop 0.85s cubic-bezier(.3,1.4,.4,1) forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes dropPop{
+    0%   { opacity:0; transform: translate(0,-14px) rotate(45deg) scale(.4); }
+    45%  { opacity:1; }
+    100% { opacity:0; transform: translate(var(--dx,0), 26px) rotate(45deg) scale(1); }
+  }
+
+  .water-stream{
+    position:absolute;
+    left:-3px; bottom:0;
+    width:6px; height:0;
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg, var(--ldr-water-foam), var(--ldr-water-mid));
+    opacity:0;
+  }
+  #loader[data-stage="found"] .water-stream,
+  #loader[data-stage="spreading"] .water-stream,
+  #loader[data-stage="flood"] .water-stream{
+    opacity: .9;
+    height: 46px;
+    transition: height .6s cubic-bezier(.2,.7,.2,1), opacity .3s ease;
+  }
+
+  .water-found-label{
+    position:absolute;
+    left: 50%; bottom: 34px;
+    transform: translate(-50%, 8px);
+    white-space: nowrap;
+    font-family: var(--ldr-font-body);
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+    color: var(--ldr-water-deep);
+    opacity: 0;
+    transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  #loader[data-stage="found"] .water-found-label{
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  /* ---- status readout ---- */
+  .loader__status{
+    opacity: 0;
+    transform: translateY(6px);
+    animation: brandIn .8s cubic-bezier(.2,.7,.3,1) forwards;
+    animation-delay: .55s;
+  }
+
+  .status-text{
+    margin: 0 0 .7rem;
+    font-size: clamp(0.78rem, 2.1vw, 0.92rem);
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    color: var(--ldr-ink-soft);
+    min-height: 1.2em;
+  }
+
+  .progress-track{
+    position: relative;
+    width: min(230px, 58vw);
+    height: 3px;
+    margin: 0 auto;
+    background: var(--ldr-ink-faint);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-track::after{
+    /* gauge ticks — a measured line, not a generic pill */
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(
+      90deg, rgba(255,255,255,.65) 0 1px, transparent 1px 10%
+    );
+    pointer-events:none;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background: var(--ldr-rust);
+    transition: background .6s ease, background-color .6s ease;
+  }
+  #loader[data-stage="dust"] .progress-fill{ background: #9AA6A2; }
+  #loader[data-stage="found"] .progress-fill,
+  #loader[data-stage="spreading"] .progress-fill,
+  #loader[data-stage="flood"] .progress-fill{
+    background: linear-gradient(90deg, var(--ldr-water-mid), var(--ldr-water-light));
+  }
+
+  /* ==========================================================================
+     WATER FLOOD — the main transition (stages 5 & 6)
+     ========================================================================== */
+  .water-flood{
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background:
+      radial-gradient(120% 90% at 30% 15%, var(--ldr-water-light) 0%, var(--ldr-water-mid) 45%, var(--ldr-water-deep) 100%);
+    clip-path: circle(0px at var(--drill-x, 92%) var(--drill-y, 94%));
+    transition: clip-path 1.65s cubic-bezier(.32,.72,.24,1);
+    pointer-events: none;
+  }
+
+  .wave-layer{
+    position:absolute; inset:-2% -2% auto -2%;
+    height: 26%;
+    opacity: 0;
+    background-repeat: repeat-x;
+    background-size: 340px 100%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='60' viewBox='0 0 340 60'><path d='M0 30 Q42.5 5 85 30 T170 30 T255 30 T340 30 V60 H0 Z' fill='white' fill-opacity='0.16'/></svg>");
+    animation: waveDrift 5.5s linear infinite;
+    transition: opacity .5s ease;
+  }
+  @keyframes waveDrift{ from{ background-position-x: 0; } to{ background-position-x: -340px; } }
+
+  .shine-layer{
+    position:absolute; inset:0;
+    background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.22) 50%, transparent 65%);
+    background-size: 260% 260%;
+    background-position: 120% -20%;
+    opacity: 0;
+    mix-blend-mode: overlay;
+    transition: opacity .6s ease;
+  }
+
+  .bubble-field{ position:absolute; inset:0; overflow:hidden; }
+  .bubble{
+    position:absolute;
+    bottom:-6%;
+    left: var(--x, 50%);
+    width: var(--size, 10px);
+    height: var(--size, 10px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.9), rgba(255,255,255,.08) 70%);
+    opacity:0;
+    animation: bubbleRise var(--dur, 3.2s) ease-in forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes bubbleRise{
+    0%   { opacity:0; transform: translate(0,0); }
+    12%  { opacity:.8; }
+    100% { opacity:0; transform: translate(var(--sway, 12px), -112vh); }
+  }
+
+  #loader[data-stage="spreading"] .wave-layer,
+  #loader[data-stage="flood"] .wave-layer{ opacity: 1; }
+  #loader[data-stage="flood"] .shine-layer{ opacity: 1; animation: shineSweep 2.2s ease-in-out infinite; }
+
+  /* Scene 6 — "for a brief moment the screen should feel completely
+     immersed in water": let the brand/rig/status recede so the flood
+     genuinely owns the screen for a beat before the reveal. */
+  .loader__inner{ transition: opacity .75s ease; }
+  #loader[data-stage="flood"] .loader__inner{ opacity: .16; }
+
+  /* the small rig-side stream/label are part of the scene-4/5 story;
+     once the full flood takes over they'd just be clutter on top of it */
+  #loader[data-stage="flood"] .water-stream,
+  #loader[data-stage="flood"] .water-found-label{ opacity: 0; }
+  @keyframes shineSweep{
+    0%, 100%{ background-position: 120% -20%; }
+    50%     { background-position: -20% 20%; }
+  }
+
+  /* ==========================================================================
+     REDUCED MOTION — same story, told fast and quietly
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce){
+    /* these elements rely on a "forwards"-filled entrance animation to
+       reach opacity:1 — killing the animation without restoring the end
+       state would leave them permanently invisible, so both are set
+       together */
+    .loader__brand, .rig-scene, .loader__status{
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    #loader{ transition-duration: .3s !important; }
+    #loader.is-vibrating .rig-image{ animation: none !important; }
+    .wave-layer, .shine-layer{ animation: none !important; }
+    .dust-particle, .droplet, .bubble{ display:none !important; }
+  }
+
+/* ==========================================================================
+   PWA — PROGRESSIVE WEB APP LAYER
+   Bottom nav bar, safe-area insets, install prompt banner, standalone tweaks.
+   These styles activate only when needed and never disturb the desktop layout.
+   ========================================================================== */
+
+/* -------------------------------- PWA SAFE-AREA INSETS ------------------- */
+/* Respect notch / Dynamic Island / home indicator on all iOS & Android PWAs */
+:root {
+  --safe-top:    env(safe-area-inset-top,    0px);
+  --safe-right:  env(safe-area-inset-right,  0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left,   0px);
+
+  /* Bottom nav height — used to push page content up */
+  --pwa-nav-h:   68px;
+
+  /* PWA accent: use site's own rust/aqua so the nav feels on-brand */
+  --pwa-active:  var(--rust);
+  --pwa-bg:      var(--slate);
+  --pwa-ink:     var(--ink-dim);
+  --pwa-border:  var(--line);
+}
+
+/* -------------------------------- BOTTOM NAV BAR ------------------------- */
+/* Visible only on mobile (≤860 px). Hidden on desktop/tablet. */
+
+.pwa-bottom-nav {
+  display: none; /* shown via media query below */
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20000;
+
+  height: calc(var(--pwa-nav-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+
+  background: var(--pwa-bg);
+  border-top: 1px solid var(--pwa-border);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  /* Subtle top shadow so it lifts above page content */
+  box-shadow: 0 -8px 32px -8px rgba(0, 0, 0, .45);
+}
+
+.pwa-nav-items {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  height: var(--pwa-nav-h);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pwa-nav-item {
+  flex: 1;
+  display: flex;
+}
+
+.pwa-nav-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 4px;
+  color: var(--pwa-ink);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: color .25s var(--ease), transform .25s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pwa-nav-link i {
+  font-size: 1.25rem;
+  transition: transform .3s var(--ease), color .25s var(--ease);
+  position: relative;
+}
+
+/* Active indicator — a small pill under the icon */
+.pwa-nav-link::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--pwa-active);
+  transition: transform .3s var(--ease);
+}
+
+.pwa-nav-link.active {
+  color: var(--pwa-active);
+}
+
+.pwa-nav-link.active::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.pwa-nav-link.active i {
+  transform: translateY(-2px);
+}
+
+/* The centre "Call" button gets special pill treatment */
+.pwa-nav-item--cta .pwa-nav-link {
+  color: #fff;
+}
+
+.pwa-nav-item--cta .pwa-nav-link i {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rust), var(--rust-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 22px -6px rgba(193, 87, 30, .75);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.pwa-nav-item--cta .pwa-nav-link:active i {
+  transform: scale(.92);
+  box-shadow: 0 4px 12px -4px rgba(193, 87, 30, .6);
+}
+
+/* Tap feedback for all items */
+.pwa-nav-link:active {
+  transform: scale(.94);
+}
+
+/* Hide the active pill for the CTA centre button */
+.pwa-nav-item--cta .pwa-nav-link::before {
+  display: none;
+}
+
+/* -------------------------------- BODY PADDING FOR BOTTOM NAV ----------- */
+/* When bottom nav is visible, push page content up so nothing hides behind it */
+
+@media (max-width: 860px) {
+  .pwa-bottom-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Add bottom clearance to main page content */
+  body {
+    padding-bottom: calc(var(--pwa-nav-h) + var(--safe-bottom));
+  }
+
+  /* Navbar top: also respect notch when in standalone mode */
+  .navbar {
+    padding-top: calc(12px + var(--safe-top));
+  }
+
+  /* Floating WhatsApp/Instagram bubbles — reposition above the new bottom nav */
+  .whatsapp-float {
+    bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 20px);
+  }
+
+  .instagram-float {
+    bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 84px);
+  }
+}
+
+/* -------------------------------- STANDALONE MODE TWEAKS ---------------- */
+/* When the PWA is installed and launched from the home screen */
+
+@media (display-mode: standalone) {
+  /* Status bar area at the very top (iOS) */
+  .navbar {
+    padding-top: calc(12px + var(--safe-top));
+  }
+
+  /* On standalone, hide the in-page "install" hint if visible */
+  .pwa-install-banner {
+    display: none !important;
+  }
+}
+
+/* -------------------------------- PWA INSTALL BANNER -------------------- */
+/* A subtle "Add to Home Screen" nudge that lives above the content.
+   Show/hide it from JS by toggling .pwa-install-banner--visible. */
+
+.pwa-install-banner {
+  position: fixed;
+  bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 12px);
+  left: 12px;
+  right: 12px;
+  z-index: 19000;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: var(--slate);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: 0 16px 48px -12px rgba(0, 0, 0, .55);
+
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+}
+
+.pwa-install-banner--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.pwa-install-banner__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--rust), var(--rust-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.pwa-install-banner__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.pwa-install-banner__text strong {
+  display: block;
+  font-size: .9rem;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+}
+
+.pwa-install-banner__text span {
+  font-size: .76rem;
+  color: var(--ink-dim);
+}
+
+.pwa-install-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pwa-install-btn {
+  background: linear-gradient(135deg, var(--rust), var(--rust-light));
+  color: #fff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  white-space: nowrap;
+}
+
+.pwa-install-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(193, 87, 30, .65);
+}
+
+.pwa-install-dismiss {
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color .25s var(--ease);
+}
+
+.pwa-install-dismiss:hover {
+  color: var(--ink);
+}
+
+/* -------------------------------- OFFLINE TOAST ------------------------- */
+/* JS toggles .pwa-offline-toast--visible when connectivity changes */
+
+.pwa-offline-toast {
+  position: fixed;
+  top: calc(var(--safe-top) + 72px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-16px);
+  z-index: 30000;
+
+  background: var(--ochre);
+  color: var(--well);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, .4);
+}
+
+.pwa-offline-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* -------------------------------- LIGHT THEME OVERRIDES (PWA layer) ------ */
+
+html[data-theme="light"] .pwa-bottom-nav {
+  background: rgba(255, 255, 255, .88);
+  box-shadow: 0 -4px 20px -4px rgba(23, 33, 31, .12);
+}
+
+html[data-theme="light"] .pwa-install-banner {
+  background: var(--card);
+  box-shadow: 0 12px 36px -10px rgba(23, 33, 31, .18);
+}
+
+/* -------------------------------- DESKTOP: hide PWA nav entirely --------- */
+@media (min-width: 861px) {
+  .pwa-bottom-nav,
+  .pwa-install-banner {
+    display: none !important;
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+}
+
+
+/* ==========================================================================
+   LAYOUT CHANGES — Mobile 2-column for About & Services, Contact marquee,
+   floating buttons desktop-only, bottom nav updated tabs.
+   ========================================================================== */
+
+/* ── About boxes: 2 per row on mobile ───────────────────────────────────── */
+@media (max-width: 860px) {
+  #about1 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #about1 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+    padding: 0 4% 60px;
+  }
+}
+
+/* ── Our Services (detailed): 2 per row on mobile ───────────────────────── */
+@media (max-width: 860px) {
+  #ourservices {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #ourservices {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px;
+  }
+}
+
+/* ── Contact colour boxes: desktop 4-col, mobile marquee ────────────────── */
+
+/* Desktop: keep 4-column grid (already the default, just ensure it) */
+@media (min-width: 861px) {
+  .contcolor {
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+  }
+}
+
+/* Mobile: horizontal auto-scrolling marquee strip */
+@media (max-width: 860px) {
+  .contcolor {
+    /* switch from grid to flex carousel */
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 14px !important;
+    padding: 0 5% 0 !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    /* auto-scroll animation — pauses on hover */
+    animation: contactMarquee 18s linear infinite;
+    /* widen to fit all 4 cards */
+    max-width: 100%;
+  }
+
+  /* hide scrollbar */
+  .contcolor::-webkit-scrollbar { display: none; }
+
+  /* pause the scroll when user touches / hovers */
+  .contcolor:hover,
+  .contcolor:focus-within {
+    animation-play-state: paused;
+  }
+
+  .contcolor button {
+    flex: 0 0 220px !important;
+    scroll-snap-align: start;
+    min-width: 220px;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Marquee keyframes — scroll the strip left by the width of one card + gap */
+@keyframes contactMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-234px * 4)); }  /* 220px card + 14px gap, × 4 cards */
+}
+
+/* ── Floating WhatsApp / Instagram: DESKTOP ONLY ─────────────────────────
+   On mobile these are replaced by the bottom-nav WhatsApp tab.
+   ─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .whatsapp-float,
+  .instagram-float {
+    display: none !important;
+  }
+}
+
+/* ── Bottom nav: swap Services+Areas for Calculator+WhatsApp ────────────── */
+/* The HTML bottom nav is already injected; these rules style the new tabs.
+   The tab labels are controlled by the HTML — update nav labels in the HTML.
+   Here we just give the WhatsApp tab its brand colour when active. */
+
+.pwa-nav-item--whatsapp .pwa-nav-link.active,
+.pwa-nav-item--whatsapp .pwa-nav-link:active {
+  color: #25D366;
+}
+
+.pwa-nav-item--whatsapp .pwa-nav-link.active::before {
+  background: #25D366;
+}
+
+/* Calculator tab accent */
+.pwa-nav-item--calc .pwa-nav-link.active {
+  color: var(--rust);
+}
+
+.pwa-nav-item--calc .pwa-nav-link.active::before {
+  background: var(--rust);
 }

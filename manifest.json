@@ -1,0 +1,41 @@
+{
+  "name": "Selvamurugan Fast Drills",
+  "short_name": "SFD Drills",
+  "description": "Professional borewell drilling services — 30+ years experience in Tamil Nadu & Maharashtra.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A1218",
+  "theme_color": "#C1571E",
+  "categories": ["business", "utilities"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Call Us",
+      "short_name": "Call",
+      "description": "Dial Selvamurugan Fast Drills directly",
+      "url": "tel:+919788799883",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Chat with us on WhatsApp",
+      "url": "https://wa.me/919788799883",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
