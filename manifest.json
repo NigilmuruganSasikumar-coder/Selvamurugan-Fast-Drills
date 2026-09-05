@@ -10,25 +10,25 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "./img/selvamurugan_logo_192x192-1.png",
+      "src": "./img/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./img/selvamurugan_logo_192x192-1.png",
+      "src": "./img/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "./img/selvamurugan_logo_512x512-1.png",
+      "src": "./img/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./img/selvamurugan_logo_512x512-1.png",
+      "src": "./img/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
