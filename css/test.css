@@ -65,6 +65,7 @@ html[data-theme="light"] {
   --shadow:     0 16px 40px -14px rgba(23,33,31,.16);
 }
 
+
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
 body{
@@ -366,6 +367,7 @@ html[data-theme="light"] .icon-moon{ opacity:0; }
    instead of relying on a fragile `section > div:first-child` selector
    that only ever matched 4 of the page's ~11 sections */
 :root{ --section-top:100px; }
+@media (max-width:640px){ :root{ --section-top:64px; } }
 
 /* -------------------------------- ABOUT ----------------------------------- */
 #about1{
@@ -686,6 +688,392 @@ html[data-theme="light"] .icon-moon{ opacity:0; }
 .nisite{ display:flex; justify-content:center; align-items:center; gap:6px; margin-top:6px; }
 .nisite a{ font-size:.78rem; color:var(--ink-dim); transition:color .3s var(--ease); }
 .nisite a:hover{ color:var(--aqua); }
+/* -------------------------------- RESPONSIVE ----------------------------------- */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .baccor3 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .coat2 {
+        grid-template-columns: 1fr;
+    }
+
+    #about1,
+    #ourservices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gaimg {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contcolor {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    /* ---------- PAGE WIDTH ---------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        position: relative;
+    }
+
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+
+        padding: 12px 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 10px;
+        flex-wrap: nowrap;
+
+        box-sizing: border-box;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 10000;
+    }
+
+
+    /* ---------- BRAND ---------- */
+
+    .title {
+        min-width: 0;
+        flex: 1 1 auto;
+        overflow: hidden;
+    }
+
+    .brand-title {
+        display: block;
+
+        font-size: .92rem;
+        line-height: 1.2;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .title span {
+        display: block;
+
+        font-size: .58rem;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* =====================================================
+       MOBILE MENU PANEL
+       ===================================================== */
+
+    .nav-links {
+
+        /* IMPORTANT */
+        position: fixed !important;
+
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+
+        width: min(78vw, 320px) !important;
+        height: 100dvh !important;
+
+        box-sizing: border-box;
+
+        margin: 0;
+        padding: 90px 24px 40px;
+
+        background: var(--slate);
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 26px !important;
+
+        border-left: 1px solid var(--line);
+
+        /* CLOSED */
+        transform: translateX(100%);
+
+        /* IMPORTANT */
+        transition: transform .4s var(--ease);
+
+        /* Above overlay */
+        z-index: 10001 !important;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    /* ---------- OPEN MENU ---------- */
+
+    .nav-links.active {
+        right: 0 !important;
+
+        transform: translateX(0) !important;
+    }
+
+
+    /* ---------- MENU LINKS ---------- */
+
+    .nav-links a {
+        position: relative;
+
+        display: block;
+
+        width: 100%;
+
+        padding: 8px 0;
+
+        text-align: center;
+
+        font-size: 1rem;
+
+        font-weight: 500;
+
+        color: var(--ink-dim);
+
+        z-index: 10002;
+    }
+
+    .nav-links a:hover {
+        color: var(--ink);
+    }
+
+
+    /* ---------- OVERLAY ---------- */
+
+    .nav-overlay {
+        position: fixed !important;
+
+        inset: 0 !important;
+
+        width: 100vw;
+        height: 100dvh;
+
+        background: rgba(6, 10, 13, .65);
+
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+
+        z-index: 9999 !important;
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition: opacity .35s var(--ease);
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    /* =====================================================
+       CALCULATOR BUTTON
+       ===================================================== */
+
+    .calc-btn-nav {
+
+        flex-shrink: 0;
+
+        width: 40px;
+        height: 40px;
+
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        font-size: 0;
+    }
+
+    .calc-btn-nav i {
+        font-size: 1rem;
+    }
+
+
+    /* =====================================================
+       THEME BUTTON
+       ===================================================== */
+
+    .theme-toggle {
+
+        flex-shrink: 0;
+
+        width: 42px;
+        height: 24px;
+    }
+
+    .toggle-thumb {
+        width: 18px;
+        height: 18px;
+    }
+
+    html[data-theme="light"] .toggle-thumb {
+        transform: translateX(18px);
+    }
+
+
+    /* =====================================================
+       HAMBURGER / CLOSE BUTTON
+       ===================================================== */
+
+    .menu-toggle {
+
+        display: flex;
+
+        flex-shrink: 0;
+
+        position: relative;
+
+        z-index: 10003 !important;
+
+        padding: 6px;
+
+        background: transparent;
+
+        border: none;
+
+        cursor: pointer;
+    }
+
+
+    /* ---------- OTHER MOBILE ---------- */
+
+    .depth-gauge {
+        display: none;
+    }
+
+    .stat {
+        padding: 0 18px;
+    }
+
+    .stat h3 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .hero {
+        padding: 80px 6% 60px;
+    }
+
+    .baccor3 {
+        grid-template-columns: 1fr;
+        padding: 60px 8% 40px;
+    }
+
+    .slider {
+        height: 70vh;
+    }
+
+    #about1,
+    #ourservices,
+    .gaimg,
+    .contcolor {
+        grid-template-columns: 1fr;
+    }
+
+    .gaimg img {
+        height: 200px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .title span {
+        display: none;
+    }
+
+    .navbar {
+        gap: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .brand-title {
+        font-size: .88rem;
+    }
+
+    .calc-btn-nav {
+        width: 38px;
+        height: 38px;
+    }
+
+    .theme-toggle {
+        width: 40px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
 /* =========================================================
    FOCUS
    ========================================================= */
@@ -924,6 +1312,7 @@ html[data-theme="light"]{
 /* Body is locked from scrolling while the loader owns the screen. JS
    removes this class the moment the reveal finishes. */
 body.is-loading{ overflow: hidden; height: 100vh; }
+
 
 /* ==========================================================================
    LOADER COMPONENT
@@ -1257,6 +1646,25 @@ body.is-loading{ overflow: hidden; height: 100vh; }
     50%     { background-position: -20% 20%; }
   }
 
+  /* ==========================================================================
+     REDUCED MOTION — same story, told fast and quietly
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce){
+    /* these elements rely on a "forwards"-filled entrance animation to
+       reach opacity:1 — killing the animation without restoring the end
+       state would leave them permanently invisible, so both are set
+       together */
+    .loader__brand, .rig-scene, .loader__status{
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    #loader{ transition-duration: .3s !important; }
+    #loader.is-vibrating .rig-image{ animation: none !important; }
+    .wave-layer, .shine-layer{ animation: none !important; }
+    .dust-particle, .droplet, .bubble{ display:none !important; }
+  }
+
 /* ==========================================================================
    PWA — PROGRESSIVE WEB APP LAYER
    Bottom nav bar, safe-area insets, install prompt banner, standalone tweaks.
@@ -1410,8 +1818,46 @@ body.is-loading{ overflow: hidden; height: 100vh; }
 /* -------------------------------- BODY PADDING FOR BOTTOM NAV ----------- */
 /* When bottom nav is visible, push page content up so nothing hides behind it */
 
+@media (max-width: 860px) {
+  .pwa-bottom-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Add bottom clearance to main page content */
+  body {
+    padding-bottom: calc(var(--pwa-nav-h) + var(--safe-bottom));
+  }
+
+  /* Navbar top: also respect notch when in standalone mode */
+  .navbar {
+    padding-top: calc(12px + var(--safe-top));
+  }
+
+  /* Floating WhatsApp/Instagram bubbles — reposition above the new bottom nav */
+  .whatsapp-float {
+    bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 20px);
+  }
+
+  .instagram-float {
+    bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 84px);
+  }
+}
+
 /* -------------------------------- STANDALONE MODE TWEAKS ---------------- */
 /* When the PWA is installed and launched from the home screen */
+
+@media (display-mode: standalone) {
+  /* Status bar area at the very top (iOS) */
+  .navbar {
+    padding-top: calc(12px + var(--safe-top));
+  }
+
+  /* On standalone, hide the in-page "install" hint if visible */
+  .pwa-install-banner {
+    display: none !important;
+  }
+}
 
 /* -------------------------------- PWA INSTALL BANNER -------------------- */
 /* A subtle "Add to Home Screen" nudge that lives above the content.
@@ -1565,6 +2011,17 @@ html[data-theme="light"] .pwa-install-banner {
 }
 
 /* -------------------------------- DESKTOP: hide PWA nav entirely --------- */
+@media (min-width: 861px) {
+  .pwa-bottom-nav,
+  .pwa-install-banner {
+    display: none !important;
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+}
+
 
 /* ==========================================================================
    LAYOUT CHANGES — Mobile 2-column for About & Services, Contact marquee,
@@ -1572,14 +2029,81 @@ html[data-theme="light"] .pwa-install-banner {
    ========================================================================== */
 
 /* ── About boxes: 2 per row on mobile ───────────────────────────────────── */
+@media (max-width: 860px) {
+  #about1 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #about1 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+    padding: 0 4% 60px;
+  }
+}
 
 /* ── Our Services (detailed): 2 per row on mobile ───────────────────────── */
+@media (max-width: 860px) {
+  #ourservices {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #ourservices {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px;
+  }
+}
 
 /* ── Contact colour boxes: desktop 4-col, mobile marquee ────────────────── */
 
 /* Desktop: keep 4-column grid (already the default, just ensure it) */
+@media (min-width: 861px) {
+  .contcolor {
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+  }
+}
 
 /* Mobile: horizontal auto-scrolling marquee strip */
+@media (max-width: 860px) {
+  .contcolor {
+    /* switch from grid to flex carousel */
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 14px !important;
+    padding: 0 5% 0 !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    /* auto-scroll animation — pauses on hover */
+    animation: contactMarquee 18s linear infinite;
+    /* widen to fit all 4 cards */
+    max-width: 100%;
+  }
+
+  /* hide scrollbar */
+  .contcolor::-webkit-scrollbar { display: none; }
+
+  /* pause the scroll when user touches / hovers */
+  .contcolor:hover,
+  .contcolor:focus-within {
+    animation-play-state: paused;
+  }
+
+  .contcolor button {
+    flex: 0 0 220px !important;
+    scroll-snap-align: start;
+    min-width: 220px;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
 /* Marquee keyframes — scroll the strip left by the width of one card + gap */
 @keyframes contactMarquee {
@@ -1590,6 +2114,12 @@ html[data-theme="light"] .pwa-install-banner {
 /* ── Floating WhatsApp / Instagram: DESKTOP ONLY ─────────────────────────
    On mobile these are replaced by the bottom-nav WhatsApp tab.
    ─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .whatsapp-float,
+  .instagram-float {
+    display: none !important;
+  }
+}
 
 /* ── Bottom nav: swap Services+Areas for Calculator+WhatsApp ────────────── */
 /* The HTML bottom nav is already injected; these rules style the new tabs.
@@ -2503,12 +3033,79 @@ html[data-theme="light"] .pwa-install-banner {
 #calculator-section .details-box,
 #calculator-section .result-box { display: none !important; }
 
+/* ==========================================================================
+   CALCULATOR RESPONSIVE (scoped — won't affect the rest of the page)
+   ========================================================================== */
+
 /* ---- Tablet: stack the two-column layouts, keep field pairs side by side ---- */
+@media (max-width: 900px) {
+  #calculator-section .setup-row    { grid-template-columns: 1fr; }
+  #calculator-section .results-row  { grid-template-columns: 1fr; }
+  #calculator-section .stats-row    { grid-template-columns: repeat(2, 1fr); }
+  #calculator-section .save-row     { grid-template-columns: 1fr; }
+
+  /* header + badge: badge-years uses a fixed 37%/28% desktop offset
+     that only works next to a wide title column — collapse it to a
+     centered pill under the title on anything narrower than desktop */
+  #calculator-section .site-header { text-align: center; }
+  #calculator-section .badge-years {
+    margin: 16px auto 0;
+    width: auto;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  /* mode selector: keep the two cards side by side like a toggle,
+     just shrink the copy so it never wraps awkwardly */
+  #calculator-section .mode-cards { flex-direction: row; gap: 10px; }
+  #calculator-section .mode-card  { padding: 12px 10px; gap: 8px; }
+  #calculator-section .mode-icon  { width: 30px; height: 30px; }
+  #calculator-section .mode-icon svg { width: 22px; height: 26px; }
+  #calculator-section .mode-name  { font-size: 12.5px; }
+  #calculator-section .mode-desc  { font-size: 10px; }
+}
 
 /* ---- Phone: single column everything, tighter type/spacing ---- */
+@media (max-width: 640px) {
+  #calculator-section { padding: var(--section-top) 4% 70px; }
+  #calculator-section .calculator-title h1 { font-size: 30px; }
+  #calculator-section .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  #calculator-section .stat-card { padding: 14px 14px; gap: 12px; }
+  #calculator-section .stat-icon { width: 42px; height: 42px; }
+  #calculator-section .stat-icon svg { width: 18px; height: 18px; }
+  #calculator-section .stat-value { font-size: 19px; }
+  #calculator-section .stat-label { font-size: 9.5px; }
+
+  #calculator-section .panel { padding: 16px; }
+  #calculator-section .breakdown-box,
+  #calculator-section .summary-box { padding: 16px; }
+
+  /* field pairs (depth/rate, 7" pvc/rate, 10" pvc/rate) stay 2-up —
+     this is what actually breaks in the mobile screenshot when the
+     grid is forced to a single column, so it's intentionally NOT
+     collapsed here */
+  #calculator-section .customer-fields,
+  #calculator-section .fields-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  #calculator-section .controls-row { flex-direction: column; align-items: stretch; gap: 14px; }
+  #calculator-section .controls-buttons { display: flex; flex-direction: column; gap: 10px; }
+  #calculator-section .controls-buttons .btn { width: 100%; justify-content: center; }
+
+  #calculator-section .table-head,
+  #calculator-section .table-foot,
+  #calculator-section .breakdown-row { font-size: 11px; padding: 8px 8px; }
+}
 
 /* ---- Small phones: only now drop field pairs to one per row ---- */
-
+@media (max-width: 420px) {
+  #calculator-section .calculator-title h1 { font-size: 26px; }
+  #calculator-section .customer-fields,
+  #calculator-section .fields-grid { grid-template-columns: 1fr; }
+  #calculator-section .included-grid { flex-wrap: wrap; justify-content: center; }
+  #calculator-section .included-item { flex: 0 0 30%; }
+  #calculator-section .save-buttons { flex-direction: column; }
+  #calculator-section .badge-years { max-width: 100%; }
+}
 /* ==========================================================================
    SERVICE AREAS
    Namespaced with "sarea-" so it can't collide with the existing
@@ -2709,6 +3306,56 @@ html[data-theme="light"] .pwa-install-banner {
 .sarea-cta-call small{ display:block; font-size:.72rem; opacity:.85; }
 .sarea-cta-call strong{ display:block; font-size:1.05rem; }
 .sarea-cta-call em{ display:flex; align-items:center; gap:5px; font-style:normal; font-size:.72rem; opacity:.9; }
+
+/* ==========================================================================
+   SERVICE AREAS — RESPONSIVE
+   Nothing below existed before: on phones the two-column intro/map grid
+   and the 6-across desktop card row had no fallback, and the mobile
+   "WE SERVE HERE" grid was hard-coded to display:none so it never showed.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .sarea-top{
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .sarea-map-wrap{ max-width: 420px; }
+}
+
+@media (max-width: 860px) {
+  /* swap the 6-card desktop row for the condensed 2-up grid */
+  .sarea-cards{ display: none; }
+  .sarea-quick{ display: block; }
+
+  .sarea-cta{
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 22px;
+    gap: 20px;
+  }
+  .sarea-cta-info{ flex-direction: column; text-align: center; gap: 12px; }
+  .sarea-cta-stats{ justify-content: center; flex-wrap: wrap; gap: 16px 22px; }
+  .sarea-cta-call{ justify-content: center; width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .sarea{ padding: var(--section-top) 5% 44px; }
+  .sarea-desc{ max-width: 100%; }
+  .sarea-map-wrap{ max-width: 340px; margin: 0 auto; }
+  .sarea-map-info, .sarea-map-legend{ padding: 5px 9px; font-size: .58rem; }
+  .sarea-node-label{ font-size: .58rem; }
+}
+
+@media (max-width: 480px) {
+  .sarea-map-wrap{ max-width: 280px; }
+  .sarea-quick-grid{ gap: 10px; }
+  .sarea-quick-item{ padding: 12px; }
+  .sarea-cta-stats{ gap: 12px 18px; }
+  .sarea-cta-stats span{ font-size: .68rem; }
+  .sarea-cta-call{ padding: 12px 16px; }
+}
+
+
 
 /* ==========================================================================
    WATER HR — a small decorative element for the service-area section
