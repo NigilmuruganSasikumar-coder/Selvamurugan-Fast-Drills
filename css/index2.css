@@ -49,6 +49,20 @@
              fully visible at every width — the icons/toggle/
              hamburger shrink instead, with an extra ≤360px step
              for the narrowest phones.
+   BUGFIX:   Calculator mode cards and field pairs were overflowing
+             past the right edge on ~400-430px phones (same
+             content-based min-width issue as the stat cards).
+             min-width:0 added, plus a dedicated ≤430px step that
+             tightens mode-card/field sizing further.
+   HIDDEN:   Floating WhatsApp/Instagram buttons hidden on mobile
+             (≤860px) — redundant with the bottom nav's own
+             WhatsApp/Contact tabs, and were overlapping content.
+   BUGFIX:   GST toggle + Clear All + Calculate Estimate were
+             stacking onto separate lines on small/medium phones
+             instead of staying in one row like the large view.
+             Forced back to a single row (!important), with
+             smaller toggle/button sizing so everything fits;
+             button icons drop entirely below 380px for room.
    ========================================================================== */
 
 /* =========================================================
@@ -821,6 +835,19 @@
         gap: 10px;
     }
 
+    /* ---- overflow fix: mode cards + field grids can't shrink by
+       default (content-based min-width), which is what pushed
+       "Rebore Drilling" and the Phone/Rate fields off the right
+       edge on smaller phones ---- */
+    #calculator-section .mode-card,
+    #calculator-section .mode-copy,
+    #calculator-section .customer-fields,
+    #calculator-section .fields-grid,
+    #calculator-section .field,
+    #calculator-section .input-suffix {
+        min-width: 0;
+    }
+
     #calculator-section .mode-card {
         padding: 12px 10px;
         gap: 8px;
@@ -887,6 +914,24 @@
         gap: 10px;
     }
 
+    #calculator-section .field > span,
+    #calculator-section .field > label {
+        font-size: 9.5px;
+    }
+
+    #calculator-section .field input {
+        padding: 9px 10px !important;
+        font-size: 13px !important;
+    }
+
+    #calculator-section .mode-name {
+        font-size: 12px;
+    }
+
+    #calculator-section .mode-desc {
+        font-size: 9.5px;
+    }
+
     /* ---- overflow fix: let grid/flex children shrink below content size ---- */
     #calculator-section .stats-row,
     #calculator-section .save-row {
@@ -943,6 +988,70 @@
     #calculator-section .breakdown-row {
         font-size: 11px;
         padding: 8px 8px;
+    }
+}
+
+
+/* =========================================================
+   CALCULATOR — SMALL MOBILE  (≤ 430px)
+   This is the size that was actually breaking: the mode cards
+   ("New Drilling" / "Rebore Drilling") and the field pairs
+   don't have enough room left after the icon/text to stay
+   side-by-side without spilling past the edge. They stay
+   side-by-side (per the mock) — min-width:0 already added
+   above lets the text wrap onto 2 lines instead of overflowing;
+   this just tightens sizing further so it looks intentional
+   rather than cramped.
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    #calculator-section .mode-card {
+        padding: 10px 8px;
+        gap: 6px;
+    }
+
+    #calculator-section .mode-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    #calculator-section .mode-icon svg {
+        width: 18px;
+        height: 20px;
+    }
+
+    #calculator-section .mode-name {
+        font-size: 11.5px;
+    }
+
+    #calculator-section .mode-desc {
+        font-size: 9px;
+    }
+
+    #calculator-section .customer-fields,
+    #calculator-section .fields-grid {
+        gap: 8px;
+    }
+
+    #calculator-section .field > span,
+    #calculator-section .field > label {
+        font-size: 8.8px;
+        letter-spacing: .04em;
+    }
+
+    #calculator-section .field input {
+        padding: 8px 8px !important;
+        font-size: 12px !important;
+    }
+
+    #calculator-section .badge-years {
+        max-width: 260px;
+        padding: 10px;
+    }
+
+    #calculator-section .badge-years span {
+        font-size: 10.5px;
     }
 }
 
@@ -1327,5 +1436,116 @@
 
     body {
         padding-top: 60px;
+    }
+}
+
+
+/* =========================================================
+   FLOATING WHATSAPP / INSTAGRAM BUTTONS — hidden on mobile
+   (≤ 860px). Redundant with the WhatsApp/Contact tabs already
+   in the bottom nav bar, and they were overlapping content
+   (e.g. the Download Image button, the Calculator input fields).
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .whatsapp-float,
+    .instagram-float {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   CALCULATOR — CONTROLS ROW (GST toggle + Clear All + Calculate)
+   (≤ 900px)
+   Forced onto a single row like the large/desktop view — some
+   older styling was stacking the GST toggle and both buttons
+   onto separate lines. !important guards against that.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #calculator-section .controls-row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    #calculator-section .nigilswitch {
+        flex-shrink: 0;
+        gap: 4px;
+        font-size: 10px;
+    }
+
+    #calculator-section .nigilswitch b {
+        font-size: 8.5px;
+    }
+
+    #calculator-section .nigilslider {
+        width: 34px;
+        height: 19px;
+    }
+
+    #calculator-section .nigilslider::before {
+        width: 15px;
+        height: 15px;
+    }
+
+    #calculator-section .nigilswitch input:checked + .nigilslider::before {
+        transform: translateX(15px);
+    }
+
+    #calculator-section .controls-buttons {
+        display: flex !important;
+        flex-direction: row !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 6px;
+        justify-content: flex-end;
+    }
+
+    #calculator-section .controls-buttons .btn {
+        width: auto !important;
+        flex: 0 1 auto;
+        min-width: 0;
+        padding: 8px 10px;
+        font-size: 10.5px;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    #calculator-section .controls-buttons .btn svg {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+
+/* =========================================================
+   CALCULATOR — CONTROLS ROW, VERY SMALL MOBILE  (≤ 380px)
+   Drop the button icons to squeeze everything onto one line.
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #calculator-section .controls-row {
+        gap: 6px;
+    }
+
+    #calculator-section .nigilswitch {
+        font-size: 9px;
+    }
+
+    #calculator-section .controls-buttons .btn {
+        padding: 7px 8px;
+        font-size: 9.5px;
+    }
+
+    #calculator-section .controls-buttons .btn svg {
+        display: none;
     }
 }
