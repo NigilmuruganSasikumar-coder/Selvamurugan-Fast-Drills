@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AI Assistant | Selvamurugan Fast Drills</title>
+<meta name="theme-color" content="#B44E14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --accent: #B44E14;
+  --bg: #17130F;
+  --surface: #221C17;
+  --text: #F4EDE6;
+  --text-dim: #B3A69B;
+  --border: #33291F;
+  --bot-bubble: #2A231C;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+body { display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+.chat-topbar { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+.chat-back, .chat-topbar-call { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--bot-bubble); color: var(--accent); text-decoration: none; flex-shrink: 0; border: none; cursor: pointer; }
+.chat-topbar-brand { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.chat-topbar-brand strong { font-family: 'Big Shoulders Display', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); }
+.chat-topbar-brand span { font-size: 12px; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chat-topbar-call { background: var(--accent); color: #fff; }
+
+.chat-main { flex: 1; overflow: hidden; display: flex; }
+.chat-scroll { flex: 1; overflow-y: auto; padding: 18px 14px 8px; display: flex; flex-direction: column; gap: 12px; max-width: 720px; margin: 0 auto; width: 100%; }
+
+.chat-msg { display: flex; }
+.chat-msg--user { justify-content: flex-end; }
+.chat-msg--bot { justify-content: flex-start; }
+.chat-bubble { max-width: 82%; padding: 11px 15px; border-radius: 16px; font-size: 14.5px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; }
+.chat-msg--bot .chat-bubble { background: var(--bot-bubble); color: var(--text); border-bottom-left-radius: 4px; }
+.chat-msg--user .chat-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+
+.chat-typing .chat-bubble { display: flex; gap: 4px; align-items: center; padding: 14px 16px; }
+.chat-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); animation: bounce 1.2s infinite ease-in-out; }
+.chat-typing span:nth-child(2) { animation-delay: .15s; }
+.chat-typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes bounce { 0%,60%,100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+.chat-inputbar { display: flex; align-items: flex-end; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-top: 1px solid var(--border); max-width: 720px; margin: 0 auto; width: 100%; }
+.chat-inputbar textarea { flex: 1; resize: none; max-height: 120px; padding: 11px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; font-size: 14.5px; outline: none; }
+.chat-inputbar textarea:focus { border-color: var(--accent); }
+.chat-inputbar button { width: 42px; height: 42px; border-radius: 50%; border: none; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+.chat-inputbar button:disabled { opacity: .5; cursor: default; }
+
+.chat-disclaimer { text-align: center; font-size: 11px; color: var(--text-dim); margin: 0 0 8px; }
+.chat-disclaimer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+  <header class="chat-topbar">
+    <a href="index.html" class="chat-back" aria-label="Back to site"><i class="fas fa-arrow-left"></i></a>
+    <div class="chat-topbar-brand">
+      <strong>SMFD AI Assistant</strong>
+      <span>Ask me anything about borewells — or anything else</span>
+    </div>
+    <a href="tel:+919788799883" class="chat-topbar-call" aria-label="Call us"><i class="fas fa-phone"></i></a>
+  </header>
+
+  <main class="chat-main">
+    <div class="chat-scroll" id="chatScroll">
+      <div class="chat-msg chat-msg--bot">
+        <div class="chat-bubble">Hi, I'm the SMFD AI Assistant 👋 I can help with borewell drilling questions, pricing, booking a site visit — or really, ask me anything. What's on your mind?</div>
+      </div>
+    </div>
+  </main>
+
+  <form class="chat-inputbar" id="chatForm">
+    <textarea id="chatInput" rows="1" placeholder="Type your message…" autocomplete="off"></textarea>
+    <button type="submit" id="chatSend" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+  </form>
+
+  <p class="chat-disclaimer">AI-generated responses. For urgent issues, please <a href="tel:+919788799883">call us directly</a>.</p>
+
+<script>
+/* ===== Your Gemini API key is already filled in below. ===== */
+const GEMINI_API_KEY = "AQ.Ab8RN6IayDelzpszoZOhcjUwhkeAUyxgoXd3Brr57rAXilgkUg";
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+const SYSTEM_PROMPT = `
+You are the AI assistant embedded on the website of Selvamurugan Fast Drills
+(SMFD), a borewell drilling company based in Madurai, Tamil Nadu, India.
+
+BUSINESS FACTS (use these; don't invent extra facts you're not sure of):
+- Services: deep borewell drilling, residential & agricultural drilling,
+  water survey / site consultation, borewell maintenance & repair,
+  24/7 emergency borewell service.
+- Service area: Madurai city (main hub) and surrounding areas — Pudur,
+  Ayanur, Alagar Kovil, Anna Nagar, K.Pudur, Kalavasal, Villapuram,
+  Madurai North & East, Madurai South & West. Larger projects are also
+  taken up across Tamil Nadu & Maharashtra.
+- Pricing: drilling is roughly ₹70–450 per foot depending on bore
+  diameter/type, plus 18% GST, plus a separate "bore bata" charge. Exact
+  pricing depends on site conditions and soil type, so never quote a final
+  number — mention the site has a detailed cost calculator, and a final
+  quote comes from the team after understanding their site.
+- Contact: Call +91 97887 99883 or +91 94432 88845. WhatsApp +91 94881 61788.
+- 30+ years of drilling experience, 24×7 emergency support.
+
+HOW TO BEHAVE:
+- You are a full, general-purpose AI assistant. Hold natural conversation
+  and answer questions on ANY topic the visitor raises — not only
+  borewell-related ones. Be helpful and conversational, like a normal AI
+  chat assistant (e.g. ChatGPT). Don't restrict yourself to a fixed set of
+  pre-written questions or answers.
+- When the conversation is about SMFD's services, ground your answers in
+  the business facts above. If asked something about the business you
+  don't know, say so honestly and suggest calling the team.
+- Keep replies reasonably concise and easy to read in a chat bubble.
+
+LEAD CAPTURE (do this naturally, don't interrogate):
+- If the visitor shows real interest — wants a quote, wants to book
+  drilling or a site visit, or asks to be contacted — ask for their name,
+  phone number, and drilling location, one at a time, woven naturally
+  into the conversation. Once you have all three, thank them and tell
+  them the SMFD team will call them shortly.
+`.trim();
+
+let history = [];
+
+const scrollEl = document.getElementById("chatScroll");
+const form = document.getElementById("chatForm");
+const input = document.getElementById("chatInput");
+const sendBtn = document.getElementById("chatSend");
+
+input.addEventListener("input", () => {
+  input.style.height = "auto";
+  input.style.height = Math.min(input.scrollHeight, 120) + "px";
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage("user", text);
+  input.value = "";
+  input.style.height = "auto";
+  setBusy(true);
+  const typingEl = addTyping();
+
+  try {
+    const reply = await askGemini(text);
+    typingEl.remove();
+    addMessage("bot", reply);
+  } catch (err) {
+    console.error("Chat error:", err);
+    typingEl.remove();
+    addMessage("bot", "Sorry, I ran into an issue reaching the AI service (" + err.message + "). Please try again, or call us directly at +91 97887 99883.");
+  } finally {
+    setBusy(false);
+  }
+});
+
+async function askGemini(userText) {
+  history.push({ role: "user", parts: [{ text: userText }] });
+
+  const payload = JSON.stringify({
+    contents: history,
+    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+  });
+
+  const MAX_ATTEMPTS = 3;
+  let lastErr;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(GEMINI_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      });
+
+      if (res.status === 503 || res.status === 429) {
+        // Server briefly overloaded / rate limited — wait a moment and retry.
+        lastErr = new Error(`API returned ${res.status}`);
+        if (attempt < MAX_ATTEMPTS) {
+          await new Promise((r) => setTimeout(r, attempt * 700));
+          continue;
+        }
+        throw lastErr;
+      }
+
+      if (!res.ok) {
+        const errBody = await res.text();
+        console.error("Gemini API error response:", errBody);
+        throw new Error(`API returned ${res.status}`);
+      }
+
+      const data = await res.json();
+      const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+        || "Sorry, I didn't quite catch that — could you rephrase?";
+
+      history.push({ role: "model", parts: [{ text: replyText }] });
+      return replyText;
+    } catch (err) {
+      lastErr = err;
+      if (attempt < MAX_ATTEMPTS) {
+        await new Promise((r) => setTimeout(r, attempt * 700));
+      }
+    }
+  }
+
+  history.pop(); // remove the user turn we couldn't get a reply for
+  throw lastErr;
+}
+
+function setBusy(busy) { sendBtn.disabled = busy; input.disabled = busy; }
+
+function addMessage(role, text) {
+  const wrap = document.createElement("div");
+  wrap.className = `chat-msg chat-msg--${role === "user" ? "user" : "bot"}`;
+  const bubble = document.createElement("div");
+  bubble.className = "chat-bubble";
+  bubble.textContent = text;
+  wrap.appendChild(bubble);
+  scrollEl.appendChild(wrap);
+  scrollEl.scrollTop = scrollEl.scrollHeight;
+  return wrap;
+}
+
+function addTyping() {
+  const wrap = document.createElement("div");
+  wrap.className = "chat-msg chat-msg--bot chat-typing";
+  wrap.innerHTML = `<div class="chat-bubble"><span></span><span></span><span></span></div>`;
+  scrollEl.appendChild(wrap);
+  scrollEl.scrollTop = scrollEl.scrollHeight;
+  return wrap;
+}
+</script>
+</body>
+</html>
