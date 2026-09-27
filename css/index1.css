@@ -3349,3 +3349,147 @@ html[data-theme="light"] .bore-type-select {
 .drill-rate-rebore {
   color: var(--ochre, #e09a3a);
 }
+
+/* ==========================================================================
+   AI ASSISTANT BANNER — "Ask Selvamurugan AI"
+   Desktop-only promo band that sits under the hero, linking to the site's
+   AI chat widget. Built from the existing Strata tokens (--card, --aqua,
+   --rust, --slate-2) so it reads as part of the system, not a bolt-on.
+   ========================================================================== */
+.ai-assist{
+  display:none; /* shown on desktop only — see media query below */
+}
+
+@media (min-width:993px){
+  .ai-assist{
+    display:block;
+    max-width:880px; margin:0 auto 32px; padding:0 6%;
+  }
+
+  .ai-assist__card{
+    position:relative;
+    display:flex; align-items:center; gap:18px;
+    padding:12px 28px;
+    background:
+      radial-gradient(120% 180% at 92% 0%, var(--aqua-glow), transparent 60%),
+      linear-gradient(135deg, var(--card), var(--card-2));
+    border:1px solid var(--line);
+    border-radius:52px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .ai-assist__card::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:radial-gradient(ellipse at 30% 50%, #000 0%, transparent 70%);
+            mask-image:radial-gradient(ellipse at 30% 50%, #000 0%, transparent 70%);
+    opacity:.5; z-index:-1;
+  }
+
+  /* -------- avatar -------- */
+  .ai-assist__avatar-wrap{
+    position:relative; flex:none;
+    width:80px; height:80px;
+  }
+  .ai-assist__avatar-ring{
+    position:absolute; inset:-6px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, var(--aqua), var(--rust-light), var(--ochre), var(--aqua));
+    animation:aiAssistSpin 8s linear infinite;
+    opacity:.85;
+  }
+  .ai-assist__avatar-inner{
+    position:absolute; inset:4px;
+    border-radius:50%;
+    background:var(--well);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .ai-assist__avatar-inner img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%;
+    transform:scale(1.55);
+  }
+  .ai-assist__status{
+    position:absolute; bottom:1px; right:1px;
+    width:15px; height:15px; border-radius:50%;
+    background:var(--aqua);
+    border:2px solid var(--card);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ai-assist__status i{ font-size:7px; color:var(--on-accent); }
+  .ai-assist__bubble{
+    position:absolute; top:-10px; left:56px;
+    background:var(--slate); color:var(--ink);
+    font-family:var(--font-display); font-weight:600; font-size:10px;
+    padding:3px 8px; border-radius:10px 10px 10px 3px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--line);
+    animation:aiAssistBob 3.2s ease-in-out infinite;
+    white-space:nowrap;
+  }
+  @keyframes aiAssistSpin{ to{ transform:rotate(360deg); } }
+  @keyframes aiAssistBob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
+
+  /* -------- middle copy -------- */
+  .ai-assist__body{ flex:1 1 auto; min-width:0; }
+  .ai-assist__eyebrow{
+    display:inline-flex; align-items:center; gap:5px;
+    font-family:var(--font-mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--aqua); background:rgba(47,211,201,.12);
+    border:1px solid rgba(47,211,201,.3);
+    padding:2px 8px; border-radius:20px; margin-bottom:3px;
+  }
+  html[data-theme="light"] .ai-assist__eyebrow{ background:rgba(11,156,143,.1); }
+  .ai-assist__eyebrow i{ font-size:8px; }
+  .ai-assist__title{
+    font-size:clamp(15px,1.3vw,17px); color:var(--ink); margin-bottom:1px;
+  }
+  .ai-assist__subtitle{
+    font-family:var(--font-display); font-weight:600; font-size:12px;
+    color:var(--rust-light); margin-bottom:2px;
+  }
+  .ai-assist__desc{
+    color:var(--ink-dim); font-size:11px; line-height:1.3; max-width:900px; margin-bottom:5px;
+  }
+  .ai-assist__pills{ display:flex; flex-wrap:wrap; gap:6px; }
+  .ai-assist__pill{
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:10px; font-weight:500; color:var(--ink);
+    background:var(--slate-2); border:1px solid var(--line);
+    padding:4px 9px; border-radius:20px;
+    transition:transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    cursor:pointer;
+  }
+  .ai-assist__pill i{ color:var(--aqua); font-size:9px; }
+  .ai-assist__pill:hover{ transform:translateY(-2px); border-color:var(--aqua); color:var(--aqua); }
+
+  /* -------- CTA -------- */
+  .ai-assist__cta-wrap{ flex:none; display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .ai-assist__cta{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--font-display); font-weight:600; font-size:12px;
+    color:#fff; white-space:nowrap;
+    background:linear-gradient(135deg,var(--rust),var(--rust-light));
+    padding:8px 16px; border-radius:30px;
+    box-shadow:0 16px 34px -10px rgba(193,87,30,.6);
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .ai-assist__cta:hover{ transform:translateY(-3px); box-shadow:0 20px 40px -10px rgba(193,87,30,.7); }
+  .ai-assist__cta i.fa-comment-dots{ font-size:13px; }
+  .ai-assist__cta i.fa-arrow-right{ font-size:10px; transition:transform .25s var(--ease); }
+  .ai-assist__cta:hover i.fa-arrow-right{ transform:translateX(4px); }
+  .ai-assist__cta-note{
+    font-family:var(--font-mono); font-size:9px; letter-spacing:.06em;
+    color:var(--ink-dim); text-transform:uppercase;
+  }
+}
+
+@media (min-width:993px) and (max-width:1180px){
+  .ai-assist__card{ gap:14px; padding:11px 22px; }
+  .ai-assist__desc{ max-width:340px; }
+}
