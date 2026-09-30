@@ -296,10 +296,10 @@ body {
   </div>
 
 <script>
-/* ===== Your Gemini API key is already filled in below. ===== */
-const GEMINI_API_KEY = "AQ.Ab8RN6IayDelzpszoZOhcjUwhkeAUyxgoXd3Brr57rAXilgkUg";
-const GEMINI_MODEL = "gemini-3.5-flash-lite";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+/* ===== Chat backend (Groq via your own Cloudflare Worker) =====
+   The API key is NOT stored in this file. It lives safely inside the Worker.
+   After deploying worker.js, paste the Worker URL below. */
+const CHAT_ENDPOINT = "https://long-pine-751nisite-ai.nigilmuruganss.workers.dev/";
 
 const SYSTEM_PROMPT = `
 You are the AI assistant embedded on the website of Selvamurugan Fast Drills
@@ -372,7 +372,7 @@ form.addEventListener("submit", async (e) => {
   const typingEl = addTyping();
 
   try {
-    const reply = await askGemini(text);
+    const reply = await askChat(text);
     typingEl.remove();
     addMessage("bot", reply);
   } catch (err) {
@@ -384,12 +384,14 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-async function askGemini(userText) {
-  history.push({ role: "user", parts: [{ text: userText }] });
+async function askChat(userText) {
+  if (!CHAT_ENDPOINT || CHAT_ENDPOINT.startsWith("PASTE_")) {
+    throw new Error("chat service is not connected yet");
+  }
+  history.push({ role: "user", content: userText });
 
   const payload = JSON.stringify({
-    contents: history,
-    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    messages: [{ role: "system", content: SYSTEM_PROMPT }, ...history],
   });
 
   const MAX_ATTEMPTS = 3;
@@ -397,7 +399,7 @@ async function askGemini(userText) {
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
-      const res = await fetch(GEMINI_URL, {
+      const res = await fetch(CHAT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: payload,
@@ -414,15 +416,15 @@ async function askGemini(userText) {
 
       if (!res.ok) {
         const errBody = await res.text();
-        console.error("Gemini API error response:", errBody);
+        console.error("Chat API error response:", errBody);
         throw new Error(`API returned ${res.status}`);
       }
 
       const data = await res.json();
-      const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+      const replyText = data?.choices?.[0]?.message?.content?.trim()
         || "Sorry, I didn't quite catch that — could you rephrase?";
 
-      history.push({ role: "model", parts: [{ text: replyText }] });
+      history.push({ role: "assistant", content: replyText });
       return replyText;
     } catch (err) {
       lastErr = err;
@@ -477,5 +479,6 @@ function addTyping() {
   return wrap;
 }
 </script>
+
 </body>
 </html>
