@@ -589,3 +589,89 @@
     }
 
   })();
+
+/* ==========================================================================
+   DISTRICT LIST TOGGLE (moved from inline <script> in index.html)
+   Must stay global — called via onclick in the HTML.
+   ========================================================================== */
+function toggleDistrict(id){
+    const lists = document.querySelectorAll(".district-list");
+    lists.forEach(list=>{ if(list.id !== id){ list.classList.remove("show"); } });
+    document.getElementById(id).classList.toggle("show");
+}
+
+/* ==========================================================================
+   ENQUIRY FORM -> WhatsApp (moved from inline <script> in index.html)
+   ========================================================================== */
+(function () {
+    var toggleBtns = document.querySelectorAll('#efType .ef-toggle__btn');
+    var selectedType = 'Residential';
+    toggleBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            toggleBtns.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            selectedType = btn.getAttribute('data-type');
+        });
+    });
+
+    var submitBtn = document.getElementById('efSubmit');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function () {
+            var name = document.getElementById('efName').value.trim();
+            var phone = document.getElementById('efPhone').value.trim();
+            var location = document.getElementById('efLocation').value.trim();
+            var service = document.getElementById('efService').value;
+            var msg = document.getElementById('efMsg').value.trim();
+
+            if (!name || !phone || !location || !service) {
+                alert('Please fill in all required fields (Name, Phone Number, Location / Village, Service Required).');
+                return;
+            }
+
+            var lines = [
+                'Hello Selvamurugan Fast Drills,', '',
+                'Name: ' + name,
+                'Phone: +91 ' + phone,
+                'Location/Village: ' + location,
+                'Service Required: ' + service,
+                'Requirement Type: ' + selectedType
+            ];
+            if (msg) { lines.push('Message: ' + msg); }
+
+            var text = encodeURIComponent(lines.join('\n'));
+            window.open('https://wa.me/919488161788?text=' + text, '_blank');
+        });
+    }
+})();
+
+/* ==========================================================================
+   FOOTER ACCORDION (moved from inline <script> in index.html)
+   ========================================================================== */
+/* Footer accordion — mobile only (≤ 768px) */
+(function () {
+  function initFooterAccordion() {
+    var toggles = document.querySelectorAll('.footer-col-toggle');
+    toggles.forEach(function (btn) {
+      var body = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!body) return;
+      if (window.innerWidth <= 768) btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function () {
+        if (window.innerWidth > 768) return;
+        btn.setAttribute('aria-expanded',
+          btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+      });
+    });
+  }
+  var t;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () {
+      if (window.innerWidth > 768)
+        document.querySelectorAll('.footer-col-toggle')
+          .forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
+    }, 150);
+  });
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', initFooterAccordion)
+    : initFooterAccordion();
+})();

@@ -107,25 +107,37 @@ ul{ list-style:none; margin:0; padding:0; }
 /* -------------------------------- TITLE1 / FLOATING CTAs ---------------- */
 .title1 h2{ position:absolute; left:-9999px; } /* SEO heading, visually hidden */
 
-.whatsapp-float,.instagram-float{
-  margin-top: 20px;
-  position:fixed; right:26px; z-index:60;
-  width:56px; height:56px; border-radius:50%;
+/* Floating AI assistant button (replaced the WhatsApp / Instagram floats) */
+.ai-float{
+  position:fixed; right:26px; bottom:26px; z-index:60;
+  width:60px; height:60px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-size:1.5rem; color:#ffffff;
-  box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+  font-size:1.55rem; color:#fff;
+  background:linear-gradient(145deg,#5B5BE6,#8B3FE0);
+  box-shadow:0 14px 32px -8px rgba(124,58,237,.65);
   transition:transform .35s var(--ease), box-shadow .35s var(--ease);
 }
-.whatsapp-float{ bottom:96px; background:linear-gradient(145deg,#25D366,#128C4A); }
-.instagram-float{ bottom:26px; background:linear-gradient(145deg,#F58529,#DD2A7B 45%,#8134AF 80%,#515BD4); }
-.whatsapp-float::after,.instagram-float::after{
+.ai-float::after{
   content:''; position:absolute; inset:-6px; border-radius:50%;
-  border:2px solid currentColor; opacity:.35;
+  border:2px solid #8B3FE0; opacity:.35;
   animation:pulseRing 2.4s ease-out infinite;
 }
-.whatsapp-float{ color:#ffffff; }
-.instagram-float{ color:#ffffff; }
-.whatsapp-float:hover,.instagram-float:hover{ transform:translateY(-4px) scale(1.06); }
+.ai-float:hover{ transform:translateY(-4px) scale(1.06); box-shadow:0 18px 38px -8px rgba(124,58,237,.8); }
+.ai-float__badge{
+  position:absolute; top:-4px; right:-4px;
+  background:var(--aqua); color:var(--on-accent);
+  font-family:var(--font-body); font-size:.62rem; font-weight:700; line-height:1;
+  padding:4px 6px; border-radius:999px; border:2px solid var(--well);
+}
+.ai-float__tip{
+  position:absolute; right:calc(100% + 12px); top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-family:var(--font-body); font-size:.8rem; font-weight:600;
+  color:var(--ink); background:var(--card); border:1px solid var(--line);
+  padding:7px 12px; border-radius:999px; box-shadow:var(--shadow);
+  opacity:0; pointer-events:none; transition:opacity .25s var(--ease), transform .25s var(--ease);
+}
+.ai-float:hover .ai-float__tip,
+.ai-float:focus-visible .ai-float__tip{ opacity:1; transform:translateY(-50%) translateX(0); }
 @keyframes pulseRing{
   0%{ transform:scale(.9); opacity:.5; }
   100%{ transform:scale(1.5); opacity:0; }
@@ -3492,4 +3504,138 @@ html[data-theme="light"] .bore-type-select {
 @media (min-width:993px) and (max-width:1180px){
   .ai-assist__card{ gap:14px; padding:11px 22px; }
   .ai-assist__desc{ max-width:340px; }
+}
+
+
+/* ==========================================================================
+   TWO-LEVEL HEADER — level 1: top info bar  |  level 2: main navbar
+   (top bar is desktop/tablet only; hidden ≤860px in index2.css)
+   ========================================================================== */
+.topbar{
+  position:relative; z-index:51;
+  background:var(--slate-2);
+  border-bottom:1px solid var(--line);
+  font-family:var(--font-body); font-size:.8rem; color:var(--ink-dim);
+}
+.topbar__inner{
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:9px 40px;
+}
+.topbar__info{ display:flex; align-items:center; list-style:none; margin:0; padding:0; }
+.topbar__info li{ display:flex; align-items:center; padding:0 16px; border-left:1px solid var(--line); }
+.topbar__info li:first-child{ padding-left:0; border-left:none; }
+.topbar__info a,
+.topbar__info li > span,
+.topbar__info a span{ color:inherit; }
+.topbar__info li,
+.topbar__info a{ display:flex; align-items:center; gap:8px; transition:color .3s var(--ease); }
+.topbar__info a:hover{ color:var(--aqua); }
+.topbar__info i{ color:var(--aqua); font-size:.85rem; }
+.topbar__right{ display:flex; align-items:center; gap:18px; }
+.topbar__tag{ display:flex; align-items:center; gap:7px; color:var(--aqua); font-weight:500; white-space:nowrap; }
+.topbar__sep{ width:1px; height:28px; background:var(--line); }
+.topbar__social{ display:flex; align-items:center; gap:10px; }
+.tsoc{
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:.85rem;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.tsoc:hover{ transform:translateY(-2px) scale(1.08); box-shadow:0 8px 16px -6px rgba(0,0,0,.45); }
+.tsoc--fb{ background:#1877F2; }
+.tsoc--ig{ background:linear-gradient(45deg,#F58529,#DD2A7B 50%,#8134AF); }
+.tsoc--yt{ background:#E62117; }
+.tsoc--wa{ background:#25D366; }
+
+/* main navbar additions */
+.nav-divider{ width:1px; height:34px; background:var(--line); flex-shrink:0; }
+
+.ai-btn-nav{
+  position:relative; display:flex; align-items:center; gap:8px; flex-shrink:0;
+  background:linear-gradient(135deg,#5B5BE6,#8B3FE0);
+  color:#fff; padding:11px 20px; border-radius:999px;
+  font-family:var(--font-body); font-weight:600; font-size:.88rem; white-space:nowrap;
+  box-shadow:0 10px 24px -8px rgba(124,58,237,.65);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.ai-btn-nav:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(124,58,237,.85); }
+.ai-btn-nav__plus{ font-size:.7rem; opacity:.9; margin-left:2px; }
+.ai-btn-nav__new{
+  position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+  background:var(--aqua); color:var(--on-accent);
+  font-size:.58rem; font-weight:700; letter-spacing:.04em; line-height:1;
+  padding:4px 9px; border-radius:999px;
+}
+
+/* Admin: outlined pill (was a boxed button sharing a card with the toggle) */
+.desktop-corner-box{
+  background:none; border:none; box-shadow:none; padding:0; border-radius:0;
+}
+.admin-btn-nav{
+  background:transparent; color:var(--aqua);
+  border:1px solid var(--aqua); border-radius:999px;
+  padding:11px 20px; font-size:.88rem; gap:7px;
+}
+.admin-btn-nav:hover{ background:var(--aqua-glow); box-shadow:none; }
+
+/* ==========================================================================
+   DESKTOP HEADER FIT (≥861px) — one clean row, exactly like the design:
+   [logo + brand] [icon + label links] [toggle | DrillCalc | Borewell AI | Admin]
+   Nothing is allowed to wrap or shrink into a second line; instead the
+   spacing/size steps down as the window gets narrower.
+   ========================================================================== */
+@media (min-width:861px){
+  .navbar{ flex-wrap:nowrap; padding:14px 24px; gap:16px; }
+  .navbar.scrolled{ padding:10px 24px; }
+  .navbar > *{ flex-shrink:0; }
+
+  /* brand: single line */
+  .title{ gap:12px; }
+  .brand-title{ font-size:1.12rem; white-space:nowrap; letter-spacing:.02em; }
+  .title-text span{ white-space:nowrap; font-size:.66rem; }
+
+  /* links: icon sits LEFT of the label, never above it, never wraps */
+  .nav-links{ gap:22px; flex-wrap:nowrap; }
+  .nav-links a.mnav-item{
+    display:inline-flex; flex-direction:row; align-items:center;
+    gap:0; white-space:nowrap; font-size:.92rem;
+  }
+  .nav-links .mnav-label{ white-space:nowrap; }
+  .mnav-list .mnav-ico{ margin-right:6px; }
+
+  /* right-hand buttons: same height, no wrapping */
+  .calc-btn-nav,.ai-btn-nav,.admin-btn-nav{
+    white-space:nowrap; padding:10px 16px; font-size:.86rem; line-height:1.2;
+  }
+  .calc-btn-nav{ gap:7px; }
+  .theme-toggle{ margin:0; }
+  .topbar__inner{ padding-left:24px; padding-right:24px; }
+}
+
+/* ≤1480px: slightly tighter */
+@media (min-width:861px) and (max-width:1480px){
+  .navbar{ gap:12px; padding-left:18px; padding-right:18px; }
+  .brand-title{ font-size:1rem; }
+  .nav-links{ gap:16px; }
+  .nav-links a.mnav-item{ font-size:.86rem; }
+  .calc-btn-nav,.ai-btn-nav,.admin-btn-nav{ padding:9px 13px; font-size:.82rem; }
+  .nav-divider{ display:none; }
+  .topbar__inner{ padding-left:18px; padding-right:18px; }
+}
+
+/* ≤1260px: drop the small link icons + subtitle so the row still fits */
+@media (min-width:861px) and (max-width:1260px){
+  .mnav-list .mnav-ico{ display:none; }
+  .title-text span{ display:none; }
+  .nav-links{ gap:14px; }
+  .topbar__tag,.topbar__sep{ display:none; }
+}
+
+/* ≤1020px (small tablets): hide the DrillCalc label's icon + AI plus sign */
+@media (min-width:861px) and (max-width:1020px){
+  .calc-btn-nav i,.ai-btn-nav__plus,.admin-btn-nav i{ display:none; }
+  .brand-title{ font-size:.9rem; }
+  .brand-logo{ width:38px; height:38px; }
+  .nav-links{ gap:10px; }
+  .topbar__info li:nth-child(3){ display:none; }
 }

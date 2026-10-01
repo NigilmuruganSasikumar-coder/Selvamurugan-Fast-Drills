@@ -1,8 +1,23 @@
 /* ==========================================================================
-   script.js — CALCULATOR (borewell cost logic + bore-type rate/bata)
+   script2.js — CALCULATOR (borewell cost logic + bore-type rate/bata)
    ========================================================================== */
 
 let drillingMode = "new";
+
+// ==========================================================================
+// SLAB RATE SEQUENCE
+// SEQUENCE B (1st screenshot), base 98: 98,108,118,138,168,208,258,358 then +100
+// Step added to the rate AFTER each slab, in order:
+//   after 001-300 -> 301-400, after 301-400 -> 401-500, ...
+// Once the list runs out, the step is 100 per slab.
+// ==========================================================================
+const SLAB_STEPS = [10, 10, 20, 30, 40, 50, 100];
+
+function getStep(i){
+
+    return (i < SLAB_STEPS.length) ? SLAB_STEPS[i] : 100;
+
+}
 
 function setMode(mode){
 
@@ -87,7 +102,7 @@ function calculateTotal(){
 
     let currentRate = baseRate;
 
-    let addValue = 5;
+    let stepIndex = 0;
 
 
 // =========================
@@ -147,7 +162,7 @@ if(drillingMode === "rebore"){
 // =========================
 
 currentRate = baseRate;
-addValue = 5;
+stepIndex = 0;
 
 if (reboreFeet > 300) {
 
@@ -161,13 +176,9 @@ if (reboreFeet > 300) {
 
     for (let s = 3; s <= slab; s++) {
 
-        currentRate += addValue;
+        currentRate += getStep(stepIndex);
 
-        if (addValue === 5) {
-            addValue = 10;
-        } else {
-            addValue += 10;
-        }
+        stepIndex++;
     }
 
 }
@@ -236,31 +247,11 @@ if (reboreFeet > 300) {
 
 
 
-        // ORIGINAL NEW DRILLING LOGIC
+        // SLAB RATE ESCALATION (from SLAB_STEPS)
 
-        if(end < 1000){
+        currentRate += getStep(stepIndex);
 
-            currentRate += addValue;
-
-            if(addValue === 5){
-
-                addValue = 10;
-
-            }
-
-            else{
-
-                addValue += 10;
-
-            }
-
-        }
-
-        else{
-
-            currentRate += 100;
-
-        }
+        stepIndex++;
 
     }
 

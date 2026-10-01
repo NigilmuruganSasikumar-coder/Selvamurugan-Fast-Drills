@@ -653,85 +653,37 @@
     });
 
     // ============================================================
-    // REAL DATA — pulled from the calculator (index.html) via
-    // localStorage. openQuotation() in script.js stores this object
-    // right before opening this page:
-    //   { customerName, customerPhone, mode, depth, baseRate,
-    //     reboreFeet, reboreRate, casing7, casing7Rate,
-    //     casing10, casing10Rate, boreType, boreBata, gst,
-    //     generatedAt }
-    // The drilling-cost slab breakdown below is the exact same
-    // algorithm as calculateTotal() in script.js, ported so this
-    // page can render its own table/summary independent of the
-    // calculator page being open.
+    // REAL DATA - everything on this page comes from the calculator
+    // (index.html). This page does NOT build its own slab sequence and
+    // does NOT do any slab/rate math. When "View Quotation" is clicked,
+    // index.html saves two things to localStorage:
+    //   quotationData  - the calculator inputs (customer, depth, rates,
+    //                    bore type, gst on/off ...)
+    //   quotationCalc  - the calculator's OWN results: the slab rows
+    //                    exactly as shown in its "Drilling Cost
+    //                    Breakdown" table, plus its totals.
+    // Whatever slab sequence / rates the calculator uses, this page
+    // shows the same thing.
     // ============================================================
 
-    function computeDrillingBreakdown(mode, depth, baseRate, reboreFeet, reboreRate){
-      depth = parseInt(depth) || 0;
-      baseRate = parseInt(baseRate) || 0;
-      reboreFeet = parseInt(reboreFeet) || 0;
-      reboreRate = parseInt(reboreRate) || 0;
-
-      var start = 1;
-      var drillingTotal = 0;
-      var rows = [];
-      var currentRate = baseRate;
-      var addValue = 5;
-
-      if (mode === 'rebore') {
-        var reboreCost = reboreFeet * reboreRate;
-        drillingTotal += reboreCost;
-        rows.push({ label: '1-' + reboreFeet + ' ft', rate: reboreRate, amount: reboreCost });
-        start = reboreFeet + 1;
-
-        currentRate = baseRate;
-        addValue = 5;
-        if (reboreFeet > 300) {
-          var slab = Math.floor((reboreFeet - 1) / 100);
-          for (var s = 3; s <= slab; s++) {
-            currentRate += addValue;
-            addValue = (addValue === 5) ? 10 : addValue + 10;
-          }
-        }
-      }
-
-      while (start <= depth) {
-        var end;
-        if (start <= 300) {
-          end = Math.min(300, depth);
-        } else {
-          end = Math.min(Math.ceil(start / 100) * 100, depth);
-        }
-        var feet = end - start + 1;
-        var slabCost = feet * currentRate;
-        drillingTotal += slabCost;
-        rows.push({ label: String(start).padStart(3, '0') + '-' + end + ' ft', rate: currentRate, amount: slabCost });
-        start = end + 1;
-
-        if (end < 1000) {
-          currentRate += addValue;
-          addValue = (addValue === 5) ? 10 : addValue + 10;
-        } else {
-          currentRate += 100;
-        }
-      }
-
-      return { rows: rows, drillingTotal: drillingTotal };
+    function inr(n){ return '\u20B9' + (Number(n) || 0).toLocaleString('en-IN'); }
+    function esc(s){
+      return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+      });
+    }
+    function readStore(key){
+      try { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; }
+      catch(e) { return null; }
     }
 
     function renderQuotation(){
       document.getElementById('quoteDate').textContent = new Date().toLocaleDateString('en-GB').replace(/\//g,'-');
 
-      var raw = null;
-      try { raw = localStorage.getItem('quotationData'); } catch(e) {}
-      var data = null;
-      if (raw) {
-        try { data = JSON.parse(raw); } catch(e) { data = null; }
-      }
+      var data = readStore('quotationData');
+      var calc = readStore('quotationCalc');
 
-      // No calculator data yet (page opened directly) — leave the
-      // template's blank underline fields as-is rather than showing
-      // invented numbers.
+      // Page opened directly, no calculator data - keep the blank template.
       if (!data) return;
 
       document.getElementById('custName').textContent = data.customerName || '\u00A0';
@@ -750,21 +702,29 @@
       document.getElementById('specPvc7').textContent = data.casing7Rate || '0';
       document.getElementById('specPvc10').textContent = data.casing10Rate || '0';
 
-      var breakdown = computeDrillingBreakdown(data.mode, data.depth, data.baseRate, data.reboreFeet, data.reboreRate);
+      // No slab data from the calculator -> do NOT invent a sequence.
+      if (!calc || !calc.rows || !calc.rows.length) {
+        document.getElementById('drillingRows').innerHTML =
+          '<tr><td colspan="4">Slab details not received from the calculator. ' +
+          'Please go back and tap "View Quotation" on the calculator page.</td></tr>';
+        return;
+      }
 
-      var rowsHtml = breakdown.rows.map(function(r, i){
-        return '<tr><td>' + (i + 1) + '</td><td>' + r.label + '</td><td>\u20B9' + r.rate + '/ft</td><td>\u20B9' + r.amount.toLocaleString('en-IN') + '</td></tr>';
+      // ---- Slab rows: exactly what the calculator produced ----
+      document.getElementById('drillingRows').innerHTML = calc.rows.map(function(r, i){
+        return '<tr><td>' + (i + 1) + '</td><td>' + esc(r.label) + '</td><td>' +
+               inr(r.rate) + '/ft</td><td>' + inr(r.amount) + '</td></tr>';
       }).join('');
-      document.getElementById('drillingRows').innerHTML = rowsHtml;
-      document.getElementById('totalDrillingCost').textContent = '\u20B9' + breakdown.drillingTotal.toLocaleString('en-IN');
+      document.getElementById('totalDrillingCost').textContent = inr(calc.drillingTotal);
 
+      // ---- PVC / bore bata: amounts from the calculator ----
       var casing7Feet = parseInt(data.casing7) || 0;
       var casing7Rate = parseInt(data.casing7Rate) || 0;
       var casing10Feet = parseInt(data.casing10) || 0;
       var casing10Rate = parseInt(data.casing10Rate) || 0;
-      var casing7Cost = casing7Feet * casing7Rate;
-      var casing10Cost = casing10Feet * casing10Rate;
-      var boreBata = parseFloat(data.boreBata) || 0;
+      var casing7Cost = (calc.casing7Cost != null) ? calc.casing7Cost : casing7Feet * casing7Rate;
+      var casing10Cost = (calc.casing10Cost != null) ? calc.casing10Cost : casing10Feet * casing10Rate;
+      var boreBata = (calc.boreBata != null) ? calc.boreBata : (parseFloat(data.boreBata) || 0);
 
       var extras = [
         ['\uD83D\uDD29', '7\u201D PVC', casing7Feet + ' ft \u00D7 \u20B9' + casing7Rate + '/ft', casing7Cost]
@@ -777,22 +737,18 @@
       }
 
       var extraHtml = extras.map(function(e){
-        return '<div class="extra-row"><span class="ico">' + e[0] + '</span><span class="lbl">' + e[1] + (e[2] ? '  <small>(' + e[2] + ')</small>' : '') + '</span><span class="amt">\u20B9' + e[3].toLocaleString('en-IN') + '</span></div>';
+        return '<div class="extra-row"><span class="ico">' + e[0] + '</span><span class="lbl">' + e[1] + (e[2] ? '  <small>(' + e[2] + ')</small>' : '') + '</span><span class="amt">' + inr(e[3]) + '</span></div>';
       }).join('');
       document.getElementById('extraList').innerHTML = extraHtml +
         '<div class="subtotal-row"><span>Subtotal</span><span id="subtotalAmt"></span></div>' +
         '<div class="gst-row" id="gstRow"><span>GST (<span id="gstRate">18</span>%)</span><span id="gstAmt"></span></div>';
 
-      var extraTotal = extras.reduce(function(s, e){ return s + e[3]; }, 0);
-      var subtotal = breakdown.drillingTotal + extraTotal;
+      // ---- Totals: taken from the calculator, not recomputed ----
       var gstOn = !!data.gst;
-      var gstAmount = gstOn ? Math.round(subtotal * 0.18) : 0;
-      var grandTotal = subtotal + gstAmount;
-
-      document.getElementById('subtotalAmt').textContent = '\u20B9' + subtotal.toLocaleString('en-IN');
-      document.getElementById('gstAmt').textContent = '\u20B9' + gstAmount.toLocaleString('en-IN');
+      document.getElementById('subtotalAmt').textContent = inr(calc.subtotal);
+      document.getElementById('gstAmt').textContent = inr(gstOn ? calc.gstAmount : 0);
       document.getElementById('gstRow').style.display = gstOn ? 'flex' : 'none';
-      document.getElementById('grandTotal').textContent = '\u20B9' + grandTotal.toLocaleString('en-IN');
+      document.getElementById('grandTotal').textContent = inr(calc.grandTotal);
     }
 
     renderQuotation();

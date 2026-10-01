@@ -2248,16 +2248,29 @@ html[data-theme="light"] .footer-chev {
 
 
 /* =========================================================
-   FLOATING WHATSAPP / INSTAGRAM BUTTONS — hidden on mobile
-   (≤ 860px). Redundant with the WhatsApp/Contact tabs already
-   in the bottom nav bar, and they were overlapping content
-   (e.g. the Download Image button, the Calculator input fields).
+   TOP INFO BAR + FLOATING AI BUTTON — mobile (≤ 860px)
+   The top info bar is desktop-only (the mobile drawer + bottom
+   nav already carry call / WhatsApp / contact). The floating AI
+   button stays visible but sits above the bottom nav bar.
    ========================================================= */
 
 @media (max-width: 860px) {
 
-    .whatsapp-float,
-    .instagram-float {
+    .topbar,
+    .nav-divider,
+    .ai-btn-nav {
+        display: none !important;
+    }
+
+    .ai-float {
+        right: 16px;
+        bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 16px);
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+
+    .ai-float__tip {
         display: none;
     }
 }
@@ -2515,4 +2528,83 @@ html[data-theme="light"] .footer-chev {
 
     .hero-buttons .primary-btn,
     .whatsapp-btn-mobile{ font-size: .8rem; padding: 13px 6px; }
+}
+
+/* =========================================================
+   MOBILE TYPE SCALE — SECTION TITLES + SUB LINES  (<= 640px)
+   Shrinks the big section headings / sub lines (Hero, Services,
+   Project Portfolio, Calculator, Reviews, FAQ, Contact, Service
+   Areas) so they fit comfortably on phone screens. Forced <br>
+   breaks in headings are ignored so text wraps naturally.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    /* Hero */
+    .hero h1 { font-size: clamp(1.45rem, 6.2vw, 1.8rem); line-height: 1.15; }
+    .hero h2 { font-size: .92rem; margin-bottom: 12px; }
+
+    /* Shared section header blocks */
+    #about,
+    #services1,
+    .calculator-title,
+    .section-title,
+    #faq .section-title,
+    .baccor2 #contact {
+        margin-bottom: 28px;
+        padding: 0 5%;
+    }
+
+    #about h1,
+    #services1 h1,
+    .calculator-title h1,
+    .section-title h1,
+    .baccor2 #contact h1,
+    #galary h1 {
+        font-size: clamp(1.35rem, 6vw, 1.65rem);
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    #about h2,
+    .calculator-title h2 {
+        font-size: .95rem;
+        margin-bottom: 6px;
+    }
+
+    #about p,
+    #services1 p,
+    .calculator-title p,
+    .section-title p,
+    #faq .section-title p,
+    .baccor2 #contact p,
+    #galary p {
+        font-size: .86rem;
+        line-height: 1.5;
+    }
+
+    #galary h3 {
+        font-size: 1rem;
+        margin-top: 8px;
+    }
+
+    #services1 h1 br,
+    #services1 p br { display: none; }
+
+    /* Service Areas mobile heading */
+    .sarea-mobile-title { font-size: 1.3rem; }
+    .sarea-mobile-title .hl { font-size: 1.45rem; }
+    .sarea-mobile-sub { font-size: .8rem; }
+}
+
+@media (max-width: 380px) {
+    .hero h1 { font-size: 1.4rem; }
+    #about h1,
+    #services1 h1,
+    .calculator-title h1,
+    .section-title h1,
+    .baccor2 #contact h1,
+    #galary h1 { font-size: 1.25rem; }
+    .sarea-mobile-title { font-size: 1.15rem; }
+    .sarea-mobile-title .hl { font-size: 1.3rem; }
 }

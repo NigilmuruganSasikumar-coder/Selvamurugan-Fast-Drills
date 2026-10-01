@@ -1,8 +1,23 @@
 /* ==========================================================================
-   script.js — CALCULATOR (borewell cost logic + bore-type rate/bata)
+   script3.js — CALCULATOR (borewell cost logic + bore-type rate/bata)
    ========================================================================== */
 
 let drillingMode = "new";
+
+// ==========================================================================
+// SLAB RATE SEQUENCE
+// SEQUENCE C (2nd screenshot), base 98: 98,108,128,158,198,248,308,378 then +100
+// Step added to the rate AFTER each slab, in order:
+//   after 001-300 -> 301-400, after 301-400 -> 401-500, ...
+// Once the list runs out, the step is 100 per slab.
+// ==========================================================================
+const SLAB_STEPS = [10, 20, 30, 40, 50, 60, 70];
+
+function getStep(i){
+
+    return (i < SLAB_STEPS.length) ? SLAB_STEPS[i] : 100;
+
+}
 
 function setMode(mode){
 
@@ -87,7 +102,7 @@ function calculateTotal(){
 
     let currentRate = baseRate;
 
-    let addValue = 5;
+    let stepIndex = 0;
 
 
 // =========================
@@ -147,12 +162,22 @@ if(drillingMode === "rebore"){
 // =========================
 
 currentRate = baseRate;
-addValue = 5;
+stepIndex = 0;
 
 if (reboreFeet > 300) {
 
     // Determine the slab where the rebore ENDS
-    let slab = Math.floor((reboreFeet - 1) / 100);
+    let slab;
+
+    if (reboreFeet <= 2000) {
+        slab = Math.floor((reboreFeet - 1) / 100);
+    } else if (reboreFeet <= 2200) {
+        slab = 20;   // 2001-2200 (200 ft slab)
+    } else if (reboreFeet <= 2500) {
+        slab = 21;   // 2201-2500 (300 ft slab)
+    } else {
+        slab = 21 + Math.ceil((reboreFeet - 2500) / 100);
+    }
 
     // Example:
     // 301-400 -> slab = 3
@@ -161,13 +186,9 @@ if (reboreFeet > 300) {
 
     for (let s = 3; s <= slab; s++) {
 
-        currentRate += addValue;
+        currentRate += getStep(stepIndex);
 
-        if (addValue === 5) {
-            addValue = 10;
-        } else {
-            addValue += 10;
-        }
+        stepIndex++;
     }
 
 }
@@ -190,7 +211,22 @@ if (reboreFeet > 300) {
     else{
 
         // Keep slab boundaries fixed at 400,500,600,700...
-        end = Math.min(Math.ceil(start / 100) * 100, depth);
+        // Special slabs: 2001-2200 (200 ft) and 2201-2500 (300 ft)
+        if(start > 2000 && start <= 2200){
+
+            end = Math.min(2200, depth);
+
+        }
+        else if(start > 2200 && start <= 2500){
+
+            end = Math.min(2500, depth);
+
+        }
+        else{
+
+            end = Math.min(Math.ceil(start / 100) * 100, depth);
+
+        }
 
     }
 
@@ -236,31 +272,11 @@ if (reboreFeet > 300) {
 
 
 
-        // ORIGINAL NEW DRILLING LOGIC
+        // SLAB RATE ESCALATION (from SLAB_STEPS)
 
-        if(end < 1000){
+        currentRate += getStep(stepIndex);
 
-            currentRate += addValue;
-
-            if(addValue === 5){
-
-                addValue = 10;
-
-            }
-
-            else{
-
-                addValue += 10;
-
-            }
-
-        }
-
-        else{
-
-            currentRate += 100;
-
-        }
+        stepIndex++;
 
     }
 
