@@ -1,0 +1,226 @@
+/* ==========================================================================
+   CALCULATOR - hand-drawn layout (customer / drilling / project panels)
+   Load AFTER index1.css and index2.css.
+   ========================================================================== */
+#calculator-section .details-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+#calculator-section .site-address-field { margin-top: 14px; }
+
+/* textarea (Site Address) */
+#calculator-section .field textarea {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+  resize: vertical;
+  min-height: 64px;
+  box-sizing: border-box;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+#calculator-section .field textarea:focus {
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 3px var(--aqua-glow);
+}
+#calculator-section .field textarea::placeholder { color: var(--ink-dim); opacity: .55; }
+
+/* selects get a chevron (appearance was removed in index1.css) */
+#calculator-section .bore-type-select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239FB2BA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 16px !important;
+  padding-right: 36px !important;
+}
+
+/* ---- [-]  value  [+] stepper ---- */
+#calculator-section .stepper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  min-width: 0;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+#calculator-section .stepper:focus-within {
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 3px var(--aqua-glow);
+}
+#calculator-section .stepper .step-btn {
+  flex: 0 0 42px;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  transition: background .15s, color .15s;
+}
+#calculator-section .stepper .step-btn:first-child { border-right: 1px solid var(--line); }
+#calculator-section .stepper .step-btn:last-child  { border-left: 1px solid var(--line); }
+#calculator-section .stepper .step-btn:hover  { background: var(--aqua-glow); color: var(--aqua); }
+#calculator-section .stepper .step-btn:active { transform: scale(.94); }
+
+#calculator-section .stepper input {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: center;
+  padding: 10px 28px 10px 8px !important;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+#calculator-section .stepper input:focus { box-shadow: none !important; }
+#calculator-section .stepper em {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(14px, -50%);
+  font-style: normal;
+  font-size: 12px;
+  color: var(--ink-dim);
+  pointer-events: none;
+}
+/* push the "ft" tag just right of the number */
+#calculator-section .stepper input { padding-right: 8px !important; }
+
+/* ---- rupee-prefixed rate input ---- */
+#calculator-section .rate-input .rs {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  pointer-events: none;
+}
+#calculator-section .rate-input input { padding-left: 40px !important; }
+
+/* ---- Price Setting panel ---- */
+#calculator-section .price-setting-panel {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card-2);
+}
+#calculator-section .price-setting-panel[hidden] { display: none; }
+#calculator-section .price-setting-panel .fields-grid { grid-template-columns: 1fr 1fr; }
+
+/* ---- action row: [Price Setting] [GST] [Clear] [Calculate] ---- */
+#calculator-section .calc-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+#calculator-section .calc-actions .price-setting-btn { flex: 1 1 160px; }
+#calculator-section .price-setting-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink-dim);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color .2s, color .2s;
+}
+#calculator-section .price-setting-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+#calculator-section .price-setting-btn:hover,
+#calculator-section .price-setting-btn.open { border-color: var(--aqua); color: var(--aqua); }
+
+@media (max-width: 640px) {
+  #calculator-section .calc-actions { gap: 8px; }
+  #calculator-section .calc-actions .price-setting-btn { flex: 1 1 100%; justify-content: center; }
+  #calculator-section .calc-actions .btn { flex: 1 1 auto; justify-content: center; padding: 10px 12px; }
+  #calculator-section .stepper .step-btn { flex-basis: 36px; }
+  #calculator-section .price-setting-panel .fields-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+/* ==========================================================================
+   Price Setting + GST container (pg-box)
+   Mobile (<= 900px): dissolves into the button row (display: contents),
+   so the layout is exactly as before.
+   Desktop (>= 901px): JS moves it under "Select Drilling Mode" and it
+   becomes its own panel.
+   ========================================================================== */
+#calculator-section .left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+#calculator-section .pg-box { display: contents; }
+#calculator-section .pg-title { display: none; }
+
+/* price-setting panel opens above the button row on mobile (as before) */
+#calculator-section .pg-box .price-setting-panel {
+  order: -1;
+  flex: 1 1 100%;
+  margin: 0 0 2px;
+}
+
+@media (min-width: 901px) {
+  #calculator-section .calc-actions { justify-content: flex-end; }
+
+  #calculator-section .pg-box.pg-box--side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+  }
+  #calculator-section .pg-box--side .pg-title { display: flex; margin-bottom: 4px; }
+  #calculator-section .pg-box--side .price-setting-btn {
+    width: 100%;
+    justify-content: center;
+    flex: none;
+  }
+  #calculator-section .pg-box--side .price-setting-panel {
+    order: 0;
+    margin: 0;
+    flex: none;
+  }
+  #calculator-section .pg-box--side .price-setting-panel .fields-grid {
+    grid-template-columns: 1fr;
+  }
+  #calculator-section .pg-box--side .nigilswitch {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+}
