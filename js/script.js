@@ -332,7 +332,9 @@ function clearCalculator(){
 
     document.getElementById("casing10Rate").value = "750";
 
-    document.getElementById("gstToggle").checked = true;
+    document.getElementById("gstToggle").checked = false;
+
+    syncGstLabel();
 
     var slabSel = document.getElementById("stepRate");
 
@@ -365,6 +367,9 @@ document.getElementById("todayDate")
 .innerHTML = formattedDate;
 
 function openQuotation() {
+
+    // Customer + drilling details are compulsory
+    if (!validateQuotation()) return;
 
     // Calculate latest values
     calculateTotal();
@@ -526,4 +531,97 @@ document.addEventListener('pricesettings:save', recalcIfResultsVisible);
 
 document.addEventListener('change', function (e) {
   if (e.target && e.target.id === 'stepRate') recalcIfResultsVisible();
+});
+
+
+
+/* ==========================================================================
+   GST label (ON / OFF) - GST is OFF by default
+   ========================================================================== */
+function syncGstLabel() {
+  var t = document.getElementById('gstToggle');
+  var b = t && t.parentNode ? t.parentNode.querySelector('b') : null;
+  if (b) b.textContent = t.checked ? 'ON' : 'OFF';
+}
+syncGstLabel();
+document.addEventListener('change', function (e) {
+  if (e.target && e.target.id === 'gstToggle') syncGstLabel();
+});
+
+
+/* ==========================================================================
+   View Quotation: customer details + drilling details must be filled
+   ========================================================================== */
+function validateQuotation() {
+  var filled = function (v) { return String(v == null ? '' : v).trim() !== ''; };
+  var positive = function (v) { return parseFloat(v) > 0; };
+
+  var checks = [
+    ['customerName',  'Customer Name', filled],
+    ['customerPhone', 'Phone Number',  filled],
+    ['siteAddress',   'Site Address',  filled],
+    ['boreType',      'Bore Type',     filled],
+    ['stepRate',      'Slab Rate',     filled],
+    ['depth',         'Total Depth',   positive],
+    ['baseRate',      'Base Rate',     positive]
+  ];
+  if (drillingMode === 'rebore') checks.push(['reboreFeet', 'Rebore Depth', positive]);
+
+  document.querySelectorAll('.qv-missing').forEach(function (n) { n.classList.remove('qv-missing'); });
+
+  var missing = [];
+  checks.forEach(function (c) {
+    var el = document.getElementById(c[0]);
+    if (!el || c[2](el.value)) return;
+    (el.closest('.field') || el).classList.add('qv-missing');
+    missing.push({ el: el, label: c[1] });
+  });
+
+  var msg = document.getElementById('quoteMissingMsg');
+  if (!missing.length) {
+    if (msg) { msg.hidden = true; msg.textContent = ''; }
+    return true;
+  }
+
+  if (msg) {
+    msg.textContent = 'Please fill in the required details before viewing the quotation: ' +
+      missing.map(function (m) { return m.label; }).join(', ') + '.';
+    msg.hidden = false;
+  }
+  var first = missing[0].el;
+  first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  try { first.focus({ preventScroll: true }); } catch (err) {}
+  return false;
+}
+
+// clear the red mark as soon as the field is filled in
+function clearQuotationMark(e) {
+  var f = e.target && e.target.closest ? e.target.closest('.qv-missing') : null;
+  if (!f) return;
+  f.classList.remove('qv-missing');
+  if (!document.querySelector('.qv-missing')) {
+    var msg = document.getElementById('quoteMissingMsg');
+    if (msg) { msg.hidden = true; msg.textContent = ''; }
+  }
+}
+document.addEventListener('input', clearQuotationMark);
+document.addEventListener('change', clearQuotationMark);
+
+
+/* ==========================================================================
+   Drilling Rate Info container: the eye button shows / hides the rates
+   ========================================================================== */
+document.addEventListener('click', function (e) {
+  var btn = e.target && e.target.closest ? e.target.closest('#driViewBtn') : null;
+  if (!btn) return;
+  var rates = document.getElementById('driRates');
+  if (!rates) return;
+  var opening = rates.hidden;
+  rates.hidden = !opening;
+  var empty = document.getElementById('driEmpty');
+  if (empty) empty.hidden = opening;
+  btn.classList.toggle('open', opening);
+  btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+  btn.setAttribute('aria-label', opening ? 'Hide drilling rates' : 'View drilling rates');
+  btn.title = opening ? 'Hide' : 'View';
 });

@@ -144,8 +144,20 @@
     return out;
   }
 
+  /* "Step rate" box in the panel mirrors the Slab Rate chosen in the calculator */
+  function fillPatternSelect() {
+    var sel = $('psPattern');
+    if (!sel || sel.options.length) return;
+    Object.keys(PATTERNS).forEach(function (id) {
+      var o = document.createElement('option'); o.value = id; o.textContent = PATTERNS[id].label; sel.appendChild(o);
+    });
+  }
+  function syncPattern() { var sel = $('psPattern'); if (sel) sel.value = currentPatternId(); }
+
   function load() {
     var st = readStore(), cfg = normCfg(st);
+    fillPatternSelect();
+    syncPattern();
     $('psBase').value = liveVal(LIVE.base);
     $('psRebore').value = liveVal(LIVE.rebore);
     $('ps7').value = liveVal(LIVE.p7);
@@ -215,7 +227,15 @@
     if (e.target && e.target.id === 'depth' && !box.hasAttribute('hidden')) render();
   });
   document.addEventListener('change', function (e) {
-    if (e.target && e.target.id === 'stepRate' && !box.hasAttribute('hidden')) render();
+    if (e.target && e.target.id === 'stepRate') { syncPattern(); if (!box.hasAttribute('hidden')) render(); }
+  });
+
+  /* picking a pattern in the panel sets the calculator's Slab Rate (same choice, two places) */
+  box.addEventListener('change', function (e) {
+    if (!e.target || e.target.id !== 'psPattern') return;
+    var calc = $('stepRate'); if (!calc) return;
+    calc.value = e.target.value;
+    calc.dispatchEvent(new Event('change', { bubbles: true }));
   });
 
   box.addEventListener('click', function (e) {
@@ -232,6 +252,7 @@
       window.priceSettings = publicApi();
       document.dispatchEvent(new CustomEvent('pricesettings:save', { detail: window.priceSettings }));
       flash('Saved \u2713');
+      window.togglePriceSettings(false);   /* saved -> close the panel */
     }
   });
 

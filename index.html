@@ -666,47 +666,60 @@
         </button>
       </div>
 
-      <!-- Drilling Rate Info Box -->
-      <div class="drill-rate-info-box">
-        <div class="drill-rate-info-title">
-          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          Drilling Rate Info
+    </div>
+
+    <!-- ============ DRILLING RATE INFO (click the eye to view) ============ -->
+  <section class="panel drill-rate-panel" id="drillRatePanel">
+    <div class="drill-rate-head">
+      <h2 class="panel-title">
+        <span class="dri-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="7.9" r="1.1" fill="currentColor"/></svg></span>
+        Drilling Rate Info
+      </h2>
+      <button type="button" class="dri-view-btn" id="driViewBtn" aria-expanded="false" aria-controls="driRates" aria-label="View drilling rates" title="View">
+        <svg class="eye-on" viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+        <svg class="eye-off" viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M3 3l18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.5 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7c1.6 0 3-.4 4.3-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="dri-card" id="driCard">
+      <div class="dri-empty" id="driEmpty">
+        <svg viewBox="0 0 24 24" fill="none" width="34" height="34" aria-hidden="true"><path d="M3 3l18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.5 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7c1.6 0 3-.4 4.3-1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <strong>Rates are hidden</strong>
+        <p>Tap the eye icon to view drilling and pipe rates</p>
+      </div>
+      <div class="drill-rate-info-rows" id="driRates" hidden>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">4.5″</span>
+          <span class="drill-rate-range">Base Rate: ₹70 – 90 / ft</span>
         </div>
-        <div class="drill-rate-info-rows">
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">4.5″</span>
-            <span class="drill-rate-range">Base Rate: ₹70 – 90 / ft</span>
-          </div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">6″ – 6.5″</span>
-            <span class="drill-rate-range">Base Rate: ₹90 – 110 / ft</span>
-          </div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">7.5″ – 8.5″</span>
-            <span class="drill-rate-range">Base Rate: ₹130 – 180 / ft</span>
-          </div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">10″ – 12″</span>
-            <span class="drill-rate-range">Base Rate: ₹160 – 210 / ft</span>
-          </div>
-          <div class="drill-rate-info-divider"></div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">7″ PVC</span>
-            <span class="drill-rate-range">₹350 – 450 / ft</span>
-          </div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size">10″ PVC</span>
-            <span class="drill-rate-range">₹650 – 750 / ft</span>
-          </div>
-          <div class="drill-rate-info-divider"></div>
-          <div class="drill-rate-info-row">
-            <span class="drill-rate-size drill-rate-rebore">Rebore</span>
-            <span class="drill-rate-range">₹30 – 45 / ft</span>
-          </div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">6″ – 6.5″</span>
+          <span class="drill-rate-range">Base Rate: ₹90 – 110 / ft</span>
+        </div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">7.5″ – 8.5″</span>
+          <span class="drill-rate-range">Base Rate: ₹130 – 180 / ft</span>
+        </div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">10″ – 12″</span>
+          <span class="drill-rate-range">Base Rate: ₹160 – 210 / ft</span>
+        </div>
+        <div class="drill-rate-info-divider"></div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">7″ PVC</span>
+          <span class="drill-rate-range">₹350 – 450 / ft</span>
+        </div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size">10″ PVC</span>
+          <span class="drill-rate-range">₹650 – 750 / ft</span>
+        </div>
+        <div class="drill-rate-info-divider"></div>
+        <div class="drill-rate-info-row">
+          <span class="drill-rate-size drill-rate-rebore">Rebore</span>
+          <span class="drill-rate-range">₹30 – 45 / ft</span>
         </div>
       </div>
-
     </div>
+  </section>
     </div>
 
     <div class="details-stack">
@@ -829,7 +842,6 @@
               <svg class="title-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
               Price &amp; Tax
             </h2>
-
             <button type="button" class="price-setting-btn" id="priceSettingBtn" aria-expanded="false" aria-controls="priceSettingsContainer">
               <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               Price Setting
@@ -855,9 +867,9 @@
 
             <label class="nigilswitch">
               <span>GST (18%)</span>
-              <input type="checkbox" id="gstToggle" checked>
+              <input type="checkbox" id="gstToggle">
               <span class="nigilslider"></span>
-              <b>ON</b>
+              <b>OFF</b>
             </label>
           </div>
 
@@ -918,6 +930,10 @@
             <button type="button" class="step-btn" data-target="psStepRate" data-dir="-1" data-step="10" aria-label="Decrease final step by 10">−</button>
             <input type="number" id="psStepRate" value="100" min="0" aria-label="Final step per slab">
             <button type="button" class="step-btn" data-target="psStepRate" data-dir="1" data-step="10" aria-label="Increase final step by 10">+</button>
+          </div>
+          <div class="ps-pattern-wrap">
+            <span class="ps-lbl">Step rate :</span>
+            <select id="psPattern" class="ps-pattern-select" aria-label="Step rate (slab pattern)"></select>
           </div>
         </div>
         <div class="ps-table" id="psSlabLeft"></div>
@@ -1042,15 +1058,6 @@
         </div>
       </details>
 
-      <div class="panel note-panel">
-        <span class="note-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 9 4.6-.3 8-4 8-9V5l-8-3Z" stroke="#4F8CFF" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#4F8CFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span>
-          <b>Transparent Pricing</b>
-          <p>No hidden charges. What you see is what you pay!</p>
-        </span>
-      </div>
     </div>
   </section>
 
@@ -1086,6 +1093,7 @@
     <div class="panel save-panel">
       <h2 class="panel-title">Save Estimate</h2>
       <p class="panel-subtitle">Download or share this estimate</p>
+      <div class="qv-msg" id="quoteMissingMsg" role="alert" hidden></div>
       <div class="save-buttons">
         <button type="button" class="btn btn-primary" id="viewQuotationBtn" onclick="openQuotation()">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v13m0 0-4-4m4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -1106,6 +1114,19 @@
         <li>This is an approximate estimation.</li>
         <li>For final quotation, please contact our team.</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ TRANSPARENT PRICING (bottom) ============ -->
+  <section class="transparent-row">
+    <div class="panel note-panel">
+      <span class="note-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 9 4.6-.3 8-4 8-9V5l-8-3Z" stroke="#4F8CFF" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#4F8CFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>
+        <b>Transparent Pricing</b>
+        <p>No hidden charges. What you see is what you pay!</p>
+      </span>
     </div>
   </section>
 
@@ -1515,7 +1536,7 @@
   if(!box||!left||!actions) return;
   var mq=window.matchMedia('(min-width: 901px)');
   function place(){
-    if(mq.matches){ left.appendChild(box); box.classList.add('pg-box--side'); }
+    if(mq.matches){ left.appendChild(box); box.classList.add('pg-box--side'); }   /* last child: under the rate info */
     else { actions.insertBefore(box,actions.firstChild); box.classList.remove('pg-box--side'); }
   }
   place();
@@ -1538,6 +1559,54 @@
   });
 })();
 </script>
+<style>
+  /* Price Settings: "Step rate" (slab pattern) box beside the Final step stepper */
+  .ps-pattern-wrap{display:flex;align-items:center;gap:10px;margin-left:14px}
+  .ps-pattern-select{font:inherit;color:inherit;background:transparent;cursor:pointer;
+    padding:9px 12px;border-radius:12px;min-width:150px;
+    border:1px solid color-mix(in srgb,currentColor 25%,transparent)}
+  .ps-pattern-select:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+  /* View Quotation: required fields that are still empty */
+  .qv-missing > span{color:#c0392b}
+  .qv-missing input,.qv-missing select,.qv-missing textarea,
+  .qv-missing .stepper,.qv-missing .input-suffix{border-color:#c0392b !important;box-shadow:0 0 0 2px rgba(192,57,43,.22)}
+  .qv-msg{margin:0 0 12px;padding:10px 14px;border-radius:12px;font-size:.9rem;line-height:1.4;
+    color:#a5271b;background:rgba(192,57,43,.10);border:1px solid rgba(192,57,43,.35)}
+  .qv-msg[hidden]{display:none}
+
+  /* Drilling Rate Info container */
+  .drill-rate-panel .drill-rate-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding-bottom:12px;border-bottom:1px solid rgba(30,58,82,.12)}
+  .drill-rate-panel .drill-rate-head .panel-title{margin:0;display:flex;align-items:center;gap:10px;min-width:0;
+    white-space:nowrap !important;color:#1e3a52 !important;font-size:.74rem !important;font-weight:800 !important;
+    letter-spacing:.03em !important;text-transform:uppercase;line-height:1.2}
+  .drill-rate-panel .dri-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:none;
+    background:none;color:#1f8a77}
+  .drill-rate-panel .dri-icon svg{width:18px;height:18px}
+  .drill-rate-panel .dri-view-btn{display:inline-flex;align-items:center;justify-content:center;width:28px !important;height:28px !important;min-width:0;padding:0 !important;flex:none;
+    cursor:pointer;color:#1e3a52;border-radius:8px;
+    background:rgba(13,148,136,.10);border:1px solid rgba(13,148,136,.30);transition:background .15s}
+  .drill-rate-panel .dri-view-btn svg{width:16px;height:16px}
+  .dri-view-btn:hover{background:rgba(13,148,136,.18)}
+  .dri-view-btn:focus-visible{outline:2px solid #0f766e;outline-offset:2px}
+  .dri-view-btn .eye-off{display:none}             /* rates hidden -> open eye = "view" */
+  .dri-view-btn.open .eye-on{display:none}         /* rates shown  -> crossed eye = "hide" */
+  .dri-view-btn.open .eye-off{display:inline}
+  :is([data-theme="dark"],.dark,.dark-mode,.theme-dark) .drill-rate-head{border-bottom-color:rgba(255,255,255,.14)}
+  :is([data-theme="dark"],.dark,.dark-mode,.theme-dark) .drill-rate-panel .drill-rate-head .panel-title{color:#e6eef5 !important}
+  :is([data-theme="dark"],.dark,.dark-mode,.theme-dark) .drill-rate-panel .dri-view-btn{color:#e6eef5}
+
+  .dri-card{margin-top:14px;padding:18px 16px;border-radius:14px;
+    background:rgba(13,148,136,.08);border:1px solid rgba(13,148,136,.28)}
+  .dri-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;color:#0f766e}
+  .dri-empty strong{font-size:1.02rem;color:inherit}
+  .dri-empty p{margin:0;font-size:.88rem;line-height:1.45;opacity:.75;color:inherit}
+  .dri-empty[hidden],#driRates[hidden]{display:none}
+  /* hide the "Rates are hidden" message whenever the rates are showing (CSS only, no script needed) */
+  .dri-card:has(#driRates:not([hidden])) .dri-empty{display:none}
+  .dri-card #driRates{margin:0}
+</style>
 <script src="js/script1.js"></script>
 <script src="js/price-settings.js"></script>
 <script src="js/script.js"></script>
@@ -1599,6 +1668,7 @@
 
   var original = window.openQuotation;
   window.openQuotation = function () {
+    if (typeof window.validateQuotation === 'function' && !window.validateQuotation()) return;
     saveCalcForQuotation();
     var result;
     if (typeof original === 'function') result = original.apply(this, arguments);
