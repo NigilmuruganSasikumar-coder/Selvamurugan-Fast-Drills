@@ -75,6 +75,17 @@ function calculateTotal(){
 
 
 
+    // Every slab rate comes from Price Settings (price-settings.js):
+    // base rate + the step of each slab for the pattern chosen in "Slab Rate".
+    const PS = window.PriceSettings;
+
+    if(!PS){
+        alert("Price Settings did not load. Please refresh the page.");
+        return;
+    }
+
+    const rateForSlab = PS.rateFn(baseRate);
+
     let start = 1;
 
     let drillingTotal = 0;
@@ -83,123 +94,76 @@ function calculateTotal(){
 
 
 
-    // ORIGINAL LOGIC SETTINGS
+    // =========================
+    // REBORE SECTION
+    // =========================
 
-    let currentRate = baseRate;
+    if(drillingMode === "rebore"){
 
-    let addValue = 5;
+        let reboreFeet =
+        parseInt(document.getElementById("reboreFeet").value) || 0;
 
-
-// =========================
-// REBORE SECTION
-// =========================
-
-if(drillingMode === "rebore"){
-
-    let reboreFeet =
-    parseInt(document.getElementById("reboreFeet").value) || 0;
-
-    let reboreRate =
-    parseInt(document.getElementById("reboreRate").value) || 0;
+        let reboreRate =
+        parseInt(document.getElementById("reboreRate").value) || 0;
 
 
 
-    // REBORE COST
+        // REBORE COST
 
-    let reboreCost =
-    reboreFeet * reboreRate;
+        let reboreCost =
+        reboreFeet * reboreRate;
 
-    drillingTotal += reboreCost;
+        drillingTotal += reboreCost;
 
 
 
-    // SHOW REBORE ROW
+        // SHOW REBORE ROW
 
-    breakdownHTML += `
+        breakdownHTML += `
 
-    <div class="breakdown-row">
+        <div class="breakdown-row">
 
-        <div>
-            1-${reboreFeet} ft
+            <div>
+                1-${reboreFeet} ft
+            </div>
+
+            <div>
+                ₹${reboreRate}/ft
+            </div>
+
+            <div class="amount">
+                Rs.${reboreCost.toLocaleString()}
+            </div>
+
         </div>
 
-        <div>
-            ₹${reboreRate}/ft
-        </div>
-
-        <div class="amount">
-            Rs.${reboreCost.toLocaleString()}
-        </div>
-
-    </div>
-
-    `;
+        `;
 
 
 
-    // NEXT STARTING POINT
+        // The rest of the depth is priced by its position (same slab rates as a new bore)
 
-    start = reboreFeet + 1;
+        start = reboreFeet + 1;
 
-
-// =========================
-// REBORE RATE ADVANCEMENT (RULE B)
-// =========================
-
-currentRate = baseRate;
-addValue = 5;
-
-if (reboreFeet > 300) {
-
-    // Determine the slab where the rebore ENDS
-    let slab = Math.floor((reboreFeet - 1) / 100);
-
-    // Example:
-    // 301-400 -> slab = 3
-    // 401-500 -> slab = 4
-    // 501-600 -> slab = 5
-
-    for (let s = 3; s <= slab; s++) {
-
-        currentRate += addValue;
-
-        if (addValue === 5) {
-            addValue = 10;
-        } else {
-            addValue += 10;
-        }
     }
 
-}
-}
+
 
     // =========================
-    // NORMAL SLAB CALCULATION
+    // SLAB CALCULATION
     // =========================
 
     while(start <= depth){
 
-        let end;
+        let slabNo = PS.slabIndex(start);
 
-
-    if(start <= 300){
-
-        end = Math.min(300, depth);
-
-    }
-    else{
-
-        // Keep slab boundaries fixed at 400,500,600,700...
-        end = Math.min(Math.ceil(start / 100) * 100, depth);
-
-    }
-
-
+        // slab boundaries are fixed: 1-300, 301-400, 401-500 ...
+        let end = Math.min(PS.slabBounds(slabNo).to, depth);
 
         let feet =
         end - start + 1;
 
-
+        let currentRate = rateForSlab(slabNo);
 
         let slabCost =
         feet * currentRate;
@@ -233,34 +197,6 @@ if (reboreFeet > 300) {
 
 
         start = end + 1;
-
-
-
-        // ORIGINAL NEW DRILLING LOGIC
-
-        if(end < 1000){
-
-            currentRate += addValue;
-
-            if(addValue === 5){
-
-                addValue = 10;
-
-            }
-
-            else{
-
-                addValue += 10;
-
-            }
-
-        }
-
-        else{
-
-            currentRate += 100;
-
-        }
 
     }
 
@@ -325,6 +261,11 @@ if (reboreFeet > 300) {
 
     Mode:
     <b>${drillingMode.toUpperCase()}</b>
+
+    |
+
+    Slab Rate:
+    <b>${PS.patternLabel()}</b>
 
     |
 
@@ -393,6 +334,10 @@ function clearCalculator(){
 
     document.getElementById("gstToggle").checked = true;
 
+    var slabSel = document.getElementById("stepRate");
+
+    if(slabSel) slabSel.value = "slab5";
+
     document.getElementById("detailsText").innerHTML = "";
 
     document.getElementById("breakdown").innerHTML = "";
@@ -445,6 +390,8 @@ function openQuotation() {
 
         boreType: document.getElementById("boreType") ? document.getElementById("boreType").value : "",
         boreBata: document.getElementById("boreBata") ? document.getElementById("boreBata").value : "0",
+
+        slabPattern: window.PriceSettings ? window.PriceSettings.patternLabel() : "",
 
         gst: document.getElementById("gstToggle").checked,
 
@@ -517,6 +464,10 @@ function injectBoreBata() {
   var summaryTotalEl     = document.getElementById('summaryTotal');
   var grandTotalEl       = document.getElementById('grandTotal');
   var boreBataLine       = document.getElementById('boreBataLine');
+  var transportLine      = document.getElementById('transportLine');
+  var otherLine          = document.getElementById('otherChargesLine');
+  var summaryTransportEl = document.getElementById('summaryTransport');
+  var summaryOtherEl     = document.getElementById('summaryOther');
 
   if (!boreBataInput || !summarySubtotalEl) return;
 
@@ -529,12 +480,19 @@ function injectBoreBata() {
   if (summaryBoreTypeEl)  summaryBoreTypeEl.textContent  = boreLabel;
   if (boreBataLine) boreBataLine.style.display = boreBata > 0 ? '' : 'none';
 
+  // Transport + other charges (saved in Price Settings, only when switched on there)
+  var charges = window.PriceSettings ? window.PriceSettings.getCharges() : { transport: 0, other: 0 };
+  if (summaryTransportEl) summaryTransportEl.textContent = '₹' + fmt(charges.transport);
+  if (summaryOtherEl)     summaryOtherEl.textContent     = '₹' + fmt(charges.other);
+  if (transportLine) transportLine.style.display = charges.transport > 0 ? '' : 'none';
+  if (otherLine)     otherLine.style.display     = charges.other > 0 ? '' : 'none';
+
   // Read what script.js already computed for subtotal, GST, total
   var rawSubtotal = parseRs(summarySubtotalEl.textContent);
   var gstChecked  = document.getElementById('gstToggle') ? document.getElementById('gstToggle').checked : false;
 
-  // New subtotal = old subtotal + bore bata
-  var newSubtotal = rawSubtotal + boreBata;
+  // New subtotal = old subtotal + bore bata + transport + other charges
+  var newSubtotal = rawSubtotal + boreBata + charges.transport + charges.other;
   var newGST      = gstChecked ? Math.round(newSubtotal * 0.18) : 0;
   var newTotal    = newSubtotal + newGST;
 
@@ -552,3 +510,20 @@ function parseRs(str) {
 function fmt(n) {
   return Math.round(n).toLocaleString('en-IN');
 }
+
+
+/* ==========================================================================
+   Keep the results in step with Price Settings / the Slab Rate choice
+   ========================================================================== */
+function recalcIfResultsVisible() {
+  var box = document.querySelector('.breakdown-box');
+  if (!box || box.style.display === 'none') return;      // nothing calculated yet
+  if (typeof window.calculateAndDisplay === 'function') window.calculateAndDisplay();
+  else calculateTotal();
+}
+
+document.addEventListener('pricesettings:save', recalcIfResultsVisible);
+
+document.addEventListener('change', function (e) {
+  if (e.target && e.target.id === 'stepRate') recalcIfResultsVisible();
+});
