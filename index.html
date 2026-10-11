@@ -13,6 +13,13 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <title>Borewell Drilling in Madurai | 30+ Years Experts | Selvamurugan Fast Drills</title>
 <script src="js/theme-init.js"></script>
+<script>
+/* AI robot images (img/robot-avatar.jpg, img/robot-header.jpg): if one is missing, show the robot icon instead */
+function aiImgNext(img){
+  img.onerror = null;
+  var ic = document.createElement('i'); ic.className = 'fas fa-robot'; img.replaceWith(ic);
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
@@ -21,11 +28,14 @@
 <link rel="stylesheet" href="css/index2.css">
 <link rel="stylesheet" href="css/calc-sketch.css">
 <link rel="stylesheet" href="css/price-settings.css">
+<link rel="stylesheet" href="css/theme-switcher.css">
+<link rel="stylesheet" href="css/search.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="smfd-ico-dark" viewBox="0 0 120 120"><defs><linearGradient id="dk-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="120"><stop offset="0" stop-color="#8be6ff"/><stop offset=".45" stop-color="#2b7fee"/><stop offset="1" stop-color="#5cc0ff"/></linearGradient><linearGradient id="dk-tl" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="62" y2="62"><stop offset="0" stop-color="#050e24"/><stop offset="1" stop-color="#10306a"/></linearGradient><linearGradient id="dk-br" gradientUnits="userSpaceOnUse" x1="110" y1="110" x2="60" y2="60"><stop offset="0" stop-color="#1c5fd0"/><stop offset="1" stop-color="#58a9fa"/></linearGradient><linearGradient id="dk-moon" gradientUnits="userSpaceOnUse" x1="63" y1="59" x2="87" y2="97"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bcd8ff"/></linearGradient><linearGradient id="dk-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="dk-sun" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff7b8"/><stop offset=".5" stop-color="#ffd23d"/><stop offset="1" stop-color="#ff9a1c"/></radialGradient><radialGradient id="dk-halo"><stop offset="0" stop-color="#ffc83a" stop-opacity="0.45"/><stop offset="1" stop-color="#ffc83a" stop-opacity="0"/></radialGradient><clipPath id="dk-clip"><rect x="9" y="9" width="102" height="102" rx="27"/></clipPath><mask id="dk-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><rect width="120" height="120" fill="#fff"/><circle cx="86" cy="69" r="16.5" fill="#000"/></mask><filter id="dk-blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter></defs><rect x="3" y="3" width="114" height="114" rx="32" fill="url(#dk-rim)"/><rect x="7" y="7" width="106" height="106" rx="29" fill="#050d20"/><g clip-path="url(#dk-clip)"><polygon points="9,9 111,9 9,111" fill="url(#dk-tl)"/><polygon points="111,9 111,111 9,111" fill="url(#dk-br)"/><path d="M113 7L7 113" stroke="#cfeaff" stroke-width="2.4" stroke-opacity="0.9"/><path d="M113 7L7 113" stroke="#cfeaff" stroke-width="7" stroke-opacity=".18" filter="url(#dk-blur)"/><circle cx="38" cy="40" r="30" fill="url(#dk-halo)"/><g stroke="#ffb92e" stroke-width="3.1" stroke-linecap="round"><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(0 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(30 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(60 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(90 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(120 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(150 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(180 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(210 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(240 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(270 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(300 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(330 38 40)"/></g><circle cx="38" cy="40" r="13" fill="url(#dk-sun)"/><ellipse cx="34" cy="34" rx="6" ry="3.4" fill="#fff" fill-opacity=".45"/><circle cx="77" cy="77" r="19" fill="#a9d0ff" fill-opacity="0.55" mask="url(#dk-cut)" filter="url(#dk-blur)"/><circle cx="77" cy="77" r="19" fill="url(#dk-moon)" mask="url(#dk-cut)"/><path d="M97.0 28.5Q98.2 34.8 104.5 36.0Q98.2 37.2 97.0 43.5Q95.8 37.2 89.5 36.0Q95.8 34.8 97.0 28.5Z" fill="#ffffff"/><path d="M99.0 88.5Q100.0 94.0 105.5 95.0Q100.0 96.0 99.0 101.5Q98.0 96.0 92.5 95.0Q98.0 94.0 99.0 88.5Z" fill="#ffffff"/><path d="M58.0 91.8Q58.7 95.3 62.2 96.0Q58.7 96.7 58.0 100.2Q57.3 96.7 53.8 96.0Q57.3 95.3 58.0 91.8Z" fill="#ffffff" fill-opacity=".9"/><path d="M9 9H111V40C84 54 36 54 9 42Z" fill="url(#dk-gloss)"/></g><rect x="7.4" y="7.4" width="105.2" height="105.2" rx="28.6" fill="none" stroke="rgba(255,255,255,.22)" stroke-width=".9"/></symbol><symbol id="smfd-ico-light" viewBox="0 0 120 120"><defs><linearGradient id="lt-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="120"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#e6efff"/><stop offset="1" stop-color="#ffffff"/></linearGradient><linearGradient id="lt-tl" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="62" y2="62"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9f1ff"/></linearGradient><linearGradient id="lt-br" gradientUnits="userSpaceOnUse" x1="110" y1="110" x2="62" y2="62"><stop offset="0" stop-color="#2f78f0"/><stop offset="1" stop-color="#9cc6ff"/></linearGradient><linearGradient id="lt-moon" gradientUnits="userSpaceOnUse" x1="63" y1="59" x2="87" y2="97"><stop offset="0" stop-color="#4a8dff"/><stop offset="1" stop-color="#1646c2"/></linearGradient><linearGradient id="lt-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="lt-sun" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff3a6"/><stop offset=".5" stop-color="#ffc72f"/><stop offset="1" stop-color="#ff8d1a"/></radialGradient><radialGradient id="lt-halo"><stop offset="0" stop-color="#ffc83a" stop-opacity="0.35"/><stop offset="1" stop-color="#ffc83a" stop-opacity="0"/></radialGradient><clipPath id="lt-clip"><rect x="9" y="9" width="102" height="102" rx="27"/></clipPath><mask id="lt-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><rect width="120" height="120" fill="#fff"/><circle cx="86" cy="69" r="16.5" fill="#000"/></mask><filter id="lt-blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter></defs><rect x="3" y="3" width="114" height="114" rx="32" fill="url(#lt-rim)"/><rect x="7" y="7" width="106" height="106" rx="29" fill="#d9e6fb"/><g clip-path="url(#lt-clip)"><polygon points="9,9 111,9 9,111" fill="url(#lt-tl)"/><polygon points="111,9 111,111 9,111" fill="url(#lt-br)"/><path d="M113 7L7 113" stroke="#ffffff" stroke-width="2.4" stroke-opacity="0.95"/><path d="M113 7L7 113" stroke="#ffffff" stroke-width="7" stroke-opacity=".18" filter="url(#lt-blur)"/><circle cx="38" cy="40" r="30" fill="url(#lt-halo)"/><g stroke="#ffa526" stroke-width="3.1" stroke-linecap="round"><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(0 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(30 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(60 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(90 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(120 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(150 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(180 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(210 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(240 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(270 38 40)"/><line x1="38" y1="14.5" x2="38" y2="21.5" transform="rotate(300 38 40)"/><line x1="38" y1="16.5" x2="38" y2="20.5" transform="rotate(330 38 40)"/></g><circle cx="38" cy="40" r="13" fill="url(#lt-sun)"/><ellipse cx="34" cy="34" rx="6" ry="3.4" fill="#fff" fill-opacity=".45"/><circle cx="77" cy="77" r="19" fill="#1d4fd0" fill-opacity="0.35" mask="url(#lt-cut)" filter="url(#lt-blur)"/><circle cx="77" cy="77" r="19" fill="url(#lt-moon)" mask="url(#lt-cut)"/><path d="M97.0 28.5Q98.2 34.8 104.5 36.0Q98.2 37.2 97.0 43.5Q95.8 37.2 89.5 36.0Q95.8 34.8 97.0 28.5Z" fill="#ffffff"/><path d="M99.0 88.5Q100.0 94.0 105.5 95.0Q100.0 96.0 99.0 101.5Q98.0 96.0 92.5 95.0Q98.0 94.0 99.0 88.5Z" fill="#ffffff"/><path d="M58.0 91.8Q58.7 95.3 62.2 96.0Q58.7 96.7 58.0 100.2Q57.3 96.7 53.8 96.0Q57.3 95.3 58.0 91.8Z" fill="#ffffff" fill-opacity=".9"/><path d="M9 9H111V40C84 54 36 54 9 42Z" fill="url(#lt-gloss)"/></g><rect x="7.4" y="7.4" width="105.2" height="105.2" rx="28.6" fill="none" stroke="rgba(255,255,255,.9)" stroke-width=".9"/></symbol></svg>
     <!-- ==========================================================================
        LOADER — stages are driven purely by the data-stage attribute below,
        set from JS. Nothing here needs to change to retime the sequence.
@@ -73,7 +83,7 @@
     <!-- Floating AI assistant button (replaces the old WhatsApp / Instagram floats) -->
     <a href="ai chat.html" class="ai-float" id="aiFloatBtn" aria-label="Chat with Borewell AI">
         <span class="ai-float__tip">Ask Borewell AI</span>
-        <i class="fas fa-robot"></i>
+        <img class="ai-img ai-float__img" src="img/robot-avatar.jpg" alt="" width="56" height="56" onerror="aiImgNext(this)">
         <span class="ai-float__badge">AI</span>
     </a>
 </div>
@@ -137,7 +147,7 @@
         <div class="mnav-cards">
 
             <a href="ai chat.html" class="mnav-item">
-                <span class="mnav-ico"><i class="fas fa-robot"></i></span>
+                <span class="mnav-ico"><img class="ai-img ai-nav__img" src="img/robot-header.jpg" alt="" width="22" height="22" onerror="aiImgNext(this)"></span>
                 <span class="mnav-card-text"><strong>AI Chat</strong><small>Ask me anything about borewells — or anything else</small></span>
                 <i class="fas fa-chevron-right mnav-chev"></i>
               </a>
@@ -163,14 +173,18 @@
 
         <p class="mnav-footer-tag">Water Builds A Better Tomorrow</p>
     </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <span class="toggle-thumb"><i class="fas fa-sun icon-sun"></i><i class="fas fa-moon icon-moon"></i></span>
+    <button class="sx-trigger" id="siteSearchBtn" type="button" aria-label="Search the site" aria-haspopup="dialog" aria-expanded="false" aria-controls="siteSearchPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+    </button>
+    <button class="tsw-trigger" id="themeSwitchBtn" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="tsw-ico--dark" viewBox="0 0 120 120" aria-hidden="true"><use href="#smfd-ico-dark"/></svg>
+        <svg class="tsw-ico--light" viewBox="0 0 120 120" aria-hidden="true"><use href="#smfd-ico-light"/></svg>
     </button>
     <span class="nav-divider" aria-hidden="true"></span>
     <button class="calc-btn-nav" onclick="location.href='#calculator-section'"><i class="fas fa-calculator"></i> <span>DrillCalc</span></button>
     <a href="ai chat.html" class="ai-btn-nav" aria-label="Open Borewell AI chat">
         <span class="ai-btn-nav__new">New</span>
-        <i class="fas fa-robot"></i> <span>Borewell AI</span> <i class="fas fa-plus ai-btn-nav__plus"></i>
+        <img class="ai-img ai-nav__img" src="img/robot-header.jpg" alt="" width="22" height="22" onerror="aiImgNext(this)"> <span>Borewell AI</span> <i class="fas fa-plus ai-btn-nav__plus"></i>
     </a>
     <div class="desktop-corner-box">
         <a href="https://borewell-application.vercel.app" class="admin-btn-nav" aria-label="Admin Login"><i class="fas fa-shield-halved"></i> <span>Admin</span></a>
@@ -181,6 +195,28 @@
 </header>
 
 <div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ===== Site search panel (search.css / search.js) ===== -->
+<div class="sx-backdrop" id="siteSearchBackdrop"></div>
+<div class="sx-panel" id="siteSearchPanel" role="dialog" aria-modal="false" aria-label="Search the site">
+    <div class="sx-card">
+        <div class="sx-bar">
+            <label class="sx-field">
+                <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                <input class="sx-input" id="siteSearchInput" type="search" placeholder="Search services, areas, FAQ…" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="true" aria-controls="siteSearchList" aria-autocomplete="list" aria-label="Search">
+                <button class="sx-btn sx-clear" id="siteSearchClear" type="button" aria-label="Clear search" hidden><i class="fas fa-xmark" aria-hidden="true"></i></button>
+            </label>
+            <button class="sx-btn sx-close" id="siteSearchClose" type="button" aria-label="Close search"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+        </div>
+        <div class="sx-body">
+            <p class="sx-head" id="siteSearchHead" hidden></p>
+            <ul class="sx-list" id="siteSearchList" role="listbox" aria-label="Search results"></ul>
+            <div id="siteSearchEmpty" hidden></div>
+        </div>
+        <div class="sx-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+        <div class="sx-sr" id="siteSearchStatus" role="status" aria-live="polite"></div>
+    </div>
+</div>
 
 <div class="slider">
     <div class="slide-truck">
@@ -1604,6 +1640,26 @@
   .dri-empty p{margin:0;font-size:.88rem;line-height:1.45;opacity:.75;color:inherit}
   .dri-empty[hidden],#driRates[hidden]{display:none}
   /* hide the "Rates are hidden" message whenever the rates are showing (CSS only, no script needed) */
+  /* Calculator section: no extra background of its own - the page's default background shows through */
+  #calculator-section,
+  #calculator-section > .page,
+  #calculator-section .site-header,
+  #calculator-section .setup-row,
+  #calculator-section .stats-row,
+  #calculator-section .results-row,
+  #calculator-section .save-row,
+  #calculator-section .transparent-row{
+    background:none !important;background-color:transparent !important;background-image:none !important;
+    box-shadow:none !important;backdrop-filter:none !important}
+  #calculator-section::before,#calculator-section::after,
+  #calculator-section > .page::before,#calculator-section > .page::after,
+  #calculator-section .site-header::before,#calculator-section .site-header::after{
+    background:none !important;background-image:none !important;box-shadow:none !important}
+
+  /* AI robot images in place of the robot icon */
+  .ai-float .ai-float__img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
+  .ai-btn-nav .ai-nav__img,.mnav-ico .ai-nav__img{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle}
+
   .dri-card:has(#driRates:not([hidden])) .dri-empty{display:none}
   .dri-card #driRates{margin:0}
 </style>
@@ -1611,6 +1667,8 @@
 <script src="js/price-settings.js"></script>
 <script src="js/script.js"></script>
 <script src="js/ui.js"></script>
+<script src="js/theme-switcher.js"></script>
+<script src="js/search.js" defer></script>
 <script src="js/pwa.js"></script>
 
 <!-- Quotation hand-off: passes the calculator's OWN slab breakdown + totals
