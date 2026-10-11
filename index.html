@@ -26,6 +26,7 @@ function aiImgNext(img){
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" media="(max-width: 860px)">
 <link rel="stylesheet" href="css/index1.css">
 <link rel="stylesheet" href="css/index2.css">
+<link rel="stylesheet" href="css/service-areas.css">
 <link rel="stylesheet" href="css/calc-sketch.css">
 <link rel="stylesheet" href="css/price-settings.css">
 <link rel="stylesheet" href="css/theme-switcher.css">
@@ -406,10 +407,43 @@ function aiImgNext(img){
   <div class="sarea-top">
     <!-- MOBILE HEADING (shown ≤900px, replaces .sarea-intro) -->
     <div class="sarea-mobile-head">
-      <div class="sarea-mobile-pinrow"><span class="line"></span><i class="fa-solid fa-location-dot"></i><span class="line"></span></div>
+      <div class="sarea-m-eyebrow"><i></i><span>Our Service Areas</span><i></i></div>
       <h2 class="sarea-mobile-title">Rooted Locally.<span class="hl">Serving Deeply.</span></h2>
       <p class="sarea-mobile-sub">Professional borewell drilling services across Madurai and surrounding locations.</p>
-      <div class="sarea-rule sarea-rule--center"></div>
+    </div>
+
+    <!-- MOBILE: feature list + district map (shown ≤900px, see css/service-areas.css) -->
+    <div class="sarea-m">
+      <ul class="sarea-m-feats">
+        <li class="sarea-m-feat"><span class="sarea-m-feat-ico"><i class="fa-solid fa-location-dot"></i></span><h4>Wide Coverage</h4><p>We serve multiple areas with the same commitment to quality and trust.</p></li>
+        <li class="sarea-m-feat"><span class="sarea-m-feat-ico"><i class="fa-solid fa-shield-halved"></i></span><h4>Fast &amp; Reliable</h4><p>Quick response and on-time service, always.</p></li>
+        <li class="sarea-m-feat"><span class="sarea-m-feat-ico"><i class="fa-solid fa-users"></i></span><h4>Expert Team</h4><p>Experienced professionals for every location.</p></li>
+      </ul>
+      <svg class="sarea-m-map" viewBox="0 0 270 200" role="img" aria-label="Map showing Madurai and the five areas around it: Tirupparankundram, Alanganallur, Mattuthavani, Solavandan and Pasumalai">
+          <defs>
+            <linearGradient id="smLand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--m-land1)"/><stop offset="1" style="stop-color:var(--m-land2)"/></linearGradient>
+            <linearGradient id="smPin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--rust-light)"/><stop offset="1" style="stop-color:var(--rust)"/></linearGradient>
+            <radialGradient id="smFade"><stop offset=".45" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+            <mask id="smMask"><rect width="270" height="200" fill="url(#smFade)"/></mask>
+            <pattern id="smDots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".7" class="gdot"/></pattern>
+            <filter id="smBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+            <clipPath id="smClip"><path d="M70.0,17.5 C74.6,13.8 88.8,11.9 97.5,10.0 C106.2,8.1 114.2,6.2 122.5,6.0 C130.8,5.8 139.6,6.2 147.5,9.0 C155.4,11.8 163.8,16.3 170.0,22.5 C176.2,28.7 180.0,40.8 185.0,46.0 C190.0,51.2 197.1,47.9 200.0,54.0 C202.9,60.1 197.9,74.4 202.5,82.5 C207.1,90.6 218.8,97.5 227.5,102.5 C236.2,107.5 249.6,106.7 255.0,112.5 C260.4,118.3 262.2,128.9 260.0,137.5 C257.8,146.1 251.1,157.3 241.5,164.0 C231.9,170.7 213.2,172.3 202.5,177.5 C191.8,182.7 186.5,190.8 177.5,195.0 C168.5,199.2 157.2,203.0 148.5,203.0 C139.8,203.0 132.4,195.3 125.0,195.0 C117.6,194.7 112.3,202.7 104.0,201.0 C95.7,199.3 83.2,192.2 75.0,185.0 C66.8,177.8 64.4,163.5 55.0,157.5 C45.6,151.5 27.4,152.8 18.5,149.0 C9.6,145.2 2.1,141.5 1.5,135.0 C0.9,128.5 13.0,119.0 15.0,110.0 C17.0,101.0 9.1,88.5 13.5,81.0 C17.9,73.5 33.3,70.0 41.5,65.0 C49.7,60.0 57.8,56.4 62.5,51.0 C67.2,45.6 68.8,38.1 70.0,32.5 C71.2,26.9 65.4,21.2 70.0,17.5Z"/></clipPath>
+          </defs>
+          <rect width="270" height="200" fill="url(#smDots)" mask="url(#smMask)"/>
+          <path class="landglow" d="M70.0,17.5 C74.6,13.8 88.8,11.9 97.5,10.0 C106.2,8.1 114.2,6.2 122.5,6.0 C130.8,5.8 139.6,6.2 147.5,9.0 C155.4,11.8 163.8,16.3 170.0,22.5 C176.2,28.7 180.0,40.8 185.0,46.0 C190.0,51.2 197.1,47.9 200.0,54.0 C202.9,60.1 197.9,74.4 202.5,82.5 C207.1,90.6 218.8,97.5 227.5,102.5 C236.2,107.5 249.6,106.7 255.0,112.5 C260.4,118.3 262.2,128.9 260.0,137.5 C257.8,146.1 251.1,157.3 241.5,164.0 C231.9,170.7 213.2,172.3 202.5,177.5 C191.8,182.7 186.5,190.8 177.5,195.0 C168.5,199.2 157.2,203.0 148.5,203.0 C139.8,203.0 132.4,195.3 125.0,195.0 C117.6,194.7 112.3,202.7 104.0,201.0 C95.7,199.3 83.2,192.2 75.0,185.0 C66.8,177.8 64.4,163.5 55.0,157.5 C45.6,151.5 27.4,152.8 18.5,149.0 C9.6,145.2 2.1,141.5 1.5,135.0 C0.9,128.5 13.0,119.0 15.0,110.0 C17.0,101.0 9.1,88.5 13.5,81.0 C17.9,73.5 33.3,70.0 41.5,65.0 C49.7,60.0 57.8,56.4 62.5,51.0 C67.2,45.6 68.8,38.1 70.0,32.5 C71.2,26.9 65.4,21.2 70.0,17.5Z" filter="url(#smBlur)"/>
+          <path class="land" d="M70.0,17.5 C74.6,13.8 88.8,11.9 97.5,10.0 C106.2,8.1 114.2,6.2 122.5,6.0 C130.8,5.8 139.6,6.2 147.5,9.0 C155.4,11.8 163.8,16.3 170.0,22.5 C176.2,28.7 180.0,40.8 185.0,46.0 C190.0,51.2 197.1,47.9 200.0,54.0 C202.9,60.1 197.9,74.4 202.5,82.5 C207.1,90.6 218.8,97.5 227.5,102.5 C236.2,107.5 249.6,106.7 255.0,112.5 C260.4,118.3 262.2,128.9 260.0,137.5 C257.8,146.1 251.1,157.3 241.5,164.0 C231.9,170.7 213.2,172.3 202.5,177.5 C191.8,182.7 186.5,190.8 177.5,195.0 C168.5,199.2 157.2,203.0 148.5,203.0 C139.8,203.0 132.4,195.3 125.0,195.0 C117.6,194.7 112.3,202.7 104.0,201.0 C95.7,199.3 83.2,192.2 75.0,185.0 C66.8,177.8 64.4,163.5 55.0,157.5 C45.6,151.5 27.4,152.8 18.5,149.0 C9.6,145.2 2.1,141.5 1.5,135.0 C0.9,128.5 13.0,119.0 15.0,110.0 C17.0,101.0 9.1,88.5 13.5,81.0 C17.9,73.5 33.3,70.0 41.5,65.0 C49.7,60.0 57.8,56.4 62.5,51.0 C67.2,45.6 68.8,38.1 70.0,32.5 C71.2,26.9 65.4,21.2 70.0,17.5Z"/>
+          <g clip-path="url(#smClip)"><path class="contour" d="M82.5,39.0 C86.5,36.7 96.6,34.4 103.4,31.8 C110.1,29.2 116.3,23.6 122.9,23.4 C129.5,23.2 136.7,27.3 142.8,30.6 C148.9,33.9 154.3,38.6 159.7,43.1 C165.0,47.5 170.4,53.6 174.7,57.3 C179.1,60.9 184.2,59.6 185.8,65.0 C187.4,70.3 180.5,82.9 184.2,89.5 C188.0,96.0 200.2,100.5 208.3,104.3 C216.3,108.1 229.2,107.9 232.6,112.4 C236.1,117.0 231.5,124.8 228.9,131.6 C226.3,138.4 223.8,147.3 217.2,153.2 C210.7,159.0 198.3,162.7 189.8,166.7 C181.3,170.7 174.0,174.6 166.2,177.2 C158.5,179.8 150.1,181.8 143.2,182.4 C136.3,183.1 130.9,180.8 125.0,181.0 C119.1,181.3 114.5,185.9 108.1,183.7 C101.7,181.5 93.5,173.6 86.8,167.8 C80.1,162.1 76.1,153.4 67.8,149.2 C59.5,145.0 43.5,145.8 37.2,142.5 C31.0,139.2 30.3,135.0 30.3,129.6 C30.3,124.3 37.1,117.7 37.3,110.4 C37.6,103.2 28.2,92.0 31.9,86.1 C35.7,80.3 52.4,78.9 59.8,75.3 C67.3,71.7 73.2,69.5 76.4,64.6 C79.6,59.6 78.1,50.0 79.1,45.7 C80.1,41.4 78.5,41.3 82.5,39.0Z"/><path class="contour" d="M91.8,54.9 C94.7,53.2 104.0,54.8 109.2,53.5 C114.5,52.2 118.5,47.8 123.5,47.0 C128.4,46.1 134.3,46.1 138.9,48.4 C143.5,50.6 147.2,56.5 150.9,60.5 C154.5,64.6 157.4,70.0 160.9,72.5 C164.4,75.0 170.4,72.0 172.0,75.7 C173.5,79.4 168.2,89.6 170.3,94.7 C172.5,99.9 178.8,103.5 184.8,106.5 C190.8,109.4 202.8,108.8 206.3,112.3 C209.9,115.8 208.4,122.4 206.0,127.3 C203.6,132.2 197.5,137.7 191.9,141.9 C186.4,146.1 178.6,148.9 172.8,152.4 C167.0,155.9 163.0,161.0 157.3,163.0 C151.6,165.0 143.9,164.4 138.5,164.2 C133.1,164.0 129.4,161.4 125.0,162.0 C120.6,162.6 116.7,168.9 111.9,167.6 C107.0,166.3 100.6,159.3 95.9,154.5 C91.3,149.7 90.2,141.9 83.9,138.7 C77.6,135.5 63.7,137.4 58.3,135.2 C52.9,133.0 50.9,129.8 51.4,125.7 C52.0,121.6 60.9,116.3 61.6,110.8 C62.4,105.4 53.8,97.4 55.9,92.8 C58.0,88.2 68.4,85.9 74.0,83.3 C79.5,80.7 86.2,80.3 89.2,77.0 C92.1,73.8 91.2,67.5 91.7,63.8 C92.1,60.1 88.9,56.7 91.8,54.9Z"/><path class="contour" d="M102.1,72.7 C103.9,71.2 110.7,72.8 114.3,72.5 C118.0,72.1 120.7,71.1 124.0,70.5 C127.4,69.9 131.3,68.0 134.4,69.0 C137.5,70.0 140.6,73.5 142.9,76.5 C145.1,79.4 145.9,84.7 148.1,86.6 C150.2,88.6 154.6,85.8 156.0,88.0 C157.4,90.3 155.2,96.6 156.6,100.0 C157.9,103.4 160.7,106.3 164.2,108.4 C167.7,110.4 174.8,109.8 177.6,112.2 C180.4,114.6 182.3,119.3 181.0,122.6 C179.8,125.9 174.2,129.5 169.9,132.1 C165.7,134.6 159.4,135.4 155.5,137.8 C151.7,140.3 150.5,145.0 146.9,146.7 C143.4,148.4 137.9,148.3 134.3,147.9 C130.6,147.4 128.0,143.8 125.0,144.0 C122.0,144.2 119.7,149.3 116.3,148.9 C112.9,148.5 107.8,144.8 104.8,141.5 C101.8,138.3 102.1,131.8 98.3,129.4 C94.4,127.0 85.7,128.4 81.7,127.1 C77.6,125.7 73.8,124.1 73.9,121.5 C74.1,118.9 81.6,114.9 82.7,111.2 C83.9,107.6 79.5,102.8 80.8,99.7 C82.0,96.6 86.8,94.3 90.1,92.4 C93.4,90.4 98.3,90.0 100.5,88.1 C102.8,86.2 103.4,83.8 103.7,81.2 C103.9,78.6 100.3,74.1 102.1,72.7Z"/><path class="contour" d="M112.4,90.4 C113.3,89.4 116.9,89.5 118.9,89.4 C120.9,89.3 122.6,89.8 124.5,89.7 C126.3,89.6 128.3,88.5 130.1,88.8 C131.8,89.2 133.9,90.2 135.2,91.7 C136.5,93.3 136.6,96.8 137.7,98.1 C138.7,99.3 140.6,98.1 141.5,99.3 C142.3,100.5 141.9,103.4 142.8,105.2 C143.7,107.0 145.3,108.8 147.0,110.0 C148.7,111.1 151.3,110.8 152.8,112.1 C154.3,113.4 156.3,116.0 156.0,117.8 C155.6,119.7 153.1,122.1 150.6,123.4 C148.2,124.8 143.6,124.6 141.3,125.8 C139.0,127.0 138.7,129.6 136.9,130.8 C135.0,131.9 132.3,132.7 130.3,132.5 C128.3,132.3 126.7,129.6 125.0,129.5 C123.3,129.3 122.3,131.8 120.4,131.7 C118.5,131.5 115.3,130.4 113.5,128.7 C111.8,127.1 112.0,123.2 110.1,121.7 C108.2,120.2 104.3,120.7 102.1,120.0 C99.8,119.2 96.8,118.7 96.6,117.3 C96.4,115.9 100.2,113.5 101.0,111.6 C101.8,109.6 100.6,107.2 101.4,105.5 C102.3,103.7 104.4,102.5 106.0,101.3 C107.6,100.1 109.8,99.3 111.0,98.3 C112.2,97.3 113.2,96.6 113.4,95.3 C113.7,94.0 111.5,91.4 112.4,90.4Z"/><path class="sub" d="M70.0,32.5 L90.0,65.0 L82.5,110.0 L57.5,150.0"/><path class="sub" d="M90.0,65.0 L132.5,75.0 L162.5,60.0 L185.0,46.0"/><path class="sub" d="M132.5,75.0 L147.5,110.0 L122.5,150.0 L127.5,195.0"/><path class="sub" d="M147.5,110.0 L202.5,110.0 L227.5,102.5"/><path class="sub" d="M82.5,110.0 L62.5,140.0"/><path class="sub" d="M175.0,155.0 L202.5,177.5"/><path class="sub" d="M147.5,110.0 L175.0,155.0"/></g>
+          <path class="link" d="M121,88 L121,38"/><path class="link" d="M143,99 Q166,70 187,62"/><path class="link" d="M97,106 Q72,90 57,86"/><path class="link" d="M147,117 Q186,120 204,124"/><path class="link" d="M131,137 Q140,150 143,153"/><path class="link" d="M45,114 C50,152 92,172 132,168"/>
+          <circle class="pulse" cx="120" cy="114" r="27"/><circle class="pulse pulse--b" cx="120" cy="114" r="27"/>
+          <g><circle class="halo" cx="121" cy="25" r="17"/><circle class="ring" cx="121" cy="25" r="12.5"/><g transform="translate(121 25.4)"><path class="drop" d="M0,-6.4 C2.7,-2.9 4.3,-0.9 4.3,1.4 a4.3,4.3 0 0 1 -8.6,0 C-4.3,-0.9 -2.7,-2.9 0,-6.4Z"/><ellipse class="dropshine" cx="-1.5" cy="0.6" rx=".9" ry="1.7" transform="rotate(18 -1.5 0.6)"/></g><text class="lbl" x="121" y="49">TIRUPPARANKUNDRAM</text></g><g><circle class="halo" cx="197" cy="65" r="17"/><circle class="ring" cx="197" cy="65" r="12.5"/><g transform="translate(197 65.4)"><path class="drop" d="M0,-6.4 C2.7,-2.9 4.3,-0.9 4.3,1.4 a4.3,4.3 0 0 1 -8.6,0 C-4.3,-0.9 -2.7,-2.9 0,-6.4Z"/><ellipse class="dropshine" cx="-1.5" cy="0.6" rx=".9" ry="1.7" transform="rotate(18 -1.5 0.6)"/></g><text class="lbl" x="197" y="89">ALANGANALLUR</text></g><g><circle class="halo" cx="46" cy="84" r="17"/><circle class="ring" cx="46" cy="84" r="12.5"/><g transform="translate(46 84.4)"><path class="drop" d="M0,-6.4 C2.7,-2.9 4.3,-0.9 4.3,1.4 a4.3,4.3 0 0 1 -8.6,0 C-4.3,-0.9 -2.7,-2.9 0,-6.4Z"/><ellipse class="dropshine" cx="-1.5" cy="0.6" rx=".9" ry="1.7" transform="rotate(18 -1.5 0.6)"/></g><text class="lbl" x="46" y="108">MATTUTHAVANI</text></g><g><circle class="halo" cx="217" cy="124" r="17"/><circle class="ring" cx="217" cy="124" r="12.5"/><g transform="translate(217 124.4)"><path class="drop" d="M0,-6.4 C2.7,-2.9 4.3,-0.9 4.3,1.4 a4.3,4.3 0 0 1 -8.6,0 C-4.3,-0.9 -2.7,-2.9 0,-6.4Z"/><ellipse class="dropshine" cx="-1.5" cy="0.6" rx=".9" ry="1.7" transform="rotate(18 -1.5 0.6)"/></g><text class="lbl" x="217" y="148">SOLAVANDAN</text></g><g><circle class="halo" cx="145" cy="166" r="17"/><circle class="ring" cx="145" cy="166" r="12.5"/><g transform="translate(145 166.4)"><path class="drop" d="M0,-6.4 C2.7,-2.9 4.3,-0.9 4.3,1.4 a4.3,4.3 0 0 1 -8.6,0 C-4.3,-0.9 -2.7,-2.9 0,-6.4Z"/><ellipse class="dropshine" cx="-1.5" cy="0.6" rx=".9" ry="1.7" transform="rotate(18 -1.5 0.6)"/></g><text class="lbl" x="145" y="190">PASUMALAI</text></g>
+          <g>
+            <circle class="hqglow" cx="120" cy="112" r="40"/>
+            <circle class="ring ring--hq" cx="120" cy="114" r="27"/>
+            <g transform="translate(120 96) scale(2.5)"><path d="M0,-6 a4.4,4.4 0 0 1 4.4,4.4 c0,3.3 -4.4,7.6 -4.4,7.6 s-4.4,-4.3 -4.4,-7.6 a4.4,4.4 0 0 1 4.4,-4.4z" fill="url(#smPin)"/><circle cx="0" cy="-1.6" r="1.7" fill="#fff"/></g>
+            <text class="lbl lbl--hq" x="120" y="126">MADURAI</text>
+          </g>
+          <g transform="translate(254 21)"><circle class="cmp" r="10"/><path class="cmp-star" d="M0,-8 L1.6,-1.6 L8,0 L1.6,1.6 L0,8 L-1.6,1.6 L-8,0 L-1.6,-1.6Z"/><text class="cmp-t" y="-12">N</text></g>
+        </svg>
     </div>
 
     <!-- LEFT: heading + stats -->
@@ -507,59 +541,89 @@ function aiImgNext(img){
   <!-- DESKTOP: 6 descriptive cards -->
   <div class="sarea-cards">
     <article class="sarea-card" style="--c:var(--sarea-c1)">
+      <figure class="sarea-photo"><img src="img/area-madurai.webp" alt="Madurai Meenakshi temple gopuram at sunset" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">01</span>
-      <i class="fa-solid fa-gopuram sarea-icon"></i>
       <h3>MADURAI</h3>
       <p>Our main service hub. Fast drilling services with guaranteed results across the city.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
     <article class="sarea-card" style="--c:var(--sarea-c2)">
+      <figure class="sarea-photo"><img src="img/area-tirupparankundram.webp" alt="Tirupparankundram hill temple" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">02</span>
-      <i class="fa-solid fa-gopuram sarea-icon"></i>
       <h3>TIRUPPARANKUNDRAM</h3>
       <p>Providing reliable borewell drilling for homes, farms and industries.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
     <article class="sarea-card" style="--c:var(--sarea-c3)">
+      <figure class="sarea-photo"><img src="img/area-alanganallur.webp" alt="Temple tank and gopuram at Alanganallur" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">03</span>
-      <i class="fa-solid fa-gopuram sarea-icon"></i>
       <h3>ALANGANALLUR</h3>
       <p>Expert drilling solutions with modern equipment and experienced operators.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
     <article class="sarea-card" style="--c:var(--sarea-c4)">
+      <figure class="sarea-photo"><img src="img/area-solavandan.webp" alt="Green paddy fields near Solavandan" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">04</span>
-      <i class="fa-solid fa-mountain sarea-icon"></i>
       <h3>SOLAVANDAN</h3>
       <p>Serving Solavandan with quality, speed and unmatched customer satisfaction.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
     <article class="sarea-card" style="--c:var(--sarea-c5)">
+      <figure class="sarea-photo"><img src="img/area-pasumalai.webp" alt="Pasumalai hill above the city" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">05</span>
-      <i class="fa-solid fa-gopuram sarea-icon"></i>
       <h3>PASUMALAI</h3>
       <p>Deep drilling experts ensuring water solutions all year round.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
     <article class="sarea-card" style="--c:var(--sarea-c6)">
+      <figure class="sarea-photo"><img src="img/area-mattuthavani.webp" alt="Mattuthavani bus stand and city" width="640" height="268" loading="lazy"></figure>
       <span class="sarea-num">06</span>
-      <i class="fa-solid fa-gopuram sarea-icon"></i>
       <h3>MATTUTHAVANI</h3>
       <p>Delivering powerful borewell services in and around Mattuthavani.</p>
       <button class="sarea-arrow"><i class="fa-solid fa-arrow-right"></i></button>
     </article>
   </div>
 
-  <!-- MOBILE: condensed "WE SERVE HERE" grid -->
+  <!-- MOBILE: photo cards, 3 x 2 -->
   <div class="sarea-quick">
-    <div class="sarea-quick-head"><span>OUR SERVICE AREAS</span></div>
-    <div class="sarea-quick-grid">
-      <div class="sarea-quick-item" style="--c:var(--sarea-c1)"><span class="sarea-num">01</span><i class="fa-solid fa-gopuram sarea-icon"></i><strong>MADURAI</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
-      <div class="sarea-quick-item" style="--c:var(--sarea-c2)"><span class="sarea-num">02</span><i class="fa-solid fa-gopuram sarea-icon"></i><strong>TIRUPPARANKUNDRAM</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
-      <div class="sarea-quick-item" style="--c:var(--sarea-c3)"><span class="sarea-num">03</span><i class="fa-solid fa-gopuram sarea-icon"></i><strong>ALANGANALLUR</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
-      <div class="sarea-quick-item" style="--c:var(--sarea-c4)"><span class="sarea-num">04</span><i class="fa-solid fa-mountain sarea-icon"></i><strong>SOLAVANDAN</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
-      <div class="sarea-quick-item" style="--c:var(--sarea-c5)"><span class="sarea-num">05</span><i class="fa-solid fa-gopuram sarea-icon"></i><strong>PASUMALAI</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
-      <div class="sarea-quick-item" style="--c:var(--sarea-c6)"><span class="sarea-num">06</span><i class="fa-solid fa-gopuram sarea-icon"></i><strong>MATTUTHAVANI</strong><i class="fa-solid fa-location-dot sarea-mini-pin"></i></div>
+    <div class="sarea-pc-head"><i class="fa-solid fa-location-dot"></i><div><span></span><b>Our Service Areas</b><span></span></div></div>
+    <div class="sarea-pc-grid">
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Madurai">
+        <img src="img/area-madurai.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">MADURAI</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Tirupparankundram">
+        <img src="img/area-tirupparankundram.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">TIRUPPARANKUNDRAM</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Alanganallur">
+        <img src="img/area-alanganallur.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">ALANGANALLUR</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Solavandan">
+        <img src="img/area-solavandan.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">SOLAVANDAN</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Pasumalai">
+        <img src="img/area-pasumalai.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">PASUMALAI</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="sarea-pc" href="#contact" aria-label="Borewell drilling in Mattuthavani">
+        <img src="img/area-mattuthavani.webp" alt="" width="640" height="268" loading="lazy">
+        <span class="sarea-pc-pin"><i class="fa-solid fa-location-dot"></i></span>
+        <b class="sarea-pc-name">MATTUTHAVANI</b>
+        <span class="sarea-pc-go"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
     </div>
   </div>
 
@@ -568,6 +632,8 @@ function aiImgNext(img){
     <div class="sarea-cta-info">
       <i class="fa-solid fa-map-location-dot truck"></i>
       <div>
+        <span class="sarea-cta-m-kicker">Need Borewell Service in Another Area?</span>
+        <strong class="sarea-cta-m-title">We’re Just a Call Away!</strong>
         <h4>Outside These Areas?</h4>
         <p>We also cover Pudur, Ayanur, Alagar Kovil, Anna Nagar, K.Pudur, Kalavasal, Villapuram, Madurai North &amp; East and Madurai South &amp; West. Contact us for <a href="#">quick support!</a></p>
         <p class="sarea-cta-desc-mobile">Contact us for service availability in your location.</p>
@@ -585,6 +651,7 @@ function aiImgNext(img){
         <strong>+91 97887 99883</strong>
         <em><i class="fa-brands fa-whatsapp"></i> Call or WhatsApp Anytime!</em>
       </span>
+      <i class="fa-solid fa-arrow-right sarea-cta-call-arrow" aria-hidden="true"></i>
     </a>
   </div>
 
