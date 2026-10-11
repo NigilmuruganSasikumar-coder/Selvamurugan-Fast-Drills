@@ -2624,6 +2624,8 @@ html[data-theme="light"] .footer-chev {
 
 /* base (all widths): helpers that only matter on mobile */
 .hm-br{ display:none; }
+.hm-ai-pill{ display:none; }
+.hm-mt{ display:none; }
 .hm-svg{ display:none; }
 
 @media (max-width: 860px){
@@ -2696,6 +2698,8 @@ html[data-theme="light"] .footer-chev {
     padding:calc(5 * var(--u)) 0 calc(5 * var(--u)) calc(16 * var(--u)); border-left:1px solid var(--m-div); }
   .hero .hm .hm-commit li{ gap:calc(10 * var(--u)); font-size:max(9.5px, calc(14.5 * var(--u))); font-weight:500; line-height:1.3; color:var(--m-text); }
   .hero .hm .hm-commit li .hm-ck{ width:calc(24 * var(--u)); height:calc(24 * var(--u)); font-size:max(8px, calc(12 * var(--u))); }
+  /* Mobile: hide the 'Our Commitment' card (remove this line to show it again) */
+  .hero .hm .hm-commit{ display:none; }
 
   /* ---- HOW WE GET YOU WATER ---- */
   .hero .hm .hm-head{ margin-top:calc(20 * var(--u)); }
@@ -2714,7 +2718,7 @@ html[data-theme="light"] .footer-chev {
   .hero .hm .hm-step p{ padding:0 calc(10 * var(--u)); font-size:max(10.5px, calc(15.5 * var(--u))); line-height:1.25; font-weight:500; color:var(--m-text); text-wrap:balance; }
 
   /* ---- BOOK NOW / DRILL COST ---- */
-  .hero .hm .hm-actions{ display:flex; flex-direction:column; gap:calc(8 * var(--u)); width:calc(476 * var(--u)); margin:calc(17 * var(--u)) auto 0; }
+  .hero .hm .hm-actions{ display:grid; grid-template-columns:1fr 1fr; gap:calc(8 * var(--u)); width:calc(476 * var(--u)); margin:calc(17 * var(--u)) auto 0; }
   .hero .hm .hm-act{ position:relative; justify-content:center; gap:0; height:calc(47 * var(--u)); padding:0 calc(38 * var(--u)) 0 0; border:0; border-radius:calc(9 * var(--u));
     font-size:max(12.5px, calc(18.5 * var(--u))); font-weight:800; }
   .hero .hm .hm-act:hover{ transform:none; }
@@ -2726,6 +2730,16 @@ html[data-theme="light"] .footer-chev {
   .hero .hm .hm-act .hm-act__ico{ position:absolute; left:calc(90 * var(--u)); top:50%; transform:translateY(-50%); font-size:calc(32 * var(--u)); color:var(--m-on-yellow); }
   .hero .hm .hm-act--cost .hm-rs{ position:absolute; left:calc(88 * var(--u)); top:50%; transform:translateY(-50%); width:calc(41 * var(--u)); height:calc(41 * var(--u)); font-size:calc(21 * var(--u)); background:var(--m-blue); color:var(--hm-on-blue); }
   .hero .hm .hm-act .fa-chevron-right{ position:absolute; right:calc(96 * var(--u)); top:50%; transform:translateY(-50%); font-size:max(9px, calc(13 * var(--u))); }
+  /* Row 1: Book Now full width. Row 2: Drill Cost (left half) + Service Areas (right half) */
+  .hero .hm .hm-actions .hm-act--book{ grid-column:1 / -1; }
+  .hero .hm .hm-actions .hm-act--cost,
+  .hero .hm .hm-actions .hm-act--area{ grid-column:auto; display:flex; align-items:center; justify-content:center; gap:max(6px, calc(9 * var(--u))); padding:0 6px; white-space:nowrap; font-size:max(12px, calc(17 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--cost .hm-rs,
+  .hero .hm .hm-actions .hm-act--area .hm-act__ico{ position:static; transform:none; flex:0 0 auto; }
+  .hero .hm .hm-actions .hm-act--cost .hm-rs{ width:max(24px, calc(34 * var(--u))); height:max(24px, calc(34 * var(--u))); font-size:max(12px, calc(17 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--area .hm-act__ico{ font-size:max(18px, calc(26 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--cost .fa-chevron-right,
+  .hero .hm .hm-actions .hm-act--area .fa-chevron-right{ display:none; }
 
   /* ---- STATS ---- */
   .hero .hm .hm-stats{ margin-top:calc(19 * var(--u)); padding:calc(13 * var(--u)) 0 calc(12 * var(--u)); border-radius:calc(14 * var(--u)); background:var(--m-panel); }
@@ -2734,6 +2748,9 @@ html[data-theme="light"] .footer-chev {
   .hero .hm .hm-stat .hm-sico{ height:calc(40 * var(--u)); font-size:calc(31 * var(--u)); color:var(--m-blue); }
   .hero .hm .hm-stat h3{ font-size:max(15px, calc(25 * var(--u))); line-height:1.2; font-weight:800; color:var(--m-ink); }
   .hero .hm .hm-stat span{ font-size:max(9px, calc(12.5 * var(--u))); line-height:1.2; font-weight:500; color:var(--m-text); text-wrap:balance; }
+  /* Mobile: show the stats bar right after the hero, above 'How We Get You Water' */
+  .hero .hm .hm__wrap > .hm-top{ order:-2; }
+  .hero .hm .hm__wrap > .hm-stats{ order:-1; }
   .hero .hm .hm-stat .hm-sico i{ display:none; }
   .hero .hm .hm-stat .hm-sico .hm-svg{ display:block; width:calc(40 * var(--u)); height:calc(40 * var(--u)); }
   .hero .hm .hm-stat .hm-sico i.fa-users,.hero .hm .hm-stat .hm-sico i.fa-award{ display:inline-block; }
@@ -2774,4 +2791,220 @@ html[data-theme="light"] .footer-chev {
   .hero .hm .hm-ai__feat .hm-fi::after{ content:''; width:28%; height:52%; border:solid var(--hm-on-blue); border-width:0 max(1.5px, calc(2.2 * var(--u))) max(1.5px, calc(2.2 * var(--u))) 0; transform:translateY(-8%) rotate(45deg); }
   .hero .hm .hm-ai__feat li > span:last-child{ display:block; line-height:1.2; }
   .hero .hm .hm-ai__feat small{ display:block; margin-top:calc(2 * var(--u)); }
+
+  /* Mobile: replace the 'Quick Response' panel with the 'Borewell Doubts? Ask Our AI' pill */
+  .hero .hm .hm-ai{ background:transparent; }
+  .hero .hm .hm-ai__feat{ display:none; }
+  /* slim, centered one-line pill (same style as the Google Reviews pill) */
+  .hero .hm .hm-ai-pill{ display:flex; align-items:center; justify-content:center; gap:max(7px, calc(10 * var(--u))); width:fit-content; max-width:100%; margin:0 auto; padding:max(4px, calc(6 * var(--u))) max(4px, calc(6 * var(--u))) max(4px, calc(6 * var(--u))) max(6px, calc(8 * var(--u)));
+    border:1px solid var(--m-div); border:1px solid color-mix(in srgb, var(--m-blue) 45%, transparent); border-radius:999px; background:var(--m-panel); box-shadow:0 8px 20px -14px var(--m-blue); text-decoration:none; color:var(--m-ink); }
+  .hero .hm .hm-ai-pill__bot{ flex:0 0 auto; width:max(28px, calc(38 * var(--u))); height:max(28px, calc(38 * var(--u))); display:flex; align-items:center; justify-content:center; }
+  .hero .hm .hm-ai-pill__bot img{ width:100%; height:100%; object-fit:cover; border-radius:50%; border:1.5px solid var(--m-blue); }
+  .hero .hm .hm-ai-pill__bot i{ font-size:max(18px, calc(24 * var(--u))); color:var(--m-blue); }
+  .hero .hm .hm-ai-pill__text{ flex:0 1 auto; min-width:0; display:block; }
+  .hero .hm .hm-ai-pill__text b{ display:block; font-size:max(11.5px, calc(16 * var(--u))); font-weight:800; line-height:1.2; color:var(--m-ink); }
+  .hero .hm .hm-ai-pill__text em{ font-style:normal; color:var(--m-blue); white-space:nowrap; }
+  .hero .hm .hm-ai-pill__text small{ display:none; }
+  .hero .hm .hm-ai-pill__cta{ flex:0 0 auto; display:flex; align-items:center; gap:max(4px, calc(6 * var(--u))); margin-left:max(2px, calc(4 * var(--u))); padding:max(6px, calc(8 * var(--u))) max(11px, calc(15 * var(--u))); border-radius:999px;
+    background:var(--m-blue); color:var(--hm-on-blue); font-size:max(11.5px, calc(16 * var(--u))); font-weight:800; white-space:nowrap; }
+  .hero .hm .hm-ai-pill__arrow{ display:inline-flex; font-size:max(11px, calc(14 * var(--u))); color:inherit; }
+
+  /* ---- MOBILE SPACING: one consistent rhythm between sections, buttons and cards ---- */
+  .hero .hm{ --m-sec:max(22px, calc(36 * var(--u))); --m-gap:max(10px, calc(16 * var(--u))); }
+  .hero .hm .hm-cta{ gap:var(--m-gap); margin-top:max(16px, calc(24 * var(--u))); }
+  .hero .hm .hm-checks{ margin-top:max(16px, calc(24 * var(--u))); }
+  .hero .hm .hm-stats{ margin-top:var(--m-sec); }
+  .hero .hm .hm-head{ margin-top:var(--m-sec); }
+  .hero .hm .hm-head .hm-bar{ margin-top:max(8px, calc(10 * var(--u))); }
+  .hero .hm .hm-steps{ gap:var(--m-gap); margin-top:max(18px, calc(26 * var(--u))); }
+  .hero .hm .hm-actions{ gap:var(--m-gap); margin-top:var(--m-sec); }
+  .hero .hm .hm-mid{ margin-top:var(--m-sec); }
+  .hero .hm .hm-types .hm-bar{ margin:max(7px, calc(9 * var(--u))) 0 max(14px, calc(20 * var(--u))); }
+  .hero .hm .hm-types__grid{ gap:max(8px, calc(14 * var(--u))); }
+  .hero .hm .hm-ai{ margin-top:var(--m-sec); padding-bottom:max(6px, calc(10 * var(--u))); }
+
+  /* ---- SERVICE TYPES (mobile): no heading, no sub-text, short titles, simple cards ---- */
+  .hero .hm .hm-types > h3,
+  .hero .hm .hm-types > .hm-bar{ display:none; }
+  .hero .hm .hm-type p{ display:none; }
+  .hero .hm .hm-dt{ display:none; }
+  .hero .hm .hm-mt{ display:inline; }
+  .hero .hm .hm-type{ --tc:#1E9B3A; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; padding:max(9px, calc(13 * var(--u))) max(4px, calc(6 * var(--u))) max(9px, calc(12 * var(--u)));
+    border-radius:max(10px, calc(14 * var(--u))); box-shadow:inset 0 -2px 0 var(--tc); }
+  .hero .hm .hm-type:nth-child(2){ --tc:#1E6BFF; }
+  .hero .hm .hm-type:nth-child(3){ --tc:#8B4DFF; }
+  .hero .hm .hm-type .hm-tile{ width:max(30px, calc(40 * var(--u))); height:max(30px, calc(40 * var(--u))); margin:0 auto max(6px, calc(9 * var(--u))); border-radius:max(9px, calc(12 * var(--u))); font-size:max(15px, calc(19 * var(--u))); }
+  .hero .hm .hm-type h4{ margin:0; font-size:max(11px, calc(14 * var(--u))); line-height:1.2; text-wrap:balance; }
+}
+
+/* =========================================================
+   BOTTOM NAV DOCK + ATTACHED SCROLL LOADER
+   Uses the site's own theme tokens, so it follows the
+   light / dark theme switcher automatically.
+   (append at the very end of css/index2.css)
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    :root { --pwa-nav-h: 64px; }
+
+    html .pwa-bottom-nav,
+    html[data-theme="light"] .pwa-bottom-nav {
+        --nav-radius: 22px;
+        box-sizing: border-box;
+        border: 1px solid var(--line);
+        border-bottom: 0;
+        border-radius: var(--nav-radius) var(--nav-radius) 0 0;
+        background: color-mix(in srgb, var(--slate) 96%, transparent);
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
+        box-shadow: 0 -8px 26px -10px rgba(0, 0, 0, .35);
+    }
+
+    html[data-theme="light"] .pwa-bottom-nav {
+        box-shadow: 0 -6px 22px -8px rgba(23, 33, 31, .18);
+    }
+
+    /* ---------- Loader: band hugging the top edge, corner curve to corner curve ---------- */
+    .pwa-nav-loader {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: 0;
+        box-sizing: border-box;
+        border-top: 4px solid transparent;
+        border-radius: var(--nav-radius) var(--nav-radius) 0 0;
+        background: var(--line);
+        -webkit-mask: linear-gradient(#000 0 0) border-box, linear-gradient(#000 0 0) padding-box;
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) border-box exclude, linear-gradient(#000 0 0) padding-box;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .pwa-nav-loader__bar {
+        position: absolute;
+        top: -4px;
+        left: -1px;
+        height: calc(var(--nav-radius) + 4px);
+        width: calc(var(--pwa-progress, 0) * 100% + 1px);
+        min-width: 8%;
+        background: linear-gradient(90deg, var(--rust), var(--rust-light) 60%, var(--ochre));
+        overflow: hidden;
+        transition: width .15s linear;
+    }
+
+    .pwa-nav-loader__bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 60px;
+        left: -60px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent);
+        animation: pwaLoaderShine 1.8s ease-in-out infinite;
+    }
+
+    /* ---------- Items: smaller, same colour for icon + name ---------- */
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link {
+        color: var(--ink-dim);
+        font-size: .62rem;
+        font-weight: 600;
+        padding: 8px 2px 5px;
+        gap: 3px;
+        white-space: nowrap;
+    }
+
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link i {
+        color: var(--ink-dim);
+        font-size: 1.05rem;
+    }
+
+    /* Active tab: accent colour on icon + name, small pill at the bottom */
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active,
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active i {
+        color: var(--rust-light);
+    }
+
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link::before {
+        top: auto;
+        bottom: 2px;
+        width: 18px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--rust), var(--ochre));
+    }
+
+    /* ---------- Call button ---------- */
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link::before { display: none; }
+
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        color: #fff;
+        background: linear-gradient(135deg, var(--rust), var(--rust-light));
+        box-shadow: 0 6px 16px -5px rgba(193, 87, 30, .7);
+    }
+
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link:active i {
+        transform: scale(.92);
+    }
+}
+
+@keyframes pwaLoaderShine {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100vw + 60px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pwa-nav-loader__bar::after { animation: none !important; }
+    .pwa-nav-loader__bar { transition: none; }
+}
+
+/* Light theme only: richer teal for icons + names (dark theme keeps --ink-dim) */
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link,
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link i {
+    color: #0f766e;
+}
+
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active,
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active i {
+    color: var(--rust);
+}
+
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+    color: #fff;
+}
+
+/* Call button: brighter, crisper highlight (both themes) */
+@media (max-width: 860px) {
+    html .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i,
+    html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+        color: #fff;
+        background: linear-gradient(145deg, #ffb020 0%, #ff7a1a 55%, #f45d0c 100%);
+        border: 2px solid rgba(255, 255, 255, .55);
+        box-sizing: border-box;
+        text-shadow: 0 1px 2px rgba(120, 40, 0, .45);
+        box-shadow: 0 0 0 4px rgba(255, 122, 26, .16), 0 8px 18px -4px rgba(244, 93, 12, .75);
+    }
+
+    html .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link,
+    html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link {
+        color: var(--ink);
+    }
+}
+
+/* Call icon: inline SVG so the handset angle is the same on every Font Awesome version */
+.pwa-bottom-nav .pwa-call-ico svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    display: block;
+    color: #fff;
+    fill: #fff;
+    transform: rotate(var(--call-angle, 0deg));   /* tweak e.g. -12deg / 12deg to tilt */
+    filter: drop-shadow(0 1px 2px rgba(120, 40, 0, .45));
 }
