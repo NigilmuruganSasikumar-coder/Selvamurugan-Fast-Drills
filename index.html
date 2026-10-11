@@ -147,8 +147,8 @@ function aiImgNext(img){
         <!-- ===== Action cards (mobile only) ===== -->
         <div class="mnav-cards">
 
-            <a href="ai chat.html" class="mnav-item">
-                <span class="mnav-ico"><img class="ai-img ai-nav__img" src="img/robot-header.jpg" alt="" width="22" height="22" onerror="aiImgNext(this)"></span>
+            <a href="ai chat.html" class="mnav-item mnav-item--ai">
+                <span class="mnav-ico mnav-ico--img"><img class="ai-img ai-nav__img" src="img/robot-header.jpg" alt="" width="22" height="22" onerror="aiImgNext(this)"></span>
                 <span class="mnav-card-text"><strong>AI Chat</strong><small>Ask me anything about borewells — or anything else</small></span>
                 <i class="fas fa-chevron-right mnav-chev"></i>
               </a>
@@ -671,7 +671,7 @@ function aiImgNext(img){
     
 </div>
 
-<div id="ourservices1">
+<div id="ourservices1" class="has-pill">
     <div id="ourservices">
         <div class="services"><h2>⛏️</h2><h1>Deep Borewell Drilling Service in Tamil Nadu</h1><h3>Advanced hydraulic borewell drilling with high precision water detection technology for residential, agricultural, and industrial needs.</h3>
             <p>4¾ inch borewell cleaning and deepening up to 500 feet</p><p>6½ inch new bore drilling up to 1800 feet depth</p><p>Rock drilling and hard soil penetration specialists</p><p>High water yield guaranteed drilling process</p><p>Fast execution with modern drilling machines</p></div>
@@ -687,14 +687,14 @@ function aiImgNext(img){
             <p>24/7 emergency borewell drilling support</p><p>Immediate water problem solutions</p><p>Fast response drilling team available</p><p>Residential and agricultural emergency service</p><p>Quick water restoration services anytime</p></div>
         
     </div>
-    <div class="cont2"><a href="#calculator-section">📄 Get Free Quote for Your Project</a></div>
+    <div class="cont2"><a class="pill-btn" href="#calculator-section"><span class="pill-ico pill-ico--mega"><i class="fa-solid fa-bullhorn"></i></span><span class="pill-sep"></span><span class="pill-txt">Get Free Quote for Your Project</span><span class="pill-sep"></span><span class="pill-badge pill-badge--calc"><i class="fa-solid fa-calculator"></i></span><span class="pill-arrows" aria-hidden="true"><i class="fa-solid fa-angle-right"></i><i class="fa-solid fa-angle-right"></i><i class="fa-solid fa-angle-right"></i></span></a></div>
 </div>
 <div class="water-hr">
     <span></span>
     <div class="drop">◆</div>
     <span></span>
 </div>
-<div class="baccor">
+<div class="baccor has-pill">
     <div id="galary">
         <h1 class="txtcolor">Project Portfolio</h1>
         <p>A visual record of our borewell drilling projects and equipment in action</p>
@@ -708,7 +708,7 @@ function aiImgNext(img){
         <img src="img/background-bg.jpeg" loading="lazy" alt="agricultural site">
         <img src="img/web 4.jpeg" loading="lazy" alt="Field work">
     </div>
-    <div class="cont2"><a href="https://www.instagram.com/selvamurugan_fastdrills/">📸 View more Photos on Instagram</a></div>
+    <div class="cont2"><a class="pill-btn" href="https://www.instagram.com/selvamurugan_fastdrills/" target="_blank" rel="noopener"><span class="pill-ico pill-ico--mega"><i class="fa-solid fa-bullhorn"></i></span><span class="pill-sep"></span><span class="pill-txt">View more Photos on Instagram</span><span class="pill-sep"></span><span class="pill-badge pill-badge--ig"><i class="fab fa-instagram"></i></span><span class="pill-arrows" aria-hidden="true"><i class="fa-solid fa-angle-right"></i><i class="fa-solid fa-angle-right"></i><i class="fa-solid fa-angle-right"></i></span></a></div>
 </div>
 <div class="water-hr">
     <span></span>
@@ -1732,7 +1732,10 @@ function aiImgNext(img){
 
   /* AI robot images in place of the robot icon */
   .ai-float .ai-float__img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
-  .ai-btn-nav .ai-nav__img,.mnav-ico .ai-nav__img{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle}
+  .ai-btn-nav .ai-nav__img{width:22px;height:22px;border-radius:50%;object-fit:cover;vertical-align:middle}
+  /* drawer AI Chat: logo fills its whole rounded box */
+  .nav-links .mnav-ico--img{padding:0;overflow:hidden;background:transparent}
+  .nav-links .mnav-ico--img .ai-nav__img{display:block;width:100%;height:100%;border-radius:0;object-fit:cover}
 
   .dri-card:has(#driRates:not([hidden])) .dri-empty{display:none}
   .dri-card #driRates{margin:0}
@@ -1817,5 +1820,136 @@ function aiImgNext(img){
 
 
 
+<style id="sarea-desktop-map">
+/* Desktop (>900px): reuse the mobile Madurai map in place of the old orbit map.
+   Mobile (<=900px) is untouched. Self-contained so it doesn't depend on service-areas.css. */
+@media (min-width: 901px) {
+  .sarea-top .sarea-map-wrap,
+  .sarea-top .sarea-mobile-head,
+  .sarea-top .sarea-m-feats { display: none !important; }
+
+  .sarea-top .sarea-intro { grid-column: 1; grid-row: 1; }
+  .sarea-top .sarea-m {
+    display: block !important; grid-column: 2; grid-row: 1;
+    width: 100%; max-width: 580px; margin: 0 auto;
+  }
+  .sarea-top .sarea-m-map {
+    display: block; width: 100%; height: auto; overflow: visible;
+    --m-land1: #1d3f46; --m-land2: #0f252d;
+    --m-dot: rgba(47,211,201,.35);
+  }
+  html[data-theme="light"] .sarea-top .sarea-m-map { --m-land1: #e3f4ee; --m-land2: #bfe2d5; --m-dot: rgba(11,156,143,.4); }
+
+  .sarea-m-map .gdot      { fill: var(--m-dot); }
+  .sarea-m-map .landglow  { fill: none; stroke: var(--aqua); stroke-width: 7; opacity: .28; filter: url(#smBlur); }
+  .sarea-m-map .land      { fill: url(#smLand); stroke: var(--aqua); stroke-width: 1.3; stroke-linejoin: round; }
+  .sarea-m-map .contour   { fill: none; stroke: var(--aqua); stroke-width: .7; stroke-opacity: .3; }
+  .sarea-m-map .sub       { fill: none; stroke: var(--aqua); stroke-width: .6; stroke-opacity: .35; stroke-linejoin: round; stroke-linecap: round; }
+  .sarea-m-map .link      { fill: none; stroke: var(--aqua); stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; }
+
+  .sarea-m-map .pulse     { fill: none; stroke: var(--rust-light); stroke-width: 1.4; transform-box: fill-box; transform-origin: center;
+                            animation: sareaDtPulse 2.8s ease-out infinite; }
+  .sarea-m-map .pulse--b  { animation-delay: 1.4s; }
+  .sarea-m-map .hqglow    { fill: var(--rust-light); opacity: .2; filter: url(#smBlur); }
+
+  .sarea-m-map .halo      { fill: var(--aqua-glow); opacity: .6; }
+  .sarea-m-map .ring      { fill: #fff; stroke: var(--aqua); stroke-width: 1.8; }
+  html[data-theme="light"] .sarea-m-map .ring { stroke-width: 1.6; }
+  .sarea-m-map .ring--hq  { stroke: var(--rust); stroke-width: 2.4; }
+  .sarea-m-map .drop      { fill: var(--aqua); }
+  .sarea-m-map .dropshine { fill: #fff; opacity: .85; }
+
+  .sarea-m-map .lbl       { font-family: var(--font-body); font-size: 6.4px; font-weight: 700; letter-spacing: .05em; text-anchor: middle;
+                            fill: var(--ink); paint-order: stroke; stroke: var(--well); stroke-width: 1.8px; stroke-linejoin: round; }
+  .sarea-m-map .lbl--hq   { font-size: 8px; letter-spacing: .06em; }
+
+  .sarea-m-map .cmp       { fill: var(--card); stroke: var(--aqua); stroke-width: 1; }
+  .sarea-m-map .cmp-star  { fill: var(--aqua); }
+  .sarea-m-map .cmp-t     { font-family: var(--font-mono); font-size: 5px; font-weight: 700; text-anchor: middle; fill: var(--ink-dim); }
+}
+@keyframes sareaDtPulse { 0% { transform: scale(.55); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sarea-m-map .pulse { animation: none; opacity: .3; } }
+</style>
+<style id="drawer-fix">
+/* =====================================================================
+   MOBILE DRAWER — AI Chat text fix, vivid light-theme cards
+   ===================================================================== */
+@media (max-width: 860px) {
+    /* text inside the AI Chat row follows the theme (was forced white) */
+    .nav-links .mnav-item .mnav-card-text strong { color: var(--ink) !important; font-size: .92rem; }
+    .nav-links .mnav-item .mnav-card-text small  { color: var(--ink-dim) !important; font-size: .68rem; }
+
+    /* ---------- LIGHT THEME: richer, less washed-out ---------- */
+    html[data-theme="light"] .nav-links .mnav-item {
+        background: #fff !important;
+        border-color: rgba(23, 33, 31, .12) !important;
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35) !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-ico {
+        color: #fff !important;
+        background: linear-gradient(135deg, #12b5a6, #0b8a7f) !important;
+        border-color: transparent !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-item:first-child {
+        background: linear-gradient(120deg, #d7f5f1, #ffffff) !important;
+        border-color: rgba(11, 156, 143, .55) !important;
+    }
+    html[data-theme="light"] .nav-links a.mnav-item--ai {
+        background: linear-gradient(120deg, #c9f1ec, #ffffff 85%) !important;
+        border: 1.5px solid #0B9C8F !important;
+        box-shadow: 0 10px 22px -12px rgba(11, 156, 143, .6) !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-ico--img { background: transparent !important; border: 0 !important; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text strong { color: #0f1a18 !important; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text small  { color: #44554f !important; }
+    html[data-theme="light"] .nav-links .mnav-chev { color: #0B9C8F !important; }
+
+    html[data-theme="light"] .mnav-card--calc {
+        background: linear-gradient(120deg, #0fb3a3, #07766d) !important;
+        border: 1px solid #07766d !important;
+        box-shadow: 0 12px 24px -10px rgba(7, 118, 109, .7) !important;
+    }
+    html[data-theme="light"] .mnav-card--install {
+        background: linear-gradient(120deg, #7c4dff, #5a1fd8) !important;
+        border: 1px solid #5a1fd8 !important;
+        box-shadow: 0 14px 28px -10px rgba(90, 31, 216, .65) !important;
+    }
+    html[data-theme="light"] .mnav-card .mnav-card-ico { background: rgba(255, 255, 255, .24) !important; }
+    html[data-theme="light"] .mnav-card .mnav-card-text strong { color: #fff !important; }
+    html[data-theme="light"] .mnav-card .mnav-card-text small  { color: rgba(255, 255, 255, .92) !important; }
+    html[data-theme="light"] .mnav-card .mnav-chev { color: #fff !important; }
+
+    html[data-theme="light"] .mnav-contact-btn {
+        background: #fff !important;
+        border-color: rgba(23, 33, 31, .12) !important;
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35) !important;
+    }
+    html[data-theme="light"] .mnav-contact-btn--admin i { color: #d92d2d !important; }
+}
+
+/* ---- Call Now / WhatsApp / Admin: solid, stacked, single-line labels (both themes) ---- */
+@media (max-width: 860px) {
+    html .mnav-contact-row { gap: 10px !important; }
+    html .mnav-contact-row .mnav-contact-btn {
+        flex: 1 1 0 !important; flex-direction: column !important; justify-content: center !important;
+        gap: 7px !important; padding: 12px 6px 10px !important; border-radius: 14px !important;
+        border: 0 !important; backdrop-filter: none !important; color: #fff !important;
+        box-shadow: 0 10px 20px -10px rgba(0,0,0,.45) !important; text-align: center !important;
+    }
+    html .mnav-contact-row .mnav-contact-btn:active { transform: scale(.97); }
+    html .mnav-contact-row .mnav-contact-btn--call     { background: linear-gradient(135deg,#12b5a6,#07766d) !important; }
+    html .mnav-contact-row .mnav-contact-btn--whatsapp { background: linear-gradient(135deg,#2fdc72,#12863f) !important; }
+    html .mnav-contact-row .mnav-contact-btn--admin    { background: linear-gradient(135deg,#ec5252,#b01e1e) !important; }
+    html .mnav-contact-row .mnav-contact-btn i {
+        display: grid !important; place-items: center !important; width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,.22) !important; color: #fff !important; font-size: 1rem !important;
+    }
+    html .mnav-contact-row .mnav-contact-btn span { align-items: center !important; width: 100%; text-align: center !important; }
+    html .mnav-contact-row .mnav-contact-btn strong {
+        color: #fff !important; font-size: .74rem !important; font-weight: 700 !important;
+        white-space: nowrap !important; letter-spacing: .01em;
+    }
+}
+</style>
 </body>
 </html>

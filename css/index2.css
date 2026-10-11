@@ -3008,3 +3008,59 @@ html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
     transform: rotate(var(--call-angle, 0deg));   /* tweak e.g. -12deg / 12deg to tilt */
     filter: drop-shadow(0 1px 2px rgba(120, 40, 0, .45));
 }
+
+/* =====================================================================
+   MOBILE DRAWER — AI Chat text fix, vivid light-theme cards
+   ===================================================================== */
+@media (max-width: 860px) {
+    /* text inside the AI Chat row follows the theme (was forced white) */
+    .nav-links .mnav-item .mnav-card-text strong { color: var(--ink); font-size: .92rem; }
+    .nav-links .mnav-item .mnav-card-text small  { color: var(--ink-dim); font-size: .68rem; }
+
+    /* ---------- LIGHT THEME: richer, less washed-out ---------- */
+    html[data-theme="light"] .nav-links .mnav-item {
+        background: #fff;
+        border-color: rgba(23, 33, 31, .12);
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35);
+    }
+    html[data-theme="light"] .nav-links .mnav-ico {
+        color: #fff;
+        background: linear-gradient(135deg, #12b5a6, #0b8a7f);
+        border-color: transparent;
+    }
+    html[data-theme="light"] .nav-links .mnav-item:first-child {
+        background: linear-gradient(120deg, #d7f5f1, #ffffff);
+        border-color: rgba(11, 156, 143, .55);
+    }
+    html[data-theme="light"] .nav-links a.mnav-item--ai {
+        background: linear-gradient(120deg, #c9f1ec, #ffffff 85%);
+        border: 1.5px solid #0B9C8F;
+        box-shadow: 0 10px 22px -12px rgba(11, 156, 143, .6);
+    }
+    html[data-theme="light"] .nav-links .mnav-ico--img { background: transparent; border: 0; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text strong { color: #0f1a18; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text small  { color: #44554f; }
+    html[data-theme="light"] .nav-links .mnav-chev { color: #0B9C8F; }
+
+    html[data-theme="light"] .mnav-card--calc {
+        background: linear-gradient(120deg, #0fb3a3, #07766d);
+        border: 1px solid #07766d;
+        box-shadow: 0 12px 24px -10px rgba(7, 118, 109, .7);
+    }
+    html[data-theme="light"] .mnav-card--install {
+        background: linear-gradient(120deg, #7c4dff, #5a1fd8);
+        border: 1px solid #5a1fd8;
+        box-shadow: 0 14px 28px -10px rgba(90, 31, 216, .65);
+    }
+    html[data-theme="light"] .mnav-card .mnav-card-ico { background: rgba(255, 255, 255, .24); }
+    html[data-theme="light"] .mnav-card .mnav-card-text strong { color: #fff; }
+    html[data-theme="light"] .mnav-card .mnav-card-text small  { color: rgba(255, 255, 255, .92); }
+    html[data-theme="light"] .mnav-card .mnav-chev { color: #fff; }
+
+    html[data-theme="light"] .mnav-contact-btn {
+        background: #fff;
+        border-color: rgba(23, 33, 31, .12);
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35);
+    }
+    html[data-theme="light"] .mnav-contact-btn--admin i { color: #d92d2d; }
+}

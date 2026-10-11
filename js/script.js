@@ -396,6 +396,13 @@ function openQuotation() {
         boreType: document.getElementById("boreType") ? document.getElementById("boreType").value : "",
         boreBata: document.getElementById("boreBata") ? document.getElementById("boreBata").value : "0",
 
+        stepRateLabel: (function(){
+            var s = document.getElementById("stepRate");
+            return (s && s.selectedIndex >= 0) ? s.options[s.selectedIndex].text : "";
+        })(),
+
+        siteAddress: document.getElementById("siteAddress") ? document.getElementById("siteAddress").value : "",
+
         slabPattern: window.PriceSettings ? window.PriceSettings.patternLabel() : "",
 
         gst: document.getElementById("gstToggle").checked,
