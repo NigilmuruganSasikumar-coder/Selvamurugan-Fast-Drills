@@ -896,11 +896,11 @@
 }
 
 /* =========================================================
-   ABOUT — MOBILE  (≤ 860px)
+   ABOUT — MOBILE  (≤ 600px)
    One box per row instead of the desktop 3-column grid.
    ========================================================= */
 
-@media (max-width: 860px) {
+@media (max-width: 600px) {
 
     /* two cards per row — each card stacks: photo on top (slanted green
        edge along its bottom), icon overlapping, then title + text */
@@ -970,12 +970,12 @@
 }
 
 /* =========================================================
-   OUR SERVICES — MOBILE  (≤ 860px)
+   OUR SERVICES — MOBILE  (≤ 600px)
    Now single-column (one container per row), same treatment
    as About.
    ========================================================= */
 
-@media (max-width: 860px) {
+@media (max-width: 600px) {
 
     #ourservices1 { padding-left: 4%; padding-right: 4%; }
     #ourservices  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -984,18 +984,18 @@
     #services1 .svc-eyebrow i { width: 24px; height: 2px; }
 
     .services {
-        --svc-pic: clamp(38px, 11.5vw, 60px);
-        column-gap: 6px;
-        padding: 26px 11px 14px 8px;
-        border-radius: 14px;
+        --svc-pic: clamp(35px, 10.5vw, 46px);
+        column-gap: 5px;
+        padding: 22px 8px 11px 6px;
+        border-radius: 12px;
     }
     .services::before { height: 2px; }
-    .svc-num { min-width: 30px; padding: 3px 8px 4px; font-size: .68rem; border-radius: 0 0 10px 0; }
+    .svc-num { min-width: 26px; padding: 2px 7px 3px; font-size: .62rem; border-radius: 0 0 8px 0; }
     .svc-pic { padding: 2px; border-width: 1.5px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--rust) 12%, transparent); }
-    .svc-body { padding-left: 7px; }
+    .svc-body { padding-left: 6px; }
     .svc-body::before { width: 1.5px; }
-    .services h3 { font-size: clamp(.64rem, 3vw, .85rem); line-height: 1.2; margin-bottom: 4px; }
-    .services p  { font-size: clamp(.56rem, 2.55vw, .72rem); line-height: 1.4; }
+    .services h3 { font-size: clamp(.6rem, 2.85vw, .77rem); line-height: 1.15; margin-bottom: 3px; }
+    .services p  { font-size: clamp(.52rem, 2.35vw, .66rem); line-height: 1.3; }
 }
 
 @media (max-width: 360px) {
@@ -3518,26 +3518,45 @@ html[data-theme] #about1 {
 
 .about-media { width: 34%; }
 
-@media (max-width: 860px) {
+@media (max-width: 600px) {
     .about-scene { width: auto; margin: 6px 4% 50px; }
+    /* two landscape cards per row — same design as desktop, scaled down:
+       number tab, icon + title/text on the left, slanted photo on the right */
     #about1,
-    html[data-theme] #about1 { padding: 0; border-radius: 0; gap: 8px; }
+    html[data-theme] #about1 { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; border-radius: 0; gap: 10px; }
 
-    .aboutbox { padding: 0; min-height: 0; border-radius: 12px; }
-    .about-media { width: 100%; height: clamp(58px, 16vw, 92px); }
+    .aboutbox {
+        flex-direction: row; align-items: center; gap: 6px;
+        min-height: 86px; padding: 18px 28% 8px 7px; border-radius: 12px;
+    }
+    .about-media {
+        position: absolute; inset: 0 0 0 auto; order: 0;
+        width: 27%; height: auto;
+        clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .about-media img {
+        inset: -3% auto auto -45%; width: 150%; max-width: none; height: 106%;
+        object-position: center 40%;
+        clip-path: polygon(46% 0, 100% 0, 100% 100%, 34.7% 100%);
+    }
     .about-num { min-width: 24px; padding: 3px 7px 4px; font-size: .58rem; border-radius: 0 0 8px 0; }
-    .about-ico { width: 24px; height: 24px; font-size: .62rem; margin: -13px 0 -7px 8px; }
-    .about-body { margin-top: 3px; padding: 0 8px 9px; }
-    .aboutbox h2 { font-size: clamp(.62rem, 2.5vw, .78rem); margin-bottom: 2px; }
-    .aboutbox p  { font-size: clamp(.54rem, 2.15vw, .66rem); line-height: 1.32; }
+    .about-ico {
+        position: relative; width: clamp(20px, 5.8vw, 25px); height: clamp(20px, 5.8vw, 25px);
+        font-size: clamp(.5rem, 1.7vw, .65rem); margin: 4px 0 0;
+        border: 0; background: var(--ab-ico-bg);
+    }
+    .about-body { margin-top: 4px; padding: 0; }
+    .aboutbox h2 { font-size: clamp(.56rem, 2.55vw, .7rem); line-height: 1.15; margin-bottom: 2px; }
+    .aboutbox p  { font-size: clamp(.48rem, 2.1vw, .58rem); line-height: 1.28; }
 }
-
 @media (max-width: 420px) {
     #about1,
-    html[data-theme] #about1 { padding: 0; gap: 7px; }
-    .about-body { padding: 0 7px 8px; }
-    .about-ico { margin-left: 7px; }
+    html[data-theme] #about1 { padding: 0; gap: 8px; }
+    .about-body { padding: 0; }
     .about-scene { margin: 6px 3% 44px; }
+}
+@media (max-width: 360px) {
+    .aboutbox { gap: 5px; padding: 18px 27% 7px 6px; min-height: 80px; }
 }
 
 /* =========================================================
@@ -3557,4 +3576,296 @@ html[data-theme] #about1 {
     .aboutbox h2 { font-size: .96rem; }
     .aboutbox p  { font-size: .78rem; line-height: 1.42; }
     .about-media { width: 34%; }
+}
+
+/* Service cards: desktop text vs mobile text */
+.svc-mt{ display:none; }
+
+/* Service cards: show mobile text, hide desktop text (≤ 860px) */
+@media (max-width: 600px) {
+    .services .svc-dt { display:none; }
+    .services .svc-mt { display:inline; }
+}
+
+/* About cards: desktop text vs mobile text */
+.ab-mt { display: none; }
+@media (max-width: 600px) {
+    .aboutbox .ab-dt { display: none; }
+    .aboutbox .ab-mt { display: inline; }
+}
+
+/* =========================================================
+   SERVICES + ABOUT — TABLET (601px – 1100px)
+   Desktop ≥ 1101px = 3 per row, tablet = 2 per row (medium cards,
+   full desktop text), mobile ≤ 600px = 2 per row compact cards.
+   ========================================================= */
+@media (min-width: 601px) and (max-width: 1100px) {
+    #ourservices1 { padding-left: 5%; padding-right: 5%; }
+    #ourservices  { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .services { --svc-pic: 84px; column-gap: 12px; padding: 32px 16px 22px 16px; }
+    .svc-num { min-width: 40px; padding: 4px 10px 5px; font-size: .85rem; }
+    .svc-body { padding-left: 12px; }
+    .services h3 { font-size: 1rem; margin-bottom: 5px; }
+    .services p  { font-size: .8rem; line-height: 1.45; }
+
+    .about-scene { width: min(900px, 94%); }
+    #about1,
+    html[data-theme] #about1 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .aboutbox { gap: 12px; padding: 20px 38% 18px 16px; min-height: 130px; }
+    .about-media { width: 34%; }
+    .about-ico { width: 42px; height: 42px; font-size: 1rem; margin-top: 10px; }
+    .about-body { margin-top: 10px; }
+    .aboutbox h2 { font-size: 1rem; }
+    .aboutbox p  { font-size: .8rem; line-height: 1.45; }
+}
+
+/* Light theme: hero stats container (5000+ / 30+ / 2000 FT / 24x7) in white */
+html[data-theme="light"] .hm-stats,
+html[data-theme="light"] .hero .hm .hm-stats {
+    background: #FFFCF6;
+    box-shadow: 0 8px 22px -14px rgba(20, 60, 110, .25), inset 0 0 0 1px rgba(255, 255, 255, .7);
+}
+
+/* Calculator → Drilling Rate Info: remove the green box on mobile (≤ 600px) */
+@media (max-width: 600px) {
+    .dri-card {
+        background: none; border: 0; border-radius: 0; box-shadow: none;
+        margin-top: 0; padding: 0;
+    }
+    /* also hide the "Rates are hidden" icon + text; the eye button still toggles the rates */
+    .dri-empty { display: none !important; }
+}
+
+/* Calculator → Drilling Rate Info: Instagram-style pill bar on mobile (≤ 600px) */
+.drill-rate-head .dri-arrows { display: none; }
+@keyframes driPulse {
+    0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, .25), 0 0 0 0 color-mix(in srgb, var(--rust) 45%, transparent); }
+    50%      { box-shadow: 0 2px 8px rgba(0, 0, 0, .25), 0 0 0 6px color-mix(in srgb, var(--rust) 0%, transparent); }
+}
+@media (max-width: 600px) {
+    #drillRatePanel.drill-rate-panel {
+        position: relative; overflow: hidden;
+        padding: 5px 12px 5px 14px !important;
+        border: 1.5px solid transparent !important;
+        border-radius: 999px !important;
+        background:
+            linear-gradient(100deg, var(--aqua-glow), transparent 45%) padding-box,
+            linear-gradient(var(--card), var(--card)) padding-box,
+            linear-gradient(90deg, var(--rust), var(--aqua) 50%, var(--rust)) border-box !important;
+        box-shadow: 0 0 18px -2px var(--aqua-glow), var(--shadow) !important;
+        -webkit-tap-highlight-color: transparent;
+        transition: border-radius .3s var(--ease), padding .3s var(--ease);
+    }
+    /* soft sweeping shine */
+    #drillRatePanel.drill-rate-panel::before {
+        content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+        background: linear-gradient(110deg, transparent 35%, var(--aqua-glow) 50%, transparent 65%);
+        transform: translateX(-120%); animation: pillShine 4.5s ease-in-out infinite;
+    }
+    #drillRatePanel .drill-rate-head {
+        position: relative; z-index: 1; padding: 0; border-bottom: 0; gap: 10px; min-height: 28px;
+    }
+    #drillRatePanel .drill-rate-head .panel-title {
+        flex: 1; justify-content: center; margin: 0; gap: 10px; padding: 0 0 0 30px;
+    }
+    /* separator after the info icon */
+    #drillRatePanel .dri-icon { position: absolute; left: 0; top: 50%; transform: translateY(-50%); margin: 0; }
+    #drillRatePanel .dri-icon::after,
+    #drillRatePanel .dri-view-btn::before {
+        content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+        width: 2px; height: 16px; border-radius: 2px;
+        background: linear-gradient(var(--aqua), var(--rust)); opacity: .8;
+    }
+    #drillRatePanel .dri-icon::after { right: -9px; }
+    #drillRatePanel .dri-view-btn::before { left: -11px; }
+    /* eye button = badge */
+    #drillRatePanel .dri-view-btn {
+        position: relative; margin-left: 4px;
+        width: 26px !important; height: 26px !important; border-radius: 8px; border: 0;
+        background: linear-gradient(135deg, var(--rust-light), var(--rust));
+        color: #fff; animation: driPulse 2.6s ease-in-out infinite;
+        transition: transform .2s var(--ease);
+    }
+    #drillRatePanel .dri-view-btn:active { transform: scale(.92); }
+    #drillRatePanel .dri-view-btn.open { animation: none; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+    #drillRatePanel .dri-view-btn svg { width: 15px; height: 15px; }
+    /* animated arrows */
+    #drillRatePanel .drill-rate-head .dri-arrows { display: flex; margin-left: 0; font-size: .8rem; }
+
+    /* collapsed: no card under the pill */
+    #drillRatePanel:not(:has(#driRates:not([hidden]))) .dri-card { display: none; }
+    /* opened: the pill grows into a rounded card; shine stops */
+    #drillRatePanel.drill-rate-panel:has(#driRates:not([hidden])) {
+        border-radius: 22px !important; padding: 8px 14px 14px !important;
+    }
+    #drillRatePanel.drill-rate-panel:has(#driRates:not([hidden]))::before { animation: none; opacity: 0; }
+    #drillRatePanel:has(#driRates:not([hidden])) .drill-rate-head {
+        padding-bottom: 8px; border-bottom: 1px solid rgba(30, 58, 82, .12);
+    }
+    #drillRatePanel:has(#driRates:not([hidden])) .dri-card { margin-top: 10px; }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+    #drillRatePanel.drill-rate-panel::before, #drillRatePanel .dri-view-btn { animation: none; }
+}
+
+/* Calculator — mobile (≤ 600px): hide GST stat card + Transparent Pricing,
+   and keep the two Save Estimate buttons on one row */
+@media (max-width: 600px) {
+    #calculator-section .stats-row .stat-card:has(#gstAmount) { display: none; }
+    #calculator-section .stats-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #calculator-section .transparent-row { display: none; }
+
+    #calculator-section .save-buttons { flex-direction: row; flex-wrap: nowrap; gap: 8px; }
+    #calculator-section .save-buttons .btn {
+        flex: 1 1 0; min-width: 0; padding: 11px 8px; gap: 6px;
+        font-size: .8rem; white-space: nowrap;
+    }
+    #calculator-section .save-buttons .btn svg { width: 15px; height: 15px; flex: none; }
+}
+
+/* Calculator — mobile (≤ 600px): Customer Details + Drilling Details side by side in one row */
+@media (max-width: 600px) {
+    #calculator-section .details-stack {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch;
+    }
+    /* Project Details (and anything else in the stack) stays full width */
+    #calculator-section .details-stack > :not(.customer-panel):not(.drilling-panel) { grid-column: 1 / -1; }
+
+    #calculator-section .details-panel.customer-panel,
+    #calculator-section .details-panel.drilling-panel { padding: 14px 10px; min-width: 0; }
+    #calculator-section .customer-panel .panel-title,
+    #calculator-section .drilling-panel .panel-title {
+        font-size: 10px; letter-spacing: .08em; gap: 6px; margin-bottom: 12px; flex-wrap: nowrap;
+    }
+    #calculator-section .customer-panel .title-icon,
+    #calculator-section .drilling-panel .title-icon { width: 14px; height: 14px; flex: none; }
+
+    /* fields stack inside each narrow card */
+    #calculator-section .customer-panel .customer-fields,
+    #calculator-section .drilling-panel .bore-extra-row {
+        grid-template-columns: minmax(0, 1fr); gap: 10px; margin-bottom: 10px;
+    }
+    #calculator-section .customer-panel .site-address-field { margin-top: 0; }
+    #calculator-section .customer-panel .field input,
+    #calculator-section .customer-panel .field textarea,
+    #calculator-section .drilling-panel .field select { font-size: 12px; padding-left: 9px; padding-right: 9px; }
+}
+
+/* Customer + Drilling details wrapper: transparent on desktop/tablet,
+   one single card on mobile (≤ 600px) with Site Address across the full width */
+#calculator-section .cd-merged { display: contents; }
+@media (max-width: 600px) {
+    #calculator-section .cd-merged {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 12px; row-gap: 12px; align-items: start;
+        padding: 14px 12px 14px;
+        background: var(--card); border: 1px solid var(--line);
+        border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    #calculator-section .cd-merged > .details-panel { display: contents; }
+    #calculator-section .cd-merged .customer-panel .panel-title { grid-column: 1; grid-row: 1; margin: 0; }
+    #calculator-section .cd-merged .drilling-panel .panel-title { grid-column: 2; grid-row: 1; margin: 0; }
+    #calculator-section .cd-merged .customer-fields { grid-column: 1; grid-row: 2; margin: 0; }
+    #calculator-section .cd-merged .bore-extra-row  { grid-column: 2; grid-row: 2; margin: 0; }
+    #calculator-section .cd-merged .site-address-field { grid-column: 1 / -1; grid-row: 3; margin: 0; }
+}
+
+/* Merged Customer + Drilling card — compact size on mobile (≤ 600px) */
+@media (max-width: 600px) {
+    #calculator-section .cd-merged { padding: 10px 10px 10px; column-gap: 8px; row-gap: 8px; border-radius: 14px; }
+    #calculator-section .cd-merged .panel-title { font-size: 9px; letter-spacing: .06em; gap: 5px; }
+    #calculator-section .cd-merged .title-icon { width: 12px; height: 12px; }
+    #calculator-section .cd-merged .customer-fields,
+    #calculator-section .cd-merged .bore-extra-row { gap: 7px; }
+    #calculator-section .cd-merged .field { gap: 3px; }
+    #calculator-section .cd-merged .field > span { font-size: 8.5px; letter-spacing: .05em; }
+    #calculator-section .cd-merged .field input,
+    #calculator-section .cd-merged .field select {
+        height: 32px; min-height: 0; padding: 0 8px; font-size: 11px; border-radius: 9px;
+    }
+    #calculator-section .cd-merged .field textarea {
+        min-height: 40px; height: 40px; padding: 7px 9px; font-size: 11px; border-radius: 9px;
+    }
+}
+
+/* Merged details card (mobile ≤ 600px): fix the Bore Type / Slab Rate selects */
+@media (max-width: 600px) {
+    #calculator-section .cd-merged .field select.bore-type-select {
+        height: 32px !important; min-height: 0 !important;
+        padding: 0 22px 0 8px !important;
+        font-size: 11px !important; font-weight: 500 !important; line-height: 32px;
+        border-radius: 9px !important;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        background-position: right 6px center !important;
+        background-size: 12px !important;
+    }
+    #calculator-section .cd-merged .field input { font-size: 11px; padding: 0 7px; }
+    #calculator-section .cd-merged .field input::placeholder,
+    #calculator-section .cd-merged .field textarea::placeholder { font-size: 10.5px; }
+}
+
+/* Price Settings → Slab Rate Info — mobile (≤ 600px):
+   the two tables become ONE container: SLAB (FT) | STEP RATE | RATE */
+@media (max-width: 600px) {
+    #calculator-section .ps-slab-grid {
+        grid-template-columns: minmax(0, 1fr) auto; column-gap: 0; row-gap: 12px; align-items: start;
+    }
+    #calculator-section .ps-slab-col { display: contents; }
+    #calculator-section .ps-chips { display: none; }                 /* Base rate / Rebore / Slab rate chips removed */
+    #calculator-section .ps-controls { grid-column: 1 / -1; grid-row: 1; }
+    #calculator-section #psSlabLeft  { grid-column: 1; grid-row: 2; }
+    #calculator-section #psSlabRight { grid-column: 2; grid-row: 2; }
+
+    /* one shared box: left table loses its right edge, right table loses its left edge */
+    #calculator-section #psSlabLeft {
+        border-right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;
+        padding: 8px 4px 12px 14px;
+    }
+    #calculator-section #psSlabRight {
+        border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;
+        padding: 8px 14px 12px 4px; min-width: 96px;
+    }
+    /* right table shows only the RATE column (its SLAB column is already on the left) */
+    #calculator-section #psSlabRight .ps-table-head,
+    #calculator-section #psSlabRight .ps-table-row { grid-template-columns: 1fr; }
+    #calculator-section #psSlabRight .ps-table-head > :first-child,
+    #calculator-section #psSlabRight .ps-table-row > :first-child { display: none; }
+    #calculator-section .ps-table-head,
+    #calculator-section .ps-table-row { gap: 8px; }
+    #calculator-section .ps-table-row { min-height: 46px; }
+}
+
+/* Price Settings → Slab Rate Info — mobile (≤ 600px): row alignment + neat controls */
+@media (max-width: 600px) {
+    /* both halves of the merged table use the same fixed row / head height, so RATE sits exactly level with STEP RATE */
+    #calculator-section .ps-slab-grid { align-items: stretch; }
+    #calculator-section #psSlabLeft,
+    #calculator-section #psSlabRight { align-self: stretch; box-sizing: border-box; }
+    #calculator-section .ps-table-head { height: 34px; padding: 0; box-sizing: border-box; }
+    #calculator-section .ps-table-row  { height: 54px; min-height: 54px; padding: 0; box-sizing: border-box; }
+    #calculator-section #psSlabLeft  { padding: 0 4px 10px 14px; }
+    #calculator-section #psSlabRight { padding: 0 14px 10px 4px; }
+
+    /* Final step + Step rate: two tidy controls side by side, labels above */
+    #calculator-section .ps-controls {
+        display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 10px; row-gap: 4px; align-items: end; min-height: 0;
+    }
+    #calculator-section .ps-pattern-wrap { display: contents; }
+    #calculator-section .ps-controls > .ps-lbl:first-child { grid-column: 1; grid-row: 1; }
+    #calculator-section .ps-controls > .stepper { grid-column: 1; grid-row: 2; width: 100%; }
+    #calculator-section .ps-pattern-wrap > .ps-lbl { grid-column: 2; grid-row: 1; }
+    #calculator-section .ps-pattern-wrap > .ps-pattern-select { grid-column: 2; grid-row: 2; }
+    #calculator-section .ps-controls .ps-lbl { font-size: 11px; }
+
+    #calculator-section .ps-controls .ps-pattern-select {
+        -webkit-appearance: none; appearance: none;
+        width: 100%; min-width: 0; height: 38px; box-sizing: border-box;
+        padding: 0 30px 0 12px; border-radius: var(--radius-sm);
+        background-color: var(--card-2); border: 1px solid var(--line); color: var(--ink);
+        font: 600 13px var(--font-body); cursor: pointer;
+        white-space: nowrap; text-overflow: ellipsis;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239FB2BA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");
+        background-repeat: no-repeat; background-position: right 9px center; background-size: 16px;
+    }
 }
