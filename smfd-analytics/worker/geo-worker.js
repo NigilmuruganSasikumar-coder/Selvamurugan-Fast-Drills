@@ -3,7 +3,9 @@
    City/region come from the network (IP) and are APPROXIMATE: mobile carriers and VPNs often resolve to
    a different city. Deploy as a NEW worker (e.g. smfd-geo) and paste its URL into GEO_ENDPOINT. */
 const ALLOWED_ORIGINS = [
-  "https://selvamuruganfastdrills.github.io"
+  "https://selvamuruganfastdrills.com",
+  "https://www.selvamuruganfastdrills.com",
+  "https://selvamuruganfastdrills.github.io"   // remove if the github.io address redirects to the .com site
   // , "http://localhost:5500"   // add only while testing
 ];
 

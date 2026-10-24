@@ -18,7 +18,7 @@ Runs on the free **Spark** plan: no Cloud Functions. Keep this in mind (section 
 2. **Authentication → Users → Add user**: create your admin account. Copy its **UID**.
 3. **Firestore → Data**: create collection `admins`, document ID = that UID, any field (e.g. `role: "owner"`). Clients can never write this collection.
 4. **Firestore → Rules**: paste `firestore.rules` → Publish. (Or `firebase deploy --only firestore:rules`.)
-5. **Authentication → Settings → Authorized domains**: make sure `selvamuruganfastdrills.github.io` is listed.
+5. **Authentication → Settings → Authorized domains**: add `selvamuruganfastdrills.com` and `www.selvamuruganfastdrills.com` (and keep `selvamuruganfastdrills.github.io` if it still serves the site).
 6. **Firestore → TTL**: add a policy on field `expireAt` for collection groups `analyticsSessions` (30 d), `analyticsEvents` (90 d), `analyticsDaily` and `analyticsGeo` (400 d). This is the retention/cleanup mechanism.
 7. Optional: **App Check** (reCAPTCHA v3) reduces scripted abuse of the public write path.
 
@@ -33,7 +33,7 @@ Before `</body>` in `index.html`, `quotation.html` and `ai_chat.html`:
 ```html
 <script type="module" src="js/analytics/analytics-tracker.js"></script>
 ```
-Upload `js/analytics/`, `css/analytics-dashboard.css`, `admin-analytics.html`, then open `/admin-analytics.html` and sign in.
+The admin page lives at `https://selvamuruganfastdrills.com/admin-analytics.html`. Upload `js/analytics/`, `css/analytics-dashboard.css`, `admin-analytics.html`, then open `/admin-analytics.html` and sign in.
 To open it from an existing admin button instead: load the CSS, add `data-open-analytics` to the button, and
 `import { initAnalyticsDashboard } from "./js/analytics/analytics-dashboard.js"; initAnalyticsDashboard();`.
 
