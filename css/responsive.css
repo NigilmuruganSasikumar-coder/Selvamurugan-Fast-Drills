@@ -1,0 +1,3560 @@
+/* RESPONSIVE STYLES (tablet / mobile breakpoints) - load AFTER desktop.css.
+   Base rules that originally came after a breakpoint block are kept here in their original order so the cascade stays identical. */
+
+/* ================= index1.css ================= */
+
+@media (min-width:640px){
+  .stats{ padding:30px 10px; }
+  .stat{ padding:0 24px; }
+  .divider{ height:44px; }
+}
+
+/* Roomier sizing once there's space (tablet/desktop) */
+
+@media (min-width:640px){
+  .water-process-mobile{ max-width:760px; margin-left:auto; margin-right:auto; padding:26px 22px 22px; }
+  .wp-heading{ margin-bottom:22px; }
+  .wp-heading h3{ font-size:.95rem; }
+  .wp-grid{ gap:14px; }
+  .wp-step{ padding:16px 10px 14px; }
+  .wp-num{ width:26px; height:26px; font-size:.7rem; }
+  .wp-icon{ font-size:1.4rem; margin-bottom:8px; }
+  .wp-step h4{ font-size:.82rem; margin-bottom:4px; }
+  .wp-step p{ font-size:.68rem; }
+  .wp-arrow{ font-size:.85rem; padding-top:34px; }
+
+  .quick-actions-mobile{ max-width:760px; margin-left:auto; margin-right:auto; gap:18px; }
+  .qa-btn{ padding:22px 10px; font-size:.92rem; gap:10px; }
+  .qa-btn .qa-ico{ font-size:1.5rem; }
+}
+
+@media (max-width:480px){
+  .pill-btn{ padding:5px 12px; gap:8px; margin-top:44px; }
+  .pill-ico{ width:22px; font-size:1rem; } .pill-badge{ width:24px; height:24px; font-size:.9rem; border-radius:7px; }
+  .pill-sep{ height:16px; } .pill-arrows{ font-size:.8rem; }
+}
+
+@media (min-width:993px) and (max-width:1180px){
+  .ai-assist__card{ gap:14px; padding:11px 22px; }
+  .ai-assist__desc{ max-width:340px; }
+}
+
+/* ≤1480px: slightly tighter */
+
+@media (min-width:861px) and (max-width:1480px){
+  .navbar{ gap:12px; padding-left:18px; padding-right:18px; }
+  .brand-title{ font-size:1rem; }
+  .nav-links{ gap:16px; }
+  .nav-links a.mnav-item{ font-size:.86rem; }
+  .calc-btn-nav,.ai-btn-nav,.admin-btn-nav{ padding:9px 13px; font-size:.82rem; }
+  .nav-divider{ display:none; }
+  .topbar__inner{ padding-left:18px; padding-right:18px; }
+}
+
+/* ≤1260px: drop the small link icons + subtitle so the row still fits */
+
+@media (min-width:861px) and (max-width:1260px){
+  .mnav-list .mnav-ico{ display:none; }
+  .title-text span{ display:none; }
+  .nav-links{ gap:14px; }
+  .topbar__tag,.topbar__sep{ display:none; }
+}
+
+/* ≤1020px (small tablets): hide the DrillCalc label's icon + AI plus sign */
+
+@media (min-width:861px) and (max-width:1020px){
+  .calc-btn-nav i,.ai-btn-nav__plus,.admin-btn-nav i{ display:none; }
+  .brand-title{ font-size:.9rem; }
+  .brand-logo{ width:38px; height:38px; }
+  .nav-links{ gap:10px; }
+  .topbar__info li:nth-child(3){ display:none; }
+}
+
+/* ================= index2.css ================= */
+
+/* ==========================================================================
+   SELVAMURUGAN FAST DRILLS — RESPONSIVE STYLES
+   PHASE 1: Home banner (Navbar, brand, hamburger + slide-out mobile menu,
+            theme toggle, calculator nav button, Hero section incl. stat
+            counters and depth-gauge decoration.)
+   PHASE 2: About section (#about1) — single column ("one container per
+            row") on mobile.
+   PHASE 3: Our Services section (#ourservices) — now single column
+            (one container per row) on mobile, same as About.
+   PHASE 4: Service Areas "WE SERVE HERE" quick grid — all 6 cards in
+            a single row (like desktop), shrunk down, number badge
+            hidden.
+   PHASE 5: Service Areas bottom CTA bar ("Outside These Areas?") —
+            single row (like desktop), compacted: description and
+            CTA subtext hidden, stats row (Locations/Support/
+            Guarantee) hidden.
+   PHASE 6: Service Areas intro + orbit map — stacked full-width
+            (fixes the squeezed side-by-side layout you saw).
+   PHASE 7: Gallery / Project Portfolio (.gaimg) — single column
+            (one photo per row) on mobile.
+   PHASE 8: Calculator (#calculator-section) — mode panel + project
+            details stack, mode cards and field pairs stay side-by-
+            side, stats row stays 4-across, Save Estimate / Important
+            Notes now stack one per row. Includes a min-width:0 fix
+            for the stat cards overflowing past the right edge on
+            narrower phones.
+   PHASE 9: Google Review bar (.review-bar) — forced onto a single
+            line (icon, stars, 4.9/5, Read Reviews button); the
+            "Google Reviews" caption is hidden to make room.
+   PHASE 10: Contact — quick info cards (.qcards) — 4 cards → 2x2 grid.
+   PHASE 11: Contact — service area + enquiry form (.sa-grid) — one
+             column per row (service area/map on top, form below).
+   PHASE 12: Footer (.site-footer) — desktop 5-col grid → tablet
+             4-col → mobile 2×2 accordion cards. Full light/dark
+             theme support via html[data-theme="light"] overrides.
+   PHASE 13: Bottom nav bar (.pwa-bottom-nav) — shown on mobile
+             (≤860px) only, explicitly hidden on desktop/tablet
+             (≥861px). The top .navbar is already position:sticky
+             in the base/full CSS, so it's visible in every view
+             without any extra rule here.
+   BUGFIX:   The navbar's position:sticky silently breaks on mobile
+             because html/body have overflow-x:hidden (an ancestor
+             overflow other than visible disables sticky on its
+             descendants). Switched .navbar to position:fixed on
+             mobile instead, with matching body padding-top so it
+             stays pinned through the whole page, not just Home.
+   BUGFIX:   Brand name was truncating with "..." at 375px, and the
+             tagline was hidden entirely below 420px. Both now stay
+             fully visible at every width — the icons/toggle/
+             hamburger shrink instead, with an extra ≤360px step
+             for the narrowest phones.
+   BUGFIX:   Calculator mode cards and field pairs were overflowing
+             past the right edge on ~400-430px phones (same
+             content-based min-width issue as the stat cards).
+             min-width:0 added, plus a dedicated ≤430px step that
+             tightens mode-card/field sizing further.
+   HIDDEN:   Floating WhatsApp/Instagram buttons hidden on mobile
+             (≤860px) — redundant with the bottom nav's own
+             WhatsApp/Contact tabs, and were overlapping content.
+   BUGFIX:   GST toggle + Clear All + Calculate Estimate were
+             stacking onto separate lines on small/medium phones
+             instead of staying in one row like the large view.
+             Forced back to a single row (!important), with
+             smaller toggle/button sizing so everything fits;
+             button icons drop entirely below 380px for room.
+   ========================================================================== */
+
+/* =========================================================
+   MOBILE NAVIGATION  (≤ 860px)
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    /* ---------- PAGE WIDTH ---------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        position: relative;
+    }
+
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+
+        padding: 12px 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 10px;
+        flex-wrap: nowrap;
+
+        box-sizing: border-box;
+
+        position: sticky;
+        top: 0;
+
+        z-index: 10000;
+    }
+
+
+    /* ---------- BRAND ---------- */
+
+    .title {
+        min-width: 0;
+        flex: 1 1 auto;
+        overflow: hidden;
+        gap: 8px;
+    }
+
+    .brand-logo {
+        width: 34px;
+        height: 34px;
+        border-width: 1.5px;
+    }
+
+    .title-text {
+        min-width: 0;
+    }
+
+    .brand-title {
+        display: block;
+
+        font-size: .8rem;
+        line-height: 1.2;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .title span {
+        display: block;
+
+        font-size: .5rem;
+        letter-spacing: .04em;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* =====================================================
+       MOBILE MENU PANEL
+       ===================================================== */
+
+    .nav-links {
+
+        /* IMPORTANT */
+        position: fixed !important;
+
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+
+        width: min(86vw, 360px) !important;
+        height: 100dvh !important;
+
+        box-sizing: border-box;
+
+        margin: 0;
+        padding: 22px 18px 26px;
+
+        /* ---------- GLASSY WATER PANEL ---------- */
+        background:
+            radial-gradient(520px 260px at 100% 0%, rgba(47, 211, 201, .16), transparent 60%),
+            radial-gradient(420px 240px at 0% 100%, rgba(193, 87, 30, .10), transparent 55%),
+            linear-gradient(180deg, rgba(16, 27, 34, .88), rgba(8, 13, 18, .95));
+        backdrop-filter: blur(22px) saturate(160%);
+        -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+
+        gap: 14px !important;
+
+        border-left: 1px solid rgba(47, 211, 201, .28);
+        box-shadow: -24px 0 60px -20px rgba(0, 0, 0, .65), inset 1px 0 0 rgba(255, 255, 255, .05);
+
+        /* CLOSED */
+        transform: translateX(100%);
+
+        /* IMPORTANT */
+        transition: transform .4s var(--ease);
+
+        /* Above overlay */
+        z-index: 10001 !important;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    html[data-theme="light"] .nav-links {
+        background:
+            radial-gradient(520px 260px at 100% 0%, rgba(11, 156, 143, .14), transparent 60%),
+            radial-gradient(420px 240px at 0% 100%, rgba(180, 78, 20, .08), transparent 55%),
+            linear-gradient(180deg, rgba(255, 253, 248, .90), rgba(243, 240, 231, .95));
+        border-left: 1px solid rgba(11, 156, 143, .28);
+        box-shadow: -24px 0 60px -20px rgba(23, 33, 31, .25), inset 1px 0 0 rgba(255, 255, 255, .6);
+    }
+
+
+    /* ---------- OPEN MENU ---------- */
+
+    .nav-links.active {
+        right: 0 !important;
+
+        transform: translateX(0) !important;
+    }
+
+
+    /* =====================================================
+       DRAWER HEADER — logo + brand + close
+       ===================================================== */
+
+    .mnav-head {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        padding-bottom: 14px;
+        margin-bottom: 2px;
+        border-bottom: 1px solid var(--line);
+        flex-shrink: 0;
+    }
+
+    .mnav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .mnav-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 2px solid var(--aqua);
+        box-shadow: 0 0 0 3px rgba(47, 211, 201, .14), 0 6px 16px -6px var(--aqua-glow);
+    }
+
+    .mnav-brand-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        line-height: 1.15;
+    }
+
+    .mnav-brand-text strong {
+        font-family: var(--font-display);
+        font-size: .92rem;
+        letter-spacing: .01em;
+        color: var(--ink);
+        white-space: nowrap;
+    }
+
+    .mnav-brand-text strong.mnav-accent {
+        color: var(--aqua);
+    }
+
+    .mnav-brand-text span {
+        margin-top: 3px;
+        font-family: var(--font-mono);
+        font-size: .52rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-dim);
+        white-space: nowrap;
+    }
+
+    .mnav-close {
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-size: .9rem;
+        cursor: pointer;
+        transition: background .3s var(--ease), transform .3s var(--ease);
+    }
+
+    .mnav-close:hover {
+        background: rgba(224, 50, 50, .18);
+        color: #ff8a8a;
+        transform: rotate(90deg);
+    }
+
+
+    /* =====================================================
+       PRIMARY LINK LIST — glassy icon rows
+       ===================================================== */
+
+    .mnav-list {
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .nav-links .mnav-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        text-align: left;
+        font-size: .95rem;
+        font-weight: 600;
+        color: var(--ink);
+        background: rgba(255, 255, 255, .04);
+        border: 1px solid rgba(255, 255, 255, .08);
+        backdrop-filter: blur(6px);
+        transition: background .3s var(--ease), border-color .3s var(--ease), transform .25s var(--ease);
+        z-index: 10002;
+    }
+
+    html[data-theme="light"] .nav-links .mnav-item {
+        background: rgba(23, 33, 31, .035);
+        border-color: rgba(23, 33, 31, .08);
+    }
+
+    .nav-links .mnav-item:hover,
+    .nav-links .mnav-item:active {
+        background: rgba(47, 211, 201, .12);
+        border-color: rgba(47, 211, 201, .4);
+        transform: translateX(-2px);
+    }
+
+    .nav-links .mnav-item:first-child {
+        background: linear-gradient(120deg, rgba(47, 211, 201, .28), rgba(27, 167, 157, .10));
+        border-color: rgba(47, 211, 201, .5);
+        box-shadow: 0 10px 24px -12px var(--aqua-glow);
+    }
+
+    .nav-links .mnav-ico {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        flex-shrink: 0;
+        font-size: .95rem;
+        color: var(--aqua);
+        background: rgba(47, 211, 201, .14);
+        border: 1px solid rgba(47, 211, 201, .2);
+    }
+
+    .mnav-label {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .nav-links .mnav-chev,
+    .nav-links .desktop-hide.mnav-chev {
+        display: block !important;
+        flex-shrink: 0;
+        font-size: .75rem;
+        color: var(--ink-dim);
+    }
+
+
+    /* =====================================================
+       ACTION CARDS — Calculator / Install App / Admin Login
+       ===================================================== */
+
+    .mnav-cards {
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .mnav-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: transform .25s var(--ease);
+        z-index: 10002;
+    }
+
+    .mnav-card:active {
+        transform: scale(.98);
+    }
+
+    .mnav-card-ico {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        font-size: 1rem;
+        color: #fff;
+        background: rgba(255, 255, 255, .16);
+    }
+
+    .mnav-card-text {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+        line-height: 1.25;
+    }
+
+    .mnav-card-text strong {
+        font-size: .92rem;
+        color: #fff;
+    }
+
+    .mnav-card-text small {
+        font-size: .68rem;
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .mnav-card .mnav-chev {
+        color: rgba(255, 255, 255, .75);
+    }
+
+    .mnav-card--calc {
+        background: linear-gradient(120deg, rgba(47, 211, 201, .55), rgba(27, 167, 157, .65));
+        border: 1px solid rgba(47, 211, 201, .5);
+        box-shadow: 0 10px 24px -12px var(--aqua-glow);
+    }
+
+    .mnav-card--install {
+        background: linear-gradient(120deg, rgba(130, 87, 255, .7), rgba(88, 33, 214, .85));
+        border: 1px solid rgba(147, 112, 255, .6);
+        box-shadow: 0 12px 28px -10px rgba(130, 87, 255, .6);
+        padding: 20px 14px; /* taller than other cards */
+        border-radius: 16px;
+    }
+
+    .mnav-card--install .mnav-card-ico {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-size: 1.2rem;
+        background: rgba(255,255,255,.2);
+    }
+
+    .mnav-card--install .mnav-card-text strong {
+        font-size: 1rem;
+    }
+
+    .mnav-card--install .mnav-card-text small {
+        font-size: .72rem;
+    }
+
+    .mnav-card--admin {
+        background: linear-gradient(120deg, rgba(224, 55, 55, .6), rgba(140, 18, 18, .7));
+        border: 1px solid rgba(224, 55, 55, .5);
+        box-shadow: 0 10px 24px -12px rgba(224, 55, 55, .45);
+    }
+
+    /* Admin in the contact row */
+    .mnav-contact-btn--admin {
+        color: #fff;
+    }
+    .mnav-contact-btn--admin i {
+        color: #ff6b6b;
+    }
+
+
+    /* =====================================================
+       QUICK CONTACT ROW — Call Now / WhatsApp
+       ===================================================== */
+
+    .mnav-contact-row {
+        display: flex !important;
+        gap: 10px;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .mnav-contact-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        padding: 11px 12px;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, .04);
+        border: 1px solid rgba(255, 255, 255, .1);
+        backdrop-filter: blur(6px);
+        z-index: 10002;
+    }
+
+    html[data-theme="light"] .mnav-contact-btn {
+        background: rgba(23, 33, 31, .035);
+        border-color: rgba(23, 33, 31, .08);
+    }
+
+    .mnav-contact-btn i {
+        flex-shrink: 0;
+        font-size: 1.05rem;
+    }
+
+    .mnav-contact-btn--call i {
+        color: var(--aqua);
+    }
+
+    .mnav-contact-btn--whatsapp i {
+        color: #25D366;
+    }
+
+    .mnav-contact-btn span {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    .mnav-contact-btn strong {
+        font-size: .82rem;
+        color: var(--ink);
+    }
+
+    .mnav-contact-btn small {
+        font-size: .62rem;
+        color: var(--ink-dim);
+    }
+
+
+    /* =====================================================
+       FOOTER TAGLINE
+       ===================================================== */
+
+    .mnav-footer-tag {
+        display: block !important;
+        margin-top: auto;
+        padding-top: 16px;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: .6rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--aqua);
+        border-top: 1px solid var(--line);
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+
+    /* ---------- OVERLAY ---------- */
+
+    .nav-overlay {
+        position: fixed !important;
+
+        inset: 0 !important;
+
+        width: 100vw;
+        height: 100dvh;
+
+        background: rgba(6, 10, 13, .65);
+
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+
+        z-index: 9999 !important;
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition: opacity .35s var(--ease);
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    /* =====================================================
+       CALCULATOR BUTTON — hidden on mobile; the "Calculator"
+       card inside the drawer covers this action instead, and
+       hiding it here frees up room so the full company name
+       stays visible next to the logo.
+       ===================================================== */
+
+    /* Hide desktop-only corner box on mobile */
+    .desktop-corner-box {
+        display: none !important;
+    }
+
+    .calc-btn-nav {
+        display: none;
+    }
+
+
+    /* =====================================================
+       THEME BUTTON — round icon button on mobile (was the
+       desktop pill/slider switch; that stays for desktop).
+       ===================================================== */
+
+    .theme-toggle {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        padding: 0;
+        position: relative;
+    }
+
+    .toggle-thumb {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 34px;
+        height: 34px;
+        background: linear-gradient(145deg, var(--aqua), #1BA79D);
+        box-shadow: 0 8px 20px -6px var(--aqua-glow);
+    }
+
+    html[data-theme="light"] .toggle-thumb {
+        transform: none;
+        background: linear-gradient(145deg, var(--ochre), #B97F26);
+    }
+
+    .icon-sun, .icon-moon {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: .95rem;
+    }
+
+
+    /* =====================================================
+       HAMBURGER / CLOSE BUTTON
+       ===================================================== */
+
+    .menu-toggle {
+
+        display: flex;
+
+        flex-shrink: 0;
+
+        position: relative;
+
+        z-index: 10003 !important;
+
+        padding: 6px;
+
+        background: transparent;
+
+        border: none;
+
+        cursor: pointer;
+
+        transition: opacity .25s var(--ease);
+    }
+
+    /* Drawer is open — its own header close button (✕) takes over,
+       so hide the navbar hamburger-turned-X to avoid two overlapping
+       close icons in the top-right corner. */
+    .menu-toggle.active {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    /* ---------- HERO: stat row + depth gauge ---------- */
+
+    .depth-gauge {
+        display: none;
+    }
+
+    .stat {
+        padding: 0 18px;
+    }
+
+    .stat h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* =========================================================
+   HERO / SLIDER — SMALL MOBILE  (≤ 640px)
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .hero {
+        padding: 80px 6% 60px;
+    }
+
+    .slider {
+        height: 70vh;
+    }
+}
+
+/* =========================================================
+   NAVBAR — VERY SMALL MOBILE  (≤ 420px)
+   Company name + tagline stay fully visible (not truncated,
+   not hidden) — everything else shrinks to make room instead.
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .navbar {
+        gap: 6px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .brand-title {
+        font-size: .72rem;
+    }
+
+    .title span {
+        font-size: .44rem;
+        letter-spacing: .03em;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .toggle-thumb {
+        width: 30px;
+        height: 30px;
+    }
+
+    .icon-sun, .icon-moon {
+        font-size: .85rem;
+    }
+
+    .menu-toggle {
+        padding: 4px;
+    }
+}
+
+/* =========================================================
+   NAVBAR — EXTRA SMALL MOBILE  (≤ 360px)
+   One more step down for the narrowest phones (iPhone SE etc.)
+   so "SELVAMURUGAN FAST DRILLS" + tagline still both fit on
+   one line without ellipsis.
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .navbar {
+        gap: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .brand-logo {
+        width: 24px;
+        height: 24px;
+        border-width: 1px;
+    }
+
+    .brand-title {
+        font-size: .64rem;
+    }
+
+    .title span {
+        font-size: .4rem;
+        letter-spacing: .02em;
+    }
+
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+    }
+
+    .toggle-thumb {
+        width: 26px;
+        height: 26px;
+    }
+
+    .icon-sun, .icon-moon {
+        font-size: .78rem;
+    }
+}
+
+/* =========================================================
+   ABOUT — MOBILE  (≤ 860px)
+   One box per row instead of the desktop 3-column grid.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    /* two cards per row — each card stacks: photo on top (slanted green
+       edge along its bottom), icon overlapping, then title + text */
+    #about1 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 14px;
+        border-radius: 26px;
+        transform: none;
+    }
+    .about-scene { width: auto; margin: 6px 4% 60px; }
+    /* keep the orbs inside the screen and clear of the heading text */
+    .about-scene .orb.o1 { width: 20vw; left: -2%; top: -2.5%; }
+    .about-scene .orb.o2 { width: 34vw; right: -3%; bottom: -5%; }
+    .about-scene .orb.o3 { width: 11vw; right: 14%; top: -1.5%; }
+    .about-scene .orb.o4 { width: 11vw; left: 10%; bottom: -3%; }
+    .aboutbox {
+        border-radius: 16px;
+        box-shadow: 0 8px 20px -12px rgba(0,0,0,.45);
+    }
+    .aboutbox {
+        flex-direction: column; align-items: stretch; gap: 0;
+        min-height: 0; padding: 0;
+    }
+    .about-media {
+        position: relative; inset: auto; order: -1;
+        width: 100%; height: clamp(88px, 25vw, 150px);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    }
+    .about-media img {
+        /* the photo files have a slanted stripe baked into their left edge;
+           push it out of view and let our own stripe do the job */
+        inset: -3% auto auto -45%; width: 150%; max-width: none; height: 106%;
+        object-position: center 55%;
+        clip-path: polygon(0 0, 100% 0, 100% 91%, 0 71%);
+    }
+    .about-num {
+        min-width: 30px; padding: 4px 8px 5px; font-size: .68rem;
+        border-radius: 0 0 10px 0;
+    }
+    .about-ico {
+        position: relative; z-index: 3;
+        width: 32px; height: 32px; font-size: .82rem;
+        margin: -17px 0 0 9px;
+        border: 2px solid var(--ab-card);
+        background: var(--ab-ico-bg), var(--ab-card);
+    }
+    .about-body { margin-top: 4px; padding: 0 9px 11px; }
+    .aboutbox h2 { font-size: clamp(.72rem, 2.9vw, .92rem); line-height: 1.18; margin-bottom: 3px; }
+    .aboutbox p { font-size: clamp(.62rem, 2.5vw, .78rem); line-height: 1.36; }
+}
+
+/* =========================================================
+   ABOUT — VERY SMALL MOBILE  (≤ 420px)
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    #about1 {
+        gap: 8px;
+        padding: 10px;
+        border-radius: 22px;
+    }
+    .about-body { padding: 0 8px 10px; }
+    .about-ico { margin-left: 8px; }
+    .about-scene { margin: 6px 3% 50px; }
+}
+
+/* =========================================================
+   OUR SERVICES — MOBILE  (≤ 860px)
+   Now single-column (one container per row), same treatment
+   as About.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    #ourservices1 { padding-left: 4%; padding-right: 4%; }
+    #ourservices  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    #services1 .svc-eyebrow { font-size: .68rem; gap: 9px; letter-spacing: .18em; }
+    #services1 .svc-eyebrow i { width: 24px; height: 2px; }
+
+    .services {
+        --svc-pic: clamp(38px, 11.5vw, 60px);
+        column-gap: 6px;
+        padding: 26px 11px 14px 8px;
+        border-radius: 14px;
+    }
+    .services::before { height: 2px; }
+    .svc-num { min-width: 30px; padding: 3px 8px 4px; font-size: .68rem; border-radius: 0 0 10px 0; }
+    .svc-pic { padding: 2px; border-width: 1.5px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--rust) 12%, transparent); }
+    .svc-body { padding-left: 7px; }
+    .svc-body::before { width: 1.5px; }
+    .services h3 { font-size: clamp(.64rem, 3vw, .85rem); line-height: 1.2; margin-bottom: 4px; }
+    .services p  { font-size: clamp(.56rem, 2.55vw, .72rem); line-height: 1.4; }
+}
+
+@media (max-width: 360px) {
+    #ourservices { gap: 8px; }
+    .services { padding-left: 6px; padding-right: 9px; }
+    .svc-body { padding-left: 5px; }
+}
+
+/* =========================================================
+   SERVICE AREAS — "WE SERVE HERE" QUICK GRID  (≤ 860px)
+   Turns on the compact mobile card set (in place of the desktop
+   6-card row), then lays those 6 cards out in a single line —
+   same idea as the desktop row, just shrunk down. The number
+   badge is dropped since it doesn't fit/add value at this size.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .sarea-cards {
+        display: none;
+    }
+
+    .sarea-quick {
+        display: block;
+    }
+
+    .sarea-quick-head {
+        margin-bottom: 20px;
+    }
+
+    .sarea-quick-head span {
+        font-family: var(--font-display);
+        font-size: .92rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+        color: var(--aqua);
+    }
+
+    .sarea-quick-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .sarea-quick-item {
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+        padding: 26px 12px 20px;
+        border-radius: 16px;
+        border-bottom: 3px solid var(--c);
+    }
+
+    .sarea-quick-item .sarea-num {
+        display: none;
+    }
+
+    .sarea-quick-item i.sarea-icon {
+        font-size: 1.9rem;
+        color: var(--c);
+    }
+
+    .sarea-quick-item strong {
+        font-size: .78rem;
+        line-height: 1.25;
+        letter-spacing: .02em;
+        white-space: normal;
+        color: var(--ink);
+    }
+
+    .sarea-quick-item .sarea-mini-pin {
+        color: var(--c);
+        font-size: .68rem;
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — QUICK GRID, VERY SMALL MOBILE  (≤ 480px)
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .sarea-quick-grid {
+        gap: 10px;
+    }
+
+    .sarea-quick-item {
+        padding: 20px 8px 16px;
+    }
+
+    .sarea-quick-item i.sarea-icon {
+        font-size: 1.6rem;
+    }
+
+    .sarea-quick-item strong {
+        font-size: .7rem;
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — BOTTOM CTA BAR ("Outside These Areas?")  (≤ 860px)
+   Kept as a single row (like desktop), just compacted: the
+   description paragraph and the CTA's small/em subtext are
+   hidden so the icon, title, and phone number all fit on one
+   line. Locations Covered / Customer Support / Service
+   Guarantee mini-stats are hidden too — no room for them here.
+   Card colors (dark vs light) already follow the site's theme
+   variables automatically, no extra work needed there.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .sarea-cta {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        align-items: center;
+        text-align: left;
+        padding: 14px 16px;
+        gap: 8px;
+        margin-top: 22px;
+        border-color: rgba(76, 134, 255, .35);
+    }
+
+    .sarea-cta-info {
+        display: flex !important;
+        flex-direction: row !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 10px;
+    }
+
+    .sarea-cta-info i.truck {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+        font-size: .95rem;
+    }
+
+    .sarea-cta-info > div {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .sarea-cta-info h4 {
+        font-size: .76rem;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sarea-cta-info p {
+        display: none;
+    }
+
+    .sarea-cta-info p.sarea-cta-desc-mobile {
+        display: block;
+        font-size: .62rem;
+        line-height: 1.3;
+        color: var(--ink-dim);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sarea-cta-stats {
+        display: none !important;
+    }
+
+    .sarea-cta-call {
+        display: flex !important;
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        gap: 6px;
+        border-left: 1px solid rgba(255, 255, 255, .14);
+        margin-left: 2px;
+        padding-left: 12px;
+    }
+
+    .sarea-cta-call-icon {
+        width: 24px;
+        height: 24px;
+        font-size: .72rem;
+        flex: 0 0 24px;
+    }
+
+    .sarea-cta-call small,
+    .sarea-cta-call em {
+        display: none;
+    }
+
+    .sarea-cta-call strong {
+        font-size: .68rem;
+        white-space: nowrap;
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — BOTTOM CTA BAR, VERY SMALL MOBILE  (≤ 420px)
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .sarea-cta {
+        padding: 12px 14px;
+        gap: 6px;
+    }
+
+    .sarea-cta-info {
+        gap: 8px;
+    }
+
+    .sarea-cta-info i.truck {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
+        font-size: .85rem;
+    }
+
+    .sarea-cta-info h4 {
+        font-size: .7rem;
+    }
+
+    .sarea-cta-info p.sarea-cta-desc-mobile {
+        font-size: .58rem;
+    }
+
+    .sarea-cta-call {
+        padding: 7px 9px;
+        padding-left: 9px;
+        gap: 5px;
+    }
+
+    .sarea-cta-call-icon {
+        width: 20px;
+        height: 20px;
+        font-size: .64rem;
+        flex: 0 0 20px;
+    }
+
+    .sarea-cta-call strong {
+        font-size: .62rem;
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — INTRO + ORBIT MAP  (≤ 900px)
+   Stack the intro text and the map full-width, one under the
+   other (this is the missing piece that was making it render
+   as a squeezed 2-up row instead of matching the intended
+   stacked layout).
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .sarea-top {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .sarea-map-wrap {
+        max-width: 420px;
+    }
+
+    /* swap the desktop text block for the compact mobile heading */
+    .sarea-intro {
+        display: none;
+    }
+
+    .sarea-mobile-head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 4px;
+        margin: 0 auto 8px;
+    }
+
+    /* MADURAI REGION corner tag is redundant at this size; keep it hidden.
+       "5 AREAS + HQ" stays inside the map, bottom-left, same as desktop. */
+    .sarea-map-info {
+        display: none;
+    }
+
+    .sarea-map-legend {
+        display: flex;
+    }
+
+    .sarea-map-legend-mobile {
+        display: none;
+    }
+
+    /* brighten the map so it doesn't look flat/empty on small screens */
+    .sarea-map-inner {
+        filter: brightness(1.28) saturate(1.2);
+    }
+
+    .sarea-map-svg .ring {
+        stroke: rgba(234, 241, 242, .34);
+    }
+
+    .sarea-map-svg .ring--outer {
+        stroke: rgba(234, 241, 242, .22);
+    }
+
+    .sarea-map-svg .connector {
+        stroke: rgba(234, 241, 242, .48);
+    }
+
+    .sarea-map-svg .blob {
+        stroke: rgba(120, 170, 255, .85);
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — INTRO + ORBIT MAP, SMALL MOBILE  (≤ 640px)
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .sarea {
+        padding: var(--section-top) 5% 44px;
+    }
+
+    .sarea-desc {
+        max-width: 100%;
+    }
+
+    .sarea-map-wrap {
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .sarea-map-info,
+    .sarea-map-legend {
+        padding: 5px 9px;
+        font-size: .58rem;
+    }
+
+    .sarea-node-label {
+        font-size: .58rem;
+    }
+}
+
+/* =========================================================
+   SERVICE AREAS — ORBIT MAP, VERY SMALL MOBILE  (≤ 480px)
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .sarea-map-wrap {
+        max-width: 280px;
+    }
+
+    .sarea-map-legend {
+        padding: 4px 8px;
+        font-size: .52rem;
+        gap: 5px;
+        bottom: 12px;
+        left: 12px;
+    }
+
+    .sarea-map-legend i {
+        font-size: .6rem;
+    }
+}
+
+/* =========================================================
+   GALLERY / PROJECT PORTFOLIO — MOBILE  (≤ 860px)
+   Single column (one photo per row) instead of the desktop
+   3-column grid.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .gaimg {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   GALLERY / PROJECT PORTFOLIO — SMALL MOBILE  (≤ 640px)
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .gaimg img {
+        height: 200px;
+    }
+}
+
+/* =========================================================
+   GALLERY / PROJECT PORTFOLIO — VERY SMALL MOBILE  (≤ 420px)
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .gaimg {
+        gap: 14px;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — MOBILE  (≤ 900px)
+   Matches the requested mobile mock: mode panel stacks above
+   project details (each keeps its own internal layout — mode
+   cards stay side-by-side, field pairs stay 2-up), header and
+   badge center up, breakdown/summary stack in one column.
+   Stat cards stay 4-across (per the mock). Save Estimate /
+   Important Notes now stack — one container per row — since
+   side-by-side left the Save card mostly empty and cut off the
+   WhatsApp Share button.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #calculator-section .setup-row {
+        grid-template-columns: 1fr;
+    }
+
+    #calculator-section .results-row {
+        grid-template-columns: 1fr;
+    }
+
+    #calculator-section .save-row {
+        grid-template-columns: 1fr;
+    }
+
+    #calculator-section .save-buttons {
+        flex-direction: column;
+    }
+
+    #calculator-section .site-header {
+        text-align: center;
+    }
+
+    #calculator-section .badge-years {
+        margin: 16px auto 0;
+        width: auto;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    #calculator-section .mode-cards {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    /* ---- overflow fix: mode cards + field grids can't shrink by
+       default (content-based min-width), which is what pushed
+       "Rebore Drilling" and the Phone/Rate fields off the right
+       edge on smaller phones ---- */
+    #calculator-section .mode-card,
+    #calculator-section .mode-copy,
+    #calculator-section .customer-fields,
+    #calculator-section .fields-grid,
+    #calculator-section .field,
+    #calculator-section .input-suffix {
+        min-width: 0;
+    }
+
+    #calculator-section .mode-card {
+        padding: 12px 10px;
+        gap: 8px;
+    }
+
+    #calculator-section .mode-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    #calculator-section .mode-icon svg {
+        width: 22px;
+        height: 26px;
+    }
+
+    #calculator-section .mode-name {
+        font-size: 12.5px;
+    }
+
+    #calculator-section .mode-desc {
+        font-size: 10px;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — MOBILE, SMALLER TYPE/SPACING  (≤ 640px)
+   Same layout as above, just tightened up. Field pairs stay
+   2-up (not collapsed), stats-row stays 4-across, save-row
+   stays 2-up — only sizing changes here.
+
+   IMPORTANT: grid/flex items default to a content-based min
+   width, so a long value like "₹1,00,800" or the Notes text
+   can force its column wider than its 1fr share — that's what
+   was pushing the stat cards and the Save/Notes panel off the
+   right edge. min-width: 0 (below) lets each item actually
+   shrink to fit; the ellipsis rules stop values from wrapping
+   awkwardly once they do.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    #calculator-section {
+        padding: var(--section-top) 4% 70px;
+        overflow-x: hidden;
+    }
+
+    #calculator-section .calculator-title h1 {
+        font-size: 30px;
+    }
+
+    #calculator-section .panel {
+        padding: 16px;
+    }
+
+    #calculator-section .breakdown-box,
+    #calculator-section .summary-box {
+        padding: 16px;
+    }
+
+    #calculator-section .customer-fields,
+    #calculator-section .fields-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    #calculator-section .field > span,
+    #calculator-section .field > label {
+        font-size: 9.5px;
+    }
+
+    #calculator-section .field input {
+        padding: 9px 10px !important;
+        font-size: 13px !important;
+    }
+
+    #calculator-section .mode-name {
+        font-size: 12px;
+    }
+
+    #calculator-section .mode-desc {
+        font-size: 9.5px;
+    }
+
+    /* ---- overflow fix: let grid/flex children shrink below content size ---- */
+    #calculator-section .stats-row,
+    #calculator-section .save-row {
+        min-width: 0;
+    }
+
+    #calculator-section .stat-card,
+    #calculator-section .stat-copy,
+    #calculator-section .save-row > .panel {
+        min-width: 0;
+    }
+
+    #calculator-section .stat-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 6px;
+        gap: 6px;
+    }
+
+    #calculator-section .stat-copy {
+        align-items: center;
+        gap: 2px;
+    }
+
+    #calculator-section .stat-icon {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+    }
+
+    #calculator-section .stat-icon svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    #calculator-section .stat-value {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #calculator-section .stat-label {
+        font-size: 7.5px;
+        letter-spacing: 0;
+        line-height: 1.25;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    #calculator-section .table-head,
+    #calculator-section .table-foot,
+    #calculator-section .breakdown-row {
+        font-size: 11px;
+        padding: 8px 8px;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — SMALL MOBILE  (≤ 430px)
+   This is the size that was actually breaking: the mode cards
+   ("New Drilling" / "Rebore Drilling") and the field pairs
+   don't have enough room left after the icon/text to stay
+   side-by-side without spilling past the edge. They stay
+   side-by-side (per the mock) — min-width:0 already added
+   above lets the text wrap onto 2 lines instead of overflowing;
+   this just tightens sizing further so it looks intentional
+   rather than cramped.
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    #calculator-section .mode-card {
+        padding: 10px 8px;
+        gap: 6px;
+    }
+
+    #calculator-section .mode-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    #calculator-section .mode-icon svg {
+        width: 18px;
+        height: 20px;
+    }
+
+    #calculator-section .mode-name {
+        font-size: 11.5px;
+    }
+
+    #calculator-section .mode-desc {
+        font-size: 9px;
+    }
+
+    #calculator-section .customer-fields,
+    #calculator-section .fields-grid {
+        gap: 8px;
+    }
+
+    #calculator-section .field > span,
+    #calculator-section .field > label {
+        font-size: 8.8px;
+        letter-spacing: .04em;
+    }
+
+    #calculator-section .field input {
+        padding: 8px 8px !important;
+        font-size: 12px !important;
+    }
+
+    #calculator-section .badge-years {
+        max-width: 260px;
+        padding: 10px;
+    }
+
+    #calculator-section .badge-years span {
+        font-size: 10.5px;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — VERY SMALL MOBILE  (≤ 380px)
+   A little extra room-saving if the 4-across row still feels
+   tight on the narrowest phones.
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #calculator-section .stats-row {
+        gap: 6px;
+    }
+
+    #calculator-section .stat-card {
+        padding: 8px 4px;
+        gap: 5px;
+    }
+
+    #calculator-section .stat-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    #calculator-section .stat-icon svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    #calculator-section .stat-value {
+        font-size: 12.5px;
+    }
+
+    #calculator-section .stat-label {
+        font-size: 6.6px;
+    }
+}
+
+/* =========================================================
+   GOOGLE REVIEW BAR  (≤ 640px)
+   Force everything onto one line instead of wrapping into a
+   two-row pill (which looked like an oversized stadium shape).
+   The "Google Reviews" caption is hidden to make room — the
+   icon, stars, and 4.9/5 already say what it is.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .review-bar {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 10px 14px;
+    }
+
+    .review-bar .left {
+        gap: 6px;
+        min-width: 0;
+    }
+
+    .google-icon {
+        width: 20px;
+        flex-shrink: 0;
+    }
+
+    .google-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .review-bar .stars {
+        font-size: .65rem;
+        letter-spacing: 0;
+        flex-shrink: 0;
+    }
+
+    .rating-text {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    .rating-text strong {
+        font-size: .8rem;
+    }
+
+    .rating-text span {
+        display: none;
+    }
+
+    .review-bar button {
+        padding: 8px 14px;
+        font-size: .72rem;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+}
+
+/* =========================================================
+   GOOGLE REVIEW BAR — VERY SMALL MOBILE  (≤ 380px)
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .review-bar {
+        padding: 9px 10px;
+        gap: 6px;
+    }
+
+    .google-icon {
+        width: 18px;
+    }
+
+    .google-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .review-bar .stars {
+        font-size: .58rem;
+    }
+
+    .rating-text strong {
+        font-size: .74rem;
+    }
+
+    .review-bar button {
+        padding: 7px 11px;
+        font-size: .66rem;
+    }
+}
+
+/* =========================================================
+   CONTACT — QUICK INFO CARDS (.qcards)  (≤ 860px)
+   4 cards → 2x2 grid.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .qcards {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 40px;
+    }
+
+    .qcard {
+        padding: 20px 16px;
+    }
+
+    .qcard__icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .qcard__go {
+        width: 22px;
+        height: 22px;
+        font-size: .58rem;
+    }
+
+    .qcard h3 {
+        font-size: .95rem;
+    }
+
+    .qcard p {
+        font-size: .76rem;
+        margin-bottom: 12px;
+    }
+
+    .qcard__link {
+        font-size: .76rem;
+    }
+}
+
+/* =========================================================
+   CONTACT — QUICK INFO CARDS, SMALL MOBILE  (≤ 480px)
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .qcards {
+        gap: 10px;
+        padding: 0 5%;
+    }
+
+    .qcard {
+        padding: 16px 14px;
+    }
+
+    .qcard__head {
+        margin-bottom: 12px;
+    }
+
+    .qcard__icon {
+        width: 36px;
+        height: 36px;
+        font-size: .9rem;
+    }
+
+    .qcard h3 {
+        font-size: .88rem;
+        margin-bottom: 2px;
+    }
+
+    .qcard p {
+        font-size: .7rem;
+        margin-bottom: 10px;
+    }
+
+    .qcard__link {
+        font-size: .7rem;
+        gap: 5px;
+    }
+}
+
+/* =========================================================
+   CONTACT — SERVICE AREA + FORM (.sa-grid)  (≤ 900px)
+   One column: service-area block on top, enquiry form below.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .sa-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 0 5%;
+    }
+
+    .sa-map iframe {
+        height: 240px;
+    }
+
+    .sa-form-card {
+        padding: 24px;
+    }
+}
+
+/* =========================================================
+   CONTACT — SERVICE AREA + FORM, SMALL MOBILE  (≤ 480px)
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .sa-map iframe {
+        height: 200px;
+    }
+
+    .sa-form-card {
+        padding: 18px;
+    }
+
+    .ef-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .qcontact {
+        padding: 20px 18px 6px;
+    }
+
+    .qcontact__item {
+        padding: 14px 4px;
+    }
+
+    .ef-toggle__btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* =========================================================
+   FOOTER — TABLET  (≤ 1100px)
+   brand spans full top row, 4 cols below
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 48px 5% 36px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding-right: 0;
+        padding-bottom: 32px;
+    }
+
+    html[data-theme="light"] .footer-brand {
+        border-bottom-color: var(--line);
+    }
+
+    .footer-cta-btns { flex-direction: row; flex-wrap: wrap; }
+    .footer-btn { flex: 1; min-width: 180px; }
+
+    .footer-col { padding: 0 16px; }
+    .footer-col--links { padding-left: 0; }
+    .footer-col:last-child { padding-right: 0; }
+}
+
+/* =========================================================
+   FOOTER — MOBILE  (≤ 768px)
+   Brand top, 2×2 rounded accordion cards,
+   Follow Us + tagline row, then dev bar.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* switch to 2-col grid — brand spans both */
+    .footer-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 28px 16px 16px;
+        max-width: 100%;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.10);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+
+    html[data-theme="light"] .footer-brand {
+        border-bottom-color: var(--line);
+    }
+
+    /* show vertical divider bar in logo row */
+    .footer-logo-divider { display: block; }
+
+    .footer-logo-img  { width: 66px; height: 66px; }
+    .footer-logo-name,
+    .footer-logo-sub  { font-size: 1.2rem; }
+
+    .footer-desc { margin-top: 14px; margin-bottom: 16px; }
+
+    /* full-width stacked CTA buttons */
+    .footer-cta-btns { flex-direction: column; gap: 12px; }
+    .footer-btn {
+        width: 100%; padding: 14px 20px;
+        font-size: .9rem; justify-content: flex-start;
+    }
+    .footer-btn-text strong { font-size: .92rem; }
+    .footer-btn-text small  { font-size: .75rem; }
+
+    /* 4 cards: rounded bordered style */
+    .footer-col {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 14px;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    html[data-theme="light"] .footer-col {
+        background: var(--slate);
+        border-color: var(--line);
+    }
+
+    /* toggle tappable on mobile */
+    .footer-col-toggle {
+        pointer-events: all;
+        cursor: pointer;
+        padding: 14px 16px;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    html[data-theme="light"] .footer-col-toggle {
+        border-bottom-color: var(--line);
+    }
+
+    /* hide yellow underline inside cards */
+    .footer-col-toggle::after { display: none; }
+
+    /* show chevron */
+    .footer-chev { display: block; }
+
+    /* collapsed: hide body */
+    .footer-col-toggle[aria-expanded="false"] + .footer-col-body {
+        display: none;
+    }
+    /* rotate chevron when open */
+    .footer-col-toggle[aria-expanded="true"] .footer-chev {
+        transform: rotate(180deg);
+    }
+    /* open list padding */
+    .footer-col-toggle[aria-expanded="true"] + .footer-col-body {
+        padding: 14px 16px 16px;
+    }
+
+    .footer-col-hd  { font-size: .84rem; }
+    .footer-col-ico { font-size: .8rem; }
+    .footer-col-body li { font-size: .8rem; margin-bottom: 9px; }
+
+    /* social + tagline row */
+    .footer-social-tagline-row {
+        padding: 18px 16px 20px;
+        gap: 12px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    html[data-theme="light"] .footer-social-tagline-row {
+        border-color: var(--line);
+    }
+
+    .footer-social-block { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .footer-social-card-label { font-size: .8rem; }
+    .footer-tagline-block { align-items: flex-end; flex-shrink: 0; }
+    .footer-tagline-text { font-size: .8rem; text-align: right; }
+
+    /* dev bar stays horizontal */
+    .footer-bottom { padding: 16px 16px; margin-top: 0; }
+    .footer-bottom-inner {
+        flex-direction: row; flex-wrap: wrap;
+        align-items: center; gap: 10px;
+        padding-bottom: 10px; margin-bottom: 8px;
+    }
+    .footer-dev-left { flex: 1; min-width: 0; gap: 10px; }
+    .footer-dev-icon { font-size: 1.2rem; }
+    .footer-dev-text { font-size: .7rem; }
+    .footer-dev-name { font-size: .76rem; }
+    .footer-dev-right { display: flex; gap: 8px; flex-shrink: 0; }
+    .footer-dev-btn { padding: 7px 12px; font-size: .7rem; }
+}
+
+/* =========================================================
+   FOOTER — SMALL MOBILE  (≤ 480px)
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .footer-inner { padding: 24px 12px 12px; gap: 10px; }
+
+    .footer-logo-img  { width: 58px; height: 58px; }
+    .footer-logo-name,
+    .footer-logo-sub  { font-size: 1.05rem; }
+
+    .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-dev-right { width: 100%; }
+    .footer-dev-btn { flex: 1; justify-content: center; }
+}
+
+/* =========================================================
+   FOOTER — VERY SMALL MOBILE  (≤ 360px)
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .footer-inner { padding: 20px 10px 10px; gap: 8px; }
+    .footer-col-toggle { padding: 12px 12px; }
+    .footer-col-toggle[aria-expanded="true"] + .footer-col-body { padding: 10px 12px 12px; }
+    .footer-bottom { padding: 14px 10px; }
+    .footer-dev-btn { padding: 6px 10px; font-size: .66rem; }
+    .footer-social-tagline-row { padding: 16px 10px 18px; }
+}
+
+/* =========================================================
+   BOTTOM NAV BAR (PWA)  — mobile-only  (≤ 860px)
+   Base file already sets .pwa-bottom-nav{ display:none } by
+   default, so this is the piece that switches it on for phones
+   and pushes page content up so nothing sits behind it.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .pwa-bottom-nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    body {
+        padding-bottom: calc(var(--pwa-nav-h) + var(--safe-bottom));
+    }
+}
+
+/* =========================================================
+   BOTTOM NAV BAR (PWA) — hidden on desktop/tablet  (≥ 861px)
+   Explicit + !important so nothing else can accidentally
+   reveal it once the viewport is wide enough for the top navbar
+   alone to be the site's navigation.
+   ========================================================= */
+
+@media (min-width: 861px) {
+
+    .pwa-bottom-nav,
+    .pwa-install-banner {
+        display: none !important;
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* =========================================================
+   BUGFIX: TOP NAVBAR DISAPPEARING ON SCROLL  (≤ 860px)
+
+   Root cause: the Mobile Navigation block earlier in this file
+   sets `html, body { overflow-x: hidden; }` to stop horizontal
+   scroll. But once any ancestor has overflow set to anything
+   other than "visible" on ONE axis, browsers compute the other
+   axis as "auto" too — and `position: sticky` stops working on
+   any descendant (like .navbar) once that happens. That's why
+   the navbar held its place on the Home section but scrolled
+   away with the page everywhere else.
+
+   Fix: pin the navbar with position:fixed instead of sticky on
+   mobile (fixed isn't affected by the overflow issue), and add
+   matching top padding to <body> so the fixed bar doesn't cover
+   the first bit of content.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .navbar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    body {
+        padding-top: 60px;
+    }
+}
+
+/* =========================================================
+   TOP INFO BAR + FLOATING AI BUTTON — mobile (≤ 860px)
+   The top info bar is desktop-only (the mobile drawer + bottom
+   nav already carry call / WhatsApp / contact). The floating AI
+   button stays visible but sits above the bottom nav bar.
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    .topbar,
+    .nav-divider,
+    .ai-btn-nav {
+        display: none !important;
+    }
+
+    .ai-float {
+        right: 16px;
+        bottom: calc(var(--pwa-nav-h) + var(--safe-bottom) + 16px);
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+
+    .ai-float__tip {
+        display: none;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — CONTROLS ROW (GST toggle + Clear All + Calculate)
+   (≤ 900px)
+   Forced onto a single row like the large/desktop view — some
+   older styling was stacking the GST toggle and both buttons
+   onto separate lines. !important guards against that.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #calculator-section .controls-row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    #calculator-section .nigilswitch {
+        flex-shrink: 0;
+        gap: 4px;
+        font-size: 10px;
+    }
+
+    #calculator-section .nigilswitch b {
+        font-size: 8.5px;
+    }
+
+    #calculator-section .nigilslider {
+        width: 34px;
+        height: 19px;
+    }
+
+    #calculator-section .nigilslider::before {
+        width: 15px;
+        height: 15px;
+    }
+
+    #calculator-section .nigilswitch input:checked + .nigilslider::before {
+        transform: translateX(15px);
+    }
+
+    #calculator-section .controls-buttons {
+        display: flex !important;
+        flex-direction: row !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 6px;
+        justify-content: flex-end;
+    }
+
+    #calculator-section .controls-buttons .btn {
+        width: auto !important;
+        flex: 0 1 auto;
+        min-width: 0;
+        padding: 8px 10px;
+        font-size: 10.5px;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    #calculator-section .controls-buttons .btn svg {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+/* =========================================================
+   CALCULATOR — CONTROLS ROW, VERY SMALL MOBILE  (≤ 380px)
+   Drop the button icons to squeeze everything onto one line.
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #calculator-section .controls-row {
+        gap: 6px;
+    }
+
+    #calculator-section .nigilswitch {
+        font-size: 9px;
+    }
+
+    #calculator-section .controls-buttons .btn {
+        padding: 7px 8px;
+        font-size: 9.5px;
+    }
+
+    #calculator-section .controls-buttons .btn svg {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   BORE EXTRA ROW + DRILL RATE INFO — responsive
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .bore-extra-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .drill-rate-info-box {
+    padding: 10px 11px;
+  }
+
+  .drill-rate-info-row {
+    font-size: 10.5px;
+  }
+
+  .drill-rate-size {
+    font-size: 10px;
+    min-width: 52px;
+  }
+
+  .drill-rate-range {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .bore-extra-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .drill-rate-size {
+    min-width: 44px;
+  }
+}
+
+/* ==========================================================================
+   WHAT'S INCLUDED PANEL — hidden on mobile (≤ 860px)
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .included-panel {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   HERO — MOBILE TWEAKS  (<= 860px)
+   Slider stays exactly as it is above the hero. This just
+   trims the long-form hero copy on phones and adds the
+   Call + WhatsApp pills. The "How We Get You Water" panel
+   and quick-action buttons are visible at every width
+   already (base styles live in index1.css).
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    /* Re-assert the single-row stat sizing from index1.css — an earlier
+       rule in this same file (the old THEME BUTTON/stat-row section
+       above) would otherwise win and break the single-row fit. */
+    .stat{ padding: 0 6px; }
+    .stat h3{ font-size: clamp(1rem, 4.2vw, 1.6rem); }
+
+    .hero-badge{ margin-bottom: 18px; }
+
+    .hero h1{
+        font-size: clamp(1.7rem, 7vw, 2.1rem);
+        margin-bottom: 8px;
+    }
+
+    .hero h2{
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+
+    .hero-text{ display:none; }
+    .quote-btn-box{ display:none; }
+    .hero-review{ display:none; }
+    .scroll-down{ display:none; }
+
+    /* ---------- CALL + WHATSAPP PILLS ---------- */
+    .hero-buttons{
+        display: flex;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .hero-buttons .primary-btn{
+        flex: 1 1 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 10px;
+        font-size: .88rem;
+        white-space: nowrap;
+    }
+
+    .hero-buttons .secondary-btn{
+        display: none;
+    }
+
+    .whatsapp-btn-mobile{
+        display: flex;
+        flex: 1 1 0;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 10px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: .88rem;
+        color: #fff;
+        background: linear-gradient(135deg,#33D671,#1E9E55);
+        box-shadow: 0 16px 30px -12px rgba(30,158,85,.55);
+        white-space: nowrap;
+    }
+
+    .whatsapp-btn-mobile i{ font-size: 1.05rem; }
+
+    /* ---------- TRUST TAGS: plain text with dividers ---------- */
+    .trust{
+        gap: 0;
+        row-gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .trust span{
+        border: none;
+        background: none;
+        padding: 0 10px;
+        font-size: .72rem;
+        position: relative;
+    }
+
+    .trust span:hover{ transform: none; }
+
+    .trust span + span::before{
+        content: "|";
+        position: absolute;
+        left: -2px;
+        color: var(--line);
+    }
+}
+
+/* =========================================================
+   HERO — SMALL PHONES  (<= 420px)
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .wp-step p{ display: none; }
+
+    .hero-buttons .primary-btn,
+    .whatsapp-btn-mobile{ font-size: .8rem; padding: 13px 6px; }
+}
+
+/* =========================================================
+   MOBILE TYPE SCALE — SECTION TITLES + SUB LINES  (<= 640px)
+   Shrinks the big section headings / sub lines (Hero, Services,
+   Project Portfolio, Calculator, Reviews, FAQ, Contact, Service
+   Areas) so they fit comfortably on phone screens. Forced <br>
+   breaks in headings are ignored so text wraps naturally.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    /* Hero */
+    .hero h1 { font-size: clamp(1.45rem, 6.2vw, 1.8rem); line-height: 1.15; }
+    .hero h2 { font-size: .92rem; margin-bottom: 12px; }
+
+    /* Shared section header blocks */
+    #about,
+    #services1,
+    .calculator-title,
+    .section-title,
+    #faq .section-title,
+    .baccor2 #contact {
+        margin-bottom: 28px;
+        padding: 0 5%;
+    }
+
+    #about h1,
+    #services1 h1,
+    .calculator-title h1,
+    .section-title h1,
+    .baccor2 #contact h1,
+    #galary h1 {
+        font-size: clamp(1.35rem, 6vw, 1.65rem);
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    #about h2,
+    .calculator-title h2 {
+        font-size: .95rem;
+        margin-bottom: 6px;
+    }
+
+    #about p,
+    #services1 p,
+    .calculator-title p,
+    .section-title p,
+    #faq .section-title p,
+    .baccor2 #contact p,
+    #galary p {
+        font-size: .86rem;
+        line-height: 1.5;
+    }
+
+    #galary h3 {
+        font-size: 1rem;
+        margin-top: 8px;
+    }
+
+    #services1 h1 br,
+    #services1 p br { display: none; }
+
+    /* Service Areas mobile heading */
+    .sarea-mobile-title { font-size: 1.3rem; }
+    .sarea-mobile-title .hl { font-size: 1.45rem; }
+    .sarea-mobile-sub { font-size: .8rem; }
+}
+
+@media (max-width: 380px) {
+    .hero h1 { font-size: 1.4rem; }
+    #about h1,
+    #services1 h1,
+    .calculator-title h1,
+    .section-title h1,
+    .baccor2 #contact h1,
+    #galary h1 { font-size: 1.25rem; }
+    .sarea-mobile-title { font-size: 1.15rem; }
+    .sarea-mobile-title .hl { font-size: 1.3rem; }
+}
+
+@media (max-width: 860px){
+
+  /* closed mobile menu drawer must not cast its shadow onto the page edge */
+  .nav-links:not(.active){ box-shadow:none !important; }
+
+  /* ---- page + palette ---- */
+  .hero{ padding:14px 16px 26px; overflow:hidden; }
+  .hero .depth-gauge{ display:none !important; }
+  .hero .hero-container{ max-width:none; padding:0; margin:0; text-align:left; }
+
+  .hero .hm{
+    --u:calc((min(100vw, 520px) - 32px) / 572);
+    /* colours come from the site's own theme tokens (light + dark) */
+    --m-panel:var(--hm-panel); --m-step:var(--hm-panel); --m-ink:var(--hm-ink); --m-blue:var(--hm-blue);
+    --m-text:var(--hm-dim); --m-div:var(--hm-line); --m-chip:var(--hm-chip);
+    --m-yellow:var(--hm-yellow); --m-on-yellow:var(--hm-on-yellow); --m-navy-btn:var(--hm-navy);
+    --m-type-bg:var(--hm-card); --m-type-bd:var(--hm-line); --m-icon:var(--hm-blue); --m-green:#1FAE54;
+    font-family:'Plus Jakarta Sans','IBM Plex Sans',sans-serif;
+    color:var(--m-ink);
+  }
+  .hero .hm h1,.hero .hm h2,.hero .hm h3,.hero .hm h4{ font-family:'Plus Jakarta Sans','IBM Plex Sans',sans-serif; color:var(--m-ink); letter-spacing:0; }
+  .hero .hm p{ color:var(--m-text); font-family:inherit; }
+  .hero .hm .hm__wrap{ width:calc(572 * var(--u)); max-width:none; margin:0 auto; gap:0; }
+  .hero .hm .hm-ck{ background:var(--m-blue); color:var(--hm-on-blue); width:calc(29 * var(--u)); height:calc(29 * var(--u)); font-size:max(9px, calc(14 * var(--u))); }
+
+  /* ---- TOP: bolt + badge / title / sub / buttons / checks ---- */
+  .hero .hm .hm-top{ display:block; }
+  .hero .hm .hm-hero{ display:grid; grid-template-columns:auto 1fr; align-items:center; padding:0 calc(20 * var(--u)) 0 calc(10 * var(--u)); }
+  .hero .hm .hm-title-row{ display:contents; }
+  .hero .hm .hm-bolt{ grid-area:1/1; margin:0 calc(9 * var(--u)) 0 0; font-size:calc(31 * var(--u)); line-height:1; color:var(--m-yellow); filter:none; }
+  .hero .hm .hm-badge{ grid-area:1/2; justify-self:start; margin:0; height:calc(27 * var(--u)); padding:0 calc(14 * var(--u)); gap:0;
+    font-size:max(10px, calc(14.5 * var(--u))); font-weight:700; background:var(--m-chip); color:var(--m-blue); white-space:nowrap; }
+  .hero .hm .hm-badge i{ display:none; }
+  .hero .hm h1.hm-title{ grid-area:2/1/3/3; margin:calc(12 * var(--u)) 0 0; font-size:max(24px, calc(48 * var(--u))); line-height:1.07; font-weight:800; color:var(--m-ink); }
+  .hero .hm h1.hm-title span{ display:block; color:var(--m-blue); }
+  .hero .hm h2.hm-sub{ grid-area:3/1/4/3; margin:calc(7 * var(--u)) 0 0; font-size:max(17px, calc(31 * var(--u))); line-height:1.18; font-weight:800; color:var(--m-ink); }
+  .hm-br{ display:inline; }
+
+  .hero .hm .hm-cta{ grid-area:4/1/5/3; display:grid; grid-template-columns:272fr 253fr; gap:calc(15 * var(--u)); margin:calc(17 * var(--u)) 0 0; }
+  .hero .hm .hm-btn{ min-width:0; height:calc(59 * var(--u)); padding:0 calc(11 * var(--u)); gap:calc(10 * var(--u)); border-radius:calc(9 * var(--u)); justify-content:flex-start; }
+  .hero .hm .hm-btn:hover{ transform:none; }
+  .hero .hm .hm-btn i{ font-size:calc(31 * var(--u)); flex:0 0 auto; }
+  .hero .hm .hm-btn span{ min-width:0; }
+  .hero .hm .hm-btn--call{ background:var(--m-yellow); color:var(--m-on-yellow); box-shadow:none; padding-left:calc(14 * var(--u)); }
+  .hero .hm .hm-btn--call i{ color:var(--m-on-yellow); }
+  .hero .hm .hm-btn--call small{ font-size:max(9.5px, calc(15 * var(--u))); font-weight:700; color:var(--m-on-yellow); line-height:1.15; }
+  .hero .hm .hm-btn--call b{ font-size:max(11.5px, calc(21 * var(--u))); font-weight:800; color:var(--m-on-yellow); line-height:1.15; white-space:nowrap; }
+  .hero .hm .hm-btn--wa{ background:var(--m-green); color:#fff; box-shadow:none; justify-content:center; }
+  .hero .hm .hm-btn--wa i{ font-size:calc(33 * var(--u)); }
+  .hero .hm .hm-btn--wa b{ font-size:max(10.5px, calc(18.5 * var(--u))); font-weight:700; white-space:nowrap; }
+
+  .hero .hm .hm-checks{ grid-area:5/1/6/3; display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; gap:0;
+    margin:calc(20 * var(--u)) 0 0; padding:0 calc(4 * var(--u)) 0 0;
+    font-size:max(11px, calc(16.5 * var(--u))); font-weight:700; line-height:1.25; color:var(--m-ink); }
+  .hero .hm .hm-checks li{ display:flex; align-items:center; gap:calc(9 * var(--u)); width:min-content; }
+  .hero .hm .hm-checks .hm-ck{ width:calc(29 * var(--u)); height:calc(29 * var(--u)); }
+
+  /* ---- COMMITMENT CARD ---- */
+  .hero .hm .hm-commit{ margin-top:calc(26 * var(--u)); display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); column-gap:0;
+    padding:calc(15 * var(--u)) calc(12 * var(--u)) calc(22 * var(--u)) calc(17 * var(--u)); border:0; border-radius:calc(14 * var(--u)); background:var(--m-panel); }
+  .hero .hm .hm-commit .hm-pill{ grid-column:1; justify-self:start; margin:0 0 calc(11 * var(--u)); padding:calc(4 * var(--u)) calc(13 * var(--u));
+    font-size:max(10px, calc(14 * var(--u))); font-weight:700; background:var(--m-chip); color:var(--m-blue); }
+  .hero .hm .hm-commit h3{ grid-column:1; margin:0; font-size:max(13px, calc(27.5 * var(--u))); line-height:1.12; font-weight:800; color:var(--m-ink); }
+  .hero .hm .hm-commit h3::after{ content:''; display:block; width:calc(78 * var(--u)); height:max(3px, calc(4 * var(--u))); margin-top:calc(15 * var(--u)); border-radius:4px;
+    background:linear-gradient(90deg, var(--m-blue) 0 46%, transparent 46% 52%, var(--m-yellow) 52% 100%); }
+  .hero .hm .hm-commit > p{ grid-column:1; margin:calc(17 * var(--u)) 0 0; font-size:max(10.5px, calc(18 * var(--u))); line-height:1.34; font-weight:500; color:var(--m-text); }
+  .hero .hm .hm-commit ul{ grid-column:2; grid-row:1/4; align-self:center; gap:calc(15 * var(--u)); margin:0;
+    padding:calc(5 * var(--u)) 0 calc(5 * var(--u)) calc(16 * var(--u)); border-left:1px solid var(--m-div); }
+  .hero .hm .hm-commit li{ gap:calc(10 * var(--u)); font-size:max(9.5px, calc(14.5 * var(--u))); font-weight:500; line-height:1.3; color:var(--m-text); }
+  .hero .hm .hm-commit li .hm-ck{ width:calc(24 * var(--u)); height:calc(24 * var(--u)); font-size:max(8px, calc(12 * var(--u))); }
+  /* Mobile: hide the 'Our Commitment' card (remove this line to show it again) */
+  .hero .hm .hm-commit{ display:none; }
+
+  /* ---- HOW WE GET YOU WATER ---- */
+  .hero .hm .hm-head{ margin-top:calc(20 * var(--u)); }
+  .hero .hm .hm-head h2{ font-size:max(17px, calc(30 * var(--u))); line-height:1.2; font-weight:800; color:var(--m-ink); }
+  .hero .hm .hm-bar{ gap:calc(5 * var(--u)); margin-top:calc(7 * var(--u)); }
+  .hero .hm .hm-bar i{ width:calc(31 * var(--u)); height:max(3px, calc(4 * var(--u))); background:var(--m-blue); }
+  .hero .hm .hm-bar i:nth-child(2){ background:var(--m-yellow); }
+  .hero .hm .hm-steps{ display:grid; grid-template-columns:1fr 1fr; gap:calc(16 * var(--u)) calc(27 * var(--u)); margin-top:calc(15 * var(--u)); padding:0 calc(2 * var(--u)) 0 calc(6 * var(--u)); align-items:stretch; }
+  .hero .hm .hm-arrow{ display:none; }
+  .hero .hm .hm-step{ padding:calc(14 * var(--u)) calc(10 * var(--u)) calc(14 * var(--u)); border-radius:calc(14 * var(--u)); background:var(--m-step); height:auto; }
+  .hero .hm .hm-step .hm-n{ top:calc(12 * var(--u)); left:calc(22 * var(--u)); width:calc(40 * var(--u)); height:calc(40 * var(--u)); font-size:max(11px, calc(16 * var(--u))); font-weight:800; background:var(--m-blue); color:var(--hm-on-blue); box-shadow:none; }
+  .hero .hm .hm-step .hm-ico{ height:calc(78 * var(--u)); margin:0 0 calc(4 * var(--u)); color:var(--m-icon); overflow:visible; }
+  .hero .hm .hm-step .hm-ico i{ display:none; }
+  .hero .hm .hm-step .hm-svg{ display:block; width:calc(96 * var(--u)); height:calc(96 * var(--u)); flex:0 0 auto; }
+  .hero .hm .hm-step h4{ font-size:max(13px, calc(21 * var(--u))); font-weight:800; margin:0 0 calc(4 * var(--u)); color:var(--m-ink); }
+  .hero .hm .hm-step p{ padding:0 calc(10 * var(--u)); font-size:max(10.5px, calc(15.5 * var(--u))); line-height:1.25; font-weight:500; color:var(--m-text); text-wrap:balance; }
+
+  /* ---- BOOK NOW / DRILL COST ---- */
+  .hero .hm .hm-actions{ display:grid; grid-template-columns:1fr 1fr; gap:calc(8 * var(--u)); width:calc(476 * var(--u)); margin:calc(17 * var(--u)) auto 0; }
+  .hero .hm .hm-act{ position:relative; justify-content:center; gap:0; height:calc(47 * var(--u)); padding:0 calc(38 * var(--u)) 0 0; border:0; border-radius:calc(9 * var(--u));
+    font-size:max(12.5px, calc(18.5 * var(--u))); font-weight:800; }
+  .hero .hm .hm-act:hover{ transform:none; }
+  .hero .hm .hm-act--area{ background:transparent; color:var(--m-blue); border:max(1.5px, calc(2 * var(--u))) solid var(--m-blue); }
+  .hero .hm .hm-act--area .hm-act__ico,
+  .hero .hm .hm-act--area .hm-act__ico i{ color:var(--m-blue); }
+  .hero .hm .hm-act--book{ background:var(--m-yellow); color:var(--m-on-yellow); }
+  .hero .hm .hm-act--cost{ background:var(--m-navy-btn); color:#fff; }
+  .hero .hm .hm-act .hm-act__ico{ position:absolute; left:calc(90 * var(--u)); top:50%; transform:translateY(-50%); font-size:calc(32 * var(--u)); color:var(--m-on-yellow); }
+  .hero .hm .hm-act--cost .hm-rs{ position:absolute; left:calc(88 * var(--u)); top:50%; transform:translateY(-50%); width:calc(41 * var(--u)); height:calc(41 * var(--u)); font-size:calc(21 * var(--u)); background:var(--m-blue); color:var(--hm-on-blue); }
+  .hero .hm .hm-act .fa-chevron-right{ position:absolute; right:calc(96 * var(--u)); top:50%; transform:translateY(-50%); font-size:max(9px, calc(13 * var(--u))); }
+  /* Row 1: Book Now full width. Row 2: Drill Cost (left half) + Service Areas (right half) */
+  .hero .hm .hm-actions .hm-act--book{ grid-column:1 / -1; }
+  .hero .hm .hm-actions .hm-act--cost,
+  .hero .hm .hm-actions .hm-act--area{ grid-column:auto; display:flex; align-items:center; justify-content:center; gap:max(6px, calc(9 * var(--u))); padding:0 6px; white-space:nowrap; font-size:max(12px, calc(17 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--cost .hm-rs,
+  .hero .hm .hm-actions .hm-act--area .hm-act__ico{ position:static; transform:none; flex:0 0 auto; }
+  .hero .hm .hm-actions .hm-act--cost .hm-rs{ width:max(24px, calc(34 * var(--u))); height:max(24px, calc(34 * var(--u))); font-size:max(12px, calc(17 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--area .hm-act__ico{ font-size:max(18px, calc(26 * var(--u))); }
+  .hero .hm .hm-actions .hm-act--cost .fa-chevron-right,
+  .hero .hm .hm-actions .hm-act--area .fa-chevron-right{ display:none; }
+
+  /* ---- STATS ---- */
+  .hero .hm .hm-stats{ margin-top:calc(19 * var(--u)); padding:calc(13 * var(--u)) 0 calc(12 * var(--u)); border-radius:calc(14 * var(--u)); background:var(--m-panel); }
+  .hero .hm .hm-stat{ padding:0 calc(2 * var(--u)); }
+  .hero .hm .hm-stat + .hm-stat::before{ top:6%; bottom:6%; background:var(--m-div); }
+  .hero .hm .hm-stat .hm-sico{ height:calc(40 * var(--u)); font-size:calc(31 * var(--u)); color:var(--m-blue); }
+  .hero .hm .hm-stat h3{ font-size:max(15px, calc(25 * var(--u))); line-height:1.2; font-weight:800; color:var(--m-ink); }
+  .hero .hm .hm-stat span{ font-size:max(9px, calc(12.5 * var(--u))); line-height:1.2; font-weight:500; color:var(--m-text); text-wrap:balance; }
+  /* Mobile: show the stats bar right after the hero, above 'How We Get You Water' */
+  .hero .hm .hm__wrap > .hm-top{ order:-2; }
+  .hero .hm .hm__wrap > .hm-stats{ order:-1; }
+  .hero .hm .hm-stat .hm-sico i{ display:none; }
+  .hero .hm .hm-stat .hm-sico .hm-svg{ display:block; width:calc(40 * var(--u)); height:calc(40 * var(--u)); }
+  .hero .hm .hm-stat .hm-sico i.fa-users,.hero .hm .hm-stat .hm-sico i.fa-award{ display:inline-block; }
+  .hero .hm .hm-stat .hm-247{ width:calc(35 * var(--u)); height:calc(35 * var(--u)); border:max(2px, calc(2.5 * var(--u))) solid var(--m-blue); font-size:max(6.5px, calc(9.5 * var(--u))); color:var(--m-blue); }
+
+  /* ---- SERVICE TYPES ---- */
+  .hero .hm .hm-mid{ display:block; margin-top:calc(12 * var(--u)); }
+  .hero .hm .hm-sensor{ display:none; }
+  .hero .hm .hm-types h3{ text-align:center; font-size:max(15px, calc(24 * var(--u))); line-height:1.2; font-weight:800; color:var(--m-ink); }
+  .hero .hm .hm-types .hm-bar{ justify-content:center; gap:calc(6 * var(--u)); margin:calc(5 * var(--u)) 0 calc(9 * var(--u)); }
+  .hero .hm .hm-types .hm-bar i{ width:calc(25 * var(--u)); }
+  .hero .hm .hm-types .hm-bar i:last-child{ display:block; }
+  .hero .hm .hm-types .hm-bar::after{ content:''; width:calc(25 * var(--u)); height:max(3px, calc(4 * var(--u))); border-radius:4px; background:var(--m-yellow); }
+  .hero .hm .hm-types__grid{ gap:calc(13 * var(--u)); padding:0 calc(2 * var(--u)) 0 calc(4 * var(--u)); }
+  .hero .hm .hm-type{ padding:calc(9 * var(--u)) calc(5 * var(--u)) calc(11 * var(--u)); border-radius:calc(11 * var(--u)); background:var(--m-type-bg); border:1.5px solid var(--m-type-bd); box-shadow:var(--hm-shadow); }
+  .hero .hm .hm-type .hm-tile{ width:calc(50 * var(--u)); height:calc(43 * var(--u)); margin:0 auto calc(7 * var(--u)); border-radius:calc(11 * var(--u)); font-size:calc(24 * var(--u)); }
+  .hero .hm .hm-type h4{ font-size:max(11px, calc(15 * var(--u))); font-weight:800; margin:0 0 calc(3 * var(--u)); color:var(--m-ink); }
+  .hero .hm .hm-type p{ font-size:max(9.5px, calc(12.5 * var(--u))); line-height:1.25; font-weight:500; color:var(--m-text); text-wrap:balance; }
+
+  /* ---- QUICK RESPONSE STRIP (AI banner trimmed to the blueprint) ---- */
+  .hero .hm .hm-ai{ display:block; margin-top:calc(13 * var(--u)); padding:0; border-radius:calc(12 * var(--u)); background:var(--m-panel); }
+  .hero .hm .hm-ai__bot,
+  .hero .hm .hm-ai__text{ display:none; }
+  .hero .hm .hm-ai__feat{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; align-items:center; gap:calc(10 * var(--u)) 0; border:0; margin:0;
+    padding:calc(13 * var(--u)) calc(10 * var(--u)) calc(13 * var(--u)) calc(19 * var(--u)); }
+  .hero .hm .hm-ai__feat li{ gap:calc(10 * var(--u)); }
+  .hero .hm .hm-ai__feat li:first-child{ grid-row:1/3; flex-direction:column; align-items:flex-start; justify-content:center; gap:calc(2 * var(--u));
+    align-self:stretch; border-right:1px solid var(--m-div); padding-right:calc(8 * var(--u)); }
+  .hero .hm .hm-ai__feat li:first-child .hm-fi{ display:none; }
+  .hero .hm .hm-ai__feat li:first-child b{ font-size:max(12px, calc(18 * var(--u))); }
+  .hero .hm .hm-ai__feat li:first-child small{ font-size:max(10px, calc(15 * var(--u))); }
+  .hero .hm .hm-ai__feat li:nth-child(n+2) { padding-left:calc(14 * var(--u)); }
+  .hero .hm .hm-ai__feat b{ font-size:max(10px, calc(14 * var(--u))); font-weight:800; line-height:1.2; color:var(--m-ink); font-family:inherit; }
+  .hero .hm .hm-ai__feat small{ font-size:max(9px, calc(12 * var(--u))); line-height:1.25; font-weight:500; color:var(--m-text); }
+  .hero .hm .hm-ai__feat .hm-s{ display:none; }
+  .hero .hm .hm-ai__feat .hm-fi{ flex:0 0 auto; display:flex; align-items:center; justify-content:center; width:calc(22 * var(--u)); height:calc(22 * var(--u)); min-width:14px; min-height:14px; border-radius:50%; background:var(--m-blue); color:var(--hm-on-blue); }
+  .hero .hm .hm-ai__feat .hm-fi i{ display:none; }
+  .hero .hm .hm-ai__feat .hm-fi::after{ content:''; width:28%; height:52%; border:solid var(--hm-on-blue); border-width:0 max(1.5px, calc(2.2 * var(--u))) max(1.5px, calc(2.2 * var(--u))) 0; transform:translateY(-8%) rotate(45deg); }
+  .hero .hm .hm-ai__feat li > span:last-child{ display:block; line-height:1.2; }
+  .hero .hm .hm-ai__feat small{ display:block; margin-top:calc(2 * var(--u)); }
+
+  /* Mobile: replace the 'Quick Response' panel with the 'Borewell Doubts? Ask Our AI' pill */
+  .hero .hm .hm-ai{ background:transparent; }
+  .hero .hm .hm-ai__feat{ display:none; }
+  /* slim, centered one-line pill (same style as the Google Reviews pill) */
+  .hero .hm .hm-ai-pill{ display:flex; align-items:center; justify-content:center; gap:max(7px, calc(10 * var(--u))); width:fit-content; max-width:100%; margin:0 auto; padding:max(4px, calc(6 * var(--u))) max(4px, calc(6 * var(--u))) max(4px, calc(6 * var(--u))) max(6px, calc(8 * var(--u)));
+    border:1px solid var(--m-div); border:1px solid color-mix(in srgb, var(--m-blue) 45%, transparent); border-radius:999px; background:var(--m-panel); box-shadow:0 8px 20px -14px var(--m-blue); text-decoration:none; color:var(--m-ink); }
+  .hero .hm .hm-ai-pill__bot{ flex:0 0 auto; width:max(28px, calc(38 * var(--u))); height:max(28px, calc(38 * var(--u))); display:flex; align-items:center; justify-content:center; }
+  .hero .hm .hm-ai-pill__bot img{ width:100%; height:100%; object-fit:cover; border-radius:50%; border:1.5px solid var(--m-blue); }
+  .hero .hm .hm-ai-pill__bot i{ font-size:max(18px, calc(24 * var(--u))); color:var(--m-blue); }
+  .hero .hm .hm-ai-pill__text{ flex:0 1 auto; min-width:0; display:block; }
+  .hero .hm .hm-ai-pill__text b{ display:block; font-size:max(11.5px, calc(16 * var(--u))); font-weight:800; line-height:1.2; color:var(--m-ink); }
+  .hero .hm .hm-ai-pill__text em{ font-style:normal; color:var(--m-blue); white-space:nowrap; }
+  .hero .hm .hm-ai-pill__text small{ display:none; }
+  .hero .hm .hm-ai-pill__cta{ flex:0 0 auto; display:flex; align-items:center; gap:max(4px, calc(6 * var(--u))); margin-left:max(2px, calc(4 * var(--u))); padding:max(6px, calc(8 * var(--u))) max(11px, calc(15 * var(--u))); border-radius:999px;
+    background:var(--m-blue); color:var(--hm-on-blue); font-size:max(11.5px, calc(16 * var(--u))); font-weight:800; white-space:nowrap; }
+  .hero .hm .hm-ai-pill__arrow{ display:inline-flex; font-size:max(11px, calc(14 * var(--u))); color:inherit; }
+
+  /* ---- MOBILE SPACING: one consistent rhythm between sections, buttons and cards ---- */
+  .hero .hm{ --m-sec:max(22px, calc(36 * var(--u))); --m-gap:max(10px, calc(16 * var(--u))); }
+  .hero .hm .hm-cta{ gap:var(--m-gap); margin-top:max(16px, calc(24 * var(--u))); }
+  .hero .hm .hm-checks{ margin-top:max(16px, calc(24 * var(--u))); }
+  .hero .hm .hm-stats{ margin-top:var(--m-sec); }
+  .hero .hm .hm-head{ margin-top:var(--m-sec); }
+  .hero .hm .hm-head .hm-bar{ margin-top:max(8px, calc(10 * var(--u))); }
+  .hero .hm .hm-steps{ gap:var(--m-gap); margin-top:max(18px, calc(26 * var(--u))); }
+  .hero .hm .hm-actions{ gap:var(--m-gap); margin-top:var(--m-sec); }
+  .hero .hm .hm-mid{ margin-top:var(--m-sec); }
+  .hero .hm .hm-types .hm-bar{ margin:max(7px, calc(9 * var(--u))) 0 max(14px, calc(20 * var(--u))); }
+  .hero .hm .hm-types__grid{ gap:max(8px, calc(14 * var(--u))); }
+  .hero .hm .hm-ai{ margin-top:var(--m-sec); padding-bottom:max(6px, calc(10 * var(--u))); }
+
+  /* ---- SERVICE TYPES (mobile): no heading, no sub-text, short titles, simple cards ---- */
+  .hero .hm .hm-types > h3,
+  .hero .hm .hm-types > .hm-bar{ display:none; }
+  .hero .hm .hm-type p{ display:none; }
+  .hero .hm .hm-dt{ display:none; }
+  .hero .hm .hm-mt{ display:inline; }
+  .hero .hm .hm-type{ --tc:#1E9B3A; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; padding:max(9px, calc(13 * var(--u))) max(4px, calc(6 * var(--u))) max(9px, calc(12 * var(--u)));
+    border-radius:max(10px, calc(14 * var(--u))); box-shadow:inset 0 -2px 0 var(--tc); }
+  .hero .hm .hm-type:nth-child(2){ --tc:#1E6BFF; }
+  .hero .hm .hm-type:nth-child(3){ --tc:#8B4DFF; }
+  .hero .hm .hm-type .hm-tile{ width:max(30px, calc(40 * var(--u))); height:max(30px, calc(40 * var(--u))); margin:0 auto max(6px, calc(9 * var(--u))); border-radius:max(9px, calc(12 * var(--u))); font-size:max(15px, calc(19 * var(--u))); }
+  .hero .hm .hm-type h4{ margin:0; font-size:max(11px, calc(14 * var(--u))); line-height:1.2; text-wrap:balance; }
+}
+
+/* =========================================================
+   BOTTOM NAV DOCK + ATTACHED SCROLL LOADER
+   Uses the site's own theme tokens, so it follows the
+   light / dark theme switcher automatically.
+   (append at the very end of css/index2.css)
+   ========================================================= */
+
+@media (max-width: 860px) {
+
+    :root { --pwa-nav-h: 64px; }
+
+    html .pwa-bottom-nav,
+    html[data-theme="light"] .pwa-bottom-nav {
+        --nav-radius: 22px;
+        box-sizing: border-box;
+        border: 1px solid var(--line);
+        border-bottom: 0;
+        border-radius: var(--nav-radius) var(--nav-radius) 0 0;
+        background: color-mix(in srgb, var(--slate) 96%, transparent);
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
+        box-shadow: 0 -8px 26px -10px rgba(0, 0, 0, .35);
+    }
+
+    html[data-theme="light"] .pwa-bottom-nav {
+        box-shadow: 0 -6px 22px -8px rgba(23, 33, 31, .18);
+    }
+
+    /* ---------- Loader: band hugging the top edge, corner curve to corner curve ---------- */
+    .pwa-nav-loader {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: 0;
+        box-sizing: border-box;
+        border-top: 4px solid transparent;
+        border-radius: var(--nav-radius) var(--nav-radius) 0 0;
+        background: var(--line);
+        -webkit-mask: linear-gradient(#000 0 0) border-box, linear-gradient(#000 0 0) padding-box;
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) border-box exclude, linear-gradient(#000 0 0) padding-box;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .pwa-nav-loader__bar {
+        position: absolute;
+        top: -4px;
+        left: -1px;
+        height: calc(var(--nav-radius) + 4px);
+        width: calc(var(--pwa-progress, 0) * 100% + 1px);
+        min-width: 8%;
+        background: linear-gradient(90deg, var(--rust), var(--rust-light) 60%, var(--ochre));
+        overflow: hidden;
+        transition: width .15s linear;
+    }
+
+    .pwa-nav-loader__bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 60px;
+        left: -60px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent);
+        animation: pwaLoaderShine 1.8s ease-in-out infinite;
+    }
+
+    /* ---------- Items: smaller, same colour for icon + name ---------- */
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link {
+        color: var(--ink-dim);
+        font-size: .62rem;
+        font-weight: 600;
+        padding: 8px 2px 5px;
+        gap: 3px;
+        white-space: nowrap;
+    }
+
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link i {
+        color: var(--ink-dim);
+        font-size: 1.05rem;
+    }
+
+    /* Active tab: accent colour on icon + name, small pill at the bottom */
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active,
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active i {
+        color: var(--rust-light);
+    }
+
+    .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link::before {
+        top: auto;
+        bottom: 2px;
+        width: 18px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--rust), var(--ochre));
+    }
+
+    /* ---------- Call button ---------- */
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link::before { display: none; }
+
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        color: #fff;
+        background: linear-gradient(135deg, var(--rust), var(--rust-light));
+        box-shadow: 0 6px 16px -5px rgba(193, 87, 30, .7);
+    }
+
+    .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link:active i {
+        transform: scale(.92);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pwa-nav-loader__bar::after { animation: none !important; }
+    .pwa-nav-loader__bar { transition: none; }
+}
+
+/* Light theme only: richer teal for icons + names (dark theme keeps --ink-dim) */
+
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link,
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link i {
+    color: #0f766e;
+}
+
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active,
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-items .pwa-nav-item .pwa-nav-link.active i {
+    color: var(--rust);
+}
+
+html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+    color: #fff;
+}
+
+/* Call button: brighter, crisper highlight (both themes) */
+
+@media (max-width: 860px) {
+    html .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i,
+    html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link i {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+        color: #fff;
+        background: linear-gradient(145deg, #ffb020 0%, #ff7a1a 55%, #f45d0c 100%);
+        border: 2px solid rgba(255, 255, 255, .55);
+        box-sizing: border-box;
+        text-shadow: 0 1px 2px rgba(120, 40, 0, .45);
+        box-shadow: 0 0 0 4px rgba(255, 122, 26, .16), 0 8px 18px -4px rgba(244, 93, 12, .75);
+    }
+
+    html .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link,
+    html[data-theme="light"] .pwa-bottom-nav .pwa-nav-item--cta .pwa-nav-link {
+        color: var(--ink);
+    }
+}
+
+/* =====================================================================
+   MOBILE DRAWER — AI Chat text fix, vivid light-theme cards
+   ===================================================================== */
+
+@media (max-width: 860px) {
+    /* text inside the AI Chat row follows the theme (was forced white) */
+    .nav-links .mnav-item .mnav-card-text strong { color: var(--ink); font-size: .92rem; }
+    .nav-links .mnav-item .mnav-card-text small  { color: var(--ink-dim); font-size: .68rem; }
+
+    /* ---------- LIGHT THEME: richer, less washed-out ---------- */
+    html[data-theme="light"] .nav-links .mnav-item {
+        background: #fff;
+        border-color: rgba(23, 33, 31, .12);
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35);
+    }
+    html[data-theme="light"] .nav-links .mnav-ico {
+        color: #fff;
+        background: linear-gradient(135deg, #12b5a6, #0b8a7f);
+        border-color: transparent;
+    }
+    html[data-theme="light"] .nav-links .mnav-item:first-child {
+        background: linear-gradient(120deg, #d7f5f1, #ffffff);
+        border-color: rgba(11, 156, 143, .55);
+    }
+    html[data-theme="light"] .nav-links a.mnav-item--ai {
+        background: linear-gradient(120deg, #c9f1ec, #ffffff 85%);
+        border: 1.5px solid #0B9C8F;
+        box-shadow: 0 10px 22px -12px rgba(11, 156, 143, .6);
+    }
+    html[data-theme="light"] .nav-links .mnav-ico--img { background: transparent; border: 0; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text strong { color: #0f1a18; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text small  { color: #44554f; }
+    html[data-theme="light"] .nav-links .mnav-chev { color: #0B9C8F; }
+
+    html[data-theme="light"] .mnav-card--calc {
+        background: linear-gradient(120deg, #0fb3a3, #07766d);
+        border: 1px solid #07766d;
+        box-shadow: 0 12px 24px -10px rgba(7, 118, 109, .7);
+    }
+    html[data-theme="light"] .mnav-card--install {
+        background: linear-gradient(120deg, #7c4dff, #5a1fd8);
+        border: 1px solid #5a1fd8;
+        box-shadow: 0 14px 28px -10px rgba(90, 31, 216, .65);
+    }
+    html[data-theme="light"] .mnav-card .mnav-card-ico { background: rgba(255, 255, 255, .24); }
+    html[data-theme="light"] .mnav-card .mnav-card-text strong { color: #fff; }
+    html[data-theme="light"] .mnav-card .mnav-card-text small  { color: rgba(255, 255, 255, .92); }
+    html[data-theme="light"] .mnav-card .mnav-chev { color: #fff; }
+
+    html[data-theme="light"] .mnav-contact-btn {
+        background: #fff;
+        border-color: rgba(23, 33, 31, .12);
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35);
+    }
+    html[data-theme="light"] .mnav-contact-btn--admin i { color: #d92d2d; }
+}
+
+/* ================= service-areas.css ================= */
+
+/* ==========================================================================
+   MOBILE / TABLET  (≤ 900px)
+   ========================================================================== */
+
+@media (max-width:900px){
+
+  .sarea .sarea-top{ gap:18px; margin-bottom:28px; }
+
+  /* old orbit map + its mobile pill are replaced by .sarea-m */
+  .sarea .sarea-map-wrap,
+  .sarea .sarea-map-legend-mobile,
+  .sarea .sarea-cards{ display:none; }
+
+  /* ---- heading ---- */
+  .sarea .sarea-mobile-head{ gap:10px; margin:0 auto; }
+  .sarea .sarea-m-eyebrow{
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--font-mono); font-weight:500; font-size:.66rem;
+    letter-spacing:.22em; color:var(--aqua); text-transform:uppercase;
+  }
+  .sarea .sarea-m-eyebrow i{ display:block; width:30px; height:2px; border-radius:2px; }
+  .sarea .sarea-m-eyebrow i:first-child{ background:linear-gradient(90deg,transparent,var(--aqua)); }
+  .sarea .sarea-m-eyebrow i:last-child{ background:linear-gradient(90deg,var(--rust),transparent); }
+  .sarea .sarea-mobile-title{ color:var(--ink); font-weight:700; letter-spacing:.01em; }
+  .sarea .sarea-mobile-title .hl{ color:var(--aqua); -webkit-text-fill-color:var(--aqua); background:none; }
+  .sarea .sarea-mobile-sub{ color:var(--ink-dim); max-width:40ch; line-height:1.5; }
+
+  /* ---- feature list + district map panel ---- */
+  .sarea .sarea-m{
+    position:relative; overflow:hidden;
+    display:grid; grid-template-columns:minmax(0,.78fr) minmax(0,1.5fr);
+    align-items:center; gap:2px; padding:12px 4px 12px 12px;
+    border:1px solid var(--m-edge); border-radius:var(--radius); background:var(--m-panel);
+    box-shadow:var(--shadow);
+  }
+  .sarea .sarea-m::before{ /* soft aqua + rust glow behind the map */
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(260px 200px at 72% 55%, var(--aqua-glow), transparent 70%),
+      radial-gradient(160px 120px at 94% 4%, rgba(193,87,30,.12), transparent 70%);
+  }
+  .sarea .sarea-m > *{ position:relative; }
+  .sarea .sarea-m-feats{ display:flex; flex-direction:column; }
+  .sarea .sarea-m-feat{
+    display:grid; grid-template-columns:24px minmax(0,1fr); column-gap:6px; align-items:start;
+    padding:9px 0; border-top:1px solid var(--line);
+  }
+  .sarea .sarea-m-feat:first-child{ border-top:0; padding-top:0; }
+  .sarea .sarea-m-feat:last-child{ padding-bottom:0; }
+  .sarea .sarea-m-feat-ico{
+    grid-row:1 / span 2; width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:.62rem; color:var(--on-accent);
+    background:linear-gradient(145deg,var(--aqua),color-mix(in srgb,var(--aqua) 60%,#000));
+    box-shadow:0 6px 14px -6px var(--aqua-glow);
+  }
+  .sarea .sarea-m-feat:nth-child(2) .sarea-m-feat-ico{ color:#fff; background:linear-gradient(145deg,var(--rust-light),var(--rust)); box-shadow:0 6px 14px -6px rgba(193,87,30,.7); }
+  .sarea .sarea-m-feat:nth-child(3) .sarea-m-feat-ico{ color:#fff; background:linear-gradient(145deg,var(--ochre),color-mix(in srgb,var(--ochre) 62%,#000)); box-shadow:0 6px 14px -6px rgba(217,164,65,.6); }
+  .sarea .sarea-m-feat h4{
+    font-family:var(--font-body); font-size:.56rem; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--ink); line-height:1.25; margin:0;
+  }
+  .sarea .sarea-m-feat p{ font-size:.53rem; line-height:1.4; color:var(--ink-dim); margin:2px 0 0; }
+
+  /* ---- the map ---- */
+  .sarea .sarea-m-map{ display:block; width:100%; height:auto; overflow:visible; }
+  .sarea .sarea-m-map .gdot{ fill:var(--ink-dim); opacity:.45; }
+  .sarea .sarea-m-map .landglow{ fill:var(--aqua); opacity:.35; }
+  .sarea .sarea-m-map .land{ fill:url(#smLand); stroke:var(--aqua); stroke-width:1.1; stroke-linejoin:round; }
+  .sarea .sarea-m-map .contour{ fill:none; stroke:var(--aqua); stroke-width:.6; opacity:.3; }
+  .sarea .sarea-m-map .sub{ fill:none; stroke:var(--ink-dim); stroke-width:.6; opacity:.4; stroke-dasharray:2 1.6; }
+  .sarea .sarea-m-map .link{ fill:none; stroke:var(--aqua); stroke-width:1; stroke-dasharray:2 3; stroke-linecap:round; opacity:.9; }
+  .sarea .sarea-m-map .halo{ fill:var(--aqua); opacity:.16; }
+  .sarea .sarea-m-map .ring{ fill:var(--card); stroke:var(--aqua); stroke-width:1.3; }
+  .sarea .sarea-m-map .ring--hq{ stroke:var(--rust-light); stroke-width:1.8; }
+  .sarea .sarea-m-map .hqglow{ fill:var(--rust); opacity:.2; }
+  .sarea .sarea-m-map .pulse{ fill:none; stroke:var(--rust-light); stroke-width:1; opacity:0; }
+  .sarea .sarea-m-map .drop{ fill:var(--aqua); }
+  .sarea .sarea-m-map .dropshine{ fill:#fff; opacity:.55; }
+  .sarea .sarea-m-map .lbl{
+    font-family:var(--font-body); font-weight:700; font-size:9.6px; letter-spacing:0; text-rendering:geometricPrecision;
+    fill:var(--ink); text-anchor:middle; paint-order:stroke; stroke:var(--card); stroke-width:2.6px; stroke-linejoin:round;
+  }
+  .sarea .sarea-m-map .lbl--hq{ font-size:10.5px; stroke:none; }
+  .sarea .sarea-m-map .cmp{ fill:none; stroke:var(--ink-dim); stroke-width:.6; opacity:.7; }
+  .sarea .sarea-m-map .cmp-t{ font-family:var(--font-body); font-size:5px; fill:var(--ink-dim); text-anchor:middle; }
+  .sarea .sarea-m-map .cmp-star{ fill:var(--aqua); }
+
+  @media (prefers-reduced-motion:no-preference){
+    .sarea .sarea-m-map .link{ animation:smFlow 2.4s linear infinite; }
+    .sarea .sarea-m-map .pulse{ transform-box:fill-box; transform-origin:center; animation:smPulse 3s ease-out infinite; }
+    .sarea .sarea-m-map .pulse--b{ animation-delay:1.5s; }
+  }
+  @keyframes smFlow{ to{ stroke-dashoffset:-10; } }
+  @keyframes smPulse{ 0%{ transform:scale(1); opacity:.7; } 100%{ transform:scale(1.75); opacity:0; } }
+
+  /* ---- divider + 3 x 2 photo cards ---- */
+  .sarea .sarea-quick{ display:block; margin-top:6px; }
+  .sarea .sarea-pc-head{ display:flex; flex-direction:column; align-items:center; gap:10px; margin:0 0 16px; }
+  .sarea .sarea-pc-head > i{ color:var(--aqua); font-size:1.25rem; filter:drop-shadow(0 0 8px var(--aqua-glow)); }
+  .sarea .sarea-pc-head > div{ display:flex; align-items:center; gap:14px; width:100%; justify-content:center; }
+  .sarea .sarea-pc-head b{
+    font-family:var(--font-display); font-weight:700; font-size:.82rem; letter-spacing:.2em;
+    color:var(--aqua); white-space:nowrap; text-transform:uppercase;
+  }
+  .sarea .sarea-pc-head span{ flex:1 1 0; max-width:92px; height:2px; border-radius:2px; }
+  .sarea .sarea-pc-head span:first-child{ background:linear-gradient(90deg,transparent,var(--aqua)); }
+  .sarea .sarea-pc-head span:last-child{ background:linear-gradient(90deg,var(--rust),transparent); }
+
+  .sarea .sarea-pc-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; padding:0; }
+  .sarea .sarea-pc{
+    --c1:var(--sarea-c1); --c2:color-mix(in srgb,var(--c1) 62%,#000);
+    position:relative; display:block; container-type:inline-size; aspect-ratio:1.12;
+    border-radius:12px; overflow:hidden; isolation:isolate; color:#fff; text-decoration:none;
+    border:1px solid var(--line); background:var(--slate-2);
+    box-shadow:var(--shadow);
+  }
+  .sarea .sarea-pc:nth-child(2){ --c1:var(--sarea-c2); }
+  .sarea .sarea-pc:nth-child(3){ --c1:var(--sarea-c3); }
+  .sarea .sarea-pc:nth-child(4){ --c1:var(--sarea-c4); }
+  .sarea .sarea-pc:nth-child(5){ --c1:var(--sarea-c5); }
+  .sarea .sarea-pc:nth-child(6){ --c1:var(--sarea-c6); }
+  .sarea .sarea-pc img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+  .sarea .sarea-pc::before{
+    content:''; position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(180deg,rgba(10,18,24,0) 25%,rgba(10,18,24,.92) 88%);
+  }
+  .sarea .sarea-pc::after{ /* curved colour swoosh along the bottom edge */
+    content:''; position:absolute; left:-12%; right:-12%; bottom:-24%; height:34%;
+    border-radius:50%; background:linear-gradient(90deg,var(--c2),var(--c1)); z-index:0;
+  }
+  .sarea .sarea-pc-pin{
+    position:absolute; left:7%; top:34%; width:20%; aspect-ratio:1; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:7.5cqw; color:#fff;
+    background:linear-gradient(145deg,var(--c1),var(--c2));
+    box-shadow:0 0 0 1.5px rgba(255,255,255,.28), 0 6px 12px -4px rgba(0,0,0,.6);
+  }
+  .sarea .sarea-pc-name{
+    position:absolute; left:7%; right:4%; bottom:19%; z-index:1; margin:0;
+    font-family:var(--font-body); font-weight:700; font-size:clamp(6.5px,7.6cqw,13px);
+    letter-spacing:0; line-height:1.1; color:#fff; text-transform:uppercase; white-space:nowrap;
+    text-shadow:0 1px 3px rgba(0,0,0,.95), 0 0 8px rgba(0,0,0,.7);
+  }
+  .sarea .sarea-pc-go{
+    position:absolute; right:7%; top:36%; z-index:1; width:16%; aspect-ratio:1; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:6.5cqw; color:#fff;
+    background:rgba(10,18,24,.7); border:1px solid rgba(255,255,255,.4);
+  }
+  .sarea .sarea-pc:focus-visible{ outline:2px solid var(--aqua); outline-offset:2px; }
+
+  /* ---- bottom call-to-action bar ---- */
+  .sarea .sarea-cta{
+    flex-wrap:nowrap; gap:10px; margin-top:22px; padding:14px 12px; border-radius:var(--radius);
+    border:1px solid var(--m-edge); background:var(--card); box-shadow:var(--shadow); align-items:center;
+  }
+  .sarea .sarea-cta-info{ flex:1 1 auto; min-width:0; gap:10px; }
+  .sarea .sarea-cta-info i.truck{
+    flex:0 0 auto; width:auto; height:auto; border-radius:0; font-size:1.7rem;
+    background:linear-gradient(135deg,var(--aqua),var(--ochre));
+    -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;
+  }
+  .sarea .sarea-cta-info h4,
+  .sarea .sarea-cta-info p:not(.sarea-cta-desc-mobile){ display:none; }
+  .sarea .sarea-cta-m-kicker{ display:block; font-size:.54rem; line-height:1.3; color:var(--ink-dim); }
+  .sarea .sarea-cta-m-title{ display:block; font-family:var(--font-display); font-size:.82rem; line-height:1.2; color:var(--ink); margin:2px 0; }
+  .sarea .sarea-cta-info p.sarea-cta-desc-mobile{ display:block; font-size:.54rem; line-height:1.3; color:var(--ink-dim); margin:0; white-space:normal; overflow:visible; text-overflow:clip; -webkit-line-clamp:unset; }
+  .sarea .sarea-cta-stats{ display:none; }
+  .sarea .sarea-cta-call{
+    flex:0 0 auto; gap:4px; padding:7px 10px; border-radius:999px; color:#fff;
+    background:linear-gradient(135deg,var(--rust),var(--rust-light)); box-shadow:0 10px 22px -10px rgba(193,87,30,.8);
+  }
+  .sarea .sarea-cta-call-icon{ width:auto; height:auto; background:none; font-size:.72rem; }
+  .sarea .sarea-cta-call small,
+  .sarea .sarea-cta-call em{ display:none; }
+  .sarea .sarea-cta-call strong{ font-size:.6rem; white-space:nowrap; }
+  .sarea .sarea-cta-call-arrow{ display:none; }
+}
+
+@media (max-width:380px){
+  .sarea .sarea-m{ grid-template-columns:minmax(0,.78fr) minmax(0,1.5fr); padding:10px 3px 10px 9px; }
+  .sarea .sarea-m-feat{ grid-template-columns:20px minmax(0,1fr); column-gap:5px; }
+  .sarea .sarea-m-feat-ico{ width:20px; height:20px; font-size:.52rem; }
+  .sarea .sarea-m-feat h4{ font-size:.5rem; }
+  .sarea .sarea-m-feat p{ font-size:.48rem; }
+  .sarea .sarea-cta-call strong{ font-size:.58rem; }
+  .sarea .sarea-pc-grid{ gap:7px; }
+}
+
+/* ================= calc-sketch.css ================= */
+
+#calculator-section .stepper input {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: center;
+  padding: 10px 28px 10px 8px !important;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+#calculator-section .stepper input:focus { box-shadow: none !important; }
+
+/* push the "ft" tag just right of the number */
+
+#calculator-section .stepper input { padding-right: 8px !important; }
+
+#calculator-section .rate-input input { padding-left: 40px !important; }
+
+#calculator-section .price-setting-panel .fields-grid { grid-template-columns: 1fr 1fr; }
+
+#calculator-section .price-setting-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  #calculator-section .calc-actions { gap: 8px; }
+  #calculator-section .calc-actions .price-setting-btn { flex: 1 1 100%; justify-content: center; }
+  #calculator-section .calc-actions .btn { flex: 1 1 auto; justify-content: center; padding: 10px 12px; }
+  #calculator-section .stepper .step-btn { flex-basis: 36px; }
+  #calculator-section .price-setting-panel .fields-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+@media (min-width: 901px) {
+  #calculator-section .calc-actions { justify-content: flex-end; }
+
+  #calculator-section .pg-box.pg-box--side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+  }
+  #calculator-section .pg-box--side .pg-title { display: flex; margin-bottom: 4px; }
+  #calculator-section .pg-box--side .price-setting-btn {
+    width: 100%;
+    justify-content: center;
+    flex: none;
+  }
+  #calculator-section .pg-box--side .price-setting-panel {
+    order: 0;
+    margin: 0;
+    flex: none;
+  }
+  #calculator-section .pg-box--side .price-setting-panel .fields-grid {
+    grid-template-columns: 1fr;
+  }
+  #calculator-section .pg-box--side .nigilswitch {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ================= price-settings.css ================= */
+
+#calculator-section .ps-card-title svg { width: 16px; height: 16px; color: var(--aqua); flex-shrink: 0; }
+
+#calculator-section .ps-row .field { flex: 1; flex-direction: row; align-items: center; gap: 12px; min-width: 0; }
+
+#calculator-section .ps-row .field .input-suffix { flex: 1; min-width: 0; }
+
+#calculator-section .ps-controls .rate-input input {
+  background: var(--card-2) !important; border: 1px solid var(--line) !important; border-radius: var(--radius-sm) !important;
+  font: 500 14px var(--font-body) !important; color: var(--ink) !important; width: 100% !important;
+  padding: 9px 10px 9px 40px !important; outline: none !important; box-shadow: none !important;
+}
+
+#calculator-section .ps-controls .stepper input { padding: 9px 4px !important; font-weight: 600 !important; }
+
+#calculator-section .ps-mini span { padding-left: 10px; font-size: 12px; color: var(--ink-dim); white-space: nowrap; flex: 0 0 auto; }
+
+#calculator-section .ps-mini input {
+  width: 100%; min-width: 0; border: none; background: transparent; outline: none;
+  padding: 8px 10px 8px 6px; font: 500 14px var(--font-body); color: var(--ink);
+  -moz-appearance: textfield;
+}
+
+#calculator-section .ps-del:hover { color: #dc2626; border-color: #dc2626; }
+
+@media (max-width: 800px) {
+  #calculator-section .ps-top,
+  #calculator-section .ps-slab-grid { grid-template-columns: 1fr; }
+  #calculator-section .ps-row .field > span { flex-basis: 96px; }
+  #calculator-section .ps-actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* ================= theme-switcher.css ================= */
+
+.tsw-trigger:focus-visible{ outline:2px solid #5fb4ff; outline-offset:4px; }
+
+@media (max-width:480px){
+  .tsw-trigger{ width:30px; height:30px; border-radius:10px; }
+}
+
+@media (max-width:360px){
+  .tsw-trigger{ width:28px; height:28px; }
+}
+
+/* ================= search.css ================= */
+
+.sx-trigger:hover{ color:var(--sx-accent); background:var(--sx-accent-soft); }
+
+.sx-trigger[aria-expanded="true"]{ color:var(--sx-accent); background:var(--sx-accent-soft); }
+
+.sx-trigger:focus-visible,
+.sx-panel :focus-visible{ outline:2px solid var(--sx-accent); outline-offset:2px; }
+
+.sx-btn:hover{ background:var(--sx-hover); color:var(--sx-ink); }
+
+.sx-item:hover,.sx-item.is-active{ background:var(--sx-hover); }
+
+.sx-pop:hover,.sx-pop.is-active{ background:var(--sx-hover); }
+
+.sx-chip:hover{ border-color:var(--sx-accent); color:var(--sx-accent); }
+
+/* small screens */
+
+@media (max-width:480px){
+  .sx-panel{ padding:8px 8px 0; }
+  .sx-card{ border-radius:16px; }
+  .sx-tag{ display:none; }
+  .sx-trigger{ width:38px; height:38px; }
+}
+
+@media (max-width:360px){ .sx-trigger{ width:36px; height:36px; } .sx-trigger svg{ width:20px; height:20px; } }
+
+@media (min-width:861px){ .sx-panel{ padding-top:14px; } .sx-body{ padding:10px 10px 12px; } }
+
+/* the field's own ring (.sx-field:focus-within) shows focus; stop the site-wide input outline drawing a box inside it */
+
+.sx-panel .sx-input,
+.sx-panel .sx-input:focus,
+.sx-panel .sx-input:focus-visible{ outline:0 !important; box-shadow:none !important; border:0 !important; background:transparent !important; padding:0 !important; border-radius:0 !important; }
+
+/* --- mobile header: give the brand name room (search button added to the row) --- */
+
+@media (max-width:860px){
+  .navbar .title{ min-width:0; flex:1 1 0; }
+  .navbar .title-text{ min-width:0; flex:1 1 0; }
+  .navbar .brand-title{ white-space:nowrap; overflow:hidden; text-overflow:clip; letter-spacing:0; }
+  .sx-trigger{ width:34px; height:34px; border-radius:10px; }
+  .sx-trigger svg{ width:20px; height:20px; }
+}
+
+@media (max-width:480px){ .sx-trigger{ width:34px; height:34px; } }
+
+@media (max-width:360px){ .sx-trigger{ width:32px; height:32px; } .sx-trigger svg{ width:19px; height:19px; } }
+
+/* ================= index-extras.css ================= */
+
+.ps-pattern-select:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+
+.dri-view-btn:hover{background:rgba(13,148,136,.18)}
+
+.dri-view-btn:focus-visible{outline:2px solid #0f766e;outline-offset:2px}
+
+/* drawer AI Chat: logo fills its whole rounded box */
+
+.nav-links .mnav-ico--img{padding:0;overflow:hidden;background:transparent}
+
+/* ===== inline \3c style id="sarea-desktop-map"> ===== */
+
+/* Desktop (>900px): reuse the mobile Madurai map in place of the old orbit map.
+   Mobile (<=900px) is untouched. Self-contained so it doesn't depend on service-areas.css. */
+
+@media (min-width: 901px) {
+  .sarea-top .sarea-map-wrap,
+  .sarea-top .sarea-mobile-head,
+  .sarea-top .sarea-m-feats { display: none !important; }
+
+  .sarea-top .sarea-intro { grid-column: 1; grid-row: 1; }
+  .sarea-top .sarea-m {
+    display: block !important; grid-column: 2; grid-row: 1;
+    width: 100%; max-width: 580px; margin: 0 auto;
+  }
+  .sarea-top .sarea-m-map {
+    display: block; width: 100%; height: auto; overflow: visible;
+    --m-land1: #1d3f46; --m-land2: #0f252d;
+    --m-dot: rgba(47,211,201,.35);
+  }
+  html[data-theme="light"] .sarea-top .sarea-m-map { --m-land1: #e3f4ee; --m-land2: #bfe2d5; --m-dot: rgba(11,156,143,.4); }
+
+  .sarea-m-map .gdot      { fill: var(--m-dot); }
+  .sarea-m-map .landglow  { fill: none; stroke: var(--aqua); stroke-width: 7; opacity: .28; filter: url(#smBlur); }
+  .sarea-m-map .land      { fill: url(#smLand); stroke: var(--aqua); stroke-width: 1.3; stroke-linejoin: round; }
+  .sarea-m-map .contour   { fill: none; stroke: var(--aqua); stroke-width: .7; stroke-opacity: .3; }
+  .sarea-m-map .sub       { fill: none; stroke: var(--aqua); stroke-width: .6; stroke-opacity: .35; stroke-linejoin: round; stroke-linecap: round; }
+  .sarea-m-map .link      { fill: none; stroke: var(--aqua); stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; }
+
+  .sarea-m-map .pulse     { fill: none; stroke: var(--rust-light); stroke-width: 1.4; transform-box: fill-box; transform-origin: center;
+                            animation: sareaDtPulse 2.8s ease-out infinite; }
+  .sarea-m-map .pulse--b  { animation-delay: 1.4s; }
+  .sarea-m-map .hqglow    { fill: var(--rust-light); opacity: .2; filter: url(#smBlur); }
+
+  .sarea-m-map .halo      { fill: var(--aqua-glow); opacity: .6; }
+  .sarea-m-map .ring      { fill: #fff; stroke: var(--aqua); stroke-width: 1.8; }
+  html[data-theme="light"] .sarea-m-map .ring { stroke-width: 1.6; }
+  .sarea-m-map .ring--hq  { stroke: var(--rust); stroke-width: 2.4; }
+  .sarea-m-map .drop      { fill: var(--aqua); }
+  .sarea-m-map .dropshine { fill: #fff; opacity: .85; }
+
+  .sarea-m-map .lbl       { font-family: var(--font-body); font-size: 6.4px; font-weight: 700; letter-spacing: .05em; text-anchor: middle;
+                            fill: var(--ink); paint-order: stroke; stroke: var(--well); stroke-width: 1.8px; stroke-linejoin: round; }
+  .sarea-m-map .lbl--hq   { font-size: 8px; letter-spacing: .06em; }
+
+  .sarea-m-map .cmp       { fill: var(--card); stroke: var(--aqua); stroke-width: 1; }
+  .sarea-m-map .cmp-star  { fill: var(--aqua); }
+  .sarea-m-map .cmp-t     { font-family: var(--font-mono); font-size: 5px; font-weight: 700; text-anchor: middle; fill: var(--ink-dim); }
+}
+
+@media (prefers-reduced-motion: reduce) { .sarea-m-map .pulse { animation: none; opacity: .3; } }
+
+/* ===== inline \3c style id="drawer-fix"> ===== */
+
+/* =====================================================================
+   MOBILE DRAWER — AI Chat text fix, vivid light-theme cards
+   ===================================================================== */
+
+@media (max-width: 860px) {
+    /* text inside the AI Chat row follows the theme (was forced white) */
+    .nav-links .mnav-item .mnav-card-text strong { color: var(--ink) !important; font-size: .92rem; }
+    .nav-links .mnav-item .mnav-card-text small  { color: var(--ink-dim) !important; font-size: .68rem; }
+
+    /* ---------- LIGHT THEME: richer, less washed-out ---------- */
+    html[data-theme="light"] .nav-links .mnav-item {
+        background: #fff !important;
+        border-color: rgba(23, 33, 31, .12) !important;
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35) !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-ico {
+        color: #fff !important;
+        background: linear-gradient(135deg, #12b5a6, #0b8a7f) !important;
+        border-color: transparent !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-item:first-child {
+        background: linear-gradient(120deg, #d7f5f1, #ffffff) !important;
+        border-color: rgba(11, 156, 143, .55) !important;
+    }
+    html[data-theme="light"] .nav-links a.mnav-item--ai {
+        background: linear-gradient(120deg, #c9f1ec, #ffffff 85%) !important;
+        border: 1.5px solid #0B9C8F !important;
+        box-shadow: 0 10px 22px -12px rgba(11, 156, 143, .6) !important;
+    }
+    html[data-theme="light"] .nav-links .mnav-ico--img { background: transparent !important; border: 0 !important; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text strong { color: #0f1a18 !important; }
+    html[data-theme="light"] .nav-links .mnav-item .mnav-card-text small  { color: #44554f !important; }
+    html[data-theme="light"] .nav-links .mnav-chev { color: #0B9C8F !important; }
+
+    html[data-theme="light"] .mnav-card--calc {
+        background: linear-gradient(120deg, #0fb3a3, #07766d) !important;
+        border: 1px solid #07766d !important;
+        box-shadow: 0 12px 24px -10px rgba(7, 118, 109, .7) !important;
+    }
+    html[data-theme="light"] .mnav-card--install {
+        background: linear-gradient(120deg, #7c4dff, #5a1fd8) !important;
+        border: 1px solid #5a1fd8 !important;
+        box-shadow: 0 14px 28px -10px rgba(90, 31, 216, .65) !important;
+    }
+    html[data-theme="light"] .mnav-card .mnav-card-ico { background: rgba(255, 255, 255, .24) !important; }
+    html[data-theme="light"] .mnav-card .mnav-card-text strong { color: #fff !important; }
+    html[data-theme="light"] .mnav-card .mnav-card-text small  { color: rgba(255, 255, 255, .92) !important; }
+    html[data-theme="light"] .mnav-card .mnav-chev { color: #fff !important; }
+
+    html[data-theme="light"] .mnav-contact-btn {
+        background: #fff !important;
+        border-color: rgba(23, 33, 31, .12) !important;
+        box-shadow: 0 6px 16px -10px rgba(23, 33, 31, .35) !important;
+    }
+    html[data-theme="light"] .mnav-contact-btn--admin i { color: #d92d2d !important; }
+}
+
+/* ---- Call Now / WhatsApp / Admin: solid, stacked, single-line labels (both themes) ---- */
+
+@media (max-width: 860px) {
+    html .mnav-contact-row { gap: 10px !important; }
+    html .mnav-contact-row .mnav-contact-btn {
+        flex: 1 1 0 !important; flex-direction: column !important; justify-content: center !important;
+        gap: 7px !important; padding: 12px 6px 10px !important; border-radius: 14px !important;
+        border: 0 !important; backdrop-filter: none !important; color: #fff !important;
+        box-shadow: 0 10px 20px -10px rgba(0,0,0,.45) !important; text-align: center !important;
+    }
+    html .mnav-contact-row .mnav-contact-btn:active { transform: scale(.97); }
+    html .mnav-contact-row .mnav-contact-btn--call     { background: linear-gradient(135deg,#12b5a6,#07766d) !important; }
+    html .mnav-contact-row .mnav-contact-btn--whatsapp { background: linear-gradient(135deg,#2fdc72,#12863f) !important; }
+    html .mnav-contact-row .mnav-contact-btn--admin    { background: linear-gradient(135deg,#ec5252,#b01e1e) !important; }
+    html .mnav-contact-row .mnav-contact-btn i {
+        display: grid !important; place-items: center !important; width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255,255,255,.22) !important; color: #fff !important; font-size: 1rem !important;
+    }
+    html .mnav-contact-row .mnav-contact-btn span { align-items: center !important; width: 100%; text-align: center !important; }
+    html .mnav-contact-row .mnav-contact-btn strong {
+        color: #fff !important; font-size: .74rem !important; font-weight: 700 !important;
+        white-space: nowrap !important; letter-spacing: .01em;
+    }
+}
+
+/* =========================================================
+   ABOUT — COMPACT, NO GLASS SLAB
+   The big glass container and the 3D orbs are gone; the six cards sit
+   directly on the page and are smaller (card, photo, icon and text).
+   Kept last in the file so it overrides the earlier ABOUT rules.
+   ========================================================= */
+
+.about-scene { width: min(960px, 92%); margin: 6px auto 70px; perspective: none; }
+
+#about1,
+html[data-theme] #about1 {
+    padding: 0; border-radius: 0; border: 0; background: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    box-shadow: none; transform: none !important;
+    gap: 18px 20px;
+    --ab-card: var(--card);
+}
+
+#about1::before, #about1::after { content: none; }
+
+.aboutbox {
+    min-height: 118px; gap: 14px; padding: 18px 40% 18px 18px;
+    background: linear-gradient(165deg, var(--card), var(--card-2));
+    border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.about-num { min-width: 42px; padding: 5px 10px 6px; font-size: .85rem; border-radius: 0 0 12px 0; }
+
+.about-ico { width: 48px; height: 48px; font-size: 1.15rem; margin-top: 10px; }
+
+.about-body { margin-top: 10px; }
+
+.aboutbox h2 { font-size: 1.02rem; margin-bottom: 5px; }
+
+.aboutbox p  { font-size: .82rem; line-height: 1.45; }
+
+.about-media { width: 34%; }
+
+@media (max-width: 860px) {
+    .about-scene { width: auto; margin: 6px 4% 50px; }
+    #about1,
+    html[data-theme] #about1 { padding: 0; border-radius: 0; gap: 8px; }
+
+    .aboutbox { padding: 0; min-height: 0; border-radius: 12px; }
+    .about-media { width: 100%; height: clamp(58px, 16vw, 92px); }
+    .about-num { min-width: 24px; padding: 3px 7px 4px; font-size: .58rem; border-radius: 0 0 8px 0; }
+    .about-ico { width: 24px; height: 24px; font-size: .62rem; margin: -13px 0 -7px 8px; }
+    .about-body { margin-top: 3px; padding: 0 8px 9px; }
+    .aboutbox h2 { font-size: clamp(.62rem, 2.5vw, .78rem); margin-bottom: 2px; }
+    .aboutbox p  { font-size: clamp(.54rem, 2.15vw, .66rem); line-height: 1.32; }
+}
+
+@media (max-width: 420px) {
+    #about1,
+    html[data-theme] #about1 { padding: 0; gap: 7px; }
+    .about-body { padding: 0 7px 8px; }
+    .about-ico { margin-left: 7px; }
+    .about-scene { margin: 6px 3% 44px; }
+}
+
+/* =========================================================
+   ABOUT — THREE CARDS PER ROW (desktop ≥ 1101px)
+   Tablet (861–1100px) keeps 2 per row, mobile keeps its own layout.
+   Kept last in the file so it overrides the earlier ABOUT rules.
+   ========================================================= */
+
+@media (min-width: 1101px) {
+    .about-scene { width: min(1180px, 94%); }
+    #about1,
+    html[data-theme] #about1 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+
+    .aboutbox { gap: 10px; padding: 16px 38% 16px 16px; min-height: 150px; }
+    .about-ico { width: 40px; height: 40px; font-size: 1rem; margin-top: 12px; }
+    .about-body { margin-top: 12px; }
+    .aboutbox h2 { font-size: .96rem; }
+    .aboutbox p  { font-size: .78rem; line-height: 1.42; }
+    .about-media { width: 34%; }
+}

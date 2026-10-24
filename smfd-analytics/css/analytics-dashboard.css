@@ -1,0 +1,150 @@
+/* SMFD Live Visitor Analytics — all selectors are prefixed .ava- so nothing leaks into the site's own CSS.
+   Tip: the page's <meta name="viewport"> should include viewport-fit=cover for the safe-area insets to apply. */
+.ava-lock { overflow: hidden; }
+
+.ava-overlay, .ava-overlay * { box-sizing: border-box; }
+.ava-overlay {
+  --bg: #0B1224; --card: #151E31; --card2: #1B2740; --line: #263149; --text: #E8EEF9; --muted: #8A97B2;
+  --em: #10B981; --tq: #2DD4BF; --warn: #F59E0B; --bad: #F43F5E;
+  position: fixed; inset: 0; z-index: 2147483000;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(3, 8, 20, .74); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+.ava-overlay[hidden] { display: none; }
+
+.ava-panel {
+  width: 100%; max-width: 1060px;
+  height: calc(100vh - env(safe-area-inset-top, 0px) - 10px);
+  height: calc(100dvh - env(safe-area-inset-top, 0px) - 10px);
+  display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto;
+  background: var(--bg); border: 1px solid var(--line); border-bottom: 0;
+  border-radius: 22px 22px 0 0; overflow: hidden;
+  box-shadow: 0 -10px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(16, 185, 129, .08);
+  animation: ava-up .22s ease-out;
+}
+@media (min-width: 768px) {
+  .ava-overlay { align-items: center; padding: 24px; }
+  .ava-panel { height: min(90vh, 900px); height: min(90dvh, 900px); border-bottom: 1px solid var(--line); border-radius: 22px; }
+}
+
+/* header */
+.ava-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--bg); }
+.ava-logo { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  color: #04251B; background: linear-gradient(135deg, var(--em), var(--tq)); box-shadow: 0 0 18px rgba(16, 185, 129, .35); }
+.ava-titles { min-width: 0; flex: 1; }
+.ava-titles h2 { margin: 0; font-size: clamp(1rem, 4.4vw, 1.3rem); font-weight: 700; letter-spacing: -.01em; color: #fff; }
+.ava-titles p { margin: 2px 0 0; font-size: clamp(.7rem, 3vw, .82rem); color: var(--muted); overflow-wrap: anywhere; }
+.ava-close { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; cursor: pointer;
+  color: var(--muted); background: var(--card); border: 1px solid var(--line); }
+.ava-close:hover { color: #fff; border-color: var(--em); }
+
+/* tabs: 2×2 on phones, one row on wider screens */
+.ava-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
+@media (min-width: 640px) { .ava-tabs { grid-template-columns: repeat(4, 1fr); } }
+.ava-tabs button { min-height: 46px; padding: 8px 10px; border-radius: 12px; cursor: pointer; font: 600 .86rem/1.2 inherit;
+  color: #C9D3E8; background: var(--card); border: 1px solid var(--line); transition: background .15s, border-color .15s, box-shadow .15s; }
+.ava-tabs button:hover { border-color: #3A4A6B; background: var(--card2); }
+.ava-tabs button[aria-selected="true"] { color: #031A13; background: linear-gradient(135deg, var(--em), var(--tq)); border-color: transparent; box-shadow: 0 0 16px rgba(16, 185, 129, .4); }
+
+/* focus */
+.ava-overlay button:focus-visible, .ava-overlay input:focus-visible, .ava-overlay select:focus-visible, .ava-body:focus-visible {
+  outline: 2px solid var(--tq); outline-offset: 2px; }
+
+/* scrollable region (the ONLY scroller) */
+.ava-body { min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: 14px 16px 20px; display: flex; flex-direction: column; gap: 12px;
+  scrollbar-width: thin; scrollbar-color: #2B3A57 transparent; }
+.ava-body::-webkit-scrollbar { width: 6px; }
+.ava-body::-webkit-scrollbar-thumb { background: #2B3A57; border-radius: 6px; }
+
+/* footer action bar stays visible */
+.ava-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line); background: var(--bg); }
+.ava-status { flex: 1 1 100%; display: flex; align-items: center; gap: 8px; font-size: .74rem; color: var(--muted); }
+.ava-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--em); box-shadow: 0 0 8px var(--em); }
+.ava-warn i { background: var(--warn); box-shadow: 0 0 8px var(--warn); } .ava-off i { background: var(--bad); box-shadow: none; }
+.ava-btn { min-height: 44px; padding: 0 16px; border-radius: 12px; font: 600 .88rem/1 inherit; cursor: pointer; border: 1px solid var(--line); }
+.ava-btn:disabled { opacity: .5; cursor: not-allowed; }
+.ava-btn-ghost { flex: 1; color: #fff; background: var(--card); } .ava-btn-ghost:hover:not(:disabled) { border-color: var(--em); }
+.ava-btn-primary { flex: 1; color: #031A13; border: 0; background: linear-gradient(135deg, var(--em), var(--tq)); }
+@media (min-width: 640px) { .ava-status { flex: 1; } .ava-btn-ghost, .ava-btn-primary { flex: none; min-width: 150px; } }
+
+/* cards */
+.ava-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; box-shadow: 0 4px 18px rgba(0, 0, 0, .25); min-width: 0; }
+.ava-card h3 { margin: 0 0 10px; font-size: .95rem; font-weight: 650; color: #fff; overflow-wrap: anywhere; }
+.ava-cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 420px) { .ava-cards { grid-template-columns: 1fr 1fr; } }
+.ava-stat h3 { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.ava-big { margin: 0; font-size: clamp(1.9rem, 9vw, 2.6rem); font-weight: 800; line-height: 1.1; color: #fff; display: flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
+.ava-stat-live { border-color: rgba(16, 185, 129, .35); box-shadow: 0 0 22px rgba(16, 185, 129, .12); }
+.ava-stat-live .ava-big { color: var(--em); }
+.ava-big-sm { margin: 0; font-size: 1.5rem; font-weight: 750; color: #fff; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; } .ava-big-sm small { font-size: .8rem; color: var(--muted); }
+.ava-sub { margin: 4px 0 0; font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+.ava-note { margin: 10px 0 0; font-size: .72rem; color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
+.ava-privacy { margin: 4px 0 0; font-size: .7rem; line-height: 1.55; color: #6F7C98; }
+.ava-pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--em); box-shadow: 0 0 0 0 rgba(16, 185, 129, .6); animation: ava-pulse 2s infinite; }
+.ava-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 359px) { .ava-grid2 { grid-template-columns: 1fr; } }
+.ava-mini h3 { font-size: .72rem; color: var(--muted); font-weight: 600; }
+.ava-dl { margin: 0; display: grid; gap: 8px; } .ava-dl div { display: flex; justify-content: space-between; gap: 12px; font-size: .86rem; }
+.ava-dl dt { color: var(--muted); } .ava-dl dd { margin: 0; font-weight: 650; text-align: right; overflow-wrap: anywhere; }
+
+/* ranked rows with bars */
+.ava-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ava-row-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; font-size: .86rem; }
+.ava-name { min-width: 0; overflow-wrap: anywhere; color: #DCE5F7; }
+.ava-val { flex: none; color: var(--muted); font-variant-numeric: tabular-nums; } .ava-val b { color: #fff; margin-left: 4px; } .ava-val small { font-size: .7rem; }
+.ava-bar { height: 8px; border-radius: 8px; background: #0E162A; overflow: hidden; }
+.ava-bar i { display: block; height: 100%; border-radius: 8px; background: var(--c, var(--em)); box-shadow: 0 0 10px color-mix(in srgb, var(--c, #10B981) 55%, transparent); transition: width .5s ease; }
+
+/* hour chart */
+.ava-hours { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 3px; height: 130px; align-items: end; }
+.ava-hcol { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; }
+.ava-hcol i { display: block; width: 100%; background: #2B3F66; border-radius: 3px 3px 0 0; min-height: 0; }
+.ava-hcol.is-peak i { background: linear-gradient(180deg, var(--tq), var(--em)); box-shadow: 0 0 10px rgba(16, 185, 129, .5); }
+.ava-hcol span { font-size: .55rem; color: var(--muted); height: 10px; }
+
+/* toolbar + inputs */
+.ava-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ava-input { min-height: 44px; padding: 0 12px; border-radius: 12px; color: #fff; background: var(--card); border: 1px solid var(--line); font: 500 .9rem inherit; max-width: 100%; color-scheme: dark; }
+.ava-hint { flex: 1 1 100%; font-size: .72rem; color: var(--muted); order: 5; }
+.ava-link { margin-left: auto; background: none; border: 0; color: var(--muted); font: 600 .78rem inherit; cursor: pointer; text-decoration: underline; min-height: 44px; }
+.ava-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* live feed */
+.ava-feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ava-item { display: flex; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--card2); border: 1px solid var(--line); animation: ava-in .3s ease-out; }
+.ava-item-t { margin: 0; font-size: .88rem; font-weight: 600; color: #fff; overflow-wrap: anywhere; }
+.ava-item-s { margin: 2px 0 0; font-size: .74rem; color: var(--muted); overflow-wrap: anywhere; }
+.ava-dot { flex: none; width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; background: #475569; }
+.ava-dot-on { background: var(--em); box-shadow: 0 0 10px var(--em); } .ava-dot-recent { background: var(--warn); }
+.ava-on-txt { color: var(--em); } .ava-recent-txt { color: var(--warn); }
+
+/* states */
+.ava-empty { text-align: center; padding: 28px 12px; color: var(--muted); font-size: .86rem; } .ava-empty h3 { color: #fff; margin: 0 0 6px; }
+.ava-empty-line { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+.ava-alert { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 12px; font-size: .82rem;
+  background: rgba(244, 63, 94, .1); border: 1px solid rgba(244, 63, 94, .4); color: #FDA4B4; }
+.ava-alert .ava-btn { flex: none; min-height: 40px; }
+.ava-login { display: grid; gap: 12px; max-width: 380px; width: 100%; margin: 20px auto; } .ava-login h3 { margin: 0; font-size: 1.1rem; color: #fff; }
+.ava-login label { display: grid; gap: 6px; font-size: .8rem; color: var(--muted); } .ava-form-msg { margin: 0; min-height: 1em; font-size: .8rem; color: #FDA4B4; }
+.ava-spinner { width: 28px; height: 28px; margin: 0 auto 10px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--em); animation: ava-spin .8s linear infinite; }
+.ava-skel { min-height: 96px; background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%); background-size: 200% 100%; animation: ava-shimmer 1.3s infinite; }
+.ava-skel-tall { min-height: 170px; }
+.ava-panel-tab { display: flex; flex-direction: column; gap: 12px; } .ava-panel-tab[hidden] { display: none; }
+.ava-panel-tab:not([hidden]) { animation: ava-in .22s ease-out; }
+.ava-flash { animation: ava-flash .6s ease-out; }
+
+@keyframes ava-up { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ava-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes ava-pulse { 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+@keyframes ava-shimmer { to { background-position: -200% 0; } }
+@keyframes ava-spin { to { transform: rotate(360deg); } }
+@keyframes ava-flash { 0% { color: var(--tq); text-shadow: 0 0 14px var(--tq); } 100% { text-shadow: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ava-overlay *, .ava-overlay *::before, .ava-overlay *::after { animation: none !important; transition: none !important; }
+}

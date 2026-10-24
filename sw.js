@@ -14,7 +14,7 @@
       while a background fetch quietly refreshes the cache for next time.
    ========================================================================== */
 
-const CACHE_VERSION   = "v1.0.0";           // <-- bump this on every deploy
+const CACHE_VERSION   = "v1.0.1";           // <-- bump this on every deploy
 const STATIC_CACHE    = `smfd-static-${CACHE_VERSION}`;
 const PAGES_CACHE     = `smfd-pages-${CACHE_VERSION}`;
 const CURRENT_CACHES  = [STATIC_CACHE, PAGES_CACHE];

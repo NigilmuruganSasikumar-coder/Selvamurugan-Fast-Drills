@@ -1,0 +1,153 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    function dayOk(d) { return d is string && d.matches('^20[0-9][0-9]-[01][0-9]-[0-3][0-9]$'); }
+    function inRange(v, lo, hi) { return v is number && v >= lo && v <= hi; }
+    function expireOk(d, maxDays) {
+      return !('expireAt' in d)
+        || (d.expireAt is timestamp && d.expireAt > request.time
+            && d.expireAt < request.time + duration.value(maxDays, 'd'));
+    }
+    function oneOf(v, list) { return v is string && v in list; }
+
+    // ---------- admins (create docs manually in the console; clients can never write) ----------
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // ---------- one document per anonymous session ----------
+    match /analyticsSessions/{sid} {
+      allow read: if isAdmin();
+      allow create: if signedIn()
+        && sid.matches('^s[a-f0-9]{24}$')
+        && request.resource.data.keys().hasOnly(['uid','startedAt','lastSeen','page','section','device','os','browser','city','state','engagedMs','expireAt'])
+        && request.resource.data.keys().hasAll(['uid','startedAt','lastSeen','page','device','os','browser','city','state','engagedMs'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.startedAt == request.time
+        && request.resource.data.lastSeen == request.time
+        && request.resource.data.engagedMs == 0
+        && request.resource.data.page is string && request.resource.data.page.size() <= 100
+        && request.resource.data.get('section', '') is string && request.resource.data.get('section', '').size() <= 40
+        && oneOf(request.resource.data.device, ['mobile','desktop','tablet','unknown'])
+        && oneOf(request.resource.data.os, ['android','ios','windows','macos','linux','other'])
+        && oneOf(request.resource.data.browser, ['chrome','safari','edge','firefox','other'])
+        && request.resource.data.city.matches('^[A-Za-z ]{1,40}$')
+        && request.resource.data.state.matches('^[A-Za-z ]{1,40}$')
+        && expireOk(request.resource.data, 31);
+      allow update: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastSeen','page','section','engagedMs'])
+        && request.resource.data.lastSeen == request.time
+        && request.time > resource.data.lastSeen + duration.value(2, 's')      // server-side rate limit
+        && inRange(request.resource.data.engagedMs - resource.data.engagedMs, 0, 120000)
+        && request.resource.data.page is string && request.resource.data.page.size() <= 100
+        && request.resource.data.get('section', '') is string && request.resource.data.get('section', '').size() <= 40;
+      allow delete: if false;
+    }
+
+    // ---------- append-only event log ----------
+    match /analyticsEvents/{id} {
+      allow read: if isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['type','action','sid','uid','path','section','device','os','browser','city','state','day','hour','ts','expireAt'])
+        && request.resource.data.keys().hasAll(['type','sid','uid','path','device','os','browser','day','hour','ts'])
+        && oneOf(request.resource.data.type, ['page_view','session_start','cta_click','phone_click','whatsapp_click','calculator_open','calculator_complete','quotation_start','quotation_submit','contact_submit'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.sid.matches('^s[a-f0-9]{24}$')
+        && request.resource.data.ts == request.time
+        && dayOk(request.resource.data.day)
+        && inRange(request.resource.data.hour, 0, 23)
+        && request.resource.data.path is string && request.resource.data.path.size() <= 100
+        && request.resource.data.get('action', '').size() <= 40
+        && request.resource.data.get('section', '').size() <= 40
+        && oneOf(request.resource.data.device, ['mobile','desktop','tablet','unknown'])
+        && oneOf(request.resource.data.os, ['android','ios','windows','macos','linux','other'])
+        && oneOf(request.resource.data.browser, ['chrome','safari','edge','firefox','other'])
+        && request.resource.data.get('city', 'Unknown').matches('^[A-Za-z ]{1,40}$')
+        && request.resource.data.get('state', 'Unknown').matches('^[A-Za-z ]{1,40}$')
+        && expireOk(request.resource.data, 91);
+      allow update, delete: if false;
+    }
+
+    // ---------- per-day counters (flat numeric fields; each write may only add small amounts) ----------
+    function dailyKeys() {
+      return [
+        'day', 'pv', 'sessions', 'interSessions', 'engagedMs', 'interactions',
+        'expireAt', 'dev_mobile', 'dev_desktop', 'dev_tablet', 'dev_unknown', 'os_android',
+        'os_ios', 'os_windows', 'os_macos', 'os_linux', 'os_other', 'br_chrome',
+        'br_safari', 'br_edge', 'br_firefox', 'br_other', 'ev_cta_click', 'ev_phone_click',
+        'ev_whatsapp_click', 'ev_calculator_open', 'ev_calculator_complete', 'ev_quotation_start', 'ev_quotation_submit', 'ev_contact_submit',
+        'cta_ai_chat_open', 'cta_ai_chat_message', 'sec_landing', 'sec_ai_assistant', 'sec_service_areas', 'sec_calculator',
+        'sec_testimonials', 'sec_faq', 'sec_gallery', 'eh_00', 'eh_01', 'eh_02',
+        'eh_03', 'eh_04', 'eh_05', 'eh_06', 'eh_07', 'eh_08',
+        'eh_09', 'eh_10', 'eh_11', 'eh_12', 'eh_13', 'eh_14',
+        'eh_15', 'eh_16', 'eh_17', 'eh_18', 'eh_19', 'eh_20',
+        'eh_21', 'eh_22', 'eh_23'
+      ];
+    }
+    function dailyShape(d, day) {
+      return d.keys().hasOnly(dailyKeys()) && d.day == day && dayOk(day) && expireOk(d, 401);
+    }
+    match /analyticsDaily/{day} {
+      allow read: if isAdmin();
+      allow create: if signedIn() && dailyShape(request.resource.data, day)
+        && inRange(request.resource.data.get('pv', 0), 0, 1)
+        && inRange(request.resource.data.get('sessions', 0), 0, 1)
+        && inRange(request.resource.data.get('interSessions', 0), 0, 1)
+        && inRange(request.resource.data.get('interactions', 0), 0, 1)
+        && inRange(request.resource.data.get('engagedMs', 0), 0, 120000);
+      allow update: if signedIn() && dailyShape(request.resource.data, day)
+        && request.resource.data.diff(resource.data).affectedKeys().size() <= 12
+        && inRange(request.resource.data.get('pv', 0) - resource.data.get('pv', 0), 0, 1)
+        && inRange(request.resource.data.get('sessions', 0) - resource.data.get('sessions', 0), 0, 1)
+        && inRange(request.resource.data.get('interSessions', 0) - resource.data.get('interSessions', 0), 0, 1)
+        && inRange(request.resource.data.get('interactions', 0) - resource.data.get('interactions', 0), 0, 1)
+        && inRange(request.resource.data.get('engagedMs', 0) - resource.data.get('engagedMs', 0), 0, 120000);
+      allow delete: if false;
+    }
+
+    // ---------- all-time totals ----------
+    match /analyticsTotals/{id} {
+      allow read: if isAdmin();
+      allow create: if signedIn() && id == 'all'
+        && request.resource.data.keys().hasOnly(['pv','sessions'])
+        && inRange(request.resource.data.get('pv', 0), 0, 1) && inRange(request.resource.data.get('sessions', 0), 0, 1);
+      allow update: if signedIn() && id == 'all'
+        && request.resource.data.keys().hasOnly(['pv','sessions'])
+        && inRange(request.resource.data.get('pv', 0) - resource.data.get('pv', 0), 0, 1)
+        && inRange(request.resource.data.get('sessions', 0) - resource.data.get('sessions', 0), 0, 1);
+      allow delete: if false;
+    }
+
+    // ---------- per-day city / state session counts ----------
+    function geoShape(d, id) {
+      return d.keys().hasOnly(['day','kind','name','count','expireAt'])
+        && dayOk(d.day) && oneOf(d.kind, ['city','state'])
+        && d.name is string && d.name.matches('^[A-Za-z ]{1,40}$')
+        && id == d.day + '_' + d.kind + '_' + d.name
+        && expireOk(d, 401);
+    }
+    match /analyticsGeo/{id} {
+      allow read: if isAdmin();
+      allow create: if signedIn() && geoShape(request.resource.data, id) && request.resource.data.count == 1;
+      allow update: if signedIn() && geoShape(request.resource.data, id)
+        && request.resource.data.count == resource.data.count + 1
+        && request.resource.data.name == resource.data.name
+        && request.resource.data.kind == resource.data.kind
+        && request.resource.data.day == resource.data.day;
+      allow delete: if false;
+    }
+
+    // everything else: denied
+    match /{document=**} { allow read, write: if false; }
+  }
+}
